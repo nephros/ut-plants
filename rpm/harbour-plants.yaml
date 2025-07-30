@@ -122,9 +122,9 @@ PkgConfigBR:
 Configure: cmake
 Builder: cmake
 ConfigOptions:
-  - '-DCMAKE_INSTALL_PREFIX=%{_datadir}'
+  # '-DCMAKE_INSTALL_PREFIX=%{_datadir}'
   # '-DCMAKE_INSTALL_PREFIX=%{_prefix}'
-  - '-DQT_IMPORTS_DIR=%{plugindir}'
+  # '-DQT_IMPORTS_DIR=%{plugindir}'
 #NoAutoLocale: true
 LocaleName: '%{orgname}.%{appname}'
 NoIconCache: true
@@ -132,14 +132,14 @@ NoIconCache: true
 Files:
   # '%license LICENSE'
   # '%license COPYING'
-  # '%{_bindir}/*'
+  - '%{_bindir}/*'
   - '%{_datadir}/applications/%{name}.desktop'
   # '%{_datadir}/themes/sailfish-default/*/*/*.png'
   # '%{_datadir}/icons/*/*/apps/*'
   - '%{_datadir}/icons/*/*/apps/%{name}.png'
   # '%{_datadir}/icons/*/*/apps/%{name}.svg'
   # ' %{_datadir}/%{name}/'
-  - ' %{_datadir}/%{name}'
+  # ' %{_datadir}/%{name}'
   # '%dir %{_datadir}/%{name}/translations'
   # '%{_datadir}/%{name}/translations/*.qm'
   # '%{_datadir}/%{name}/qml/'

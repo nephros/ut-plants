@@ -95,10 +95,7 @@ sed -i 's/"plants.s710"/"%{orgname}.%{appname}"/' CMakeLists.txt
 mv Plants.desktop.in %{name}.desktop.in
 # << build pre
 
-%cmake .  \
-    -DCMAKE_INSTALL_PREFIX=%{_datadir} \
-    -DQT_IMPORTS_DIR=%{plugindir}
-
+%cmake . 
 %cmake_build
 
 # >> build post
@@ -167,8 +164,8 @@ echo '=========== NOT checking for Harbour compatability.'
 # << check
 
 %files -f %{orgname}.%{appname}.lang
+%{_bindir}/*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/*/*/apps/%{name}.png
- %{_datadir}/%{name}
 # >> files
 # << files
