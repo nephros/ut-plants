@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 import "../util"
+import "../compat"
 
 Rectangle {
    property int padding: parent.width * 0.05
