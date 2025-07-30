@@ -117,7 +117,7 @@ mv %{buildroot}/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.des
 install -d %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/
 mv %{buildroot}/%{_datadir}/assets/logo.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{name}.png
 install -d %{buildroot}%{_bindir}/
-install -mp755 %{buildroot}/%{_datadir}/%{name} %{buildroot}%{_bindir}/%{name}
+install -m755 %{buildroot}/%{_datadir}/%{name} %{buildroot}%{_bindir}/%{name}
 
 # Edit the main .desktop file for Sailjail
 desktop-file-edit  \
