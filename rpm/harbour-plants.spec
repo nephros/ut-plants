@@ -11,8 +11,7 @@ Name:       harbour-plants
 %define orgname s71e
 %define appname plants
 %define pkgname %{name}
-%define servicebase %{orgname}.%{appname}
-%define desktopsrc %SOURCE1
+%define plugindir %{_datadir}/%{name}/
 %define please ignore this macro
 # add missing macros in case we want to use cmake_build/install
 %if 0%{?sailfishos_version} < 40600
@@ -71,6 +70,7 @@ Links:
 %endif
 
 
+%define __provides_exclude_from %{plugindir}
 %define please_also ignore this macro
 %if %{with harbour}
 %undefine vendor
@@ -95,7 +95,8 @@ BuildRequires: sdk-harbour-rpmvalidator
 # << build pre
 
 %cmake .  \
-    -DCMAKE_INSTALL_PREFIX=%{_prefix}
+    -DCMAKE_INSTALL_PREFIX=%{_prefix} \
+    -DQT_IMPORTS_DIR=%{plugindir}
 
 %cmake_build
 

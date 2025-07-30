@@ -32,8 +32,7 @@ Macros:
   - 'orgname;s71e'
   - 'appname;plants'
   - 'pkgname;%{name}'
-  - 'servicebase;%{orgname}.%{appname}'
-  - 'desktopsrc;%SOURCE1'
+  - 'plugindir;%{_datadir}/%{name}/'
 # SFOS defaults to in_source_build 1
 # - '__cmake_in_source_build;0'
 # - '%_vpath_srcdir;.'
@@ -81,6 +80,7 @@ Description: |
     %endif
 
 Macros2:
+  - '__provides_exclude_from;%{plugindir}'
   #  if you need to exclude requires or provides:
   # '__provides_exclude_from;^%{app_arch_libdir}/.*$'
   # '__requires_exclude_from;^%{app_arch_libdir}/.*$'
@@ -123,6 +123,7 @@ Configure: cmake
 Builder: cmake
 ConfigOptions:
   - '-DCMAKE_INSTALL_PREFIX=%{_prefix}'
+  - '-DQT_IMPORTS_DIR=%{plugindir}'
 NoIconCache: true
 #BuildArch: noarch
 Files:
