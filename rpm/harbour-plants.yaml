@@ -1,0 +1,137 @@
+Name: harbour-plants
+Summary: App for identifying plants through image analyzation
+Version: 1.3.1.1
+Release: 0
+Group: Applications
+# Only use "ASL 2.0" if you intend to build on SailfishOS-OBS and care about the rpmlint output.
+# Use correct SPDX-ID "Apache-2.0" in all other cases.  Note that this example is also the
+# licence used for this project "sfos-harbour-plant".
+# License: ASL 2.0
+License: Apache-2.0
+URL: https://github.com/nephros/ut-plants
+SCM: https://github.com/nephros/ut-plants
+Sources:
+    # '%{url}/releases/download/v%{version}/%{name}-%{version}.tar.gz'
+    # https://github.com/nephros/template/releases/download/v%{version}/%{name}-%{version}.tar.gz
+    # 'https://github.com/nephros/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz'
+    - '%{name}-%{version}.tar.gz'
+#    # Only way to make nosource work:
+#    - |
+#      foo.zip
+#      Nosource: 1
+# This will copy the files into the build root in setup
+#ExtraSources:
+#   - '%{name}.desktop' ## remember to adjust the Macro below...
+#   - '%{name}.profile'
+#Patches:
+#  - 'baz'
+#SetupOptions: -q -n %{name}-%{version}/upstream
+Macros:
+  # keep .a files:
+  # 'keepstatic;1'
+  - 'orgname;s71e'
+  - 'appname;plants'
+  - 'pkgname;%{name}'
+  - 'servicebase;%{orgname}.%{appname}'
+  - 'desktopsrc;%SOURCE1'
+# SFOS defaults to in_source_build 1
+# - '__cmake_in_source_build;0'
+# - '%_vpath_srcdir;.'
+# - '%_vpath_builddir;%{_target_platform}'
+# For meson:
+# - '__meson_auto_features;disabled'
+  - |
+    please;ignore this macro
+    # add missing macros in case we want to use cmake_build/install
+    %if 0%{?sailfishos_version} < 40600
+    %if 0%{?sailfishos_version} <= 40000
+    %define cmake_build %__cmake --build "."
+    %define cmake_install %make_install
+    %else
+    %define cmake_build %__cmake --build "." -j8 --verbose
+    %define cmake_install DESTDIR=%buildroot %__cmake --install .
+    %endif
+    %endif
+#
+Description: |
+    %{summary}.
+
+    %if 0%{?_chum}
+    Title: Plants
+    Type: desktop-application
+    DeveloperLogin: patrickjane
+    Categories:
+     - Science
+     - Utility
+    Custom:
+      Repo: %{url}
+    # GitHub:
+    PackageIcon: %{url}/master/icons/%{name}.svg
+    # Codeberg:
+    PackageIcon: %{url}/raw/branch/master/icons/svgs/%{name}.svg
+    Screenshots:
+     - %{url}/raw/metadata/screenshots/screenshot1.png
+     - %{url}/raw/metadata/screenshots/screenshot2.png
+     - %{url}/raw/metadata/screenshots/screenshot3.png
+    Links:
+      Homepage: %{url}
+      Help: %{url}/discussions
+      Bugtracker: %{url}/issues
+      Donation: https://openrepos.net/donate
+    %endif
+
+Macros2:
+  #  if you need to exclude requires or provides:
+  # '__provides_exclude_from;^%{app_arch_libdir}/.*$'
+  # '__requires_exclude_from;^%{app_arch_libdir}/.*$'
+  # '__requires_exclude;^%{_bindir}/%{name}-static'
+  # '_noautoprov;libcrypto.so;libgcc_s.so;libmbed.*\\.so;libssl.so;libstdc\\+\\+.so;libpng12.so;libunwind.so'
+  # '_noautoreqfiles;.*x86_64.*;.*/%{name}-static'
+  # '_noautostrip;.*x86_64.*\\|.*/%{name}-static'
+    # undefine macros that may interfere with harbour:
+  - |
+    please_also;ignore this macro
+    %if %{with harbour}
+    %undefine vendor
+    %undefine _vendor
+    %undefine _chum
+    %endif
+    %if 0%{?harbour_validation:1}
+    BuildRequires: sdk-harbour-rpmvalidator
+    %endif
+Check: true # so we can do a fake clean section below it:
+
+Requires:
+  - libsailfishapp-launcher
+PkgBR:
+  - cmake
+  # qt5-qttools-linguist
+  # qt5-qmake
+  - sailfish-svg2png
+  # qml-rpm-macros
+PkgConfigBR:
+  # we need this if we rely on sailfishapp features in the .pro file (like installing qml)
+  - sailfishapp
+#  - qml(Nemo.Notifications)
+Configure: cmake
+Builder: cmake
+#ConfigOptions:
+#  - '--with-foo'
+NoIconCache: true
+#BuildArch: noarch
+Files:
+  # '%license LICENSE'
+  # '%license COPYING'
+  - '%{_bindir}/*'
+  - '%{_datadir}/applications/*.desktop'
+  # '%{_datadir}/applications/%{name}.desktop'
+  # '%{_datadir}/themes/sailfish-default/*/*/*.png'
+  - '%{_datadir}/icons/*/*/apps/*'
+  # '%{_datadir}/icons/*/*/apps/%{name}.png'
+  # '%{_datadir}/icons/*/*/apps/%{name}.svg'
+  - '%dir %{_datadir}/%{name}'
+  - '%dir %{_datadir}/%{name}/translations'
+  - '%{_datadir}/%{name}/translations/*.qm'
+  - '%{_datadir}/%{name}/qml/'
+  # '%{_datadir}/%{name}/python/'
+
