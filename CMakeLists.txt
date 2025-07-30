@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 14)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Qml REQUIRED)
 find_package(Qt5Quick REQUIRED)
-find_package(Qt5QuickControls2 REQUIRED)
+#find_package(Qt5QuickControls2 REQUIRED)
 
 execute_process(
     COMMAND dpkg-architecture -qDEB_HOST_MULTIARCH

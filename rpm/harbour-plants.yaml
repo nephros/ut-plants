@@ -114,7 +114,7 @@ PkgConfigBR:
   - Qt5Core
   - Qt5Qml
   - Qt5Quick
-  - Qt5QuickControls2
+  # Qt5QuickControls2
 
   - sailfishapp
 #  - qml(Nemo.Notifications)
