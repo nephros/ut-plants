@@ -89,13 +89,13 @@ BuildRequires: sdk-harbour-rpmvalidator
 
 %build
 # >> build pre
-# position-independent executables/libraries. WARNING: may lead to segfaults
-# export CFLAGS="$CFLAGS -fPIC"
-# export LDFLAGS="$LDFLAGS -pie -shared"
+sed -i 's/"Plants"/"%{name}"/' CMakeLists.txt
+sed -i 's/"plants.s710"/"%{orgname}.%{appname}"/' CMakeLists.txt
+mv Plants.desktop.in %{name}.desktop.in
 # << build pre
 
 %cmake .  \
-    -DCMAKE_INSTALL_PREFIX=%{datadir} \
+    -DCMAKE_INSTALL_PREFIX=%{_datadir} \
     -DQT_IMPORTS_DIR=%{plugindir}
 
 %cmake_build
@@ -141,7 +141,7 @@ rm -rf %{buildroot}%{_docdir}
 rm -rf %{buildroot}%{_mandir}
 # << install post
 
-%find_lang plants.s710
+%find_lang %{orgname}.%{appname}
 
 %check
 # >> check
@@ -157,7 +157,7 @@ echo '=========== NOT checking for Harbour compatability.'
 %endif
 # << check
 
-%files -f plants.s710.lang
+%files -f %{orgname}.%{appname}.lang
  %{_datadir}/%{name}/
 # >> files
 # << files
