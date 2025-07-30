@@ -124,6 +124,8 @@ Builder: cmake
 ConfigOptions:
   - '-DCMAKE_INSTALL_PREFIX=%{_prefix}'
   - '-DQT_IMPORTS_DIR=%{plugindir}'
+#NoAutoLocale: true
+LocaleName:  plants.s710
 NoIconCache: true
 #BuildArch: noarch
 Files:

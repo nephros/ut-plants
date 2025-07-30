@@ -141,7 +141,7 @@ rm -rf %{buildroot}%{_docdir}
 rm -rf %{buildroot}%{_mandir}
 # << install post
 
-%find_lang harbour-plants
+%find_lang plants.s710
 
 %check
 # >> check
@@ -157,7 +157,7 @@ echo '=========== NOT checking for Harbour compatability.'
 %endif
 # << check
 
-%files -f harbour-plants.lang
+%files -f plants.s710.lang
  %{_datadir}/%{name}/
 # >> files
 %if %{with harbour}
