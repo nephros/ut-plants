@@ -160,11 +160,4 @@ echo '=========== NOT checking for Harbour compatability.'
 %files -f plants.s710.lang
  %{_datadir}/%{name}/
 # >> files
-%if %{with harbour}
-%exclude %{_datadir}/icons/*/*/apps/*.svg
-%endif
-%if %{without harbour}
-%license LICENSES/*
-%{_datadir}/icons/*/*/apps/*.svg
-%endif
 # << files
