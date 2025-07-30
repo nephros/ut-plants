@@ -111,6 +111,7 @@ PkgBR:
   # qml-rpm-macros
 PkgConfigBR:
   # we need this if we rely on sailfishapp features in the .pro file (like installing qml)
+  - Qt5Core
   - sailfishapp
 #  - qml(Nemo.Notifications)
 Configure: cmake
