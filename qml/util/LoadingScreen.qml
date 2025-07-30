@@ -1,5 +1,5 @@
 import QtQuick 2.6
-Sailfish.Silica 1.0
+import Sailfish.Silica 1.0
 import QtQuick.Controls 2.5 as QC
 
 Rectangle {

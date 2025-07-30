@@ -1,5 +1,5 @@
 import QtQuick 2.6
-Sailfish.Silica 1.0 as UC
+import Sailfish.Silica 1.0 as UC
 
 Rectangle {
    id: rect

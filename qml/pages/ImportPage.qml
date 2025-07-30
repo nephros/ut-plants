@@ -1,5 +1,5 @@
 import QtQuick 2.4
-Sailfish.Silica 1.0
+import Sailfish.Silica 1.0
 
 Page {
    id: picker
