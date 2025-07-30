@@ -1,12 +1,13 @@
-import QtQuick 2.7
-import Lomiri.Components 1.3
-import QtQuick.Layouts 1.3
-import Lomiri.Content 1.1
-import QtGraphicalEffects 1.12
-import QtQuick.Controls 2.5 as QC
-import Qt.labs.settings 1.0
+import QtQuick 2.6
+//import Lomiri.Components 1.3
+//import QtQuick.Layouts 1.3
+//import Lomiri.Content 1.1
+import QtGraphicalEffects 1.0
+//import QtQuick.Controls 2.5 as QC
+//import Qt.labs.settings 1.0
 
 import "../util"
+import "../compat"
 
 import PlantsModel 1.0
 
