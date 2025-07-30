@@ -122,7 +122,8 @@ PkgConfigBR:
 Configure: cmake
 Builder: cmake
 ConfigOptions:
-  - '-DCMAKE_INSTALL_PREFIX=%{_prefix}'
+  - '-DCMAKE_INSTALL_PREFIX=%{datadir}'
+  # '-DCMAKE_INSTALL_PREFIX=%{_prefix}'
   - '-DQT_IMPORTS_DIR=%{plugindir}'
 #NoAutoLocale: true
 LocaleName:  plants.s710

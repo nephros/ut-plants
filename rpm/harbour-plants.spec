@@ -95,7 +95,7 @@ BuildRequires: sdk-harbour-rpmvalidator
 # << build pre
 
 %cmake .  \
-    -DCMAKE_INSTALL_PREFIX=%{_prefix} \
+    -DCMAKE_INSTALL_PREFIX=%{datadir} \
     -DQT_IMPORTS_DIR=%{plugindir}
 
 %cmake_build
