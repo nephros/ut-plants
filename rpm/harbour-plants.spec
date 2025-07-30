@@ -40,6 +40,7 @@ BuildRequires:  pkgconfig(sailfishapp)
 BuildRequires:  cmake
 BuildRequires:  intltool
 BuildRequires:  sailfish-svg2png
+BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
 
 %description
@@ -111,6 +112,11 @@ mv Plants.desktop.in %{name}.desktop.in
 %cmake_install
 
 # >> install post
+# fix some UBPort install peculiarities:
+install -d %{buildroot}%{_datadir}/applications
+mv %{buildroot}/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
+install -d %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/
+mv %{buildroot}/%{_datadir}/assets/logo.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{name}.png
 # mangle version info
 #sed -i -e "s/unreleased/%{version}/" %{buildroot}%{_datadir}/%{name}/qml/%{name}.qml
 # install .desktop file from source tag:
@@ -124,22 +130,25 @@ mv Plants.desktop.in %{name}.desktop.in
 #done
 
 # Edit the main .desktop file for Sailjail
-# desktop-file-edit  \
-# --set-key=Exec \
-# --set-value="/usr/bin/%{name}" \
-# --set-name="O*IDA" \
-# --set-icon=%{name} \
-# --set-key=X-Nemo-Application-Type \
-# --set-value=generic \
-# --remove-key=SomeNonstandardKey \
-# %{buildroot}%{_datadir}/applications/%{name}.desktop
-# printf '\n\n[X-Sailjail]\nOrganizationName=%{orgname}\nApplicationName=%{appname}\nPermissions=Audio;Internet\n' \
-#     >> %{buildroot}%{_datadir}/applications/%{name}.desktop
+desktop-file-edit  \
+--set-key=Exec \
+--set-value="/usr/bin/%{name}" \
+--set-name="Plants" \
+--set-icon=%{name} \
+--set-key=X-Nemo-Application-Type \
+--set-value=qt5 \
+%{buildroot}%{_datadir}/applications/%{name}.desktop
+printf '\n\n[X-Sailjail]\nOrganizationName=%{orgname}\nApplicationName=%{appname}\nPermissions=UserDirs;Internet\n' \
+>> %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 # do not package documentation:
 rm -rf %{buildroot}%{_docdir}
 rm -rf %{buildroot}%{_mandir}
 # << install post
+
+desktop-file-install --delete-original       \
+  --dir %{buildroot}%{_datadir}/applications             \
+   %{buildroot}%{_datadir}/applications/*.desktop
 
 %find_lang %{orgname}.%{appname}
 
@@ -158,6 +167,8 @@ echo '=========== NOT checking for Harbour compatability.'
 # << check
 
 %files -f %{orgname}.%{appname}.lang
- %{_datadir}/%{name}/
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/icons/*/*/apps/%{name}.png
+ %{_datadir}/%{name}
 # >> files
 # << files
