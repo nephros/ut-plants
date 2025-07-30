@@ -17,21 +17,22 @@ MainView {
    applicationName: 'plants.s710'
    automaticOrientation: false
 
-   width: units.gu(45)
-   height: units.gu(75)
+   //width: units.gu(45)
+   //height: units.gu(75)
 
    Settings {
       id: settings
       property bool keepDisplayOn: false
    }
 
+   UbuUnits { id: units }
+   MainPage { id: mainPage }
+   initialPage: mainPage
    /*
    ScreenSaver {
       id: screen_saver
       screenSaverEnabled: !settings.keepDisplayOn
    }
-   */
-
    PageStack {
       id: pageStack
       anchors.fill: parent
@@ -45,4 +46,5 @@ MainView {
          visible: false
       }
    }
+   */
 }
