@@ -95,7 +95,9 @@ sed -i 's/"plants.s710"/"%{orgname}.%{appname}"/' CMakeLists.txt
 mv Plants.desktop.in %{name}.desktop.in
 # << build pre
 
-%cmake . 
+%cmake .  \
+    -DCMAKE_INSTALL_PREFIX=%{_datadir}
+
 %cmake_build
 
 # >> build post
