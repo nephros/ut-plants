@@ -35,6 +35,9 @@ Source0:    %{name}-%{version}.tar.gz
 Source100:  harbour-plants.yaml
 Requires:   libsailfishapp-launcher
 BuildRequires:  pkgconfig(Qt5Core)
+BuildRequires:  pkgconfig(Qt5Qml)
+BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(Qt5QuickControls2)
 BuildRequires:  pkgconfig(sailfishapp)
 BuildRequires:  cmake
 BuildRequires:  sailfish-svg2png
