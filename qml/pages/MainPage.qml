@@ -46,9 +46,14 @@ Page {
       }
    }
 
+   PageBusyIndicator {
+      visible: mainPage.loadingScreenShown
+   }
+   /*
    LoadingScreen {
       visible: mainPage.loadingScreenShown
    }
+   */
 
    PlantsModel {
       id: plantsModel
