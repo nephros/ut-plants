@@ -116,17 +116,8 @@ install -d %{buildroot}%{_datadir}/applications
 mv %{buildroot}/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
 install -d %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/
 mv %{buildroot}/%{_datadir}/assets/logo.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{name}.png
-# mangle version info
-#sed -i -e "s/unreleased/%{version}/" %{buildroot}%{_datadir}/%{name}/qml/%{name}.qml
-# install .desktop file from source tag:
-#install -d %{buildroot}/  %{buildroot}%{_datadir}/applications
-#install -m 644 %desktopsrc %{buildroot}/%{_datadir}/applications
-
-# generate some icons
-#for size in 86 108 128 172 256 512 1024; do
-#install -d %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/
-#sailfish_svg2png -z 1.0 -f rgba -s 1 1 1 1 1 1 ${size} %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/ %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/
-#done
+install -d %{buildroot}%{_bindir}/
+install -mp755 %{buildroot}/%{_datadir}/%{name} %{buildroot}%{_bindir}/%{name}
 
 # Edit the main .desktop file for Sailjail
 desktop-file-edit  \
@@ -139,10 +130,6 @@ desktop-file-edit  \
 %{buildroot}%{_datadir}/applications/%{name}.desktop
 printf '\n\n[X-Sailjail]\nOrganizationName=%{orgname}\nApplicationName=%{appname}\nPermissions=UserDirs;Internet\n' \
 >> %{buildroot}%{_datadir}/applications/%{name}.desktop
-
-# do not package documentation:
-rm -rf %{buildroot}%{_docdir}
-rm -rf %{buildroot}%{_mandir}
 # << install post
 
 desktop-file-install --delete-original       \
