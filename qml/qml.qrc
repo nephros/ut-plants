@@ -14,6 +14,12 @@
         <file>util/PlantCard.qml</file>
         <file>util/PlantItem.qml</file>
         <file>util/LoadingScreen.qml</file>
+        <file>compat/ContentItem.qml</file>
+        <file>compat/ContentPeerPicker.qml</file>
+        <file>compat/InverseMouseArea.qml</file>
+        <file>compat/MainView.qml</file>
+        <file>compat/Settings.qml</file>
+        <file>compat/UbuUnits.qml</file>
         <file>util/qmldir</file>
     </qresource>
 </RCC>
