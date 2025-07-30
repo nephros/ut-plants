@@ -39,6 +39,7 @@ BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(sailfishapp)
 BuildRequires:  cmake
+BuildRequires:  intltool
 BuildRequires:  sailfish-svg2png
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
@@ -142,6 +143,8 @@ desktop-file-install --delete-original       \
   --dir %{buildroot}%{_datadir}/applications             \
    %{buildroot}%{_datadir}/applications/*.desktop
 
+%find_lang harbour-plants
+
 %check
 # >> check
 # this is just here so we can include a clean section below:
@@ -156,7 +159,7 @@ echo '=========== NOT checking for Harbour compatability.'
 %endif
 # << check
 
-%files
+%files -f harbour-plants.lang
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
 %{_datadir}/icons/*/*/apps/*

@@ -105,6 +105,7 @@ Requires:
   - libsailfishapp-launcher
 PkgBR:
   - cmake
+  - intltool
   # qt5-qttools-linguist
   # qt5-qmake
   - sailfish-svg2png
