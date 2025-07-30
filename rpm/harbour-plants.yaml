@@ -87,22 +87,17 @@ Macros2:
 Check: true # so we can do a fake clean section below it:
 
 Requires:
-  - libsailfishapp-launcher
 PkgBR:
   - cmake
   - intltool
-  # qt5-qttools-linguist
-  # qt5-qmake
-  - sailfish-svg2png
+  # sailfish-svg2png
   # qml-rpm-macros
 PkgConfigBR:
-  # we need this if we rely on sailfishapp features in the .pro file (like installing qml)
+  - sailfishapp
   - Qt5Core
   - Qt5Qml
   - Qt5Quick
-  # Qt5QuickControls2
 
-  - sailfishapp
 #  - qml(Nemo.Notifications)
 Configure: cmake
 Builder: cmake

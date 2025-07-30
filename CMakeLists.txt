@@ -11,6 +11,10 @@ find_package(Qt5Qml REQUIRED)
 find_package(Qt5Quick REQUIRED)
 #find_package(Qt5QuickControls2 REQUIRED)
 
+include(FindPkgConfig)
+pkg_search_module(SAILFISH sailfishapp REQUIRED)
+#find_package(Qt5QuickControls2 REQUIRED)
+
 execute_process(
     COMMAND dpkg-architecture -qDEB_HOST_MULTIARCH
     OUTPUT_VARIABLE ARCH_TRIPLET
@@ -49,9 +53,10 @@ install(FILES assets/logo.png DESTINATION assets)
 
 qt5_add_resources(QT_RESOURCES qml/qml.qrc)
 qt5_add_resources(QT_RESOURCES assets/assets.qrc)
-add_executable(${PROJECT_NAME} main.cpp src/plant.cpp src/identification.cpp src/plantsmodel.cpp src/plantsimageprovider.cpp src/network.cpp src/network.hpp ${QT_RESOURCES})
+add_executable(${PROJECT_NAME} sailfishos-main.cpp src/plant.cpp src/identification.cpp src/plantsmodel.cpp src/plantsimageprovider.cpp src/network.cpp src/network.hpp ${QT_RESOURCES})
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS_RELEASE -s)
-target_link_libraries(${PROJECT_NAME} Qt5::Gui Qt5::Qml Qt5::Quick)
+target_link_libraries(${PROJECT_NAME} Qt5::Gui Qt5::Qml Qt5::Quick ${SAILFISH_LDFLAGS})
+include_directories(${SAILFISH_INCLUDE_DIRS})
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 # Translations

@@ -32,14 +32,12 @@ License:    MIT
 URL:        https://github.com/nephros/ut-plants
 Source0:    %{name}-%{version}.tar.gz
 Source100:  harbour-plants.yaml
-Requires:   libsailfishapp-launcher
+BuildRequires:  pkgconfig(sailfishapp)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
-BuildRequires:  pkgconfig(sailfishapp)
 BuildRequires:  cmake
 BuildRequires:  intltool
-BuildRequires:  sailfish-svg2png
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
 
