@@ -121,23 +121,23 @@ PkgConfigBR:
 #  - qml(Nemo.Notifications)
 Configure: cmake
 Builder: cmake
-#ConfigOptions:
-#  - '--with-foo'
+ConfigOptions:
+  - '-DCMAKE_INSTALL_PREFIX=%{_prefix}'
 NoIconCache: true
 #BuildArch: noarch
 Files:
   # '%license LICENSE'
   # '%license COPYING'
-  - '%{_bindir}/*'
-  - '%{_datadir}/applications/*.desktop'
+  # '%{_bindir}/*'
+  # '%{_datadir}/applications/*.desktop'
   # '%{_datadir}/applications/%{name}.desktop'
   # '%{_datadir}/themes/sailfish-default/*/*/*.png'
-  - '%{_datadir}/icons/*/*/apps/*'
+  # '%{_datadir}/icons/*/*/apps/*'
   # '%{_datadir}/icons/*/*/apps/%{name}.png'
   # '%{_datadir}/icons/*/*/apps/%{name}.svg'
-  - '%dir %{_datadir}/%{name}'
-  - '%dir %{_datadir}/%{name}/translations'
-  - '%{_datadir}/%{name}/translations/*.qm'
-  - '%{_datadir}/%{name}/qml/'
+  - ' %{_datadir}/%{name}/'
+  # '%dir %{_datadir}/%{name}/translations'
+  # '%{_datadir}/%{name}/translations/*.qm'
+  # '%{_datadir}/%{name}/qml/'
   # '%{_datadir}/%{name}/python/'
 

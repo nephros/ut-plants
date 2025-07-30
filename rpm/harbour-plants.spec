@@ -41,7 +41,6 @@ BuildRequires:  pkgconfig(sailfishapp)
 BuildRequires:  cmake
 BuildRequires:  intltool
 BuildRequires:  sailfish-svg2png
-BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
 
 %description
@@ -95,7 +94,9 @@ BuildRequires: sdk-harbour-rpmvalidator
 # export LDFLAGS="$LDFLAGS -pie -shared"
 # << build pre
 
-%cmake . 
+%cmake .  \
+    -DCMAKE_INSTALL_PREFIX=%{_prefix}
+
 %cmake_build
 
 # >> build post
@@ -139,10 +140,6 @@ rm -rf %{buildroot}%{_docdir}
 rm -rf %{buildroot}%{_mandir}
 # << install post
 
-desktop-file-install --delete-original       \
-  --dir %{buildroot}%{_datadir}/applications             \
-   %{buildroot}%{_datadir}/applications/*.desktop
-
 %find_lang harbour-plants
 
 %check
@@ -160,13 +157,7 @@ echo '=========== NOT checking for Harbour compatability.'
 # << check
 
 %files -f harbour-plants.lang
-%{_bindir}/*
-%{_datadir}/applications/*.desktop
-%{_datadir}/icons/*/*/apps/*
-%dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/translations
-%{_datadir}/%{name}/translations/*.qm
-%{_datadir}/%{name}/qml/
+ %{_datadir}/%{name}/
 # >> files
 %if %{with harbour}
 %exclude %{_datadir}/icons/*/*/apps/*.svg
