@@ -131,6 +131,25 @@ Rectangle {
       }
    }
 
+   ButtonLayout {
+       IconButton {
+           visible: !item.listMode && !item.placeholder
+           icon.source: "image://theme/icon-m-edit" 
+           onClicked: function() {
+              if (item.onEdit)
+                 item.onEdit()
+           }
+       }
+       IconButton {
+           visible: !item.placeholder
+           icon.source: "image://theme/icon-m-delete" 
+           onClicked: function() {
+              if (item.onDelete)
+                 item.onDelete(item.plantObject && item.plantObject.id)
+           }
+       }
+   }
+   /*
    IconButton {
       id: editButton
       anchors.right: deleteButton.left
@@ -162,4 +181,5 @@ Rectangle {
             item.onDelete(item.plantObject && item.plantObject.id)
       }
    }
+   */
 }
