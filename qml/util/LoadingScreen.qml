@@ -1,6 +1,5 @@
 import QtQuick 2.6
 import Sailfish.Silica 1.0
-import QtQuick.Controls 2.5 as QC
 
 Rectangle {
    id: loadingScreen
@@ -26,7 +25,7 @@ Rectangle {
          anchors.centerIn: parent
          spacing: units.gu(2)
 
-         QC.BusyIndicator {
+         BusyIndicator {
             anchors.horizontalCenter: parent.horizontalCenter
             running: true
          }

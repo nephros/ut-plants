@@ -1,6 +1,5 @@
 import QtQuick 2.6
 import Sailfish.Silica 1.0
-import QtQuick.Controls 2.5 as QC
 
 import "../util"
 
@@ -28,6 +27,7 @@ Page {
       id: resultsModel
    }
 
+   /*
    QC.PageIndicator {
       id: pageIndicator
       anchors.horizontalCenter: parent.horizontalCenter
@@ -37,6 +37,7 @@ Page {
       currentIndex: resultList.currentIndex
       count: resultList.count
    }
+   */
 
    ListView {
       id: resultList

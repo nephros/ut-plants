@@ -2,7 +2,6 @@ pragma Singleton
 
 import QtQuick 2.4
 import Sailfish.Silica 1.0
-import QtQuick.Controls 2.5 as QC
 
 import "../util"
 
@@ -71,10 +70,17 @@ Item {
          Repeater {
             model: PlantUtils.organs.length
 
+            TextSwitch {
+               text: PlantUtils.organs[index].title
+               checked: selection == PlantUtils.organs[index].name
+               onClicked: selection = PlantUtils.organs[index].name
+            }
+            /*
             QC.RadioButton {
                text: PlantUtils.organs[index].title
                onClicked: selection = PlantUtils.organs[index].name
             }
+            */
          }
 
          Button {

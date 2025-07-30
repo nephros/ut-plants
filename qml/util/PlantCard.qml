@@ -1,6 +1,5 @@
 import QtQuick 2.6
 import Sailfish.Silica 1.0
-import QtQuick.Controls 2.5 as QC
 
 import "../util"
 
@@ -131,11 +130,13 @@ Item {
             }
          }
 
+         /*
          QC.PageIndicator {
             anchors.horizontalCenter: parent.horizontalCenter
             currentIndex: resultImagesList.currentIndex
             count: resultImagesList.count
          }
+         */
 
          Text {
             color: "white"
