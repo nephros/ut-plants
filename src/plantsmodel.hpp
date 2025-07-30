@@ -44,7 +44,7 @@ struct PlantSorter
 {
    bool operator()(Plant* a, Plant* b) const
    {
-      return a->added.toSecsSinceEpoch() > b->added.toSecsSinceEpoch();
+      return a->added.toMSecsSinceEpoch()/1000 > b->added.toMSecsSinceEpoch()/1000;
    }
 };
 
