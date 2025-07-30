@@ -28,7 +28,7 @@ Summary:    App for identifying plants through image analyzation
 Version:    1.3.1.1
 Release:    0
 Group:      Applications
-License:    Apache-2.0
+License:    MIT
 URL:        https://github.com/nephros/ut-plants
 Source0:    %{name}-%{version}.tar.gz
 Source100:  harbour-plants.yaml

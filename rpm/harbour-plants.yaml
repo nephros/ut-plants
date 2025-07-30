@@ -3,26 +3,11 @@ Summary: App for identifying plants through image analyzation
 Version: 1.3.1.1
 Release: 0
 Group: Applications
-# Only use "ASL 2.0" if you intend to build on SailfishOS-OBS and care about the rpmlint output.
-# Use correct SPDX-ID "Apache-2.0" in all other cases.  Note that this example is also the
-# licence used for this project "sfos-harbour-plant".
-# License: ASL 2.0
-License: Apache-2.0
+License: MIT
 URL: https://github.com/nephros/ut-plants
 SCM: https://github.com/nephros/ut-plants
 Sources:
-    # '%{url}/releases/download/v%{version}/%{name}-%{version}.tar.gz'
-    # https://github.com/nephros/template/releases/download/v%{version}/%{name}-%{version}.tar.gz
-    # 'https://github.com/nephros/%{name}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz'
     - '%{name}-%{version}.tar.gz'
-#    # Only way to make nosource work:
-#    - |
-#      foo.zip
-#      Nosource: 1
-# This will copy the files into the build root in setup
-#ExtraSources:
-#   - '%{name}.desktop' ## remember to adjust the Macro below...
-#   - '%{name}.profile'
 #Patches:
 #  - 'baz'
 #SetupOptions: -q -n %{name}-%{version}/upstream
