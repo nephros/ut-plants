@@ -1,4 +1,4 @@
-import QtQuick 2.7
+import QtQuick 2.6
 import Lomiri.Components 1.3 as UC
 
 Rectangle {
