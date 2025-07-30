@@ -1,9 +1,7 @@
 pragma Singleton
 
 import QtQuick 2.4
-import Lomiri.Components.Popups 1.3
-import Lomiri.Components 1.3
-import Lomiri.Components.Pickers 1.3
+Sailfish.Silica 1.0
 import QtQuick.Controls 2.5 as QC
 
 import "../util"

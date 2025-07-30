@@ -1,9 +1,5 @@
-import Lomiri.Components 1.3
-import Lomiri.Components.ListItems 1.3
-import Lomiri.Components.Themes 1.3
+Sailfish.Silica 1.0
 import QtQuick 2.6
-import QtQuick.Layouts 1.3
-import Qt.labs.settings 1.0
 
 Page {
    id: settingsPage

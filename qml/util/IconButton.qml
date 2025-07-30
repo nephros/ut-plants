@@ -1,5 +1,5 @@
 import QtQuick 2.6
-import Lomiri.Components 1.3 as UC
+Sailfish.Silica 1.0 as UC
 
 Rectangle {
    id: rect

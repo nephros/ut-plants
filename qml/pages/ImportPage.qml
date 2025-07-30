@@ -1,6 +1,5 @@
 import QtQuick 2.4
-import Lomiri.Components 1.3
-import Lomiri.Content 1.3
+Sailfish.Silica 1.0
 
 Page {
    id: picker

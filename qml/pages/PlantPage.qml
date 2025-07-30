@@ -1,7 +1,5 @@
 import QtQuick 2.6
-import Lomiri.Components 1.3
-import QtQuick.Layouts 1.3
-import Lomiri.Content 1.1
+Sailfish.Silica 1.0
 import QtGraphicalEffects 1.12
 
 import "../util"

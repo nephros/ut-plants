@@ -1,6 +1,5 @@
 import QtQuick 2.6
-import Lomiri.Components 1.3
-import QtQuick.Layouts 1.3
+Sailfish.Silica 1.0
 import QtQuick.Controls 2.5 as QC
 
 Rectangle {
