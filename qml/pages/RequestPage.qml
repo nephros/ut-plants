@@ -5,7 +5,7 @@ import QtGraphicalEffects 1.0
 
 import "../util"
 
-//import PlantsModel 1.0
+import PlantsModel 1.0
 
 Page { id: requestPage
    property var plantsModel: null
