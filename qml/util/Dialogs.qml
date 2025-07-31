@@ -70,15 +70,16 @@ Item {
          }
       }
    }
+   /* apparently unused:
    Component {
       id: storageErrorDialogComponent
 
       Dialog {
          id: storageErrorDialog
-         //property alias title: head.title 
-         //property alias acceptButtonTitle: head.acceptText
-         //property alias cancelButtonTitle: head.cancelText
-         //property alias text: content.text
+         property alias title: head.title
+         property alias acceptButtonTitle: head.acceptText
+         property alias cancelButtonTitle: head.cancelText
+         property alias text: content.text
          canAccept: false
          property string errorString
          DialogHeader { id: head ; cancelText: i18n.tr("Close"); title: i18n.tr("Failed to init storage directory") }
@@ -93,8 +94,9 @@ Item {
          }
 
 
-}
+     }
    }
+   */
 
    function showQuestionDialog(parent, title, text, acceptButtonTitle, cancelButtonTitle, acceptButtonColor) {
       return parent.pageStack.push(questionDialogComponent, {
