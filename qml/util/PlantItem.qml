@@ -132,17 +132,23 @@ Rectangle {
    }
 
    //ButtonLayout {
-       IconButton { id: deleteButton
+       IconButton { id: editButton
            visible: !item.listMode && !item.placeholder
+           anchors.right: parent.right
+           anchors.rightMargin: units.gu(2)
+           anchors.verticalCenter: parent.verticalCenter
            icon.source: "image://theme/icon-m-edit" 
            onClicked: function() {
               if (item.onEdit)
                  item.onEdit()
            }
        }
-       IconButton { id: editButton
+       IconButton { id: deleteButton
            visible: !item.placeholder
            icon.source: "image://theme/icon-m-delete" 
+           anchors.right: editButton.left
+           anchors.rightMargin: units.gu(2)
+           anchors.verticalCenter: parent.verticalCenter
            onClicked: function() {
               if (item.onDelete)
                  item.onDelete(item.plantObject && item.plantObject.id)
