@@ -12,7 +12,7 @@ Page {
    property var plantsModel: nil
    property var resultsData: []
 
-   header: PageHeader {
+   PageHeader {
       id: header
       title: i18n.tr('Identification results')
    }
