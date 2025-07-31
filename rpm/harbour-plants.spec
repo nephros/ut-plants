@@ -25,8 +25,8 @@ Name:       harbour-plants
 %endif
 
 Summary:    App for identifying plants through image analyzation
-Version:    1.3.1.1
-Release:    0
+Version:    1.3.1
+Release:    1.sfos
 Group:      Applications
 License:    MIT
 URL:        https://github.com/nephros/ut-plants
