@@ -21,7 +21,6 @@ QtObject {
        High DPI laptops 1 gu = 16 px
        Phone with 4 inch screen at HD resolution (around 720x1,280 pixels) 1 gu = 18 px
        Tablet with 10 inch screen at HD resolution (around 720x1,280 pixels) 1 gu = 10 px
-    */
     function gu(inval) {
         return inval * Theme.paddingMedium/2
         return Math.round(inval*fact)
@@ -29,6 +28,11 @@ QtObject {
         if (Screen.sizeCategory == Screen.Medium)     return fact * 16 * inval
         if (Screen.sizeCategory == Screen.Large)      return fact * 8 * inval
         if (Screen.sizeCategory == Screen.ExtraLarge) return fact * 10 * inval
+    }
+    */
+    // new reference: gu(2) == Theme.fontSizeMedium
+    function gu(inval) {
+        return inval/2 * Theme.fontSizeMedium
     }
     Component.onCompleted: {
         if (Screen.sizeCategory == Screen.Small)      console.info("Scaling for a Small screen: 1 gu is %1px".arg(gu(1)))
