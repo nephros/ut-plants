@@ -92,6 +92,7 @@ Page {
       }
    }
 
+   /* SFOS: replaced by ViewPlaceholder, below:
    Rectangle {
       id: placeholder
       radius: units.gu(4)
@@ -113,6 +114,7 @@ Page {
          }
       }
    }
+   */
 
    Button {
       id: analyzeButton
@@ -183,6 +185,12 @@ Page {
                })
             }
          }
+      }
+      ViewPlaceholder {
+          id: placeholder
+          text: i18n.tr("No plants identified yet")
+          hintText: i18n.tr("Pull down to start a new identification")
+          enabled: !plantsModel.count
       }
    }
 
