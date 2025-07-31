@@ -19,7 +19,25 @@ Page {
    }
 
    PullDownMenu {
-	   MenuItem {
+       MenuItem {
+          text: i18n.tr("New identification")
+          onClicked: {
+             if (!settings.apiKey) {
+                var dialog = Dialogs.showErrorDialog(
+                         root, i18n.tr("API Key missing"), i18n.tr(
+                            "The Pl@ntNet API-Key has not been configured yet. Without this, the app will not work."))
+
+                dialog.accepted.connect(function () {
+                   mainPage.openSettings()
+                })
+             } else {
+                pageStack.push(Qt.resolvedUrl("RequestPage.qml"), {
+                                  "plantsModel": plantsModel
+                               })
+             }
+          }
+       }
+       MenuItem {
            text: i18n.tr('Settings')
            onClicked: {
                mainPage.openSettings()
@@ -116,6 +134,7 @@ Page {
    }
    */
 
+   /* SFOS: replaced with Pulley Menu entry, above:
    Button {
       id: analyzeButton
       anchors.top: header.bottom
@@ -138,11 +157,12 @@ Page {
          }
       }
    }
+   */
 
    ListView {
       id: plantList
       width: parent.width * 0.9
-      anchors.top: analyzeButton.bottom
+      anchors.top: header.bottom
       anchors.bottom: footerText.top
       anchors.bottomMargin: units.gu(2)
       anchors.topMargin: units.gu(2)
