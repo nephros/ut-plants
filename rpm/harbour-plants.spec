@@ -127,7 +127,7 @@ desktop-file-edit  \
 --set-key=X-Nemo-Application-Type \
 --set-value=silica-qt5 \
 %{buildroot}%{_datadir}/applications/%{name}.desktop
-printf '\n\n[X-Sailjail]\nOrganizationName=%{orgname}\nApplicationName=%{appname}\nPermissions=UserDirs;Internet\n' \
+printf '\n\n[X-Sailjail]\nOrganizationName=%{orgname}\nApplicationName=%{appname}\nPermissions=UserDirs;Camera;MediaIndexing;Internet\n' \
 >> %{buildroot}%{_datadir}/applications/%{name}.desktop
 # << install post
 
