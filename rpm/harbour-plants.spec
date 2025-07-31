@@ -125,7 +125,7 @@ desktop-file-edit  \
 --set-name="Plants" \
 --set-icon=%{name} \
 --set-key=X-Nemo-Application-Type \
---set-value=qt5 \
+--set-value=silica-qt5 \
 %{buildroot}%{_datadir}/applications/%{name}.desktop
 printf '\n\n[X-Sailjail]\nOrganizationName=%{orgname}\nApplicationName=%{appname}\nPermissions=UserDirs;Internet\n' \
 >> %{buildroot}%{_datadir}/applications/%{name}.desktop
