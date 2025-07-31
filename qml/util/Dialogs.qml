@@ -11,10 +11,6 @@ Item {
 
       Dialog {
          id: questionDialog
-      }
-      /*
-      Dialog {
-         id: questionDialog
          property string acceptButtonTitle: i18n.tr("Okay")
          property string cancelButtonTitle: i18n.tr("Cancel")
          property color acceptButtonColor: LomiriColors.green
@@ -38,16 +34,11 @@ Item {
             }
          }
       }
-      */
    }
 
    Component {
       id: errorDialogComponent
 
-      Dialog {
-         id: errorDialog
-      }
-      /*
       Dialog {
          id: errorDialog
          signal accepted
@@ -60,7 +51,6 @@ Item {
             }
          }
       }
-      */
    }
 
    Component {
