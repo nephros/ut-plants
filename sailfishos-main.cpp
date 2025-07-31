@@ -23,8 +23,7 @@
 
    qmlRegisterType<plants::PlantsModel>("PlantsModel", 1, 0, "PlantsModel");
 
-   QQmlEngine* engine = view->engine();
-   engine->addImageProvider(QLatin1String("plants"), new plants::PlantsImageProvider());
+   view->engine()->addImageProvider(QLatin1String("plants"), new plants::PlantsImageProvider());
 
    view->setSource(QUrl("qrc:/harbour-plants.qml"));
    view->show();
