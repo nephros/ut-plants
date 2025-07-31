@@ -92,7 +92,7 @@ Item {
    }
 
    function showQuestionDialog(parent, title, text, acceptButtonTitle, cancelButtonTitle, acceptButtonColor) {
-      return pageStack.push(questionDialogComponent, {
+      return parent.pageStack.push(questionDialogComponent, {
                                 "title": title,
                                 "text": text,
                                 "acceptButtonTitle": acceptButtonTitle,
@@ -101,13 +101,13 @@ Item {
                              })
    }
    function showErrorDialog(parent, title, text) {
-      return pageStack.push(errorDialogComponent, {
+      return parent.pageStack.push(errorDialogComponent, {
                                 "title": title,
                                 "text": text
                              })
    }
    function showPickerDialog(parent) {
-      return pageStack.push(pickerDialogComponent)
+      return parent.pageStack.push(pickerDialogComponent)
    }
 
 /*
