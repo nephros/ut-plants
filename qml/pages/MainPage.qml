@@ -19,8 +19,11 @@ Page {
    }
 
    PullDownMenu {
-       onClicked: {
-           mainPage.openSettings()
+	   MenuItem {
+           text: i18n.tr('Settings')
+           onClicked: {
+               mainPage.openSettings()
+           }
        }
    }
 
@@ -194,6 +197,8 @@ Page {
                                       plantList.count)
    }
 
+   }
+
    function openSettings() {
       var p = pageStack.push(Qt.resolvedUrl("./SettingsPage.qml"))
 
@@ -201,6 +206,5 @@ Page {
          settings.apiKey = key
          plantsModel.setApiKey(key)
       })
-   }
    }
 }
