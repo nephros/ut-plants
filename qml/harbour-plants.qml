@@ -5,12 +5,17 @@
  */
 import QtQuick 2.6
 import Sailfish.Silica 1.0
+import "pages"
 import "compat"
 
 ApplicationWindow {
     id: root
     allowedOrientations: defaultAllowedOrientations
-    initialPage: Qt.resolvedUrl("pages/MainPage.qml")
+    initialPage: mainPage
+    property alias mainPage: mainPage
+    Component { id: mainPage
+        MainPage{}
+    }
 
     property alias units: units
     property alias i18n: i18n
