@@ -70,6 +70,7 @@ Page {
 
    PageBusyIndicator {
       visible: mainPage.loadingScreenShown
+      z: plantList.z + 10
    }
    /*
    LoadingScreen {
