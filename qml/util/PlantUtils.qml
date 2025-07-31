@@ -3,6 +3,9 @@ pragma Singleton
 import QtQuick 2.4
 
 Item {
+   // we are a singleton!
+   property alias i18n: i18n
+   QtObject { id: i18n; function tr(s) { return qsTr(s) } }
    property var organs: ([{
                              "name": "auto",
                              "title": i18n.tr("Auto")

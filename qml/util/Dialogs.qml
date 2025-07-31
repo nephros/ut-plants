@@ -6,6 +6,9 @@ import Sailfish.Silica 1.0
 import "../util"
 
 Item {
+    // we are a singleton!
+   property alias i18n: i18n
+   QtObject { id: i18n; function tr(s) { return qsTr(s) } }
    Component {
       id: questionDialogComponent
 
