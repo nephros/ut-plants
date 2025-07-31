@@ -9,10 +9,10 @@ import PlantsModel 1.0
 
 Page {
    id: mainPage
-   anchors.fill: parent
    property bool loadingScreenShown: false
 
    SilicaFlickable {
+   anchors.fill: parent
    PageHeader {
       id: header
       title: i18n.tr('Plants')
