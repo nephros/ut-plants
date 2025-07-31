@@ -70,8 +70,7 @@ Item {
 
                Icon {
                   anchors.verticalCenter: parent.verticalCenter
-                  name: "image-quality"
-                  color: "white"
+                  source: "image://theme/icon-m-file-image"
                   width: units.gu(2)
                   height: units.gu(2)
                }

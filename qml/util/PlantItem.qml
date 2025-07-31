@@ -37,7 +37,7 @@ Rectangle {
 
    Icon {
       visible: item.placeholder
-      name: "add"
+      source: "image://theme/icon-m-add"
       anchors.verticalCenter: parent.verticalCenter
       anchors.left: parent.left
       anchors.leftMargin: units.gu(2)
