@@ -26,7 +26,7 @@
    QQmlEngine* engine = view->engine();
    engine->addImageProvider(QLatin1String("plants"), new plants::PlantsImageProvider());
 
-   view->setSource(QUrl("qrc:/Main.qml"));
+   view->setSource(QUrl("qrc:/harbour-plants.qml"));
    view->show();
 
    return app->exec();
