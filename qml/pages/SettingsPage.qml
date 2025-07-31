@@ -1,5 +1,5 @@
-import Sailfish.Silica 1.0
 import QtQuick 2.6
+import Sailfish.Silica 1.0
 import "../compat"
 
 Page {
@@ -14,137 +14,76 @@ Page {
       property bool keepDisplayOn
    }
 
-   header: PageHeader {
-      id: header
-      title: i18n.tr("Settings")
-   }
 
-   Flickable {
+   SilicaFlickable {
       id: flickable
-      anchors.top: header.bottom
-      anchors.left: parent.left
-      anchors.right: parent.right
-      anchors.bottom: parent.bottom
-      anchors.bottomMargin: keyboardRect.visible ? keyboardRect.height : anchors.margins
+      anchors.fill: parent
 
       contentWidth: parent.width
       contentHeight: settingsColumn.height
 
-      flickableDirection: Flickable.AutoFlickIfNeeded
+      //flickableDirection: Flickable.AutoFlickIfNeeded
+
+      PageHeader {
+         id: header
+         title: i18n.tr("Settings")
+      }
 
       Column {
          id: settingsColumn
          anchors.left: parent.left
          anchors.right: parent.right
-         anchors.top: parent.top
+         anchors.top: header.bottom
 
-         ListItem {
-            height: l1.height + (divider.visible ? divider.height : 0)
-
-            ListItemLayout {
-               id: l1
-               title.text: i18n.tr("Pl@ntNet API key")
-               title.font.bold: true
-               title.color: Theme.palette.normal.baseText
-            }
+         SectionHeader {
+            text: i18n.tr("Pl@ntNet API key")
+            font.bold: true
+            color: Theme.primaryColor
          }
 
-         ListItem {
+         Label {
             anchors.left: parent.left
             anchors.right: parent.right
-            height: l2.height + (divider.visible ? divider.height : 0)
-
-            SlotsLayout {
-               id: l2
-               mainSlot: Text {
-                  anchors.verticalCenter: parent.verticalCenter
-                  textFormat: Text.RichText
-                  text: i18n.tr(
-                           "In order to use the Pl@ntNet plant identification service, it is necessary to register at their website as developer and obtain an API-Key. This key needs to be configured within this app.\n\nPlease visit <a href=\"https://my.plantnet.org/signup\">https://my.plantnet.org/signup</a> and create a developer account. Afterwards visit <a href=\"https://my.plantnet.org/account\">https://my.plantnet.org/account</a> and click the eye-symbol at the very top (\"my API key\") to show the API-Key. Copy this key and paste it into the below text input field.")
-                  color: Theme.palette.normal.baseText
-                  wrapMode: Text.WordWrap
-                  onLinkActivated: Qt.openUrlExternally(link)
-               }
-            }
+            textFormat: Text.StyledText
+            text: "<p style='a:linl { color: " + Theme.highlightColor + "}'>" + i18n.tr(
+                    "In order to use the Pl@ntNet plant identification service, it is necessary to register at their website as developer and obtain an API-Key. This key needs to be configured within this app.\n\nPlease visit <a href=\"https://my.plantnet.org/signup\">https://my.plantnet.org/signup</a> and create a developer account. Afterwards visit <a href=\"https://my.plantnet.org/account\">https://my.plantnet.org/account</a> and click the eye-symbol at the very top (\"my API key\") to show the API-Key. Copy this key and paste it into the below text input field.")
+			      + "</p>"
+            color: Theme.primaryColor
+            linkColor: Theme.highlightColor
+            wrapMode: Text.WordWrap
+            onLinkActivated: Qt.openUrlExternally(link)
          }
 
-         ListItem {
+         Column {
             anchors.left: parent.left
             anchors.right: parent.right
-            height: l4.height + (divider.visible ? divider.height : 0)
 
-            SlotsLayout {
-               id: l4
-               mainSlot: Column {
-                  spacing: units.gu(1)
-                  Text {
-                     text: i18n.tr("API-Key:")
-                     color: Theme.palette.normal.baseText
-                  }
+            SectionHeader { text: i18n.tr("API-Key:") }
 
-                  Row {
-                     anchors.left: parent.left
-                     anchors.right: parent.right
-                     anchors.rightMargin: units.gu(1)
-                     spacing: units.gu(1)
-
-                     TextField {
-                        id: apiKeyInput
-                        placeholderText: i18n.tr("Enter API-Key")
-                        width: parent.width - units.gu(2) - saveButton.width
-                        text: settings.apiKey
-
-                        onActiveFocusChanged: {
-                                keyboardRect.visible = activeFocus
-                            if (activeFocus) {
-
-                              var posWithinFlickable = mapToItem(settingsColumn, 0, height / 2);
-                              flickable.contentY = posWithinFlickable.y - flickable.height / 2;
-                            }
-                        }
-                     }
-
-                     Button {
-                        id: saveButton
-                        enabled: settings.apiKey !== apiKeyInput.text
-                        text: i18n.tr("Save")
-                        onClicked: {
-                           settings.apiKey = apiKeyInput.text
-                           emit: apiKeyChanged(apiKeyInput.text)
-                           pageStack.pop()
-                        }
-                     }
-                  }
+            TextField {
+               id: apiKeyInput
+               placeholderText: i18n.tr("Enter API-Key")
+               width: parent.width - units.gu(2)
+               text: settings.apiKey
+               EnterKey.onClicked: {
+                  settings.apiKey = apiKeyInput.text
+                  emit: apiKeyChanged(apiKeyInput.text)
                }
             }
          }
 
-         ListItem {
+         TextSwitch {
             anchors.left: parent.left
             anchors.right: parent.right
-            height: l5.height + (divider.visible ? divider.height : 0)
 
-            SlotsLayout {
-               id: l5
-               mainSlot: Text {
-                  anchors.verticalCenter: parent.verticalCenter
-                  text: i18n.tr("Keep display on while using the app")
-                  color: Theme.palette.normal.baseText
-                  wrapMode: Text.WordWrap
-               }
-               Switch {
-                  checked: settings.keepDisplayOn
-                  SlotsLayout.position: SlotsLayout.Trailing
-
-                  onClicked: {
-                     settings.keepDisplayOn = checked
-                  }
-               }
-            }
+            text: i18n.tr("Keep display on while using the app")
+            checked: settings.keepDisplayOn
+            onCheckedChanged: settings.keepDisplayOn = checked
          }
       }
    }
 
+   /*
    Rectangle {
       id: keyboardRect
       width: parent.width
@@ -153,4 +92,5 @@ Page {
       color: "white"
       visible: false
    }
+   */
 }
