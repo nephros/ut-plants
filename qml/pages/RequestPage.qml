@@ -118,7 +118,7 @@ Page { id: requestPage
             }
 
             onEdit: function () {
-               var dialog = Dialogs.showPickerDialog(root)
+               var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/PickerDialog.qml"))
 
                dialog.accepted.connect(function () {
                   mainText = PlantUtils.toTitle(dialog.selection)

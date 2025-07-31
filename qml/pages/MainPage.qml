@@ -23,9 +23,10 @@ Page {
           text: i18n.tr("New identification")
           onClicked: {
              if (!settings.apiKey) {
-                var dialog = Dialogs.showErrorDialog(
-                         root, i18n.tr("API Key missing"), i18n.tr(
-                            "The Pl@ntNet API-Key has not been configured yet. Without this, the app will not work."))
+                var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
+                            { "title": i18n.tr("API Key missing"),
+                              "test":  i18n.tr("The Pl@ntNet API-Key has not been configured yet. Without this, the app will not work.")
+                            })
 
                 dialog.accepted.connect(function () {
                    mainPage.openSettings()
@@ -83,10 +84,12 @@ Page {
          mainPage.loadingScreenShown = false
 
          if (error) {
-            Dialogs.showErrorDialog(
-                     root, i18n.tr("Identification failed"), i18n.tr(
-                        "Failed to send identification request to Pl@ntNet (%1).").arg(
-                        error))
+            pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
+                        {
+                          "title": i18n.tr("Identification failed"),
+                          "text":  i18n.tr("Failed to send identification request to Pl@ntNet (%1).").arg(error)
+                        }
+            )
             return
          }
 
@@ -101,10 +104,12 @@ Page {
       var err = plantsModel.init()
 
       if (err) {
-         Dialogs.showErrorDialog(
-                  root, i18n.tr("Failed to init storage directory"), i18n.tr(
-                     "Storage directory could not be initialized (%1).").arg(
-                     err))
+         pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
+                    {
+                        "title": i18n.tr("Failed to init storage directory"),
+                        "text": i18n.tr("Storage directory could not be initialized (%1).").arg(err)
+                    }
+         )
       } else {
          plantsModel.reload()
       }
@@ -188,19 +193,24 @@ Page {
             }
 
             onDelete: function (plantID) {
-               var dialog = Dialogs.showQuestionDialog(
-                        root, i18n.tr("Delete plant?"), i18n.tr(
-                           "Shall the plant '%1' be deleted? This operation can not be undone.").arg(
-                           plant.species), i18n.tr("Delete"),
-                        i18n.tr("Cancel"), LomiriColors.red)
+               var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/QuestionDialog.qml"),
+                                {
+                                   "title": i18n.tr("Delete plant?"),
+                                   "text": i18n.tr("Shall the plant '%1' be deleted? This operation can not be undone.").arg(plant.species),
+                                   "acceptText": i18n.tr("Delete"),
+                                   "cancelText": i18n.tr("Cancel")
+                                }
+                            )
 
                dialog.accepted.connect(function () {
                   var err = plantsModel.deletePlant(plantID)
 
                   if (err) {
-                     Dialogs.showErrorDialog(
-                              root, i18n.tr("Deleting plant failed"), i18n.tr(
-                                 "Plant could not be deleted (%1).").arg(err))
+                     pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
+                              { "title": i18n.tr("Deleting plant failed"),
+                                "text": i18n.tr("Plant could not be deleted (%1).").arg(err)
+                              }
+                     )
                   }
                })
             }

@@ -1,126 +1,14 @@
 pragma Singleton
 
 import QtQuick 2.4
-import Sailfish.Silica 1.0
+import Lomiri.Components.Popups 1.3
+import Lomiri.Components 1.3
+import Lomiri.Components.Pickers 1.3
+import QtQuick.Controls 2.5 as QC
 
 import "../util"
 
 Item {
-    // we are a singleton!
-   property alias i18n: i18n
-   QtObject { id: i18n; function tr(s) { return qsTr(s) } }
-   Component {
-      id: questionDialogComponent
-
-      Dialog {
-         id: questionDialog
-         property alias title: head.title 
-         property alias acceptButtonTitle: head.acceptText
-         property alias cancelButtonTitle: head.cancelText
-         property alias text: content.text
-         DialogHeader { id: head }
-         Label { id: content
-            anchors.top: head.bottom
-            anchors.topMargin: Theme.paddingLarge
-            x: Theme.horizontalPageMargin
-            width: parent.width - Theme.horizontalPageMargin*2
-            color: Theme.secondaryHighlightColor
-            wrapMode: Text.Wrap
-         }
-      }
-   }
-   Component {
-      id: errorDialogComponent
-
-      Dialog {
-         id: errorDialog
-         property alias title: head.title
-         canAccept: false
-         property alias text: content.text
-         DialogHeader { id: head ; cancelText: i18n.tr("Close"); acceptText: "" }
-         Label { id: content
-            anchors.top: head.bottom
-            anchors.topMargin: Theme.paddingLarge
-            x: Theme.horizontalPageMargin
-            width: parent.width - Theme.horizontalPageMargin*2
-            color: Theme.secondaryHighlightColor
-            wrapMode: Text.Wrap
-         }
-      }
-   }
-   Component {
-      id: pickerDialogComponent
-
-      Dialog {
-         id: pickerDialog
-         property alias title: head.title 
-         property alias acceptButtonTitle: head.acceptText
-         property alias cancelButtonTitle: head.cancelText
-         //property alias text: content.text
-         property string selection: PlantUtils.organs[0].name
-         DialogHeader { id: head; title: i18n.tr("Select plant part") }
-         ColumnView { id: content
-            anchors.top: head.bottom
-            anchors.topMargin: Theme.paddingLarge
-            x: Theme.horizontalPageMargin
-            width: parent.width - Theme.horizontalPageMargin*2
-            model: PlantUtils.organs.length
-            delegate: TextSwitch {
-               text: PlantUtils.organs[index].title
-               checked:   pickerDialog.selection == PlantUtils.organs[index].name
-               onClicked: pickerDialog.selection = PlantUtils.organs[index].name
-            }
-         }
-      }
-   }
-   /* apparently unused:
-   Component {
-      id: storageErrorDialogComponent
-
-      Dialog {
-         id: storageErrorDialog
-         property alias title: head.title
-         property alias acceptButtonTitle: head.acceptText
-         property alias cancelButtonTitle: head.cancelText
-         property alias text: content.text
-         canAccept: false
-         property string errorString
-         DialogHeader { id: head ; cancelText: i18n.tr("Close"); title: i18n.tr("Failed to init storage directory") }
-         Label { id: content
-            anchors.top: head.bottom
-            anchors.topMargin: Theme.paddingLarge
-            width: parent.width - Theme.horizontalPageMargin*2
-            color: Theme.secondaryHighlightColor
-            x: Theme.horizontalPageMargin
-            wrapMode: Text.Wrap
-            text: i18n.tr("Storage directory could not be initialized (%1).").arg(errorString)
-         }
-
-
-     }
-   }
-   */
-
-   function showQuestionDialog(parent, title, text, acceptButtonTitle, cancelButtonTitle, acceptButtonColor) {
-      return parent.pageStack.push(questionDialogComponent, {
-                                "title": title,
-                                "text": text,
-                                "acceptButtonTitle": acceptButtonTitle,
-                                "cancelButtonTitle": cancelButtonTitle,
-                                "acceptButtonColor": acceptButtonColor
-                             })
-   }
-   function showErrorDialog(parent, title, text) {
-      return parent.pageStack.push(errorDialogComponent, {
-                                "title": title,
-                                "text": text
-                             })
-   }
-   function showPickerDialog(parent) {
-      return parent.pageStack.push(pickerDialogComponent)
-   }
-
-/*
    Component {
       id: questionDialogComponent
 
@@ -242,5 +130,4 @@ Item {
    function showPickerDialog(parent) {
       return PopupUtils.open(pickerDialogComponent, parent, {})
    }
-*/
 }

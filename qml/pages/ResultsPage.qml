@@ -71,9 +71,12 @@ Page {
                if (!err) {
                   pageStack.pop()
                } else {
-                  Dialogs.showErrorDialog(
-                           root, i18n.tr("Saving result failed"),
-                           i18n.tr("Result could not be saved (%1).").arg(err))
+                  pageStack.push(Qt.resolvedUrl("dialogs/ErrorDialog.qml"),
+                         {
+                           "title":i18n.tr("Saving result failed"),
+                           "text": i18n.tr("Result could not be saved (%1).").arg(err)
+                         }
+                  )
                }
             }
          }
