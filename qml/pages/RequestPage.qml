@@ -1,15 +1,16 @@
 import QtQuick 2.6
 import Sailfish.Silica 1.0
+import Sailfish.Pickers 1.0
 import QtGraphicalEffects 1.0
 
 import "../util"
 
-import PlantsModel 1.0
+//import PlantsModel 1.0
 
-Page {
+Page { id: requestPage
    property var plantsModel: null
 
-   header: PageHeader {
+   PageHeader {
       id: header
       title: i18n.tr('New identification')
    }
@@ -49,12 +50,14 @@ Page {
       }
    }
 
+   /* apparently not used anywhere?
    Component {
       id: selectorDelegate
       OptionSelectorDelegate {
          text: title
       }
    }
+   */
 
    Button {
       id: analyzeButton
@@ -129,8 +132,29 @@ Page {
       }
    }
 
+   /*
    function addNewImage() {
       var importPage = pageStack.push(Qt.resolvedUrl("ImportPage.qml"), {})
       importPage.imported.connect(importImages)
+   }
+   */
+   function addNewImage() {
+      var importPage = pageStack.push(imagePicker)
+      importPage.accepted.connect(function() { requestPage.importImages(importPage.selectedFiles) })
+   }
+   Component { id: imagePicker
+     MultiImagePickerDialog {
+        property var selectedFiles: []
+        onAccepted: {
+            selectedFiles = ""
+            var urls = []
+            for (var i = 0; i < selectedContent.count; ++i) {
+                var url = selectedContent.get(i).url
+                // Handle url upload
+                urls.push(selectedContent.get(i).url)
+            }
+            selectedFiles = urls
+        }
+     }
    }
 }
