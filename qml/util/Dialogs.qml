@@ -20,6 +20,8 @@ Item {
             anchors.top: head.bottom
             anchors.topMargin: Theme.paddingLarge
             x: Theme.horizontalPageMargin
+            width: parent.width - Theme.horizontalPageMargin*2
+            color: Theme.secondaryHighlightColor
             wrapMode: Text.Wrap
          }
       }
@@ -29,16 +31,16 @@ Item {
 
       Dialog {
          id: errorDialog
-         property alias title: head.title 
-         //property alias acceptButtonTitle: head.acceptText
-         //property alias cancelButtonTitle: head.cancelText
+         property alias title: head.title
          canAccept: false
          property alias text: content.text
-         DialogHeader { id: head ; cancelText: i18n.tr("Close") }
+         DialogHeader { id: head ; cancelText: i18n.tr("Close"); acceptText: "" }
          Label { id: content
             anchors.top: head.bottom
             anchors.topMargin: Theme.paddingLarge
             x: Theme.horizontalPageMargin
+            width: parent.width - Theme.horizontalPageMargin*2
+            color: Theme.secondaryHighlightColor
             wrapMode: Text.Wrap
          }
       }
@@ -58,6 +60,7 @@ Item {
             anchors.top: head.bottom
             anchors.topMargin: Theme.paddingLarge
             x: Theme.horizontalPageMargin
+            width: parent.width - Theme.horizontalPageMargin*2
             model: PlantUtils.organs.length
             delegate: TextSwitch {
                text: PlantUtils.organs[index].title
@@ -82,6 +85,8 @@ Item {
          Label { id: content
             anchors.top: head.bottom
             anchors.topMargin: Theme.paddingLarge
+            width: parent.width - Theme.horizontalPageMargin*2
+            color: Theme.secondaryHighlightColor
             x: Theme.horizontalPageMargin
             wrapMode: Text.Wrap
             text: i18n.tr("Storage directory could not be initialized (%1).").arg(errorString)
