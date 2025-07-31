@@ -131,8 +131,8 @@ Rectangle {
       }
    }
 
-   ButtonLayout {
-       IconButton {
+   //ButtonLayout {
+       IconButton { id: deleteButton
            visible: !item.listMode && !item.placeholder
            icon.source: "image://theme/icon-m-edit" 
            onClicked: function() {
@@ -140,7 +140,7 @@ Rectangle {
                  item.onEdit()
            }
        }
-       IconButton {
+       IconButton { id: editButton
            visible: !item.placeholder
            icon.source: "image://theme/icon-m-delete" 
            onClicked: function() {
@@ -148,7 +148,7 @@ Rectangle {
                  item.onDelete(item.plantObject && item.plantObject.id)
            }
        }
-   }
+   //}
    /*
    IconButton {
       id: editButton
