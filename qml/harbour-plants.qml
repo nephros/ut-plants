@@ -12,12 +12,12 @@ import "compat"
 ApplicationWindow {
     id: root
     allowedOrientations: defaultAllowedOrientations
+    cover: coverPage
     initialPage: mainPage
     property alias mainPage: mainPage
     Component { id: mainPage
         MainPage{}
     }
-
     property alias units: units
     property alias i18n: i18n
     UbuUnits { id: units }
@@ -29,7 +29,15 @@ ApplicationWindow {
     DisplayBlanking { id: blanking
        preventBlanking: settings.keepDisplayOn
     }
-
+    Component { id: coverPage
+        CoverBackground {
+            CoverPlaceholder {
+                text: "Plants"
+                textColor: Theme.highlightColor
+                icon.source: "image://theme/harbour-plants"
+            }
+        }
+    }
 }
 
 // vim: filetype=javascript syntax=qml expandtab tabstop=4 shiftwidth=4
