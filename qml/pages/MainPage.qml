@@ -11,7 +11,7 @@ Page {
    id: mainPage
    property bool loadingScreenShown: false
 
-   SilicaFlickable {
+   SilicaFlickable { id: flickable
    anchors.fill: parent
    PageHeader {
       id: header
@@ -211,6 +211,7 @@ Page {
           text: i18n.tr("No plants identified yet")
           hintText: i18n.tr("Pull down to start a new identification")
           enabled: !plantsModel.count
+          flickable: flickable
       }
    }
 
