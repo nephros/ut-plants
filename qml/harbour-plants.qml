@@ -46,10 +46,10 @@ ApplicationWindow {
         dock: Dock.Bottom
         SilicaItem {
             width: loadingScreen.width
-            height: docCol.height
+            height: dockCol.height
             //background.color: Theme.overlayBackgroundColor
             opacity: Theme.opacityOverlay
-            Column { id: docCol
+            Column { id: dockCol
                 width: parent.width
                 ProgressBar {
                     width: parent.width
