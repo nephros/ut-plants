@@ -83,7 +83,7 @@ Item {
                   font.bold: true
 
                   color: scoreValue > 80 ? "white" : (scoreValue
-                                                      > 50 ? LomiriColors.orange : LomiriColors.red)
+                                                      > 50 ? Theme.presenceColor(Theme.PresenceAway) : Theme.errorColor)
                }
             }
          }
