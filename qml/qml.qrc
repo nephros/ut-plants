@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>harbour-plants.qml</file>
+        <file>pages/MainPage.qml</file>
         <file>pages/ImportPage.qml</file>
         <file>pages/RequestPage.qml</file>
         <file>pages/ResultsPage.qml</file>
