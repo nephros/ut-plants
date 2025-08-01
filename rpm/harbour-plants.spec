@@ -136,6 +136,9 @@ desktop-file-edit  \
 %{buildroot}%{_datadir}/applications/%{name}.desktop
 printf '\n\n[X-Sailjail]\nOrganizationName=%{orgname}\nApplicationName=%{appname}\nPermissions=UserDirs;Camera;MediaIndexing;Internet\n' \
 >> %{buildroot}%{_datadir}/applications/%{name}.desktop
+# MyBackup
+printf '\n\n[X-HarbourBackup]\nBackupConfigList=/apps/%{orgname}/%{appname}/\nBackupPathList=.local/share/%{orgname}/%{appname}/;.config/%{orgname}/%{appname}/\n' \
+>> %{buildroot}%{_datadir}/applications/%{name}.desktop
 # << install post
 
 desktop-file-install --delete-original       \
