@@ -124,7 +124,7 @@ rm %{buildroot}/%{_datadir}/%{name}
 # Edit the main .desktop file for Sailjail
 desktop-file-edit  \
 --set-key=Exec \
---set-value="/usr/bin/%{name}" \
+--set-value="%{name}" \
 --set-name="Plants" \
 --set-icon=%{name} \
 --set-key=X-Nemo-Application-Type \
