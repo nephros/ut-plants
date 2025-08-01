@@ -28,6 +28,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QLocale>
+#include <QStandardPaths>
 #include <QSettings>
 #include <QUrlQuery>
 
@@ -36,6 +37,8 @@
 #define API_MAX_RESULTS 5
 #define API_URL "https://my-api.plantnet.org/v2/identify/all"
 #define LANGUAGES_URL "https://my-api.plantnet.org/v2/languages"
+#define ORG_NAME "s710"
+#define APP_NAME "plants"
 // #define API_URL "http://10.0.60.43:3000/identify"
 // #define LANGUAGES_URL "http://10.0.60.43:3000/languages"
 
@@ -55,12 +58,17 @@ Identification::Identification(network::Network* network, QObject* parent)
     QObject(parent),
     url(API_URL)
 {
-   QSettings settings;
+   QSettings settings(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)
+        + "/" + ORG_NAME + "/" + APP_NAME + "/" + APP_NAME + ".conf",
+        QSettings::NativeFormat);
+
+   qInfo() << "Storing settings at path" << QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+   qInfo() << "Storing settings at" << settings.fileName();
 
    if (settings.contains("apiKey")) {
       query.addQueryItem("api-key", settings.value("apiKey").toString());
    } else {
-      qDebug() << "Query withouy or wmpty API key!";
+      qWarning() << "Query without or empty API key!";
    }
 
    query.addQueryItem("include-related-images", "true");
@@ -73,10 +81,10 @@ Identification::Identification(network::Network* network, QObject* parent)
 
 void Identification::initLanguages()
 {
-   QSettings settings;
+   QSettings settings(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)
+        + "/" + ORG_NAME + "/" + APP_NAME + "/" + APP_NAME + ".conf",
+        QSettings::NativeFormat);
    QUrlQuery q;
-
-   qDebug() << "Storing settings at" << settings.fileName();
 
    if (!settings.contains("apiKey"))
    {
@@ -93,7 +101,9 @@ void Identification::initLanguages()
      languagesUrl, headers,
      [this](int err, int code, QByteArray body)
      {
-        QSettings settings;
+         QSettings settings(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)
+              + "/" + ORG_NAME + "/" + APP_NAME + "/" + APP_NAME + ".conf",
+              QSettings::NativeFormat);
 
         if (err != QNetworkReply::NoError || code != 200 || body.isEmpty())
         {
