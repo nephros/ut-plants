@@ -10,7 +10,7 @@ import "pages"
 import "compat"
 
 ApplicationWindow {
-    id: root
+    id: app
     allowedOrientations: defaultAllowedOrientations
     cover: coverPage
     initialPage: mainPage
@@ -42,7 +42,7 @@ ApplicationWindow {
     //apparently, a DockedPanel can be in an ApplicationWindow, but we must bind bottomMargin: panel.visibleSize
     bottomMargin: loadingScreen.visibleSize
     DockedPanel{ id: loadingScreen
-        open: root.loadingScreenShown
+        open: app.loadingScreenShown
         dock: Dock.Bottom
         SilicaItem {
             width: loadingScreen.width
