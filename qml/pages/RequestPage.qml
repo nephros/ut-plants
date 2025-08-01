@@ -84,7 +84,7 @@ Page { id: requestPage
 
          plantsModel.identifyPlant(request)
          pageStack.pop()
-         mainPage.loadingScreenShown = true
+         loadingScreenShown = true
       }
    }
 

@@ -18,6 +18,7 @@ ApplicationWindow {
     Component { id: mainPage
         MainPage{}
     }
+    property bool loadingScreenShown: false
     property alias units: units
     property alias i18n: i18n
     UbuUnits { id: units }
@@ -36,6 +37,31 @@ ApplicationWindow {
                 textColor: Theme.highlightColor
                 icon.source: "image://theme/harbour-plants"
             }
+        }
+    }
+    //apparently, a DockedPanel can be in an ApplicationWindow, but we must bind bottomMargin: panel.visibleSize
+    bottomMargin: loadingScreen.visibleSize
+    DockedPanel{ id: loadingScreen
+        open: root.loadingScreenShown
+        dock: Dock.Bottom
+        SilicaItem {
+            width: loadingScreen.width
+            height: docCol.height
+            //background.color: Theme.overlayBackgroundColor
+            opacity: Theme.opacityOverlay
+            Column { id: docCol
+                width: parent.width
+                ProgressBar {
+                    width: parent.width
+                    indeterminate: true
+                }
+                Label {
+                    width: parent.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: i18n.tr("Plant is being identified, please wait.")
+                    wrapMode: Text.WordWrap
+                }
+             }
         }
     }
 }

@@ -9,7 +9,7 @@ import PlantsModel 1.0
 
 Page {
    id: mainPage
-   property bool loadingScreenShown: false
+   //property bool loadingScreenShown: false
 
    SilicaFlickable { id: flickable
    anchors.fill: parent
@@ -68,11 +68,7 @@ Page {
       }
    }
 
-   PageBusyIndicator {
-      visible: mainPage.loadingScreenShown
-      z: plantList.z + 10
-   }
-   /*
+   /* moved to app window docked panel
    LoadingScreen {
       visible: mainPage.loadingScreenShown
    }
