@@ -152,6 +152,8 @@ void Identification::identifyPlant(QVariantList& request)
    QVariantList sourceImages;
    QHttpMultiPart* multiPart = createMultipart(request, sourceImages, err);
 
+   headers.insert("User-Agent", "harbour-plants/1.0 (Sailfish OS; Qt)");
+
    if (multiPart == nullptr)
    {
       emit identificationResult(QString(err), QVariantList());
