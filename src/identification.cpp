@@ -62,9 +62,6 @@ Identification::Identification(network::Network* network, QObject* parent)
         + "/" + ORG_NAME + "/" + APP_NAME + "/" + APP_NAME + ".conf",
         QSettings::NativeFormat);
 
-   qInfo() << "Storing settings at path" << QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
-   qInfo() << "Storing settings at" << settings.fileName();
-
    if (!apiKey.isEmpty()) {
       query.addQueryItem("api-key", apiKey);
    }
