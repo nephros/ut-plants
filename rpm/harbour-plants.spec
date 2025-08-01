@@ -111,6 +111,10 @@ mv Plants.desktop.in %{name}.desktop.in
 install -d %{buildroot}%{_datadir}/applications
 mv %{buildroot}/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
 rm -f %{buildroot}/%{_datadir}/assets/logo.png
+# locale files:
+for fname in $(find %{buildroot}/share -type f); do
+install -Dpm644 $fname %{buildroot}/$fname
+done
 # generate some icons
 for size in 86 108 128 172 256 512; do
 sailfish_svg2png -z 1.0 -f rgba -s 1 1 1 1 1 1 ${size} icons/svgs %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps
@@ -159,4 +163,7 @@ echo '=========== NOT checking for Harbour compatability.'
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/*/*/apps/%{name}.png
 # >> files
+%if %{with harbour}
+%{_datadir}/locale/*
+%endif
 # << files
