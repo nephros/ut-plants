@@ -63,6 +63,7 @@ Page {
                placeholderText: i18n.tr("Enter API-Key")
                width: parent.width - units.gu(2)
                text: settings.apiKey
+               inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
                EnterKey.onClicked: {
                   settings.apiKey = apiKeyInput.text
                   emit: apiKeyChanged(apiKeyInput.text)
