@@ -89,14 +89,6 @@ Page {
                            "plantsModel": plantsModel
                         })
       }
-      Component.onCompleted: {
-        if (settings.apiKey.length > 0) {
-           console.debug("API key known, setting.")
-           plantsModel.setApiKey(settings.apiKey)
-        } else {
-           console.debug("API key empty or not known:", settings.apiKey)
-        }
-      }
    }
 
    Component.onCompleted: {

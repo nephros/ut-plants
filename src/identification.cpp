@@ -67,8 +67,6 @@ Identification::Identification(network::Network* network, QObject* parent)
 
    if (!apiKey.isEmpty()) {
       query.addQueryItem("api-key", apiKey);
-   } else {
-      qWarning() << "Query without or empty API key!";
    }
 
    query.addQueryItem("include-related-images", "true");
