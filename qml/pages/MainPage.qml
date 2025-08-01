@@ -90,7 +90,6 @@ Page {
             return
          }
 
-         console.debug("result:", JSON.stringify(result,null,2))
          pageStack.push(Qt.resolvedUrl("ResultsPage.qml"), {
                            "resultsData": result,
                            "plantsModel": plantsModel
