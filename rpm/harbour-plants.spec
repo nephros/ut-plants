@@ -8,7 +8,7 @@ Name:       harbour-plants
 # >> macros
 %bcond_with harbour
 # << macros
-%define orgname s71e
+%define orgname s710
 %define appname plants
 %define pkgname %{name}
 %define plugindir %{_datadir}/%{name}/

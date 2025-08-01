@@ -14,7 +14,7 @@ Sources:
 Macros:
   # keep .a files:
   # 'keepstatic;1'
-  - 'orgname;s71e'
+  - 'orgname;s710'
   - 'appname;plants'
   - 'pkgname;%{name}'
   - 'plugindir;%{_datadir}/%{name}/'
