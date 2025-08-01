@@ -73,6 +73,8 @@ void Identification::initLanguages()
    QSettings settings;
    QUrlQuery q;
 
+   qDebug() << "Storing settings at" << settings.fileName();
+
    if (!settings.contains("apiKey"))
    {
       qDebug() << "No API key available, skip languages load";
