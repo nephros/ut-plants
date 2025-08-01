@@ -88,7 +88,7 @@ Check: true # so we can do a fake clean section below it:
 PkgBR:
   - cmake
   - intltool
-  # sailfish-svg2png
+  - sailfish-svg2png
   # qml-rpm-macros
 PkgConfigBR:
   - sailfishapp

@@ -38,6 +38,7 @@ BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  cmake
 BuildRequires:  intltool
+BuildRequires:  sailfish-svg2png
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
 
@@ -109,13 +110,13 @@ mv Plants.desktop.in %{name}.desktop.in
 # fix some UBPort install peculiarities:
 install -d %{buildroot}%{_datadir}/applications
 mv %{buildroot}/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
-install -d %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/
-mv %{buildroot}/%{_datadir}/assets/logo.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{name}.png
-for size in 86 108 128 172 256
-do
-install -d %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/
-install -pm644 icons/%{name}-${size}.png %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/%{name}.png
+rm -f %{buildroot}/%{_datadir}/assets/logo.png
+# generate some icons
+for size in 86 108 128 172 256 512; do
+sailfish_svg2png -z 1.0 -f rgba -s 1 1 1 1 1 1 ${size} icons/svgs %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps
 done
+
+
 install -d %{buildroot}%{_bindir}/
 install -m755 %{buildroot}/%{_datadir}/%{name} %{buildroot}%{_bindir}/%{name}
 rm %{buildroot}/%{_datadir}/%{name}
