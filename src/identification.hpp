@@ -60,6 +60,7 @@ protected:
    QUrl url;
    network::ReqHeaders headers;
    network::Network* net;
+   QString apiKey;
 };
 
 } // namespace plants

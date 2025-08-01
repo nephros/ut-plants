@@ -65,8 +65,8 @@ Identification::Identification(network::Network* network, QObject* parent)
    qInfo() << "Storing settings at path" << QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
    qInfo() << "Storing settings at" << settings.fileName();
 
-   if (settings.contains("apiKey")) {
-      query.addQueryItem("api-key", settings.value("apiKey").toString());
+   if (!apiKey.isEmpty()) {
+      query.addQueryItem("api-key", apiKey);
    } else {
       qWarning() << "Query without or empty API key!";
    }
@@ -86,13 +86,13 @@ void Identification::initLanguages()
         QSettings::NativeFormat);
    QUrlQuery q;
 
-   if (!settings.contains("apiKey"))
+   if (apiKey.isEmpty())
    {
       qDebug() << "No API key available, skip languages load";
       return;
    }
 
-   q.addQueryItem("api-key", settings.value("apiKey").toString());
+   q.addQueryItem("api-key", apiKey);
 
    QUrl languagesUrl(LANGUAGES_URL);
    languagesUrl.setQuery(q);
@@ -150,6 +150,7 @@ void Identification::initLanguages()
 
 void Identification::setApiKey(QString key)
 {
+   apiKey = key;
    query.removeQueryItem("api-key");
    query.addQueryItem("api-key", key);
    url.setQuery(query);
