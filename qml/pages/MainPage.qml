@@ -78,7 +78,7 @@ Page {
       id: plantsModel
 
       onIdentificationResult: {
-         mainPage.loadingScreenShown = false
+         app.loadingScreenShown = false
 
          if (error) {
             pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
