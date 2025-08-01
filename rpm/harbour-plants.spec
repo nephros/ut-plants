@@ -54,9 +54,7 @@ Categories:
 Custom:
   Repo: %{url}
 # GitHub:
-PackageIcon: %{url}/master/icons/%{name}.svg
-# Codeberg:
-PackageIcon: %{url}/raw/branch/master/icons/svgs/%{name}.svg
+PackageIcon: %{url}/raw/branch/sfos/icons/%{name}-512.png
 Screenshots:
  - %{url}/raw/metadata/screenshots/screenshot1.png
  - %{url}/raw/metadata/screenshots/screenshot2.png
@@ -69,7 +67,6 @@ Links:
 %endif
 
 
-%define __provides_exclude_from %{plugindir}
 %define please_also ignore this macro
 %if %{with harbour}
 %undefine vendor
@@ -114,6 +111,11 @@ install -d %{buildroot}%{_datadir}/applications
 mv %{buildroot}/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
 install -d %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/
 mv %{buildroot}/%{_datadir}/assets/logo.png %{buildroot}%{_datadir}/icons/hicolor/512x512/apps/%{name}.png
+for size in 86 108 128 172 256
+do
+install -d %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/
+install -pm644 icons/%{name}-${size}.png %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/%{name}.png
+done
 install -d %{buildroot}%{_bindir}/
 install -m755 %{buildroot}/%{_datadir}/%{name} %{buildroot}%{_bindir}/%{name}
 rm %{buildroot}/%{_datadir}/%{name}

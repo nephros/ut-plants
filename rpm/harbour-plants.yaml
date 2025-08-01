@@ -50,9 +50,7 @@ Description: |
     Custom:
       Repo: %{url}
     # GitHub:
-    PackageIcon: %{url}/master/icons/%{name}.svg
-    # Codeberg:
-    PackageIcon: %{url}/raw/branch/master/icons/svgs/%{name}.svg
+    PackageIcon: %{url}/raw/branch/sfos/icons/%{name}-512.png
     Screenshots:
      - %{url}/raw/metadata/screenshots/screenshot1.png
      - %{url}/raw/metadata/screenshots/screenshot2.png
@@ -65,7 +63,7 @@ Description: |
     %endif
 
 Macros2:
-  - '__provides_exclude_from;%{plugindir}'
+  # '__provides_exclude_from;%{plugindir}'
   #  if you need to exclude requires or provides:
   # '__provides_exclude_from;^%{app_arch_libdir}/.*$'
   # '__requires_exclude_from;^%{app_arch_libdir}/.*$'
@@ -115,9 +113,7 @@ Files:
   - '%{_bindir}/*'
   - '%{_datadir}/applications/%{name}.desktop'
   # '%{_datadir}/themes/sailfish-default/*/*/*.png'
-  # '%{_datadir}/icons/*/*/apps/*'
   - '%{_datadir}/icons/*/*/apps/%{name}.png'
-  # '%{_datadir}/icons/*/*/apps/%{name}.svg'
   # ' %{_datadir}/%{name}/'
   # ' %{_datadir}/%{name}'
   # '%dir %{_datadir}/%{name}/translations'
