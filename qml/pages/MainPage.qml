@@ -95,6 +95,9 @@ Page {
                            "plantsModel": plantsModel
                         })
       }
+      Component.onCompleted: {
+        if (settings.apiKey.length > 0) plantsModel.setApiKey(settings.apiKey)
+      }
    }
 
    Component.onCompleted: {
@@ -108,7 +111,6 @@ Page {
                     }
          )
       } else {
-         if (settings.apiKey.length > 0) plantsModel.setApiKey(settings.apiKey)
          plantsModel.reload()
       }
    }
