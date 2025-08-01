@@ -46,12 +46,6 @@ Page {
        }
    }
 
-   Settings {
-      id: settings
-      property string apiKey
-      property bool disclaimerAccepted: false
-   }
-
    Disclaimer {
       id: disclaimer
       visible: !settings.disclaimerAccepted

@@ -8,13 +8,6 @@ Page {
    signal updateIntervalChanged(var interval, var enabled)
    signal apiKeyChanged(var key)
 
-   Settings {
-      id: settings
-      property string apiKey
-      property bool keepDisplayOn
-   }
-
-
    SilicaFlickable {
       id: flickable
       anchors.fill: parent

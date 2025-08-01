@@ -26,6 +26,8 @@ ApplicationWindow {
     Settings {
        id: settings
        property bool keepDisplayOn: false
+       property string apiKey
+       property bool disclaimerAccepted: false
     }
     DisplayBlanking { id: blanking
        preventBlanking: settings.keepDisplayOn
