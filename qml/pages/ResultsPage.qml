@@ -45,7 +45,7 @@ Page {
       anchors.topMargin: units.gu(2)
       anchors.left: parent.left
       anchors.right: parent.right
-      anchors.bottom: pageIndicator.top
+      anchors.bottom: parent.bottom
       anchors.bottomMargin: units.gu(2)
 
       clip: true
