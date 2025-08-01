@@ -57,8 +57,11 @@ Identification::Identification(network::Network* network, QObject* parent)
 {
    QSettings settings;
 
-   if (settings.contains("apiKey"))
+   if (settings.contains("apiKey")) {
       query.addQueryItem("api-key", settings.value("apiKey").toString());
+   } else {
+      qDebug() << "Query withouy or wmpty API key!";
+   }
 
    query.addQueryItem("include-related-images", "true");
    url.setQuery(query);
