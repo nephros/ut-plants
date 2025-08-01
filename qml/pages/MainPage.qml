@@ -99,9 +99,6 @@ Page {
    }
 
    Component.onCompleted: {
-      if (settings.apiKey.length > 0) {
-         plantsModel.setApiKey(key)
-      }
       var err = plantsModel.init()
 
       if (err) {
@@ -112,6 +109,7 @@ Page {
                     }
          )
       } else {
+         if (settings.apiKey.length > 0) plantsModel.setApiKey(settings.apiKey)
          plantsModel.reload()
       }
    }
