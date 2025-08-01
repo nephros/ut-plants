@@ -10,7 +10,7 @@ Page {
 
    property var plant: nil
 
-   header: PageHeader {
+   PageHeader {
       id: header
       title: i18n.tr('Plant details')
    }
