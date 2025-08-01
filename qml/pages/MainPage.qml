@@ -96,11 +96,22 @@ Page {
                         })
       }
       Component.onCompleted: {
-        if (settings.apiKey.length > 0) plantsModel.setApiKey(settings.apiKey)
+        if (settings.apiKey.length > 0) {
+           console.debug("API key known, setting.")
+           plantsModel.setApiKey(settings.apiKey)
+        } else {
+           console.debug("API key empty or not known:", settings.apiKey)
+        }
       }
    }
 
    Component.onCompleted: {
+      if (settings.apiKey.length > 0) {
+         console.debug("API key known, setting.")
+         plantsModel.setApiKey(settings.apiKey)
+      } else {
+         console.debug("API key empty or not known:", settings.apiKey)
+      }
       var err = plantsModel.init()
 
       if (err) {
