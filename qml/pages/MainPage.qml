@@ -239,6 +239,7 @@ Page {
       var p = pageStack.push(Qt.resolvedUrl("./SettingsPage.qml"))
 
       p.apiKeyChanged.connect(function (key) {
+         console.info("Storing API key from Settings")
          settings.apiKey = key
          plantsModel.setApiKey(key)
       })
