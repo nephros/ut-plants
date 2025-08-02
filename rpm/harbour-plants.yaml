@@ -103,8 +103,8 @@ ConfigOptions:
   - '-DCMAKE_INSTALL_PREFIX=%{_datadir}'
   # '-DCMAKE_INSTALL_PREFIX=%{_prefix}'
   # '-DQT_IMPORTS_DIR=%{plugindir}'
-#NoAutoLocale: true
-LocaleName: '%{orgname}.%{appname}'
+NoAutoLocale: true
+#LocaleName: '%{orgname}.%{appname}'
 NoIconCache: true
 #BuildArch: noarch
 Files:

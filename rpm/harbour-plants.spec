@@ -112,9 +112,10 @@ install -d %{buildroot}%{_datadir}/applications
 mv %{buildroot}/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
 rm -f %{buildroot}/%{_datadir}/assets/logo.png
 # locale files:
-for fname in $(find %{buildroot}/share -type f); do
-install -Dpm644 $fname %{buildroot}/$fname
-done
+#for fname in $(find %%{buildroot}/share -type f); do
+#install -Dpm644 $fname %%{buildroot}/$fname
+#done
+rm -r %{buildroot}/share
 # generate some icons
 for size in 86 108 128 172 256 512; do
 sailfish_svg2png -z 1.0 -f rgba -s 1 1 1 1 1 1 ${size} icons/svgs %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps
@@ -145,8 +146,6 @@ desktop-file-install --delete-original       \
   --dir %{buildroot}%{_datadir}/applications             \
    %{buildroot}%{_datadir}/applications/*.desktop
 
-%find_lang %{orgname}.%{appname}
-
 %check
 # >> check
 # this is just here so we can include a clean section below:
@@ -161,7 +160,7 @@ echo '=========== NOT checking for Harbour compatability.'
 %endif
 # << check
 
-%files -f %{orgname}.%{appname}.lang
+%files
 %{_bindir}/*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/*/*/apps/%{name}.png
