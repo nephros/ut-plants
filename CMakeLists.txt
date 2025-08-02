@@ -95,3 +95,18 @@ file(GLOB_RECURSE PROJECT_SRC_FILES
 )
 
 add_custom_target(${PROJECT_NAME}_FILES ALL SOURCES ${PROJECT_SRC_FILES})
+
+find_package(Qt5 REQUIRED COMPONENTS LinguistTools)
+find_program(LCONVERT_COMMAND lconvert)
+#qt5_add_resources(QT_RESOURCES translations/qm.qrc)
+#add_custom_target(TR_QRC translations/qm.qrc
+#    COMMENT "Converting translations..."
+#)
+file(GLOB POS po/*.po)
+foreach(PO ${POS})
+get_filename_component(LANG ${PO} NAME_WE)
+execute_process(
+    COMMAND convert -if po -i ${PO} -of qm -o ${LANG}.qm
+    OUTPUT_VARIABLE QM_FILES
+)
+endforeach(PO)
