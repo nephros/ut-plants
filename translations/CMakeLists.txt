@@ -16,6 +16,7 @@ list(APPEND I18N_SRC_FILES
 # it finds source translations (*.ts) for
 foreach(TS_FILE ${TS_FILES})
     get_filename_component(LANG ${TS_FILE} NAME_WE)
+    QT5_ADD_TRANSLATION(${TS_FILE})
     #gettext_process_po_files(${LANG} ALL TS_FILES ${TS_FILE})
     add_custom_command(
         OUTPUT ${LANG}.qm
@@ -25,7 +26,7 @@ foreach(TS_FILE ${TS_FILES})
         DEPENDS ../${LANG}.po
     )
     set(INSTALL_DIR ${CMAKE_INSTALL_DATA}/translations)
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${LANG}.qm
+    install(FILES ${LANG}.qm
             DESTINATION ${INSTALL_DIR}
             RENAME ${DOMAIN}-${LANG}.qm)
 endforeach(TS_FILE)
