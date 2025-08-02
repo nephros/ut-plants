@@ -111,6 +111,11 @@ execute_process(
 )
 list(APPEND QM_FILES ${LANG}.qm)
 #list(APPEND TS_FILES ${LANG}.ts)
-qt5_add_translations(${PROJECT_NAME} TS_FILES ${LANG}.ts RESOURCE_PREFIX "/translations")
+file(GLOB_RECURSE PROJECT_TR_FILES
+    RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+    qml/*.qml
+)
+
 endforeach(PO)
+QT5_CREATE_TRANSLATION(${PROJECT_NAME} QM_FILES SOURCES ${PROJECT_TR_FILES})
 #install(FILES ${QM_FILES} DESTINATION ${DATA_DIR}/translations)
