@@ -107,7 +107,10 @@ foreach(PO ${POS})
 get_filename_component(LANG ${PO} NAME_WE)
 execute_process(
     COMMAND ${LCONVERT_COMMAND} -if po -i ${PO} -of qm -o ${LANG}.qm
+    COMMAND ${LCONVERT_COMMAND} -if po -i ${PO} -of ts -o ${LANG}.ts
 )
 list(APPEND QM_FILES ${LANG}.qm)
+#list(APPEND TS_FILES ${LANG}.ts)
+qt5_add_translations(${PROJECT_NAME} TS_FILES ${LANG}.ts RESOURCE_PREFIX "/translations")
 endforeach(PO)
-install(FILES ${QM_FILES} DESTINATION ${DATA_DIR}/translations)
+#install(FILES ${QM_FILES} DESTINATION ${DATA_DIR}/translations)
