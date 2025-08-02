@@ -15,8 +15,8 @@ list(APPEND I18N_SRC_FILES
 # Builds the binary translations catalog for each language
 # it finds source translations (*.ts) for
 QT5_ADD_TRANSLATION(QM_FILES ${I18N_SRC_FILES} ${TS_FILES})
-set(INSTALL_DIR ${CMAKE_INSTALL_DATA}/translations)
-install(FILES ${QM_FILES} DESTINATION ${QM_INSTALL_DIR} RENAME ${DOMAIN}-${LANG}.qm)
+set(INSTALL_DIR ${CMAKE_INSTALL_DATA}/${DOMAIN}/translations)
+install(FILES ${QM_FILES} DESTINATION ${QM_INSTALL_DIR}) # RENAME ${DOMAIN}-${LANG}.qm)
 #include(TranslationUtils)
 #add_app_translations_resource(QT_RESOURCES ${QM_FILES})
 #add_qt_translations_resource(QT_RESOURCES de fr nl)
