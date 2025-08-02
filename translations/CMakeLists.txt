@@ -15,9 +15,9 @@ list(APPEND I18N_SRC_FILES
 # Builds the binary translations catalog for each language
 # it finds source translations (*.ts) for
 QT5_ADD_TRANSLATION(QM_FILE ${TS_FILES})
-include(TranslationUtils)
-add_app_translations_resource(QT_RESOURCES ${QM_FILES})
-add_qt_translations_resource(QT_RESOURCES de fr nl)
+#include(TranslationUtils)
+#add_app_translations_resource(QT_RESOURCES ${QM_FILES})
+#add_qt_translations_resource(QT_RESOURCES de fr nl)
 
 #foreach(TS_FILE ${TS_FILES})
 #    get_filename_component(LANG ${TS_FILE} NAME_WE)
