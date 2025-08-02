@@ -102,7 +102,10 @@ find_program(LCONVERT_COMMAND lconvert)
 #add_custom_target(TR_QRC translations/qm.qrc
 #    COMMENT "Converting translations..."
 #)
-file(GLOB POS po/*.po)
+file(GLOB_RECURSE POS
+    RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
+    po/*.po
+)
 foreach(PO ${POS})
 get_filename_component(LANG ${PO} NAME_WE)
 execute_process(
@@ -111,12 +114,13 @@ execute_process(
 )
 list(APPEND QM_FILES ${LANG}.qm)
 #list(APPEND TS_FILES ${LANG}.ts)
-qt5_add_resources(QT_RESOURCES PREFIX "translations" FILE ${LANG}.qm)
-qt5_add_resources(QT_RESOURCES PREFIX "i18n" FILE ${LANG}.qm)
+#qt5_add_resources(QT_RESOURCES PREFIX "translations" FILE ${LANG}.qm)
+#qt5_add_resources(QT_RESOURCES PREFIX "i18n" FILE ${LANG}.qm)
+QT5_CREATE_TRANSLATION(${PROJECT_NAME} QM_FILES SOURCES ${LANG}.ts)
 file(GLOB_RECURSE PROJECT_TR_FILES
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
     qml/*.qml
 )
 endforeach(PO)
-QT5_CREATE_TRANSLATION(${PROJECT_NAME} QM_FILES SOURCES ${PROJECT_TR_FILES})
-add_custom_target(${PROJECT_NAME}_TR ALL SOURCES ${QM_FILES})
+#QT5_CREATE_TRANSLATION(${PROJECT_NAME} QM_FILES SOURCES ${PROJECT_TR_FILES})
+#add_custom_target(${PROJECT_NAME}_TR ALL SOURCES ${QM_FILES})
