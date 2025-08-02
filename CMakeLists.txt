@@ -109,12 +109,14 @@ file(GLOB_RECURSE POS
 foreach(PO ${POS})
 get_filename_component(LANG ${PO} NAME_WE)
 add_custom_command(OUTPUT ${LANG}.qm
+    COMMENT "Generating QM files" 
     COMMAND ${LCONVERT_COMMAND} -if po -i ${PO} -of qm -o ${LANG}.qm
+    COMMAND printf '<file>%s</file>\n' ${LANG}.qm > qm.qrc
     DEPENDS ${PO}
 )
-set(INSTALL_DIR ${CMAKE_INSTALL_DATADIR}/translations/)
+set(QM_INSTALL_DIR "${CMAKE_INSTALL_DATADIR}/translations/")
 install(FILES ${LANG}.qm
-        DESTINATION ${INSTALL_DIR}
+        DESTINATION ${QM_INSTALL_DIR}
 )
 list(APPEND QM_FILES ${LANG}.qm)
 endforeach(PO)
