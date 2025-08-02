@@ -151,7 +151,9 @@ Rectangle {
            anchors.verticalCenter: parent.verticalCenter
            onClicked: function() {
               if (item.onDelete)
-                 item.onDelete(item.plantObject && item.plantObject.id)
+                 //item.onDelete(item.plantObject && item.plantObject.id)
+                 //Remorse.itemAction(item, i18n.tr("Removed"), function() { item.onDelete(item.plantObject && item.plantObject.id) } )
+                 Remorse.itemAction(item, i18n.tr("Removed"), item.onDelete(item.plantObject && item.plantObject.id) )
            }
        }
    //}
