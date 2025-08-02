@@ -108,18 +108,21 @@ file(GLOB_RECURSE POS
 )
 foreach(PO ${POS})
 get_filename_component(LANG ${PO} NAME_WE)
-execute_process(
+add_custom_command(OUTPUT ${LANG}.qm
     COMMAND ${LCONVERT_COMMAND} -if po -i ${PO} -of qm -o ${LANG}.qm
-    COMMAND ${LCONVERT_COMMAND} -if po -i ${PO} -of ts -o ${LANG}.ts
+    DEPENDS ${PO}
+)
+set(INSTALL_DIR ${CMAKE_INSTALL_DATADIR}/translations/)
+install(FILES ${LANG}.qm
+        DESTINATION ${INSTALL_DIR}
 )
 list(APPEND QM_FILES ${LANG}.qm)
-#list(APPEND TS_FILES ${LANG}.ts)
-#qt5_add_resources(${PROJECT_NAME} PREFIX "translations" FILE ${LANG}.qm)
-#qt5_add_resources(QT_RESOURCES PREFIX "i18n" FILE ${LANG}.qm)
+endforeach(PO)
+
+# process.qml.files:
 file(GLOB_RECURSE PROJECT_TR_FILES
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
     qml/*.qml
 )
-endforeach(PO)
-QT5_CREATE_TRANSLATION(${PROJECT_NAME} QM_FILES SOURCES ${PROJECT_TR_FILES})
-add_custom_target(${PROJECT_NAME}_TR ALL SOURCES ${QM_FILES})
+
+
