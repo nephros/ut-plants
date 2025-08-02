@@ -39,6 +39,7 @@ BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  cmake
 BuildRequires:  intltool
 BuildRequires:  sailfish-svg2png
+BuildRequires:  qt5-qttools-linguist
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
 
@@ -97,7 +98,12 @@ mv Plants.desktop.in %{name}.desktop.in
 %cmake_build
 
 # >> build post
-#%%make_build
+pushd po
+for f in *po; do
+  lang=$(basename $f .po)
+  lconvert -if po -i $f -of qm -o %{name}-${lang}.qm
+done
+popd
 # << build post
 
 %install
