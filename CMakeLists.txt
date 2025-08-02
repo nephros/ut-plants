@@ -106,7 +106,8 @@ file(GLOB POS po/*.po)
 foreach(PO ${POS})
 get_filename_component(LANG ${PO} NAME_WE)
 execute_process(
-    COMMAND convert -if po -i ${PO} -of qm -o ${LANG}.qm
-    OUTPUT_VARIABLE QM_FILES
+    COMMAND ${LCONVERT_COMMAND} -if po -i ${PO} -of qm -o ${LANG}.qm
 )
+list(APPEND QM_FILES ${LANG}.qm)
 endforeach(PO)
+install(FILES ${QM_FILES} DESTINATION ${DATA_DIR}/translations)
