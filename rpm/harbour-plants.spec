@@ -89,6 +89,7 @@ BuildRequires: sdk-harbour-rpmvalidator
 sed -i 's/"Plants"/"%{name}"/' CMakeLists.txt
 sed -i 's/"plants.s710"/"%{orgname}.%{appname}"/' CMakeLists.txt
 mv Plants.desktop.in %{name}.desktop.in
+sh ./lang_conv.sh
 # << build pre
 
 %cmake .  \

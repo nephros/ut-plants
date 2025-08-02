@@ -53,6 +53,7 @@ install(FILES assets/logo.png DESTINATION assets)
 
 qt5_add_resources(QT_RESOURCES qml/qml.qrc)
 qt5_add_resources(QT_RESOURCES assets/assets.qrc)
+qt5_add_resources(QT_RESOURCES translations/translations.qrc)
 add_executable(${PROJECT_NAME} sailfishos-main.cpp src/plant.cpp src/identification.cpp src/plantsmodel.cpp src/plantsimageprovider.cpp src/network.cpp src/network.hpp ${QT_RESOURCES})
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS_RELEASE -s)
 target_link_libraries(${PROJECT_NAME} Qt5::Gui Qt5::Qml Qt5::Quick ${SAILFISH_LDFLAGS})
