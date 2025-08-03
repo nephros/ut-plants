@@ -92,12 +92,6 @@ Page {
    }
 
    Component.onCompleted: {
-      if (settings.apiKey.length > 0) {
-         console.debug("API key known, setting.")
-         plantsModel.setApiKey(settings.apiKey)
-      } else {
-         console.debug("API key empty or not known:", settings.apiKey)
-      }
       var err = plantsModel.init()
 
       if (err) {
@@ -240,8 +234,8 @@ Page {
 
       p.apiKeyChanged.connect(function (key) {
          console.info("Storing API key from Settings")
-         settings.apiKey = key
          plantsModel.setApiKey(key)
+         settings.apiKey = true
       })
    }
 }

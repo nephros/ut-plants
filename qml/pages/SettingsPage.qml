@@ -5,8 +5,8 @@ import "../compat"
 Page {
    id: settingsPage
    anchors.fill: parent
-   signal updateIntervalChanged(var interval, var enabled)
-   signal apiKeyChanged(var key)
+   //signal updateIntervalChanged(var interval, var enabled)
+   signal apiKeyChanged(string key)
 
    SilicaFlickable {
       id: flickable
@@ -51,15 +51,17 @@ Page {
 
             SectionHeader { text: i18n.tr("API-Key:") }
 
-            TextField {
+            PasswordField {
                id: apiKeyInput
                placeholderText: i18n.tr("Enter API-Key")
                width: parent.width - units.gu(2)
-               text: settings.apiKey
                inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
+               passwordEchoMode: TextInput.Normal
+               placeholderText: settings.apiKey ? i18n.tr("API Key set, fill in to update") : i18n.tr("API Key not set")
+               label: settings.apiKey ? i18n.tr("API Key set, fill in to update") : i18n.tr("API Key not set")
+               description: i18n.tr("The value will be saved on Enter, but not shown again here.")
                EnterKey.onClicked: {
-                  settings.apiKey = apiKeyInput.text
-                  emit: apiKeyChanged(apiKeyInput.text)
+                  settingsPage.apiKeyChanged(apiKeyInput.text)
                   apiKeyInput.focus = false
                }
             }
