@@ -94,17 +94,14 @@ Page { id: requestPage
 
       header: ComboBox { id: langMenu
           label: i18n.tr("Result Language")
-          value: "en"
           menu: ContextMenu {
               Repeater { model: plantsModel.availableLanguages
                   delegate: MenuItem { text: modelData }
               }
           }
           Connections { target: plantsModel
-              onLanguagesChanged: function(langs) {
-                  if (langs.length == 1) {
-                    langMenu.value = "en"
-                  }
+              onAvailableLanguagesChanged: {
+                  if (plantsModel.availableLanguages.length == 1) { langMenu.currentIndex = 0 }
               }
           }
           onValueChanged: plantsModel.setLanguage(value)

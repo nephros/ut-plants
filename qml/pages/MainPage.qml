@@ -71,8 +71,8 @@ Page {
    PlantsModel {
       id: plantsModel
 
-      property var availableLanguages: [ "en" ]
-      onLanguagesChanged: function(langs) { availableLanguages = langs }
+      onLanguageChanged: console.debug("language now:", language)
+      onAvailableLanguagesChanged: console.debug("languages now:", availableLanguages)
       onIdentificationResult: {
          app.loadingScreenShown = false
 
