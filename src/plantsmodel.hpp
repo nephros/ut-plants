@@ -88,6 +88,10 @@ public:
    {
       identificator.setApiKey(key);
    }
+   Q_INVOKABLE void setLanguage(QString language)
+   {
+      identificator.setLanguage(language);
+   }
 
    Q_INVOKABLE QString savePlant(QVariantMap identificationResult);
    Q_INVOKABLE QString deletePlant(QString id);
@@ -101,6 +105,7 @@ public:
 signals:
    void countChanged();
    void identificationResult(QString error, QVariantList result);
+   void languagesChanged(QStringList languages);
 
 private:
    QString getDataPath() const;

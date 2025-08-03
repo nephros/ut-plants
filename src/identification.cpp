@@ -110,6 +110,8 @@ void Identification::initLanguages(bool useLocale)
 
            QString lang("en");
 
+           emit languagesChanged(QStringList({"en"}));
+
            if (settings.contains("language"))
               lang = settings.value("language").toString();
 
@@ -127,6 +129,8 @@ void Identification::initLanguages(bool useLocale)
 
         foreach (auto lang, parsed)
            languages << lang.toString();
+
+        emit languagesChanged(languages);
 
         if (languages.contains(systemLang))
         {
@@ -153,6 +157,18 @@ void Identification::setApiKey(QString key)
    query.addQueryItem("api-key", key);
    url.setQuery(query);
    settings.setValue("apiKey", key);
+}
+
+// **************************************************************************
+// setLanguage
+// **************************************************************************
+
+void Identification::setLanguage(QString lang)
+{
+   query.removeQueryItem("lang");
+   query.addQueryItem("lang", lang);
+   url.setQuery(query);
+   settings.setValue("language", lang);
 }
 
 // **************************************************************************

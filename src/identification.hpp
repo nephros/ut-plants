@@ -48,11 +48,13 @@ public:
 
    void initLanguages(bool useLocale);
    void setApiKey(QString key);
+   void setLanguage(QString lang);
 
    void identifyPlant(QVariantList& request);
 
 signals:
    void identificationResult(QString error, QVariantList result);
+   void languagesChanged(QStringList languages);
 
 protected:
    QHttpMultiPart* createMultipart(QVariantList& request, QVariantList& sourceImages, QString& err);
