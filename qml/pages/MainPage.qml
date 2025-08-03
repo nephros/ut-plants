@@ -232,8 +232,13 @@ Page {
    }
 
    function openSettings() {
-      var p = pageStack.push(Qt.resolvedUrl("./SettingsPage.qml"))
+      var p = pageStack.push(Qt.resolvedUrl("./SettingsPage.qml"),
+      { languages: plantsModel.availableLanguages, language: plantsModel.language }
+   )
 
+      p.langChanged.connect(function (lang) {
+        plantsModel.setLanguage(lang)
+      })
       p.apiKeyChanged.connect(function (key) {
          console.info("Storing API key from Settings")
          plantsModel.setApiKey(key)

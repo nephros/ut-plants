@@ -7,6 +7,10 @@ Page {
    anchors.fill: parent
    //signal updateIntervalChanged(var interval, var enabled)
    signal apiKeyChanged(string key)
+   signal langChanged(string lang)
+
+   property var languages
+   property string language
 
    SilicaFlickable {
       id: flickable
@@ -69,14 +73,13 @@ Page {
 
          ComboBox {
             label: i18n.tr("Result Language")
-            value: plantsModel.language
+            value: settingsPage.language
             menu: ContextMenu {
-                Repeater { model: plantsModel.availableLanguages
+                Repeater { model: settingsPage.languages
                     delegate: MenuItem { text: modelData }
-                    onCountChanged: console.debug("context menu count now:", count)
                 }
             }
-            onValueChanged: plantsModel.setLanguage(value)
+            onValueChanged: settingsPage.langChanged(value)
          }
 
          TextSwitch {
