@@ -48,7 +48,12 @@ PlantsModel::PlantsModel(QObject* parent)
    connect(&identificator, &Identification::identificationResult, this,
            &PlantsModel::identificationResult);
    connect(&identificator, &Identification::languagesChanged, this,
-           &PlantsModel::availableLanguagesChanged);
+                [=](QStringList languages) {
+                      this->setProperty("languages", languages);
+                      // emit signal:
+                      this->availableLanguagesChanged(languages);
+                   }
+   );
    connect(&identificator, &Identification::languageChanged,
                    [=](QString language) {
                       this->setProperty("language", language);
