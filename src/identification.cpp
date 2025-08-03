@@ -62,8 +62,13 @@ Identification::Identification(network::Network* network, QObject* parent)
         + "/" + ORG_NAME + "/" + APP_NAME + "/" + APP_NAME + ".conf",
         QSettings::NativeFormat);
 
-   if (!apiKey.isEmpty()) {
-      query.addQueryItem("api-key", apiKey);
+   qInfo() << "Storing settings at path" << QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+   qInfo() << "Storing settings at" << settings.fileName();
+
+   if (settings.contains("apiKey")) {
+      query.addQueryItem("api-key", settings.value("apiKey").toString());
+   } else {
+      qWarning() << "Query without or empty API key!";
    }
 
    query.addQueryItem("include-related-images", "true");
@@ -81,13 +86,13 @@ void Identification::initLanguages()
         QSettings::NativeFormat);
    QUrlQuery q;
 
-   if (apiKey.isEmpty())
+   if (!settings.contains("apiKey"))
    {
       qDebug() << "No API key available, skip languages load";
       return;
    }
 
-   q.addQueryItem("api-key", apiKey);
+   q.addQueryItem("api-key", settings.value("apiKey").toString());
 
    QUrl languagesUrl(LANGUAGES_URL);
    languagesUrl.setQuery(q);
@@ -145,7 +150,6 @@ void Identification::initLanguages()
 
 void Identification::setApiKey(QString key)
 {
-   apiKey = key;
    query.removeQueryItem("api-key");
    query.addQueryItem("api-key", key);
    url.setQuery(query);
