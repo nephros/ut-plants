@@ -88,10 +88,27 @@ Page { id: requestPage
       }
    }
 
-   ListView {
+   SilicaListView {
       id: imageList
       property double rowSpacing: units.gu(1)
 
+      header: ComboBox { id: langMenu
+          label: i18n.tr("Result Language")
+          value: "en"
+          menu: ContextMenu {
+              Repeater { model: plantsModel.availableLanguages
+                  delegate: MenuItem { text: modelData }
+              }
+          }
+          Connections { target: plantsModel
+              onLanguagesChanged: function(langs) {
+                  if (langs.length == 1) {
+                    langMenu.value = "en"
+                  }
+              }
+          }
+          onValueChanged: plantsModel.setLanguage(value)
+      }
       model: imageModel
       anchors.topMargin: units.gu(2)
       anchors.top: titleText.bottom
