@@ -64,6 +64,8 @@ class PlantsModel : public QAbstractListModel
 
    Q_OBJECT
    Q_PROPERTY(int count READ rowCount NOTIFY countChanged)
+   Q_PROPERTY(QStringList availableLanguages MEMBER languages NOTIFY availableLanguagesChanged)
+   Q_PROPERTY(QString language MEMBER language NOTIFY languageChanged)
 
 public:
    static PlantsModel* getInstace()
@@ -105,7 +107,8 @@ public:
 signals:
    void countChanged();
    void identificationResult(QString error, QVariantList result);
-   void languagesChanged(QStringList languages);
+   void availableLanguagesChanged(QStringList languages);
+   void languageChanged(QString language);
 
 private:
    QString getDataPath() const;
@@ -122,6 +125,9 @@ private:
    network::Network net;
    Plants plants;
    Identification identificator;
+
+   QStringList languages;
+   QString language;
 };
 
 } // namespace plants

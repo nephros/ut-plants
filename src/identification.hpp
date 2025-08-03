@@ -55,6 +55,7 @@ public:
 signals:
    void identificationResult(QString error, QVariantList result);
    void languagesChanged(QStringList languages);
+   void languageChanged(QString language);
 
 protected:
    QHttpMultiPart* createMultipart(QVariantList& request, QVariantList& sourceImages, QString& err);

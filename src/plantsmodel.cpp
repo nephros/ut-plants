@@ -48,7 +48,9 @@ PlantsModel::PlantsModel(QObject* parent)
    connect(&identificator, &Identification::identificationResult, this,
            &PlantsModel::identificationResult);
    connect(&identificator, &Identification::languagesChanged, this,
-           &PlantsModel::languagesChanged);
+           &PlantsModel::availableLanguagesChanged);
+   connect(&identificator, &Identification::languageChanged, this,
+           &PlantsModel::languageChanged);
 }
 
 // **************************************************************************

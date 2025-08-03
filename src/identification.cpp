@@ -94,6 +94,7 @@ void Identification::initLanguages(bool useLocale)
       qDebug() << "Ignoring languages in this session.";
       query.addQueryItem("lang", "en");
       url.setQuery(query);
+      emit languageChanged("en");
       return;
    }
 
@@ -117,6 +118,7 @@ void Identification::initLanguages(bool useLocale)
 
            query.addQueryItem("lang", lang);
            url.setQuery(query);
+           emit languageChanged("en");
            return;
         }
 
@@ -137,12 +139,14 @@ void Identification::initLanguages(bool useLocale)
            query.addQueryItem("lang", systemLang);
            url.setQuery(query);
            settings.setValue("language", systemLang);
+           emit languageChanged(systemLang);
         }
         else
         {
            query.addQueryItem("lang", "en");
            url.setQuery(query);
            settings.setValue("language", "en");
+           emit languageChanged("en");
         }
      });
 }
