@@ -110,7 +110,7 @@ void Identification::initLanguages()
 
            query.addQueryItem("lang", lang);
            url.setQuery(query);
-           emit languageChanged("en");
+           emit languageChanged(lang);
            return;
         }
 
@@ -128,16 +128,22 @@ void Identification::initLanguages()
 
         if (languages.contains(systemLang))
         {
+           if (!settings.contains("language"))
+           {
+              settings.setValue("language", systemLang);
+           }
+           else
+           {
+              systemLang = settings.value("language").toString();
+           }
            query.addQueryItem("lang", systemLang);
            url.setQuery(query);
-           settings.setValue("language", systemLang);
            emit languageChanged(systemLang);
         }
         else
         {
            query.addQueryItem("lang", "en");
            url.setQuery(query);
-           settings.setValue("language", "en");
            emit languageChanged("en");
         }
      });
