@@ -94,9 +94,11 @@ Page { id: requestPage
 
       header: ComboBox { id: langMenu
           label: i18n.tr("Result Language")
+          value: plantsModel.language
           menu: ContextMenu {
               Repeater { model: plantsModel.availableLanguages
                   delegate: MenuItem { text: modelData }
+                  onCountChanged: console.debug("context menu count now:", count)
               }
           }
           Connections { target: plantsModel
