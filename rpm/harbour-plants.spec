@@ -51,6 +51,7 @@ BuildRequires:  cmake
 Title: Plants
 Type: desktop-application
 DeveloperLogin: patrickjane
+PackagedBy: nephros
 Categories:
  - Science
  - Utility
@@ -91,6 +92,7 @@ BuildRequires: sdk-harbour-rpmvalidator
 sed -i 's/"Plants"/"%{name}"/' CMakeLists.txt
 sed -i 's/"plants.s710"/"%{orgname}.%{appname}"/' CMakeLists.txt
 mv Plants.desktop.in %{name}.desktop.in
+# failed to persuade cmake to do this. this is simple, and just works:
 sh ./lang_conv.sh
 # << build pre
 
@@ -100,12 +102,10 @@ sh ./lang_conv.sh
 %cmake_build
 
 # >> build post
-#%%make_build
 # << build post
 
 %install
 # >> install pre
-#%%make_install
 # << install pre
 %cmake_install
 

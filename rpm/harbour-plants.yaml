@@ -12,18 +12,10 @@ Sources:
 #  - 'baz'
 #SetupOptions: -q -n %{name}-%{version}/upstream
 Macros:
-  # keep .a files:
-  # 'keepstatic;1'
   - 'orgname;s710'
   - 'appname;plants'
   - 'pkgname;%{name}'
   - 'plugindir;%{_datadir}/%{name}/'
-# SFOS defaults to in_source_build 1
-# - '__cmake_in_source_build;0'
-# - '%_vpath_srcdir;.'
-# - '%_vpath_builddir;%{_target_platform}'
-# For meson:
-# - '__meson_auto_features;disabled'
   - |
     please;ignore this macro
     # add missing macros in case we want to use cmake_build/install
@@ -44,6 +36,7 @@ Description: |
     Title: Plants
     Type: desktop-application
     DeveloperLogin: patrickjane
+    PackagedBy: nephros
     Categories:
      - Science
      - Utility
@@ -82,23 +75,19 @@ Macros2:
     %if 0%{?harbour_validation:1}
     BuildRequires: sdk-harbour-rpmvalidator
     %endif
-Check: true # so we can do a fake clean section below it:
+Check: true # so we can do a fake clean section below it
 
-#Requires:
 PkgBR:
   - cmake
   - intltool
   - sailfish-svg2png
   - qt5-qttools
   - qt5-qttools-linguist
-  # qml-rpm-macros
 PkgConfigBR:
   - sailfishapp
   - Qt5Core
   - Qt5Qml
   - Qt5Quick
-
-#  - qml(Nemo.Notifications)
 Configure: cmake
 Builder: cmake
 ConfigOptions:
@@ -108,18 +97,8 @@ ConfigOptions:
 NoAutoLocale: true
 #LocaleName: '%{orgname}.%{appname}'
 NoIconCache: true
-#BuildArch: noarch
 Files:
-  # '%license LICENSE'
-  # '%license COPYING'
   - '%{_bindir}/*'
   - '%{_datadir}/applications/%{name}.desktop'
-  # '%{_datadir}/themes/sailfish-default/*/*/*.png'
   - '%{_datadir}/icons/*/*/apps/%{name}.png'
-  # ' %{_datadir}/%{name}/'
-  # ' %{_datadir}/%{name}'
-  # '%dir %{_datadir}/%{name}/translations'
-  # '%{_datadir}/%{name}/translations/*.qm'
-  # '%{_datadir}/%{name}/qml/'
-  # '%{_datadir}/%{name}/python/'
 
