@@ -22,14 +22,12 @@
    app->setOrganizationName("s710");
    app->setApplicationName("plants");
 
-   QTranslator tr;
-   QString lang = QLocale().name().split('_').at(0);
-   bool trloaded = tr.load("qrc:/i18n/" + lang + ".qm");
-   if (trloaded) {
-       app->installTranslator(&tr);
-       qDebug() << "Loaded translation for" << lang;
+   // https://qthub.com/static/doc/qt5/qtcore/qtranslator.html
+   QTranslator translator;
+   if(translator.load(QLocale(), QStringLiteral("harbour-plants"), QStringLiteral("_"), QLatin1String(":/i18n"))) {
+       QCoreApplication::installTranslator(&translator);
    } else {
-       qWarning() << "Failed to load translation for" << lang;
+       qWarning() << "Failed to load translation for" << QLocale::system().name().split('_').at(0);
    }
 
    qmlRegisterType<plants::PlantsModel>("PlantsModel", 1, 0, "PlantsModel");
