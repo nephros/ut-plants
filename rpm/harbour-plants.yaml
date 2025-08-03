@@ -89,6 +89,8 @@ PkgBR:
   - cmake
   - intltool
   - sailfish-svg2png
+  - qt5-qttools
+  - qt5-qttools-linguist
   # qml-rpm-macros
 PkgConfigBR:
   - sailfishapp

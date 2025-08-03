@@ -39,6 +39,8 @@ BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  cmake
 BuildRequires:  intltool
 BuildRequires:  sailfish-svg2png
+BuildRequires:  qt5-qttools
+BuildRequires:  qt5-qttools-linguist
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake
 
