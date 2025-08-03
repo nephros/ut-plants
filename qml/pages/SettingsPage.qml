@@ -57,7 +57,7 @@ Page {
                width: parent.width - units.gu(2)
                inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
                passwordEchoMode: TextInput.Normal
-               placeholderText: settings.apiKey ? i18n.tr("API Key set, fill in to update") : i18n.tr("API Key not set")
+               //placeholderText: settings.apiKey ? i18n.tr("API Key set, fill in to update") : i18n.tr("API Key not set")
                label: settings.apiKey ? i18n.tr("API Key set, fill in to update") : i18n.tr("API Key not set")
                description: i18n.tr("The value will be saved on Enter, but not shown again here.")
                EnterKey.onClicked: {
