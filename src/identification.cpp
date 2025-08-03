@@ -56,12 +56,11 @@ namespace plants
 Identification::Identification(network::Network* network, QObject* parent)
   : net(network),
     QObject(parent),
-    url(API_URL)
-{
-   QSettings settings(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)
+    url(API_URL),
+    settings(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)
         + "/" + ORG_NAME + "/" + APP_NAME + "/" + APP_NAME + ".conf",
-        QSettings::NativeFormat);
-
+        QSettings::NativeFormat)
+{
    qInfo() << "Storing settings at path" << QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
    qInfo() << "Storing settings at" << settings.fileName();
 
@@ -81,9 +80,6 @@ Identification::Identification(network::Network* network, QObject* parent)
 
 void Identification::initLanguages()
 {
-   QSettings settings(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)
-        + "/" + ORG_NAME + "/" + APP_NAME + "/" + APP_NAME + ".conf",
-        QSettings::NativeFormat);
    QUrlQuery q;
 
    if (!settings.contains("apiKey"))
@@ -101,10 +97,6 @@ void Identification::initLanguages()
      languagesUrl, headers,
      [this](int err, int code, QByteArray body)
      {
-         QSettings settings(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)
-              + "/" + ORG_NAME + "/" + APP_NAME + "/" + APP_NAME + ".conf",
-              QSettings::NativeFormat);
-
         if (err != QNetworkReply::NoError || code != 200 || body.isEmpty())
         {
            qDebug() << "FAIL Languages response: " << QString::number(code) << " (" << body << ")";
@@ -153,6 +145,7 @@ void Identification::setApiKey(QString key)
    query.removeQueryItem("api-key");
    query.addQueryItem("api-key", key);
    url.setQuery(query);
+   settings.setValue("apiKey", key);
 }
 
 // **************************************************************************

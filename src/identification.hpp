@@ -27,6 +27,7 @@
 #include <QUrl>
 #include <QUrlQuery>
 #include <QVariant>
+#include <QSettings>
 
 // **************************************************************************
 // namespace plants
@@ -60,6 +61,7 @@ protected:
    QUrl url;
    network::ReqHeaders headers;
    network::Network* net;
+   QSettings settings;
 };
 
 } // namespace plants
