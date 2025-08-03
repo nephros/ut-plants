@@ -78,7 +78,7 @@ Identification::Identification(network::Network* network, QObject* parent)
 // identifyPlant
 // **************************************************************************
 
-void Identification::initLanguages(bool useLocale)
+void Identification::initLanguages()
 {
    QUrlQuery q;
 
@@ -89,14 +89,6 @@ void Identification::initLanguages(bool useLocale)
    }
 
    q.addQueryItem("api-key", settings.value("apiKey").toString());
-
-   if (!useLocale) {
-      qDebug() << "Ignoring languages in this session.";
-      query.addQueryItem("lang", "en");
-      url.setQuery(query);
-      emit languageChanged("en");
-      return;
-   }
 
    QUrl languagesUrl(LANGUAGES_URL);
    languagesUrl.setQuery(q);

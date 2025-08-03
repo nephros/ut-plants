@@ -92,22 +92,6 @@ Page { id: requestPage
       id: imageList
       property double rowSpacing: units.gu(1)
 
-      header: ComboBox { id: langMenu
-          label: i18n.tr("Result Language")
-          value: plantsModel.language
-          menu: ContextMenu {
-              Repeater { model: plantsModel.availableLanguages
-                  delegate: MenuItem { text: modelData }
-                  onCountChanged: console.debug("context menu count now:", count)
-              }
-          }
-          Connections { target: plantsModel
-              onAvailableLanguagesChanged: {
-                  if (plantsModel.availableLanguages.length == 1) { langMenu.currentIndex = 0 }
-              }
-          }
-          onValueChanged: plantsModel.setLanguage(value)
-      }
       model: imageModel
       anchors.topMargin: units.gu(2)
       anchors.top: titleText.bottom

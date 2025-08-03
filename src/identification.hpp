@@ -46,7 +46,7 @@ class Identification : public QObject
 public:
    Identification(network::Network* net, QObject* parent = nullptr);
 
-   void initLanguages(bool useLocale);
+   void initLanguages();
    void setApiKey(QString key);
    void setLanguage(QString lang);
 
