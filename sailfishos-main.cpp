@@ -7,6 +7,7 @@
 #include <QtQuick>
 #include <QString>
 #include <QUrl>
+#include <QDebug>
 
 #include <sailfishapp.h>
 
@@ -20,6 +21,16 @@
 
    app->setOrganizationName("s710");
    app->setApplicationName("plants");
+
+   QTranslator tr;
+   QString lang = QLocale().name().split('_').at(0);
+   bool trloaded = tr.load("qrc:/i18n/" + lang + ".qm");
+   if (trloaded) {
+       app->installTranslator(&tr);
+       qDebug() << "Loaded translation for" << lang;
+   } else {
+       qWarning() << "Failed to load translation for" << lang;
+   }
 
    qmlRegisterType<plants::PlantsModel>("PlantsModel", 1, 0, "PlantsModel");
 
