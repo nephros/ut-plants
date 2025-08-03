@@ -72,6 +72,7 @@ Page {
          }
 
          ComboBox {
+            enabled: settingsPage.languages.length > 1
             label: i18n.tr("Result Language")
             value: settingsPage.language
             menu: ContextMenu {
