@@ -25,7 +25,7 @@ Page {
              if (!settings.apiKey) {
                 var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
                             { "title": i18n.tr("API Key missing"),
-                              "test":  i18n.tr("The Pl@ntNet API-Key has not been configured yet. Without this, the app will not work.")
+                              "text":  i18n.tr("The Pl@ntNet API-Key has not been configured yet. Without this, the app will not work.")
                             })
 
                 dialog.accepted.connect(function () {
