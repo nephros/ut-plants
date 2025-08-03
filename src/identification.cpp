@@ -78,7 +78,7 @@ Identification::Identification(network::Network* network, QObject* parent)
 // identifyPlant
 // **************************************************************************
 
-void Identification::initLanguages()
+void Identification::initLanguages(bool useLocale)
 {
    QUrlQuery q;
 
@@ -89,6 +89,13 @@ void Identification::initLanguages()
    }
 
    q.addQueryItem("api-key", settings.value("apiKey").toString());
+
+   if (!useLocale) {
+      qDebug() << "Ignoring languages in this session.";
+      query.addQueryItem("lang", "en");
+      url.setQuery(query);
+      return;
+   }
 
    QUrl languagesUrl(LANGUAGES_URL);
    languagesUrl.setQuery(q);
@@ -156,8 +163,8 @@ void Identification::identifyPlant(QVariantList& request)
 {
    QString err;
    QVariantList sourceImages;
-   QHttpMultiPart* multiPart = createMultipart(request, sourceImages, err);
 
+   QHttpMultiPart* multiPart = createMultipart(request, sourceImages, err);
    headers.insert("User-Agent", "harbour-plants/1.0 (Sailfish OS; Qt)");
 
    if (multiPart == nullptr)

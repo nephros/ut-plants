@@ -92,7 +92,7 @@ Page {
    }
 
    Component.onCompleted: {
-      var err = plantsModel.init()
+      var err = plantsModel.init(settings.useLocale)
 
       if (err) {
          pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),

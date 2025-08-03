@@ -28,6 +28,7 @@ ApplicationWindow {
        property bool keepDisplayOn: false
        property bool apiKey: false
        property bool disclaimerAccepted: false
+       property bool useLocale: true
     }
     DisplayBlanking { id: blanking
        preventBlanking: settings.keepDisplayOn

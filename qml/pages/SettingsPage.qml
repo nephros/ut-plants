@@ -66,6 +66,15 @@ Page {
                }
             }
          }
+         TextSwitch {
+            anchors.left: parent.left
+            anchors.right: parent.right
+
+            text: i18n.tr("Respect locale")
+            description: i18n.tr("If disabled, results will be shown in English. Otherwise, the user language will be used if available.")
+            checked: settings.useLocale
+            onCheckedChanged: settings.useLocale = checked
+         }
 
          TextSwitch {
             anchors.left: parent.left

@@ -82,7 +82,7 @@ public:
 
    // QML interaction
 
-   Q_INVOKABLE QString init();
+   Q_INVOKABLE QString init(bool useLocale);
    Q_INVOKABLE void reload();
    Q_INVOKABLE void setApiKey(QString key)
    {

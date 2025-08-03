@@ -53,7 +53,7 @@ PlantsModel::PlantsModel(QObject* parent)
 // init
 // **************************************************************************
 
-QString PlantsModel::init()
+QString PlantsModel::init(bool useLocale)
 {
    QString dataPath = getDataPath();
 
@@ -79,7 +79,7 @@ QString PlantsModel::init()
 
    qDebug() << "DATA DIR: " << dir;
 
-   identificator.initLanguages();
+   identificator.initLanguages(useLocale);
    return "";
 }
 
