@@ -5,7 +5,7 @@ import "../util"
 
 import PlantsModel 1.0
 
-Page {
+Dialog {
    id: resultsPage
 
    property var plantsModel: nil
@@ -21,75 +21,54 @@ Page {
       id: resultsModel
    }
 
-   SilicaFlickable {
-      anchors.fill: parent
-      contentHeight: header.height + resultList.height
-
-      PageHeader { id: header
-         title: i18n.tr('Identification results')
-         description: i18n.tr("%1/%2 results").arg(resultList.currentIndex+1).arg(resultsModel.count)
+   DialogHeader { id: header
+      title: i18n.tr('Identification results')
+      acceptText: i18n.tr("Save")
+      cancelText: i18n.tr("Back")
+   }
+   canAccept:      !resultList.dragging && !resultList.moving && !resultList.flicking
+   backNavigation: !resultList.dragging && !resultList.moving && !resultList.flicking
+   onDone: if (result === Dialog.Accepted) {
+      var err = plantsModel.savePlant(resultsData[resultList.currentIndex])
+      if (err) {
+         acceptDestinationProperties = {
+                  "title":i18n.tr("Saving result failed"),
+                  "text": i18n.tr("Result could not be saved (%1).").arg(err)
+                }
+         acceptDestination = Qt.resolvedUrl("../dialogs/ErrorDialog.qml")
+         acceptDestinationAction = PageStackAction.Push
       }
+   }
 
-      ListView { id: resultList
+   ListView { id: resultList
+      anchors.top: header.bottom
+      anchors.bottom: parent.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
 
-         width: parent.width - units.gu(2)*2
-         height: width*0.8
-         anchors.top: header.bottom
-         anchors.horizontalCenter: parent.horizontalCenter
+      clip: true
+      orientation: ListView.Horizontal
+      snapMode: ListView.SnapToItem
+      highlightRangeMode: ListView.StrictlyEnforceRange
 
-         clip: true
-         orientation: ListView.Horizontal
-         snapMode: ListView.SnapToItem
-         highlightRangeMode: ListView.StrictlyEnforceRange
+      model: resultsModel
 
-         model: resultsModel
-
-         delegate: Component {
-             PlantCard {
-                width: resultList.width
-                plant: resultsData[index]
-                resultView: true
-            }
+      footerPositioning: ListView.OverlayFooter
+      footer: Label {
+             z: 100
+             height: units.gu(2)
+             text: i18n.tr("%1/%2 results").arg(resultList.currentIndex+1).arg(resultsModel.count)
+             color: Theme.highlightColor
+             horizontalAlignment: Qt.AlignHCenter
+             width: parent.width
+      }
+      delegate: Component {
+          PlantCard {
+             width: resultList.width - units.gu(2)*2
+             plant: resultsData[index]
+             anchors.horizontalCenter: parent.horizontalCenter
+             resultView: true
          }
       }
-     PullDownMenu {
-        visible: resultsData.length
-        MenuItem {
-           text: i18n.tr("Save all results")
-           onClicked: {
-              var err = false
-              for (var i=0; i<resultsData.length; ++i) {
-                 const plant = resultsData[i]
-                 err = err && plantsModel.savePlant(plant)
-              }
-              if (err) {
-                 pageStack.push(Qt.resolvedUrl("dialogs/ErrorDialog.qml"),
-                        {
-                          "title":i18n.tr("Saving result failed"),
-                          "text": i18n.tr("Result could not be saved (%1).").arg(err)
-                        }
-                 )
-              } else {
-                 pageStack.pop()
-              }
-           }
-        }
-        MenuItem {
-           text: i18n.tr("Save this result")
-           onClicked: {
-              var err = plantsModel.savePlant(resultsData[resultList.currentIndex])
-              if (!err) {
-                 pageStack.pop()
-              } else {
-                 pageStack.push(Qt.resolvedUrl("dialogs/ErrorDialog.qml"),
-                        {
-                          "title":i18n.tr("Saving result failed"),
-                          "text": i18n.tr("Result could not be saved (%1).").arg(err)
-                        }
-                 )
-              }
-           }
-        }
-     }
    }
 }
