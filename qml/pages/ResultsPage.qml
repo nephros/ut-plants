@@ -77,7 +77,7 @@ Page {
         MenuItem {
            text: i18n.tr("Save this result")
            onClicked: {
-              var err = plantsModel.savePlant(resultList[currentIndex])
+              var err = plantsModel.savePlant(resultsData[resultList.currentIndex])
               if (!err) {
                  pageStack.pop()
               } else {
