@@ -61,9 +61,9 @@ Page {
                width: parent.width - units.gu(2)
                inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
                passwordEchoMode: TextInput.Normal
-               //placeholderText: settings.apiKey ? i18n.tr("API Key set, fill in to update") : i18n.tr("API Key not set")
-               label: settings.apiKey ? i18n.tr("API Key set, fill in to update") : i18n.tr("API Key not set")
-               description: i18n.tr("The value will be saved on Enter, but not shown again here.")
+               text: settings.apiKey ? i18n.tr("API Key set") : ""
+               label: i18n.tr("The value will be saved on Enter, but not shown again.")
+               description: settings.apiKey ? i18n.tr("API Key set, fill in to update") : i18n.tr("API Key not set")
                EnterKey.onClicked: {
                   settingsPage.apiKeyChanged(apiKeyInput.text)
                   apiKeyInput.focus = false
@@ -72,8 +72,9 @@ Page {
          }
 
          ComboBox {
-            enabled: settingsPage.languages.length > 1
+            enabled: settings.apiKey && (settingsPage.languages.length > 1)
             label: i18n.tr("Result Language")
+            description: enabled ? "" : i18n.tr("After setting the API key, and restarting the app, a language can be chosen here.")
             value: settingsPage.language
             menu: ContextMenu {
                 Repeater { model: settingsPage.languages
