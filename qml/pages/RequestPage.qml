@@ -24,16 +24,6 @@ Page { id: requestPage
 
       model: imageModel
 
-      footerPositioning: ListView.InlineFooter
-      footer: (count > 0) ? footerLanel : undefined
-      Component{ id: footerLabel; Label {
-         width: parent.width
-         anchors.topMargin: units.gu(2)
-         clip: true
-         text: i18n.tr('Use the Pushup menu to submit for identification.')
-         color: Theme.secondaryHighlightColor
-         wrapMode: Text.WordWrap
-      }}
       header: Column {
          width: parent.width
          spacing: units.gu(1)
@@ -97,15 +87,8 @@ Page { id: requestPage
       PullDownMenu {
          quickSelect: true
          MenuItem { text: i18n.tr("Add Images"); onClicked: addNewImage() }
-         MenuItem { text: i18n.tr("Clear"); visible: imageModel.count > 0
-             onClicked: Remorse.popupAction(requestPage, function() { imageModel.clear() } )
-         }
-      }
-      PushUpMenu {
-         visible: imageModel.count > 0
-         busy: visible
-         quickSelect: true
          MenuItem {
+            enabled: imageModel.count > 0
             text: i18n.tr("Identify")
             onClicked: {
                var request = []
@@ -120,6 +103,14 @@ Page { id: requestPage
                app.loadingScreenShown = true
                pageStack.pop()
             }
+         }
+      }
+      PushUpMenu {
+         visible: imageModel.count > 0
+         busy: visible
+         quickSelect: true
+         MenuItem { text: i18n.tr("Clear")
+             onClicked: Remorse.popupAction(requestPage, function() { imageModel.clear() } )
          }
       }
       ViewPlaceholder {
