@@ -18,18 +18,22 @@ Page {
       })
    }
 
+   PageHeader { id: header
+      title: i18n.tr('Identification results')
+      description: i18n.tr("%1 results received").arg(resultsModel.count)
+   }
+
    ListModel {
       id: resultsModel
    }
 
    SilicaListView {
       id: resultList
-      anchors.fill: parent
-      header: PageHeader {
-         id: header
-         title: i18n.tr('Identification results')
-         description: i18n.tr("%1 results received").arg(resultsModel.count)
-      }
+      anchors.top: header.bottom
+      anchors.left: parent.left
+      anchors.right: parent.right
+      anchors.bottom: parent.bottom
+      /*
       PullDownMenu {
          visible: resultsData.length
          MenuItem {
@@ -53,6 +57,7 @@ Page {
             }
          }
       }
+      */
 
       clip: true
       orientation: ListView.Horizontal
