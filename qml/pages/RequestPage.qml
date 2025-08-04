@@ -13,13 +13,65 @@ Page { id: requestPage
 
    ListModel { id: imageModel }
 
-   PageHeader {
-      id: header
-      title: i18n.tr('New identification')
-   }
 
-   SilicaFlickable {
+   SilicaListView {
       anchors.fill: parent
+      header: Column {
+         width: parent.width
+         PageHeader {
+            id: header
+            title: i18n.tr('New identification')
+         }
+         Label {
+            id: titleText
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: parent.width * 0.9
+            text: i18n.tr(
+                     'Add up to 5 images for identification. The images must be of the same plant. The more images are provided, the better the identification result will be.')
+                  + '\n\n' + i18n.tr('Pl@ntNet recommends images with the smaller side larger than 600px and smaller than 2000px. Ideally a square image zoomed on the organ around 1280x1280px.')
+                  + '\n\n' + i18n.tr('Use the Pushup menu to submit for identification.')
+
+            color: Theme.highlightColor
+
+            wrapMode: Text.WordWrap
+         }
+      }
+      model: imageModel
+      delegate: Component {
+         ListItem {
+            contentHeight: plantItem.height
+            PlantItem { id: plantItem
+               imageUrl: url || ''
+               mainText: organ ? PlantUtils.toTitle(organ) : ''
+               listMode: false
+
+               //moved to Pulley Menu
+               //onClicked: addNewImage()
+
+               /* moved to ListItem onClicked
+               onEdit: {
+                  var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/PickerDialog.qml"))
+
+                  dialog.accepted.connect(function () {
+                     mainText = PlantUtils.toTitle(dialog.selection)
+                  })
+               }
+               */
+
+               //moved to ListItem
+               //onDelete: imageModel.remove(index, 1)
+            }
+            onClicked: {
+               var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/PickerDialog.qml"))
+               dialog.accepted.connect(function () {
+                  mainText = PlantUtils.toTitle(dialog.selection)
+               })
+            }
+            menu: ContextMenu {
+               MenuItem { text: i18n.tr("Delete"); onClicked: { remorseDelete(imageModel.remove(index, 1)) } }
+            }
+         }
+      }
       PullDownMenu {
           MenuItem {
               text: i18n.tr("Add Images")
@@ -49,23 +101,6 @@ Page { id: requestPage
                pageStack.pop()
             }
          }
-      }
-      Text {
-         id: titleText
-         //anchors.top: header.bottom
-         //anchors.topMargin: units.gu(2)
-         anchors.top: parent.top
-         anchors.topMargin: header.height
-         anchors.horizontalCenter: parent.horizontalCenter
-         width: parent.width * 0.9
-         text: i18n.tr(
-                  'Add up to 5 images for identification. The images must be of the same plant. The more images are provided, the better the identification result will be.')
-               + '\n\n' + i18n.tr('Pl@ntNet recommends images with the smaller side larger than 600px and smaller than 2000px. Ideally a square image zoomed on the organ around 1280x1280px.')
-               + '\n\n' + i18n.tr('Use the Pushup menu to submit for identification.')
-
-         color: Theme.highlightColor
-
-         wrapMode: Text.WordWrap
       }
 
    /* moved to the top, and emptied
@@ -119,58 +154,7 @@ Page { id: requestPage
    }
    */
 
-      SilicaListView {
-         id: imageList
-         property double rowSpacing: units.gu(1)
-
-         model: imageModel
-         anchors.topMargin: units.gu(2)
-         anchors.top: titleText.bottom
-         anchors.bottom: parent.bottom
-         anchors.bottomMargin: units.gu(2)
-         anchors.horizontalCenter: parent.horizontalCenter
-         width: parent.width * 0.9
-         spacing: rowSpacing
-         clip: true
-
-         delegate: Component {
-            ListItem {
-               contentHeight: plantItem.height
-               PlantItem { id: plantItem
-                  imageUrl: url || ''
-                  mainText: organ ? PlantUtils.toTitle(organ) : ''
-                  listMode: false
-
-                  //moved to Pulley Menu
-                  //onClicked: addNewImage()
-
-                  /* moved to ListItem onClicked
-                  onEdit: {
-                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/PickerDialog.qml"))
-
-                     dialog.accepted.connect(function () {
-                        mainText = PlantUtils.toTitle(dialog.selection)
-                     })
-                  }
-                  */
-
-                  //moved to ListItem
-                  //onDelete: imageModel.remove(index, 1)
-               }
-               onClicked: {
-                  var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/PickerDialog.qml"))
-                  dialog.accepted.connect(function () {
-                     mainText = PlantUtils.toTitle(dialog.selection)
-                  })
-               }
-               menu: ContextMenu {
-                  MenuItem { text: i18n.tr("Delete"); onClicked: { remorseDelete(imageModel.remove(index, 1)) } }
-               }
-            }
-         }
-      }
    }
-
    function importImages(urls) {
       urls.forEach(function (fileUrl) {
          if (imageModel.count < 6) {
@@ -182,7 +166,6 @@ Page { id: requestPage
          }
       })
    }
-
 
    /*
    function addNewImage() {
