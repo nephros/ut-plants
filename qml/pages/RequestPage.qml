@@ -14,7 +14,7 @@ Page { id: requestPage
    ListModel { id: imageModel }
 
 
-   SilicaListView {
+   SilicaListView { id: imageView
       anchors.fill: parent
       anchors.topMargin: units.gu(2)
       anchors.bottomMargin: units.gu(2)
@@ -107,6 +107,12 @@ Page { id: requestPage
                pageStack.pop()
             }
          }
+      }
+      ViewPlaceholder {
+          text: i18n.tr("No images")
+          hintText: i18n.tr("Pull down to add new images")
+          verticalOffset: imageView.headerItem.height + Theme.itemSizeLarge
+          enabled: !imageModel.count
       }
 
    /* moved to the top, and emptied
