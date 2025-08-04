@@ -57,13 +57,13 @@ Page {
 
             PasswordField {
                id: apiKeyInput
+               text: settings.apiKey ? i18n.tr("New API Key") : ""
                placeholderText: i18n.tr("Enter API-Key")
-               width: parent.width - units.gu(2)
+               label: i18n.tr("The value will be saved on Enter.")
+               labelVisible: focus
+               description: focus ? "" : (settings.apiKey ? i18n.tr("API Key already stored. Edit to update") : i18n.tr("No API Key stored"))
+               passwordEchoMode: focus ? TextInput.Normal : TextInput.Password
                inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
-               passwordEchoMode: TextInput.Normal
-               text: settings.apiKey ? i18n.tr("API Key set") : ""
-               label: i18n.tr("The value will be saved on Enter, but not shown again.")
-               description: settings.apiKey ? i18n.tr("API Key set, fill in to update") : i18n.tr("API Key not set")
                EnterKey.onClicked: {
                   settingsPage.apiKeyChanged(apiKeyInput.text)
                   apiKeyInput.focus = false
