@@ -97,6 +97,7 @@ sh ./lang_conv.sh
 # << build pre
 
 %cmake .  \
+    -Wno-dev \
     -DCMAKE_INSTALL_PREFIX=%{_datadir}
 
 %cmake_build
