@@ -16,6 +16,14 @@ Page { id: requestPage
 
    SilicaListView {
       anchors.fill: parent
+      anchors.topMargin: units.gu(2)
+      anchors.bottomMargin: units.gu(2)
+
+      clip: true
+      spacing: units.gu(1)
+
+      model: imageModel
+
       header: Column {
          width: parent.width
          PageHeader {
@@ -36,7 +44,6 @@ Page { id: requestPage
             wrapMode: Text.WordWrap
          }
       }
-      model: imageModel
       delegate: Component {
          ListItem {
             contentHeight: plantItem.height

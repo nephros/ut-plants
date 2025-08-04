@@ -18,6 +18,8 @@ Rectangle {
    radius: 10
    color: brand.background
 
+   anchors.margins: units.gu(2)
+
    Image {
       id: thumbImage
       width: units.gu(8)
@@ -44,7 +46,6 @@ Rectangle {
    }
 
    Column {
-      visible: item.listMode
       anchors.verticalCenter: parent.verticalCenter
       anchors.left: thumbImage.right
       anchors.leftMargin: units.gu(2)

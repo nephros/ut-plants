@@ -166,8 +166,7 @@ Page {
       anchors.topMargin: units.gu(2)
       anchors.horizontalCenter: parent.horizontalCenter
       clip: true
-      property double rowSpacing: units.gu(1)
-      spacing: rowSpacing
+      spacing: units.gu(1)
 
       model: plantsModel
 
