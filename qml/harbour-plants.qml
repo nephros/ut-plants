@@ -59,7 +59,7 @@ ApplicationWindow {
             Image {
                 source: "./cover-background.svg"
                 anchors {
-                    horizontalCenter: parent.right
+                    horizontalCenter: parent.horizontalCenter
                     bottom: parent.bottom
                 }
                 //height: parent.height
