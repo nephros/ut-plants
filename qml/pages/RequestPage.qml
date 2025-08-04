@@ -10,37 +10,65 @@ import PlantsModel 1.0
 Page { id: requestPage
    property var plantsModel: null
 
+
+   ListModel { id: imageModel }
+
    PageHeader {
       id: header
       title: i18n.tr('New identification')
    }
 
-   function importImages(urls) {
-      urls.forEach(function (fileUrl) {
-         if (imageModel.count < 6) {
-            imageModel.insert(imageModel.count - 1, {
-                                 "type": 'image',
-                                 "url": fileUrl + '',
-                                 "organ": PlantUtils.organs[1].name
-                              })
+   SilicaFlickable {
+      anchors.fill: parent
+      PullDownMenu {
+          MenuItem {
+              text: i18n.tr("Add Images")
+              onClicked: addNewImage()
+          }
+          MenuItem {
+              enabled: imageModel.count > 0
+              text: i18n.tr("Clear")
+              onClicked: imageModel.clear()
+          }
+      }
+      PushUpMenu {
+         enabled: imageModel.count > 1
+         MenuItem {
+            text: i18n.tr("Identify")
+            onClicked: {
+               var request = []
+               for (var i = 0; i < imageModel.count; i++) {
+                  var entry = imageModel.get(i)
+                  request.push({
+                                  "url": entry.url.replace("file://", ""),
+                                  "organ": entry.organ
+                               })
+               }
+               plantsModel.identifyPlant(request)
+               app.loadingScreenShown = true
+               pageStack.pop()
+            }
          }
-      })
-   }
+      }
+      Text {
+         id: titleText
+         //anchors.top: header.bottom
+         //anchors.topMargin: units.gu(2)
+         anchors.top: parent.top
+         anchors.topMargin: header.height
+         anchors.horizontalCenter: parent.horizontalCenter
+         width: parent.width * 0.9
+         text: i18n.tr(
+                  'Add up to 5 images for identification. The images must be of the same plant. The more images are provided, the better the identification result will be.')
+               + '\n\n' + i18n.tr('Pl@ntNet recommends images with the smaller side larger than 600px and smaller than 2000px. Ideally a square image zoomed on the organ around 1280x1280px.')
+               + '\n\n' + i18n.tr('Use the Pushup menu to submit for identification.')
 
-   Text {
-      id: titleText
-      anchors.top: header.bottom
-      anchors.topMargin: units.gu(2)
-      anchors.horizontalCenter: parent.horizontalCenter
-      width: parent.width * 0.9
-      text: i18n.tr(
-               'Add up to 5 images for identification. The images must be of the same plant. The more images are provided, the better the identification result will be.') + '\n\n' + i18n.tr(
-               'Pl@ntNet recommends images with the smaller side larger than 600px and smaller than 2000px. Ideally a square image zoomed on the organ around 1280x1280px.')
-      color: Theme.highlightColor
+         color: Theme.highlightColor
 
-      wrapMode: Text.WordWrap
-   }
+         wrapMode: Text.WordWrap
+      }
 
+   /* moved to the top, and emptied
    ListModel {
       id: imageModel
       ListElement {
@@ -49,6 +77,7 @@ Page { id: requestPage
          organ: ''
       }
    }
+   */
 
    /* apparently not used anywhere?
    Component {
@@ -59,6 +88,7 @@ Page { id: requestPage
    }
    */
 
+   /* moved to a PullUpMenu
    Button {
       id: analyzeButton
       anchors.bottom: parent.bottom
@@ -87,50 +117,64 @@ Page { id: requestPage
          pageStack.pop()
       }
    }
+   */
 
-   SilicaListView {
-      id: imageList
-      property double rowSpacing: units.gu(1)
+      SilicaListView {
+         id: imageList
+         property double rowSpacing: units.gu(1)
 
-      model: imageModel
-      anchors.topMargin: units.gu(2)
-      anchors.top: titleText.bottom
-      anchors.bottom: analyzeButton.top
-      anchors.bottomMargin: units.gu(2)
-      anchors.horizontalCenter: parent.horizontalCenter
-      width: parent.width * 0.9
-      spacing: rowSpacing
-      clip: true
+         model: imageModel
+         anchors.topMargin: units.gu(2)
+         anchors.top: titleText.bottom
+         anchors.bottom: parent.bottom
+         anchors.bottomMargin: units.gu(2)
+         anchors.horizontalCenter: parent.horizontalCenter
+         width: parent.width * 0.9
+         spacing: rowSpacing
+         clip: true
 
-      delegate: Component {
-         PlantItem {
-            imageUrl: url || ''
-            mainText: organ && PlantUtils.toTitle(organ) || ''
-            listMode: false
-            placeholder: type === "placeholder"
-            visible: !placeholder || imageModel.count < 6
+         delegate: Component {
+            ListItem {
+               contentHeight: plantItem.height
+               PlantItem { id: plantItem
+                  imageUrl: url || ''
+                  mainText: organ ? PlantUtils.toTitle(organ) : ''
+                  listMode: false
 
-            onClicked: function () {
-               if (type !== "placeholder")
-                  return
+                  //moved to Pulley Menu
+                  //onClicked: addNewImage()
 
-               addNewImage()
-            }
+                  onEdit: {
+                     var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/PickerDialog.qml"))
 
-            onEdit: function () {
-               var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/PickerDialog.qml"))
+                     dialog.accepted.connect(function () {
+                        mainText = PlantUtils.toTitle(dialog.selection)
+                     })
+                  }
 
-               dialog.accepted.connect(function () {
-                  mainText = PlantUtils.toTitle(dialog.selection)
-               })
-            }
-
-            onDelete: function () {
-               imageModel.remove(index, 1)
+                  //moved to ListItem
+                  //onDelete: imageModel.remove(index, 1)
+               }
+               menu: ContextMenu {
+                  MenuItem { text: i18n.tr("Delete"); onClicked: { remorseDelete(imageModel.remove(index, 1)) } }
+               }
             }
          }
       }
    }
+
+   function importImages(urls) {
+      urls.forEach(function (fileUrl) {
+         if (imageModel.count < 6) {
+            imageModel.append({
+                                 "type": 'image',
+                                 "url": fileUrl + '',
+                                 "organ": PlantUtils.organs[1].name
+                              })
+         }
+      })
+   }
+
 
    /*
    function addNewImage() {
