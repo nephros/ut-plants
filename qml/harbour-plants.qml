@@ -19,18 +19,19 @@ ApplicationWindow {
         MainPage{}
     }
     property bool loadingScreenShown: false
+    onLoadingScreenShownChanged: console.debug("loading:", loadingScreenShown)
     property alias units: units
     property alias i18n: i18n
     UbuUnits { id: units }
     QtObject { id: i18n; function tr(s) { return qsTr(s) } }
     Settings {
        id: settings
-       property bool keepDisplayOn: false
+       property bool preventSleep: false
        property bool apiKey: false
        property bool disclaimerAccepted: false
     }
-    DisplayBlanking { id: blanking
-       preventBlanking: settings.keepDisplayOn
+    KeepAlive { id: keepAlive
+       enabled: settings.preventSleep && app.loadingScreenShown
     }
     Component { id: coverPage
         CoverBackground {

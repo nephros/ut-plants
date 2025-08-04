@@ -84,6 +84,7 @@ Page {
             onValueChanged: settingsPage.langChanged(value)
          }
 
+         /*
          TextSwitch {
             anchors.left: parent.left
             anchors.right: parent.right
@@ -91,6 +92,15 @@ Page {
             text: i18n.tr("Keep display on while using the app")
             checked: settings.keepDisplayOn
             onCheckedChanged: settings.keepDisplayOn = checked
+         }
+         */
+         TextSwitch {
+            anchors.left: parent.left
+            anchors.right: parent.right
+
+            text: i18n.tr("Prevent device sleep on outstanding request")
+            checked: settings.preventSleep
+            onCheckedChanged: settings.preventSleep = checked
          }
       }
    }
