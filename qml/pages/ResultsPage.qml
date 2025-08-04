@@ -50,6 +50,22 @@ Page {
               }
            }
         }
+        MenuItem {
+           text: i18n.tr("Save this result")
+           onClicked: {
+              var err = plantsModel.savePlant(resultList[currentIndex])
+              if (!err) {
+                 pageStack.pop()
+              } else {
+                 pageStack.push(Qt.resolvedUrl("dialogs/ErrorDialog.qml"),
+                        {
+                          "title":i18n.tr("Saving result failed"),
+                          "text": i18n.tr("Result could not be saved (%1).").arg(err)
+                        }
+                 )
+              }
+           }
+        }
      }
 
      SilicaListView {
@@ -67,35 +83,11 @@ Page {
         model: resultsModel
 
         delegate: Component {
-           ListItem {
+           PlantCard { id: plantCard
               width:  ListView.view.width
-              height: ListView.view.height
-              contentHeight: plantCard.height
-              PlantCard { id: plantCard
-                 anchors.fill: parent
-                 anchors.centerIn: parent
-                 plant: resultsData[index]
-                 resultView: true
-              }
-              menu: ContextMenu {
-                 MenuItem {
-                    text: i18n.tr("Save this result")
-                    onClicked: {
-                       var err = plantsModel.savePlant(resultsData[index])
-
-                       if (!err) {
-                          pageStack.pop()
-                       } else {
-                          pageStack.push(Qt.resolvedUrl("dialogs/ErrorDialog.qml"),
-                                 {
-                                   "title":i18n.tr("Saving result failed"),
-                                   "text": i18n.tr("Result could not be saved (%1).").arg(err)
-                                 }
-                          )
-                       }
-                    }
-                 }
-              }
+              height:  ListView.view.height
+              plant: resultsData[index]
+              resultView: true
            }
         }
      }
