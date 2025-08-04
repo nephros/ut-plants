@@ -46,21 +46,35 @@ Page { id: requestPage
          }
       }
       delegate: Component {
-         ListItem {
+         ListItem { id: listItem
+            property int index: index
             contentHeight: plantItem.height
             PlantItem { id: plantItem
                imageUrl: url || ''
                mainText: organ ? PlantUtils.toTitle(organ) : ''
                listMode: false
             }
+            /*
             onClicked: {
                var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/PickerDialog.qml"))
                dialog.accepted.connect(function () {
                   mainText = PlantUtils.toTitle(dialog.selection)
                })
             }
+            */
+            openMenuOnPressAndHold: false
+            onClicked: if (menuOpen) { closeMenu() } else { openMenu() }
             menu: ContextMenu {
-               MenuItem { text: i18n.tr("Remove")
+               MenuLabel { text: i18n.tr("Select plant part") }
+               Repeater {
+                  model: PlantUtils.organs.length
+                  delegate: MenuItem {
+                    text: PlantUtils.organs[index].title
+                    onClicked: imageModel.setProperty(listItem.index, "organ", PlantUtils.organs[index].name)
+                  }
+               }
+               MenuLabel { text: "--" }
+               MenuItem { text: i18n.tr("Remove image")
                   onClicked: remorseDelete(function() { imageModel.remove(index, 1) })
                }
             }
