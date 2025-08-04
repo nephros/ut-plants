@@ -15,6 +15,14 @@ Page {
       contentHeight: header.height + plantCard.height
       PullDownMenu {
           MenuItem {
+              text: i18n.tr("Copy names to Clipboard")
+              onDelayedClick: Clipboard.text = plant.commonNames
+          }
+          MenuItem {
+              text: i18n.tr("Copy species to Clipboard")
+              onDelayedClick: Clipboard.text = plant.species
+          }
+          MenuItem {
               text: i18n.tr("Search on Wikipedia")
               // FIXME: support language:
               onClicked: Qt.openUrlExternally("https://wikipedia.org/w/index.php?"
