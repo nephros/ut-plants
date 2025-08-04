@@ -22,7 +22,10 @@ ApplicationWindow {
     }
 
     property bool loadingScreenShown: false
-    onLoadingScreenShownChanged: console.debug("loading:", loadingScreenShown)
+    onLoadingScreenShownChanged: {
+        console.debug("loading:", loadingScreenShown)
+        loadingScreen.open = loadingScreenShown
+    }
 
     // UT compat helpers:
     property alias units: units
@@ -75,8 +78,9 @@ ApplicationWindow {
     //apparently, a DockedPanel can be in an ApplicationWindow, but we must bind bottomMargin: panel.visibleSize
     bottomMargin: loadingScreen.visibleSize
     DockedPanel{ id: loadingScreen
-        open: app.loadingScreenShown
         dock: Dock.Bottom
+        modal: false
+        onOpenChanged: console.debug("Panel open:", open)
         SilicaItem {
             width: loadingScreen.width
             height: dockCol.height
