@@ -59,7 +59,9 @@ Page { id: requestPage
                })
             }
             menu: ContextMenu {
-               MenuItem { text: i18n.tr("Remove"); onClicked: { remorseDelete(imageModel.remove(index, 1)) } }
+               MenuItem { text: i18n.tr("Remove")
+                  onClicked: remorseDelete(function() { imageModel.remove(index, 1) })
+               }
             }
          }
       }
@@ -71,11 +73,11 @@ Page { id: requestPage
           MenuItem {
               enabled: imageModel.count > 0
               text: i18n.tr("Clear")
-              onClicked: imageModel.clear()
+              onClicked: Remorse.popupAction(requestPage, function() { imageModel.clear() } )
           }
       }
       PushUpMenu {
-         enabled: imageModel.count > 1
+         visible: imageModel.count > 1
          MenuItem {
             text: i18n.tr("Identify")
             onClicked: {

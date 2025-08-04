@@ -183,7 +183,7 @@ Page {
             onClicked: pageStack.push(Qt.resolvedUrl("PlantPage.qml"), { "plant": plant })
             menu: ContextMenu {
                MenuItem { text: i18n.tr("Remove")
-                  onClicked: remorseDelete(deletePlant(plantID))
+                  onClicked: remorseDelete(function() { deletePlant(plantID) })
                }
             }
             function deletePlant(plantID) {
