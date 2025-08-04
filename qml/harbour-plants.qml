@@ -66,7 +66,7 @@ ApplicationWindow {
                 width: parent.width
                 sourceSize.width: width
                 fillMode: Image.PreserveAspectFit
-                opacity: 0.33
+                opacity: 0.2
             }
             CoverPlaceholder {
                 text: "Plants"
