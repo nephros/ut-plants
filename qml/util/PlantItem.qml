@@ -16,7 +16,7 @@ Rectangle {
    width: parent.width
    height: units.gu(8)
    radius: 10
-   color: "#669900"
+   color: brand.background
 
    Image {
       id: thumbImage
@@ -58,7 +58,7 @@ Rectangle {
          width: parent.width
          elide: Text.ElideRight
          font.bold: true
-         color: "white"
+         color: brand.foreground
       }
 
       Label {
@@ -66,7 +66,8 @@ Rectangle {
          width: parent.width
          elide: Text.ElideRight
          font.bold: !item.listMode
-         color: "white"
+         font.italic: item.listMode
+         color: brand.foreground
       }
 
       Label {
@@ -74,7 +75,7 @@ Rectangle {
          text: item.subText
          width: parent.width
          elide: Text.ElideRight
-         color: "white"
+         color: brand.foreground
       }
    }
 }

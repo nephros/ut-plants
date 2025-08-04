@@ -111,7 +111,7 @@ Page {
       width: parent.width
       height: parent.height * 0.3
       anchors.bottom: parent.bottom
-      color: "white"
+      color: brand.foreground
       visible: false
    }
    */

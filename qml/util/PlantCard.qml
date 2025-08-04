@@ -26,7 +26,7 @@ Item {
       height: parent.height
       anchors.centerIn: parent
       radius: 10
-      color: "#669900"
+      color: brand.background
 
       Column {
          id: contents
@@ -53,11 +53,11 @@ Item {
                Text {
                   text: i18n.tr("Name")
                   font.bold: true
-                  color: "white"
+                  color: brand.foreground
                }
                Text {
                   text: plant.species
-                  color: "white"
+                  color: brand.foreground
                }
             }
 
@@ -82,8 +82,8 @@ Item {
                   font.pixelSize: units.gu(2)
                   font.bold: true
 
-                  color: scoreValue > 80 ? "white" : (scoreValue
-                                                      > 50 ? Theme.presenceColor(Theme.PresenceAway) : Theme.errorColor)
+                  color: scoreValue > 80 ? brand.foreground : (scoreValue
+                                                      > 50 ? brand.warn : brand.danger)
                }
             }
          }
@@ -91,7 +91,7 @@ Item {
          Rectangle {
             width: parent.width
             height: 1
-            color: "white"
+            color: brand.foreground
          }
 
          ListView {
@@ -121,7 +121,7 @@ Item {
                   }
 
                   Text {
-                     color: "white"
+                     color: brand.foreground
                      text: copyright
                      font.pixelSize: units.gu(1)
                   }
@@ -138,13 +138,13 @@ Item {
          */
 
          Text {
-            color: "white"
+            color: brand.foreground
             text: i18n.tr("Common names")
             font.bold: true
          }
 
          Text {
-            color: "white"
+            color: brand.foreground
             width: parent.width
             text: plant.commonNames
             wrapMode: Text.WordWrap
