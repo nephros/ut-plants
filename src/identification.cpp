@@ -124,6 +124,7 @@ void Identification::initLanguages()
         foreach (auto lang, parsed)
            languages << lang.toString();
 
+        qDebug() << "Discovered" << languages.size() << "supported languages";
         emit languagesChanged(languages);
 
         if (languages.contains(systemLang))

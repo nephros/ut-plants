@@ -52,6 +52,7 @@ PlantsModel::PlantsModel(QObject* parent)
                       this->setProperty("languages", languages);
                       // emit signal:
                       this->availableLanguagesChanged(languages);
+                      qDebug() << languages.size() << "Languages set in model property";
                    }
    );
    connect(&identificator, &Identification::languageChanged,
