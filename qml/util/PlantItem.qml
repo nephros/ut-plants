@@ -12,7 +12,6 @@ Rectangle {
    property string mainText
    property string subText
    property bool listMode: true
-   property double spacing: units.gu(1)
 
    width: parent.width
    height: units.gu(8)
@@ -53,34 +52,8 @@ Rectangle {
       anchors.rightMargin: units.gu(2)
       spacing: units.gu(1)
 
-      Text {
-         visible: item.listMode
-         text: item.mainText
-         width: parent.width
-         elide: Text.ElideRight
-         font.bold: true
-         color: "white"
-      }
-
-      Text {
-         visible: item.listMode
-         text: item.subText
-         width: parent.width
-         elide: Text.ElideRight
-         color: "white"
-      }
-   }
-
-   Column {
-      visible: !item.listMode
-      anchors.verticalCenter: parent.verticalCenter
-      anchors.left: thumbImage.right
-      anchors.leftMargin: units.gu(2)
-      anchors.right: parent.right
-      anchors.rightMargin: units.gu(2)
-      spacing: units.gu(1)
-
       Label {
+         visible: !item.listMode
          text: i18n.tr("Organ")
          width: parent.width
          elide: Text.ElideRight
@@ -90,6 +63,15 @@ Rectangle {
 
       Label {
          text: item.mainText
+         width: parent.width
+         elide: Text.ElideRight
+         font.bold: !item.listMode
+         color: "white"
+      }
+
+      Label {
+         visible: item.listMode
+         text: item.subText
          width: parent.width
          elide: Text.ElideRight
          color: "white"
