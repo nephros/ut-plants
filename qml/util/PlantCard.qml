@@ -7,6 +7,7 @@ Rectangle { id: plantCard
    radius: 10
    color: brand.background
    anchors.margins: units.gu(2)
+   height: contents.height
 
    property bool resultView: false
    property var saveFunction: null
@@ -26,7 +27,8 @@ Rectangle { id: plantCard
    Column {
       id: contents
       width: parent.width
-      anchors.margins: units.gu(1)
+      anchors.horizontalCenter: parent.horizontalCenter
+      padding: units.gu(2)
 
       spacing: plantCard.elementSpacing
 
@@ -88,7 +90,7 @@ Rectangle { id: plantCard
          id: resultImagesList
          anchors.left: parent.left
          width: parent.width
-         height: parent.height * 0.5
+         height: width
          model: resultImageModel
 
          clip: true
@@ -129,13 +131,13 @@ Rectangle { id: plantCard
       }
       */
 
-      Text {
+      Label {
          color: brand.foreground
          text: i18n.tr("Common names")
          font.bold: true
       }
 
-      Text {
+      Label {
          color: brand.foreground
          width: parent.width
          text: plant.commonNames

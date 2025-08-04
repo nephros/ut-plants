@@ -46,8 +46,7 @@ Page {
 
          delegate: Component {
              PlantCard {
-                width:  resultList.width
-                height: resultList.height
+                width: resultList.width
                 plant: resultsData[index]
                 resultView: true
             }

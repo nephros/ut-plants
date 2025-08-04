@@ -18,9 +18,7 @@ Page {
       }
 
       PlantCard { id: plantCard
-
          width: parent.width - units.gu(2)*2
-         height: width*0.8
          anchors.top: header.bottom
          anchors.horizontalCenter: parent.horizontalCenter
 
