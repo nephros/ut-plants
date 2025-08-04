@@ -11,19 +11,25 @@ import "compat"
 
 ApplicationWindow {
     id: app
+
     allowedOrientations: defaultAllowedOrientations
+
     cover: coverPage
     initialPage: mainPage
     property alias mainPage: mainPage
     Component { id: mainPage
         MainPage{}
     }
+
     property bool loadingScreenShown: false
     onLoadingScreenShownChanged: console.debug("loading:", loadingScreenShown)
+
+    // UT compat helpers:
     property alias units: units
     property alias i18n: i18n
     UbuUnits { id: units }
     QtObject { id: i18n; function tr(s) { return qsTr(s) } }
+
     QtObject { id: brand
        // PlantNet web page CSS: "brand-solid": #8eb533
        // PlantNet web page CSS: "brand-background-subtle": #f6f8ed
@@ -33,15 +39,18 @@ ApplicationWindow {
        readonly property color warn:       Theme.highlightFromColor("#ffe629", Theme.colorScheme)
        readonly property color danger:     Theme.highlightFromColor("#d13415", Theme.colorScheme)
     }
+
     Settings {
        id: settings
        property bool preventSleep: false
        property bool apiKey: false
        property bool disclaimerAccepted: false
     }
+
     KeepAlive { id: keepAlive
        enabled: settings.preventSleep && app.loadingScreenShown
     }
+
     Component { id: coverPage
         CoverBackground {
             Image {
@@ -85,7 +94,7 @@ ApplicationWindow {
                     text: i18n.tr("Plant is being identified, please wait.")
                     wrapMode: Text.WordWrap
                 }
-             }
+            }
         }
     }
 }

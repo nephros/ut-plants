@@ -31,6 +31,7 @@ QtObject {
     }
     */
     // new reference: gu(2) == Theme.fontSizeMedium
+    // another reference: a regular Thumbnail image is e.g. gu(8)
     function gu(inval) {
         return inval/2 * Theme.fontSizeMedium
     }
