@@ -15,19 +15,16 @@ Rectangle {
    property string mainText
    property string subText
    property bool listMode: true
-   property bool placeholder: false
    property double spacing: units.gu(1)
 
    width: parent.width
    height: units.gu(8)
    radius: 10
-   color: placeholder ? "white" : "#669900"
-   border.width: placeholder ? 2 : 0
-   border.color: "#cdcdcd"
+   color: "#669900"
 
    MouseArea {
       anchors.fill: parent
-      enabled: item.listMode || item.placeholder
+      enabled: item.listMode
 
       onClicked: {
          if (item.onClicked)
@@ -35,23 +32,6 @@ Rectangle {
       }
    }
 
-   Icon {
-      visible: item.placeholder
-      source: "image://theme/icon-m-add"
-      anchors.verticalCenter: parent.verticalCenter
-      anchors.left: parent.left
-      anchors.leftMargin: units.gu(2)
-
-      width: units.gu(2)
-      height: units.gu(2)
-   }
-
-   Text {
-      visible: item.placeholder
-      anchors.centerIn: parent
-      text: i18n.tr("Tap to add new image")
-      color: "#676767"
-   }
 
    Image {
       id: thumbImage
@@ -59,7 +39,6 @@ Rectangle {
       height: units.gu(8)
       anchors.left: parent.left
       anchors.verticalCenter: parent.verticalCenter
-      visible: !item.placeholder
 
       source: item.imageUrl
       fillMode: Image.PreserveAspectCrop
@@ -80,11 +59,11 @@ Rectangle {
    }
 
    Column {
-      visible: !item.placeholder && item.listMode
+      visible: item.listMode
       anchors.verticalCenter: parent.verticalCenter
       anchors.left: thumbImage.right
       anchors.leftMargin: units.gu(2)
-      anchors.right: deleteButton.left
+      anchors.right: parent.right
       anchors.rightMargin: units.gu(2)
       spacing: units.gu(1)
 
@@ -107,7 +86,7 @@ Rectangle {
    }
 
    Column {
-      visible: !item.placeholder && !item.listMode
+      visible: !item.listMode
       anchors.verticalCenter: parent.verticalCenter
       anchors.left: thumbImage.right
       anchors.leftMargin: units.gu(2)
@@ -131,30 +110,6 @@ Rectangle {
       }
    }
 
-   //ButtonLayout {
-       IconButton { id: editButton
-           visible: !item.listMode && !item.placeholder
-           anchors.right: parent.right
-           anchors.rightMargin: units.gu(2)
-           anchors.verticalCenter: parent.verticalCenter
-           icon.source: "image://theme/icon-m-edit" 
-           onClicked: function() {
-              if (item.onEdit)
-                 item.onEdit()
-           }
-       }
-       IconButton { id: deleteButton
-           visible: !item.placeholder
-           icon.source: "image://theme/icon-m-delete" 
-           anchors.right: editButton.left
-           anchors.rightMargin: units.gu(2)
-           anchors.verticalCenter: parent.verticalCenter
-           onClicked: function() {
-              if (item.onDelete)
-                 item.onDelete(item.plantObject && item.plantObject.id)
-           }
-       }
-   //}
    /*
    IconButton {
       id: editButton
