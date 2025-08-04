@@ -44,22 +44,6 @@ Page { id: requestPage
                imageUrl: url || ''
                mainText: organ ? PlantUtils.toTitle(organ) : ''
                listMode: false
-
-               //moved to Pulley Menu
-               //onClicked: addNewImage()
-
-               /* moved to ListItem onClicked
-               onEdit: {
-                  var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/PickerDialog.qml"))
-
-                  dialog.accepted.connect(function () {
-                     mainText = PlantUtils.toTitle(dialog.selection)
-                  })
-               }
-               */
-
-               //moved to ListItem
-               //onDelete: imageModel.remove(index, 1)
             }
             onClicked: {
                var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/PickerDialog.qml"))
@@ -68,7 +52,7 @@ Page { id: requestPage
                })
             }
             menu: ContextMenu {
-               MenuItem { text: i18n.tr("Delete"); onClicked: { remorseDelete(imageModel.remove(index, 1)) } }
+               MenuItem { text: i18n.tr("Remove"); onClicked: { remorseDelete(imageModel.remove(index, 1)) } }
             }
          }
       }

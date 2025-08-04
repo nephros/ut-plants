@@ -9,9 +9,6 @@ Rectangle {
 
    property var plantObject
    property string imageUrl
-   property var onDelete
-   property var onEdit
-   property var onClicked
    property string mainText
    property string subText
    property bool listMode: true
@@ -21,17 +18,6 @@ Rectangle {
    height: units.gu(8)
    radius: 10
    color: "#669900"
-
-   MouseArea {
-      anchors.fill: parent
-      enabled: item.listMode
-
-      onClicked: {
-         if (item.onClicked)
-            item.onClicked(item.plantObject)
-      }
-   }
-
 
    Image {
       id: thumbImage
@@ -90,11 +76,11 @@ Rectangle {
       anchors.verticalCenter: parent.verticalCenter
       anchors.left: thumbImage.right
       anchors.leftMargin: units.gu(2)
-      anchors.right: editButton.left
+      anchors.right: parent.right
       anchors.rightMargin: units.gu(2)
       spacing: units.gu(1)
 
-      Text {
+      Label {
          text: i18n.tr("Organ")
          width: parent.width
          elide: Text.ElideRight
@@ -102,45 +88,11 @@ Rectangle {
          color: "white"
       }
 
-      Text {
+      Label {
          text: item.mainText
          width: parent.width
          elide: Text.ElideRight
          color: "white"
       }
    }
-
-   /*
-   IconButton {
-      id: editButton
-      anchors.right: deleteButton.left
-      anchors.rightMargin: units.gu(2)
-      anchors.verticalCenter: parent.verticalCenter
-      widthGu: 4.0
-      heightGu: 4.0
-      visible: !item.listMode && !item.placeholder
-      iconName: "compose"
-
-      onClicked: function() {
-         if (item.onEdit)
-            item.onEdit()
-      }
-   }
-
-   IconButton {
-      id: deleteButton
-      anchors.right: parent.right
-      anchors.rightMargin: units.gu(2)
-      anchors.verticalCenter: parent.verticalCenter
-      widthGu: 4.0
-      heightGu: 4.0
-      visible: !item.placeholder
-      iconName: "delete"
-
-      onClicked: function() {
-         if (item.onDelete)
-            item.onDelete(item.plantObject && item.plantObject.id)
-      }
-   }
-   */
 }

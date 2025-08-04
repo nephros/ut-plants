@@ -172,41 +172,31 @@ Page {
       model: plantsModel
 
       delegate: Component {
-         PlantItem {
-            imageUrl: "image://plants/" + plant.id
-            mainText: plant.species
-            subText: plant.commonNames
-            plantObject: plant
-            listMode: true
-
-            onClicked: function (plant) {
-               pageStack.push(Qt.resolvedUrl("PlantPage.qml"), {
-                                 "plant": plant
-                              })
+         ListItem {
+            contentHeight: plantItem.height
+            PlantItem { id: plantItem
+               imageUrl: "image://plants/" + plant.id
+               mainText: plant.species
+               subText: plant.commonNames
+               plantObject: plant
+               listMode: true
             }
-
-            onDelete: function (plantID) {
-               var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/QuestionDialog.qml"),
-                                {
-                                   "title": i18n.tr("Delete plant?"),
-                                   "text": i18n.tr("Shall the plant '%1' be deleted? This operation can not be undone.").arg(plant.species),
-                                   "acceptText": i18n.tr("Delete"),
-                                   "cancelText": i18n.tr("Cancel")
-                                }
-                            )
-
-               dialog.accepted.connect(function () {
-                  var err = plantsModel.deletePlant(plantID)
-
-                  if (err) {
-                     pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
-                              { "title": i18n.tr("Deleting plant failed"),
-                                "text": i18n.tr("Plant could not be deleted (%1).").arg(err)
-                              }
-                     )
-                  }
-               })
+            onClicked: pageStack.push(Qt.resolvedUrl("PlantPage.qml"), { "plant": plant })
+            menu: ContextMenu {
+               MenuItem { text: i18n.tr("Remove")
+                  onClicked: remorseDelete(deletePlant(plantID))
+               }
             }
+            function deletePlant(plantID) {
+                 var err = plantsModel.deletePlant(plantID)
+                 if (err) {
+                    pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
+                             { "title": i18n.tr("Deleting plant failed"),
+                               "text": i18n.tr("Plant could not be deleted (%1).").arg(err)
+                             }
+                    )
+                 }
+           }
          }
       }
       ViewPlaceholder {
