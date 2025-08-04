@@ -12,7 +12,10 @@ Page {
 
    PageHeader {
       id: header
-      title: i18n.tr('Plant details')
+      //title: i18n.tr('Plant details')
+      title: plant.commonNames.split(", ")[0]
+      description: plant.species
+
    }
 
    PlantCard {
