@@ -6,8 +6,7 @@ import "../util"
 import PlantsModel 1.0
 
 Page {
-   id: mainPage
-   anchors.fill: parent
+   id: resultsPage
 
    property var plantsModel: nil
    property var resultsData: []
@@ -18,16 +17,42 @@ Page {
       })
    }
 
+   ListModel {
+      id: resultsModel
+   }
+
    SilicaFlickable {
-     PageHeader { id: header
-        title: i18n.tr('Identification results')
-        description: i18n.tr("%1/%2 results").arg(resultList.currentIndex+1).arg(resultsModel.count)
-     }
+      anchors.fill: parent
+      contentHeight: header.height + resultList.height
 
-     ListModel {
-        id: resultsModel
-     }
+      PageHeader { id: header
+         title: i18n.tr('Identification results')
+         description: i18n.tr("%1/%2 results").arg(resultList.currentIndex+1).arg(resultsModel.count)
+      }
 
+      ListView { id: resultList
+
+         width: parent.width - units.gu(2)*2
+         height: width*0.8
+         anchors.top: header.bottom
+         anchors.horizontalCenter: parent.horizontalCenter
+
+         clip: true
+         orientation: ListView.Horizontal
+         snapMode: ListView.SnapToItem
+         highlightRangeMode: ListView.StrictlyEnforceRange
+
+         model: resultsModel
+
+         delegate: Component {
+             PlantCard {
+                width:  resultList.width
+                height: resultList.height
+                plant: resultsData[index]
+                resultView: true
+            }
+         }
+      }
      PullDownMenu {
         visible: resultsData.length
         MenuItem {
@@ -64,30 +89,6 @@ Page {
                         }
                  )
               }
-           }
-        }
-     }
-
-     SilicaListView {
-        id: resultList
-        anchors.top: header.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-
-        clip: true
-        orientation: ListView.Horizontal
-        snapMode: ListView.SnapToItem
-        highlightRangeMode: ListView.StrictlyEnforceRange
-
-        model: resultsModel
-
-        delegate: Component {
-           PlantCard { id: plantCard
-              width:  ListView.view.width
-              height:  ListView.view.height
-              plant: resultsData[index]
-              resultView: true
            }
         }
      }

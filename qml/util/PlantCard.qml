@@ -4,11 +4,9 @@ import Sailfish.Silica 1.0
 import "../util"
 
 Rectangle { id: plantCard
-   width: parent.width * 0.8
-   height: parent.height
-   anchors.centerIn: parent
    radius: 10
    color: brand.background
+   anchors.margins: units.gu(2)
 
    property bool resultView: false
    property var saveFunction: null

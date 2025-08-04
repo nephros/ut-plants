@@ -1,18 +1,32 @@
 import QtQuick 2.6
 import Sailfish.Silica 1.0
-import QtGraphicalEffects 1.0
 
 import "../util"
 
 Page {
    id: plantPage
-   anchors.fill: parent
 
    property var plant: nil
 
    SilicaFlickable {
       anchors.fill: parent
       contentHeight: header.height + plantCard.height
+
+      PageHeader { id: header
+         title: i18n.tr('Plant details')
+         description: plant.commonNames.split(", ")[0]
+      }
+
+      PlantCard { id: plantCard
+
+         width: parent.width - units.gu(2)*2
+         height: width*0.8
+         anchors.top: header.bottom
+         anchors.horizontalCenter: parent.horizontalCenter
+
+         plant: plantPage.plant
+      }
+
       PullDownMenu {
           MenuItem {
               text: i18n.tr("Copy names to Clipboard")
@@ -30,23 +44,6 @@ Page {
                    + '&search=%1'.arg(encodeURI(plant.species)) + "+deepcat%3APlants"
                    )
           }
-      }
-      PageHeader {
-         id: header
-         //title: i18n.tr('Plant details')
-         title: plant.commonNames.split(", ")[0]
-         description: plant.species
-
-      }
-
-      PlantCard {
-         id: plantCard
-         plant: plantPage.plant
-
-         anchors.top: header.bottom
-         anchors.topMargin: units.gu(2)
-         anchors.bottomMargin: units.gu(2)
-         width: parent.width
       }
    }
 }
