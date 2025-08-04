@@ -34,10 +34,22 @@ ApplicationWindow {
     }
     Component { id: coverPage
         CoverBackground {
+            Image {
+                source: "./cover-background.svg"
+                anchors {
+                    horizontalCenter: parent.right
+                    bottom: parent.bottom
+                }
+                //height: parent.height
+                width: parent.width
+                sourceSize.width: width
+                fillMode: Image.PreserveAspectFit
+                opacity: 0.33
+            }
             CoverPlaceholder {
                 text: "Plants"
                 textColor: Theme.highlightColor
-                icon.source: "image://theme/harbour-plants"
+                //icon.source: "image://theme/harbour-plants"
             }
         }
     }

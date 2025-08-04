@@ -18,6 +18,7 @@
         <file>dialogs/QuestionDialog.qml</file>
         <file>dialogs/PickerDialog.qml</file>
         <file>dialogs/ErrorDialog.qml</file>
+        <file>cover-background.svg</file>
         <file>util/qmldir</file>
     </qresource>
 </RCC>
