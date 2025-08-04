@@ -69,12 +69,12 @@ Item {
                spacing: units.gu(1)
 
                Icon {
-                  anchors.verticalCenter: parent.verticalCenter
-                  source: "image://theme/icon-m-file-image"
-                  width: units.gu(2)
-                  height: units.gu(2)
+                  anchors.verticalCenter: scoreLabel.verticalCenter
+                  source: "image://theme/icon-m-diagnostic"
+                  width: height
+                  height: scoreLabel.height
                }
-               Text {
+               Label { id: scoreLabel
                   property int scoreValue: Math.round(plant.score * 100)
 
                   anchors.verticalCenter: parent.verticalCenter
