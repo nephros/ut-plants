@@ -10,22 +10,35 @@ Page {
 
    property var plant: nil
 
-   PageHeader {
-      id: header
-      //title: i18n.tr('Plant details')
-      title: plant.commonNames.split(", ")[0]
-      description: plant.species
+   SilicaFlickable {
+      anchors.fill: parent
+      contentHeight: header.height + plantCard.height
+      PullDownMenu {
+          MenuItem {
+              text: i18n.tr("Search on Wikipedia")
+              // FIXME: support language:
+              onClicked: Qt.openUrlExternally("https://wikipedia.org/w/index.php?"
+                   + '&profile=advanced'
+                   + '&search=%1'.arg(encodeURI(plant.species)) + "+deepcat%3APlants"
+                   )
+          }
+      }
+      PageHeader {
+         id: header
+         //title: i18n.tr('Plant details')
+         title: plant.commonNames.split(", ")[0]
+         description: plant.species
 
-   }
+      }
 
-   PlantCard {
-      id: plantCard
-      plant: plantPage.plant
+      PlantCard {
+         id: plantCard
+         plant: plantPage.plant
 
-      anchors.top: header.bottom
-      anchors.topMargin: units.gu(2)
-      anchors.bottom: parent.bottom
-      anchors.bottomMargin: units.gu(2)
-      width: parent.width
+         anchors.top: header.bottom
+         anchors.topMargin: units.gu(2)
+         anchors.bottomMargin: units.gu(2)
+         width: parent.width
+      }
    }
 }
