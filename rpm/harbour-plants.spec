@@ -169,7 +169,7 @@ echo '=========== NOT checking for Harbour compatability.'
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/*/*/apps/%{name}.png
 # >> files
-%if %{with harbour}
-%exclude %{_datadir}/locale/*
-%endif
+#%%if %{with harbour}
+#%%exclude %%{_datadir}/locale/*
+#%%endif
 # << files
