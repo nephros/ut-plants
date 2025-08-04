@@ -13,7 +13,7 @@ Dialog {
       anchors.topMargin: Theme.paddingLarge
       x: Theme.horizontalPageMargin
       width: parent.width - Theme.horizontalPageMargin*2
-      color: Theme.secondaryHighlightColor
+      color: Theme.highlightColor
       wrapMode: Text.Wrap
    }
 }

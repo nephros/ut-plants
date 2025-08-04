@@ -35,7 +35,7 @@ Page {
          SectionHeader {
             text: i18n.tr("Pl@ntNet API key")
             font.bold: true
-            color: Theme.primaryColor
+            color: Theme.highlightColor
          }
 
          Label {
@@ -43,8 +43,8 @@ Page {
             anchors.right: parent.right
             textFormat: Text.StyledText
             text:  i18n.tr("In order to use the Pl@ntNet plant identification service, it is necessary to register at their website as developer and obtain an API-Key. This key needs to be configured within this app.\n\nPlease visit <a href=\"https://my.plantnet.org/signup\">https://my.plantnet.org/signup</a> and create a developer account. Afterwards visit <a href=\"https://my.plantnet.org/account\">https://my.plantnet.org/account</a> and click the eye-symbol at the very top (\"my API key\") to show the API-Key. Copy this key and paste it into the below text input field.")
-            color: Theme.primaryColor
-            linkColor: Theme.highlightColor
+            color: Theme.highlightColor
+            linkColor: Theme.primaryColor
             wrapMode: Text.WordWrap
             onLinkActivated: Qt.openUrlExternally(link)
          }
