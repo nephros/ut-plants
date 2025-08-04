@@ -47,7 +47,6 @@ Page { id: requestPage
       }
       delegate: Component {
          ListItem { id: listItem
-            property int index: index
             contentHeight: plantItem.height
             PlantItem { id: plantItem
                imageUrl: url || ''
@@ -64,13 +63,15 @@ Page { id: requestPage
             */
             openMenuOnPressAndHold: false
             onClicked: if (menuOpen) { closeMenu() } else { openMenu() }
+            // avoid confusion about indexes in the Repeater:
+            function setOrgan(name) { imageModel.setProperty(index, "organ", name) }
             menu: ContextMenu {
                MenuLabel { text: i18n.tr("Select plant part") }
                Repeater {
-                  model: PlantUtils.organs.length
+                  model: PlantUtils.organs
                   delegate: MenuItem {
-                    text: PlantUtils.organs[index].title
-                    onClicked: imageModel.setProperty(listItem.index, "organ", PlantUtils.organs[index].name)
+                    text: modelData.title
+                    onClicked: listItem.setOrgan(modelData.name)
                   }
                }
                MenuLabel { text: "--" }
