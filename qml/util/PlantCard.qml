@@ -36,7 +36,7 @@ Item {
          anchors.topMargin: units.gu(1)
          anchors.rightMargin: units.gu(1)
          anchors.leftMargin: units.gu(1)
-         anchors.bottom: saveButton.top
+         anchors.bottom: parent.bottom
 
          spacing: plantCard.elementSpacing
 
@@ -120,7 +120,7 @@ Item {
                      fillMode: Image.PreserveAspectCrop
                   }
 
-                  Text {
+                  Label {
                      color: brand.foreground
                      text: copyright
                      font.pixelSize: units.gu(1)
@@ -148,20 +148,6 @@ Item {
             width: parent.width
             text: plant.commonNames
             wrapMode: Text.WordWrap
-         }
-      }
-
-      Button {
-         id: saveButton
-         anchors.bottom: parent.bottom
-         anchors.bottomMargin: units.gu(2)
-         anchors.horizontalCenter: parent.horizontalCenter
-         visible: plantCard.resultView && !!plantCard.saveFunction
-
-         text: i18n.tr("Save this result")
-
-         onClicked: {
-            plantCard.saveFunction(plantCard.plant)
          }
       }
    }

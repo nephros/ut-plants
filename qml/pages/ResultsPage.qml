@@ -12,11 +12,6 @@ Page {
    property var plantsModel: nil
    property var resultsData: []
 
-   PageHeader {
-      id: header
-      title: i18n.tr('Identification results')
-   }
-
    Component.onCompleted: {
       resultsData.forEach(function (res) {
          resultsModel.append(res)
@@ -27,56 +22,73 @@ Page {
       id: resultsModel
    }
 
-   /*
-   QC.PageIndicator {
-      id: pageIndicator
-      anchors.horizontalCenter: parent.horizontalCenter
-      anchors.bottom: parent.bottom
-      anchors.bottomMargin: units.gu(2)
-
-      currentIndex: resultList.currentIndex
-      count: resultList.count
-   }
-   */
-
-   ListView {
+   SilicaListView {
       id: resultList
-      anchors.top: header.bottom
-      anchors.topMargin: units.gu(2)
-      anchors.left: parent.left
-      anchors.right: parent.right
-      anchors.bottom: parent.bottom
-      anchors.bottomMargin: units.gu(2)
-
-      clip: true
-      orientation: ListView.Horizontal
-      snapMode: ListView.SnapToItem
-      highlightRangeMode: ListView.StrictlyEnforceRange
-
-      property double elementSpacing: units.gu(2)
-
-      model: resultsModel
-
-      delegate: Component {
-         PlantCard {
-            width: resultList.width
-            height: resultList.height
-
-            plant: resultsData[index]
-            resultView: true
-
-            saveFunction: function (plant) {
-               var err = plantsModel.savePlant(plant)
-
-               if (!err) {
-                  pageStack.pop()
-               } else {
+      anchors.fill: parent
+      header: PageHeader {
+         id: header
+         title: i18n.tr('Identification results')
+         description: i18n.tr("%1 results received").arg(resultsModel.count)
+      }
+      PullDownMenu {
+         visible: resultsData.length
+         MenuItem {
+            text: i18n.tr("Save all results")
+            onClicked: {
+               var err = false
+               for (var i=0; i<resultsData.length; ++i) {
+                  const plant = resultsData[i]
+                  err = err && plantsModel.savePlant(plant)
+               }
+               if (err) {
                   pageStack.push(Qt.resolvedUrl("dialogs/ErrorDialog.qml"),
                          {
                            "title":i18n.tr("Saving result failed"),
                            "text": i18n.tr("Result could not be saved (%1).").arg(err)
                          }
                   )
+               } else {
+                  pageStack.pop()
+               }
+            }
+         }
+      }
+
+      clip: true
+      orientation: ListView.Horizontal
+      snapMode: ListView.SnapToItem
+      highlightRangeMode: ListView.StrictlyEnforceRange
+
+      model: resultsModel
+
+      delegate: Component {
+         ListItem {
+            width:  ListView.view.width
+            height: ListView.view.height
+            contentHeight: plantCard.height
+            PlantCard { id: plantCard
+               anchors.fill: parent
+               anchors.centerIn: parent
+               plant: resultsData[index]
+               resultView: true
+            }
+            menu: ContextMenu {
+               MenuItem {
+                  text: i18n.tr("Save this result")
+                  onClicked: {
+                     var err = plantsModel.savePlant(resultsData[index])
+
+                     if (!err) {
+                        pageStack.pop()
+                     } else {
+                        pageStack.push(Qt.resolvedUrl("dialogs/ErrorDialog.qml"),
+                               {
+                                 "title":i18n.tr("Saving result failed"),
+                                 "text": i18n.tr("Result could not be saved (%1).").arg(err)
+                               }
+                        )
+                     }
+                  }
                }
             }
          }
