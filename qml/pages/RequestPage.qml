@@ -26,6 +26,8 @@ Page { id: requestPage
 
       header: Column {
          width: parent.width
+         spacing: units.gu(1)
+         anchors.bottomMargin: units.gu(1)
          PageHeader {
             id: header
             title: i18n.tr('New identification')
@@ -33,14 +35,13 @@ Page { id: requestPage
          Label {
             id: titleText
             anchors.horizontalCenter: parent.horizontalCenter
-            width: parent.width * 0.9
+            width: parent.width - Theme.horizontalPageMargin
             text: i18n.tr(
                      'Add up to 5 images for identification. The images must be of the same plant. The more images are provided, the better the identification result will be.')
                   + '\n\n' + i18n.tr('Pl@ntNet recommends images with the smaller side larger than 600px and smaller than 2000px. Ideally a square image zoomed on the organ around 1280x1280px.')
                   + '\n\n' + i18n.tr('Use the Pushup menu to submit for identification.')
 
             color: Theme.highlightColor
-
             wrapMode: Text.WordWrap
          }
       }
@@ -66,18 +67,16 @@ Page { id: requestPage
          }
       }
       PullDownMenu {
-          MenuItem {
-              text: i18n.tr("Add Images")
-              onClicked: addNewImage()
-          }
-          MenuItem {
-              enabled: imageModel.count > 0
-              text: i18n.tr("Clear")
-              onClicked: Remorse.popupAction(requestPage, function() { imageModel.clear() } )
-          }
+         quickSelect: true
+         MenuItem { text: i18n.tr("Add Images"); onClicked: addNewImage() }
+         MenuItem { text: i18n.tr("Clear"); visible: imageModel.count > 0
+             onClicked: Remorse.popupAction(requestPage, function() { imageModel.clear() } )
+         }
       }
       PushUpMenu {
-         visible: imageModel.count > 1
+         visible: imageModel.count > 0
+         busy: visible
+         quickSelect: true
          MenuItem {
             text: i18n.tr("Identify")
             onClicked: {
