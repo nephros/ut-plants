@@ -76,28 +76,31 @@ ApplicationWindow {
         }
     }
     //apparently, a DockedPanel can be in an ApplicationWindow, but we must bind bottomMargin: panel.visibleSize
-    bottomMargin: loadingScreen.visibleSize
+    bottomMargin: loadingScreen.expanded ? loadingScreen.visibleSize : 0
     DockedPanel{ id: loadingScreen
         dock: Dock.Bottom
         modal: false
+        animationDuration: 200
         onOpenChanged: console.debug("Panel open:", open)
-        SilicaItem {
-            width: loadingScreen.width
-            height: dockCol.height
-            //background.color: Theme.overlayBackgroundColor
+        Rectangle {
+            anchors.fill: parent
             opacity: Theme.opacityOverlay
-            Column { id: dockCol
-                width: parent.width
-                ProgressBar {
-                    width: parent.width
-                    indeterminate: true
-                }
-                Label {
-                    width: parent.width
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    text: i18n.tr("Plant is being identified, please wait.")
-                    wrapMode: Text.WordWrap
-                }
+            color: Theme.highlightBackgroundFromColor(brand.background, Theme.colorScheme)
+        }
+        Row { id: dockCol
+            width: loadingScreen.width
+            height: Math.max(bind.height, plabel.height)
+            //background.color: Theme.overlayBackgroundColor
+            BusyIndicator { id: bind
+                anchors.verticalCenter: parent.verticalCenter
+                size: BusyIndicatorSize.Medium
+                running: loadingScreen.expanded
+            }
+            Label { id: plabel
+                anchors.verticalCenter: parent.verticalCenter
+                width: parent.width - bind.width
+                text: i18n.tr("Plant is being identified, please wait.")
+                wrapMode: Text.WordWrap
             }
         }
     }
