@@ -124,7 +124,25 @@ Page {
           hintText: i18n.tr("Pull down to start a new identification")
           enabled: !plantsModel.count
       }
+      PushUpMenu {
+          MenuItem {
+             text: i18n.tr("New identification")
+             onClicked: {
+                if (!settings.apiKey) {
+                   var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
+                               { "title": i18n.tr("API Key missing"),
+                                 "text":  i18n.tr("The Pl@ntNet API-Key has not been configured yet. Without this, the app will not work.")
+                               })
 
+                   dialog.accepted.connect(function () {
+                      mainPage.openSettings()
+                   })
+                } else {
+                   mainPage.openIdentify()
+                }
+             }
+          }
+      }
       PullDownMenu {
           MenuItem {
              text: i18n.tr("New identification")
