@@ -11,13 +11,15 @@ Page {
 
    property ListModel languages
    property string language
-   property int languageIdx
+   property string languageName
    onLanguageChanged: {
-       for (var i=0; i<settingsPage.languages.count; ++i) {
-          const l = settingsPage.languages.get(i)
-          if (l==settingsPage.language) {
-             languageIdx = i
-             break
+       if(!!languages) {
+          for (var i=0; i<settingsPage.languages.count; ++i) {
+             const l = settingsPage.languages.get(i)
+             if (l==settingsPage.language) {
+                languageName = l.name
+                break
+             }
           }
        }
    }
@@ -82,7 +84,37 @@ Page {
                }
             }
          }
-
+         ValueButton {
+            enabled: (!!languages && (languages.count > 1))
+            label: i18n.tr("Result Language")
+            description: i18n.tr("The language to use for Identification results. Default is to use the current Locale, or English if not available.")
+            value: settingsPage.languageName
+            onClicked: {
+               var dlg = pageStack.push(langSelector)
+               dlg.accepted.connect(function() {
+                  settingsPage.langChanged(dlg.selectedLanguage)
+               })
+            }
+         }
+         Component { id: langSelector
+            Dialog { id: langDialog
+              property ListModel languages: settingsPage.languages
+              property string selectedLanguage
+              DialogHeader{ id: head }
+              SilicaListView {
+                width: parent.width
+                anchors.top: head.bottom
+                anchors.bottom: parent.bottom
+                model: languages
+                delegate: ListItem {
+                  anchors.margins: units.gu(2)
+                  Label { text: model.language + ": " + name }
+                  onClicked: { langDialog.selectedLanguage = language; langDialog.accept() }
+                }
+              }
+            }
+         }
+         /*
          ComboBox {
             enabled: settings.apiKey && (settingsPage.languages.count > 1)
             label: i18n.tr("Result Language")
@@ -95,6 +127,7 @@ Page {
             }
             onValueChanged: settingsPage.langChanged(settingsPage.languages.get(currentIndex).language)
          }
+         */
 
          /*
          TextSwitch {

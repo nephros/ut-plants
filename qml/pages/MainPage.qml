@@ -272,6 +272,7 @@ Page {
       p.langChanged.connect(function (lang) {
         console.info("Storing language from Settings:", lang)
         plantsModel.setLanguage(lang)
+        p.language = lang
       })
       p.apiKeyChanged.connect(function (key) {
          console.info("Storing API key from Settings")
