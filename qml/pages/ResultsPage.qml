@@ -26,9 +26,12 @@ Dialog {
       acceptText: i18n.tr("Save")
       cancelText: i18n.tr("Back")
    }
-   canAccept:      !resultList.dragging && !resultList.moving && !resultList.flicking
-   backNavigation: !resultList.dragging && !resultList.moving && !resultList.flicking
-   onDone: if (result === Dialog.Accepted) {
+   // Theehehe, leaf! Prevent accidentialy quitting the dialog
+   property bool mayLeafDialog: !resultList.focus && !resultList.dragging && !resultList.moving && !resultList.flicking
+   canAccept:      mayLeafDialog
+   backNavigation: mayLeafDialog
+
+   onDone: if (result === DialogResult.Accepted) {
       var err = plantsModel.savePlant(resultsData[resultList.currentIndex])
       if (err) {
          acceptDestinationProperties = {
