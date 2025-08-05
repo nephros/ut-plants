@@ -35,7 +35,11 @@ Page {
 
       onLanguageChanged: console.debug("language now:", plantsModel.language)
       onAvailableLanguagesChanged: function(languages) {
-          console.debug("languages now:", languages, availableLanguages.count, typeof plantsModel.availableLanguages)
+          console.debug("languages now:",
+            languages,
+            availableLanguages.count,
+            typeof plantsModel.availableLanguages,
+            JSON.stringify(plantsModel.availableLanguages,null,2))
           languagesModel.clear()
           languages.forEach(function(l) { languagesModel.append({"language": l}) })
       }
@@ -61,13 +65,17 @@ Page {
 
    SilicaListView { id: plantList
       anchors.fill: parent
+      headerPositioning: ListView.OverlayHeader
       header: PageHeader {
+         z: 100; clip: true
          title: i18n.tr('Plants')
-         description: (plantList.count > 0 )
-                       ? (plantList.count == 1)
-                          ? i18n.tr("1 identified plant")
-                          : i18n.tr( "%1 identified plants").arg(plantList.count)
-                       : ""
+         description: app.loadingScreenShown
+            ? i18n.tr("Plant is being identified, please wait.")
+            : (plantList.count > 0 )
+               ? (plantList.count == 1)
+                  ? i18n.tr("1 identified plant")
+                  : i18n.tr( "%1 identified plants").arg(plantList.count)
+               : ""
          BusyIndicator {
            anchors.verticalCenter: parent.verticalCenter
            anchors.left: extraContent.left
@@ -160,7 +168,7 @@ Page {
       }
    }
 
-   /* moved to app window docked panel
+   /* moved to app page header
    LoadingScreen {
       visible: mainPage.loadingScreenShown
    }
