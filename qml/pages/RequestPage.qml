@@ -110,7 +110,7 @@ Page { id: requestPage
          busy: visible
          quickSelect: true
          MenuItem { text: i18n.tr("Clear")
-             onClicked: Remorse.popupAction(requestPage, function() { imageModel.clear() } )
+             onClicked: Remorse.popupAction(requestPage, i18n.tr("Cleared"), function() { imageModel.clear() }, 2800 )
          }
       }
       ViewPlaceholder {
