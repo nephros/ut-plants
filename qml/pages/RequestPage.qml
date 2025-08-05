@@ -86,7 +86,7 @@ Page { id: requestPage
       }
       PullDownMenu {
          quickSelect: true
-         MenuItem { text: i18n.tr("Add Images"); onClicked: addNewImage() }
+         MenuItem { text: enabled ? i18n.tr("Add Images") : i18n.tr("Can not add more than 5 images"); enabled: imageModel.count < 5; onClicked: addNewImage() }
          MenuItem {
             enabled: imageModel.count > 0
             text: i18n.tr("Identify")
