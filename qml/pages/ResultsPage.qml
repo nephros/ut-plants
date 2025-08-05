@@ -26,8 +26,8 @@ Dialog {
       acceptText: i18n.tr("Save")
       cancelText: i18n.tr("Back")
    }
-   // Theehehe, leaf! Prevent accidentialy quitting the dialog
-   property bool mayLeafDialog: !resultList.focus && !resultList.dragging && !resultList.moving && !resultList.flicking
+   // Theehehe, leaf! Prevent accidentially quitting the dialog
+   property bool   mayLeafDialog: !resultList.focus && !resultList.dragging && !resultList.moving && !resultList.flicking
    canAccept:      mayLeafDialog
    backNavigation: mayLeafDialog
 
@@ -58,17 +58,17 @@ Dialog {
 
       delegate: Column {
           width: resultList.width
-          PlantCard { id: card
-             width: parent.width - units.gu(2)*2
-             plant: resultsData[index]
-             resultView: true
-          }
           Label {
                 width: card.width
                 height: units.gu(2)
                 text: i18n.tr("%1/%2 results").arg(index+1).arg(resultsModel.count)
                 color: Theme.highlightColor
                 horizontalAlignment: Qt.AlignHCenter
+          }
+          PlantCard { id: card
+             width: parent.width - units.gu(2)*2
+             plant: resultsData[index]
+             resultView: true
           }
       }
    }
