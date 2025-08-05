@@ -65,9 +65,7 @@ Page {
 
    SilicaListView { id: plantList
       anchors.fill: parent
-      headerPositioning: ListView.OverlayHeader
       header: PageHeader {
-         z: 100; clip: true
          title: i18n.tr('Plants')
          description: app.loadingScreenShown
             ? i18n.tr("Plant is being identified, please wait.")
