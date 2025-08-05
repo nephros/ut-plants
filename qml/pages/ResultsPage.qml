@@ -66,7 +66,6 @@ Dialog {
           PlantCard {
              width: resultList.width - units.gu(2)*2
              plant: resultsData[index]
-             anchors.horizontalCenter: parent.horizontalCenter
              resultView: true
          }
       }

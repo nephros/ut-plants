@@ -6,8 +6,9 @@ import "../util"
 Rectangle { id: plantCard
    radius: 10
    color: brand.background
-   anchors.margins: units.gu(2)
    height: contents.height
+   anchors.margins: units.gu(2)
+   anchors.horizontalCenter: parent.horizontalCenter
 
    property bool resultView: false
    property var saveFunction: null
@@ -34,7 +35,8 @@ Rectangle { id: plantCard
 
       Item {
          id: header
-         width: parent.width
+         anchors.left: parent.left
+         anchors.right: parent.right
          height: units.gu(4)
 
          Column {
@@ -42,12 +44,12 @@ Rectangle { id: plantCard
             anchors.top: parent.top
             anchors.left: parent.left
 
-            Text {
+            Label {
                text: i18n.tr("Name")
                font.bold: true
                color: brand.foreground
             }
-            Text {
+            Label {
                text: plant.species
                color: brand.foreground
             }
@@ -69,23 +71,23 @@ Rectangle { id: plantCard
             Label { id: scoreLabel
                property int scoreValue: Math.round(plant.score * 100)
 
-               anchors.verticalCenter: parent.verticalCenter
+               anchors.top: parent.top
                text: scoreValue + "%"
                font.pixelSize: units.gu(2)
                font.bold: true
 
-               color: scoreValue > 80 ? brand.foreground : (scoreValue
-                                                   > 50 ? brand.warn : brand.danger)
+               color: scoreValue > 80
+                        ? brand.foreground
+                        : (scoreValue > 50 ? brand.warn : brand.danger)
             }
          }
+         Rectangle {
+            width: parent.width
+            anchors.top: parent.botton
+            height: 1
+            color: brand.foreground
+         }
       }
-
-      Rectangle {
-         width: parent.width
-         height: 1
-         color: brand.foreground
-      }
-
       ListView {
          id: resultImagesList
          anchors.left: parent.left

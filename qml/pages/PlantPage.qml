@@ -20,8 +20,6 @@ Page {
       PlantCard { id: plantCard
          width: parent.width - units.gu(2)*2
          anchors.top: header.bottom
-         anchors.horizontalCenter: parent.horizontalCenter
-
          plant: plantPage.plant
       }
 
