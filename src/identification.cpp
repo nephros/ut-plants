@@ -61,13 +61,12 @@ Identification::Identification(network::Network* network, QObject* parent)
         + "/" + ORG_NAME + "/" + APP_NAME + "/" + APP_NAME + ".conf",
         QSettings::NativeFormat)
 {
-   qInfo() << "Storing settings at path" << QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
-   qInfo() << "Storing settings at" << settings.fileName();
+   qDebug() << "Storing settings at" << settings.fileName();
 
    if (settings.contains("apiKey")) {
       query.addQueryItem("api-key", settings.value("apiKey").toString());
    } else {
-      qWarning() << "Query without or empty API key!";
+      qWarning() << "API key empty or not set!";
    }
 
    query.addQueryItem("include-related-images", "true");
@@ -124,7 +123,6 @@ void Identification::initLanguages()
         foreach (auto lang, parsed)
            languages << lang.toString();
 
-        qDebug() << "Discovered" << languages.size() << "supported languages";
         emit languagesChanged(languages);
 
         if (languages.contains(systemLang))
