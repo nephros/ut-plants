@@ -22,7 +22,7 @@ Dialog {
    }
 
    DialogHeader { id: header
-      title: i18n.tr('Identification results')
+      title: i18n.tr('Identification results: ') + Number(resultsModel.count)
       acceptText: i18n.tr("Save")
       cancelText: i18n.tr("Back")
    }
@@ -53,21 +53,20 @@ Dialog {
 
       model: resultsModel
 
-      footerPositioning: ListView.OverlayFooter
-      footer: Label {
-             z: 100
-             height: units.gu(2)
-             text: i18n.tr("%1/%2 results").arg(resultList.currentIndex+1).arg(resultsModel.count)
-             color: Theme.highlightColor
-             horizontalAlignment: Qt.AlignHCenter
-             width: parent.width
-      }
-      delegate: Component {
-          PlantCard {
-             width: resultList.width - units.gu(2)*2
+      delegate: Column {
+          width: resultList.width
+          PlantCard { id: card
+             width: parent.width - units.gu(2)*2
              plant: resultsData[index]
              resultView: true
-         }
+          }
+          Label {
+                width: card.width
+                height: units.gu(2)
+                text: i18n.tr("%1/%2 results").arg(index+1).arg(resultsModel.count)
+                color: Theme.highlightColor
+                horizontalAlignment: Qt.AlignHCenter
+          }
       }
    }
 }
