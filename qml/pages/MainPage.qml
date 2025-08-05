@@ -31,7 +31,7 @@ Page {
       id: plantsModel
 
       onLanguageChanged: console.debug("language now:", plantsModel.language)
-      onAvailableLanguagesChanged: console.debug("languages now:", plantsModel.availableLanguages)
+      onAvailableLanguagesChanged: function(languages) { console.debug("languages now:", languages, plantsModel.availableLanguages.length) }
       onIdentificationResult: {
          app.loadingScreenShown = false
 
@@ -64,7 +64,7 @@ Page {
          BusyIndicator {
            anchors.verticalCenter: parent.verticalCenter
            anchors.left: extraContent.left
-           anchors.leftMargin: units.gi(1)
+           anchors.leftMargin: units.gu(1)
            size: BusyIndicatorSize.Medium
            running: app.loadingScreenShown
          }

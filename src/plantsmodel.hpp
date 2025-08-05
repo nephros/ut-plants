@@ -64,7 +64,7 @@ class PlantsModel : public QAbstractListModel
 
    Q_OBJECT
    Q_PROPERTY(int count READ rowCount NOTIFY countChanged)
-   Q_PROPERTY(QStringList availableLanguages MEMBER languages NOTIFY availableLanguagesChanged)
+   Q_PROPERTY(QStringList availableLanguages READ availableLanguages NOTIFY availableLanguagesChanged)
    Q_PROPERTY(QString language MEMBER language NOTIFY languageChanged)
 
 public:
@@ -102,6 +102,11 @@ public:
    Plant* getPlant(QString id)
    {
       return mItemMap.count(id) ? mItemMap[id] : nullptr;
+   }
+
+   QStringList availableLanguages()
+   {
+       return languages;
    }
 
 signals:
