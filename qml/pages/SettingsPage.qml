@@ -11,6 +11,16 @@ Page {
 
    property ListModel languages
    property string language
+   property int languageIdx
+   onLanguageChanged: {
+       for (var i=0; i<settingsPage.languages.count; ++i) {
+          const l = settingsPage.languages.get(i)
+          if (l==settingsPage.language) {
+             languageIdx = i
+             break
+          }
+       }
+   }
 
    SilicaFlickable {
       id: flickable
@@ -76,14 +86,14 @@ Page {
          ComboBox {
             enabled: settings.apiKey && (settingsPage.languages.count > 1)
             label: i18n.tr("Result Language")
-            description: enabled ? "" : i18n.tr("After setting the API key, and restarting the app, a language can be chosen here.")
-            value: settingsPage.language
+            description: enabled ? i18n.tr("Determined from Locale, or default (English)") : i18n.tr("After setting the API key, and restarting the app, a language can be chosen here.")
+            currentIndex: settingsPage.languageIdx
             menu: ContextMenu {
                 Repeater { model: settingsPage.languages
-                    delegate: MenuItem { text: language }
+                    delegate: MenuItem { text: model.language + ": " + name }
                 }
             }
-            onValueChanged: settingsPage.langChanged(value)
+            onValueChanged: settingsPage.langChanged(settingsPage.languages.get(currentIndex).language)
          }
 
          /*

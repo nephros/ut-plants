@@ -35,13 +35,19 @@ Page {
 
       onLanguageChanged: console.debug("language now:", plantsModel.language)
       onAvailableLanguagesChanged: function(languages) {
+          /*
           console.debug("languages now:",
             languages,
             availableLanguages.count,
             typeof plantsModel.availableLanguages,
             JSON.stringify(plantsModel.availableLanguages,null,2))
+          */
           languagesModel.clear()
-          languages.forEach(function(l) { languagesModel.append({"language": l}) })
+          languages.forEach(function(l) {
+            const lc = Qt.locale(l)
+            const lname = lc.nativeLanguageName
+            languagesModel.append({ "language": l, "name": lname})
+          })
       }
       onIdentificationResult: {
          app.loadingScreenShown = false
@@ -264,6 +270,7 @@ Page {
       )
 
       p.langChanged.connect(function (lang) {
+        console.info("Storing language from Settings:", lang)
         plantsModel.setLanguage(lang)
       })
       p.apiKeyChanged.connect(function (key) {

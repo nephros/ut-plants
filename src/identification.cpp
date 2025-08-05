@@ -104,9 +104,6 @@ void Identification::initLanguages()
 
            emit languagesChanged(QStringList({"en"}));
 
-           if (settings.contains("language"))
-              lang = settings.value("language").toString();
-
            query.addQueryItem("lang", lang);
            url.setQuery(query);
            emit languageChanged(lang);
@@ -169,7 +166,11 @@ void Identification::setLanguage(QString lang)
    query.removeQueryItem("lang");
    query.addQueryItem("lang", lang);
    url.setQuery(query);
-   settings.setValue("language", lang);
+   if (0 != lang.compare(settings.value("language").toString()))
+   {
+     settings.setValue("language", lang);
+     emit languageChanged(lang);
+   }
 }
 
 // **************************************************************************
