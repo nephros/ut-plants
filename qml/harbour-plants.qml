@@ -37,10 +37,12 @@ ApplicationWindow {
        // PlantNet web page CSS: "brand-solid": #8eb533
        // PlantNet web page CSS: "brand-background-subtle": #f6f8ed
        // PlantNet web page CSS: "brand-text": #394611
-       readonly property color background: Theme.colorScheme == Theme.LightOnDark ? "#8eb533" : "#f6f8ed"
-       readonly property color foreground: Theme.colorScheme == Theme.LightOnDark ? "#f6f8ed" : "#394611"
-       readonly property color warn:       Theme.highlightFromColor("#ffe629", Theme.colorScheme)
-       readonly property color danger:     Theme.highlightFromColor("#d13415", Theme.colorScheme)
+       readonly property color background: Theme.colorScheme === Theme.LightOnDark ? "#8eb533" : "#f6f8ed"
+       readonly property color foreground: Theme.colorScheme === Theme.LightOnDark ? "#f6f8ed" : "#394611"
+       //readonly property color warn:       Theme.highlightFromColor("#ffe629", Theme.colorScheme)
+       //readonly property color danger:     Theme.highlightFromColor("#d13415", Theme.colorScheme)
+       readonly property color warn:       Theme.colorScheme === Theme.LightOnDark ? "#ffe629" : Theme.highlightFromColor("#ffe629", Theme.colorScheme)
+       readonly property color danger:     Theme.colorScheme === Theme.LightOnDark ? "#d13415" : Theme.highlightFromColor("#d13415", Theme.colorScheme)
     }
 
     Settings {
