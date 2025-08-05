@@ -32,6 +32,8 @@
 #include <QSettings>
 #include <QUrlQuery>
 
+#include <QRegExp>
+
 #include <variant>
 
 #define API_MAX_RESULTS 5
@@ -191,6 +193,7 @@ void Identification::identifyPlant(QVariantList& request)
       return;
    }
 
+   qDebug() << "POSTing a multipart request:" << url.query().remove(QRegExp("api-key=[^&]+"));
    net->postMultipart<network::ReqCallback>(
      url, multiPart, headers,
      [this, multiPart, sourceImages](int err, int code, QByteArray body)
