@@ -27,11 +27,18 @@ Page {
       }
    }
 
+   ListModel {
+      id: languagesModel
+   }
    PlantsModel {
       id: plantsModel
 
       onLanguageChanged: console.debug("language now:", plantsModel.language)
-      onAvailableLanguagesChanged: function(languages) { console.debug("languages now:", languages, typeof plantsModel.availableLanguages) }
+      onAvailableLanguagesChanged: function(languages) {
+          console.debug("languages now:", languages, availableLanguages.count, typeof plantsModel.availableLanguages)
+          languagesModel.clear()
+          languages.forEach(function(l) { languagesModel.append({"language": l}) })
+      }
       onIdentificationResult: {
          app.loadingScreenShown = false
 
@@ -229,7 +236,7 @@ Page {
    }
    function openSettings() {
       var p = pageStack.push(Qt.resolvedUrl("./SettingsPage.qml"),
-          { languages: plantsModel.availableLanguages, language: plantsModel.language }
+          { languages: languagesModel, language: plantsModel.language }
       )
 
       p.langChanged.connect(function (lang) {

@@ -9,8 +9,7 @@ Page {
    signal apiKeyChanged(string key)
    signal langChanged(string lang)
 
-   property var languages
-   onLanguagesChanged: console.debug("Settings: languages:", languages)
+   property ListModel languages
    property string language
 
    SilicaFlickable {
@@ -32,6 +31,8 @@ Page {
          anchors.left: parent.left
          anchors.right: parent.right
          anchors.top: header.bottom
+
+         spacing: Theme.paddingMedium
 
          SectionHeader {
             text: i18n.tr("Pl@ntNet API key")
@@ -73,13 +74,13 @@ Page {
          }
 
          ComboBox {
-            enabled: settings.apiKey && (settingsPage.languages.length > 1)
+            enabled: settings.apiKey && (settingsPage.languages.count > 1)
             label: i18n.tr("Result Language")
             description: enabled ? "" : i18n.tr("After setting the API key, and restarting the app, a language can be chosen here.")
             value: settingsPage.language
             menu: ContextMenu {
                 Repeater { model: settingsPage.languages
-                    delegate: MenuItem { text: modelData }
+                    delegate: MenuItem { text: language }
                 }
             }
             onValueChanged: settingsPage.langChanged(value)
