@@ -62,7 +62,9 @@ Page {
                           : i18n.tr( "%1 identified plants").arg(plantList.count)
                        : ""
          BusyIndicator {
-           anchors.centerIn: parent.extraContent
+           anchors.verticalCenter: parent.verticalCenter
+           anchors.left: extraContent.left
+           anchors.leftMargin: units.gi(1)
            size: BusyIndicatorSize.Medium
            running: app.loadingScreenShown
          }
