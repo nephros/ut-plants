@@ -277,7 +277,7 @@ Page {
       p.apiKeyChanged.connect(function (key) {
          console.info("Storing API key from Settings")
          plantsModel.setApiKey(key)
-         settings.apiKey = true
+         settings.apiKey = (key.length > 0)
       })
    }
 }
