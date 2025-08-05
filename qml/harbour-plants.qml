@@ -78,15 +78,15 @@ ApplicationWindow {
             ProgressBar {
                 width: parent.width
                 y: parent.height *1/5
-                horizontalCenter: parent.horizontalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
                 visible: app.loadingScreenShown
                 indeterminate : true
             }
             CoverActionList {
-                enabled: PageStack.currentPage.objectName == "mainPage"
+                enabled: pageStack.currentPage.objectName == "mainPage"
                 CoverAction {
                     iconSource:  "image://theme/icon-cover-new"
-                    onTriggered: { mainPage.openIdentify(); appWindow.activate()}
+                    onTriggered: { mainPage.openIdentify(); appWindow.activate() }
                 }
             }
         }
