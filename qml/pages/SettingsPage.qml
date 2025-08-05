@@ -10,6 +10,7 @@ Page {
    signal langChanged(string lang)
 
    property var languages
+   onLanguagesChanged: console.debug("Settings: languages:", languages)
    property string language
 
    SilicaFlickable {

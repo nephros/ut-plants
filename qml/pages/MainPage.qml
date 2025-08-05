@@ -31,7 +31,7 @@ Page {
       id: plantsModel
 
       onLanguageChanged: console.debug("language now:", plantsModel.language)
-      onAvailableLanguagesChanged: function(languages) { console.debug("languages now:", languages, plantsModel.availableLanguages.length) }
+      onAvailableLanguagesChanged: function(languages) { console.debug("languages now:", languages, typeof plantsModel.availableLanguages) }
       onIdentificationResult: {
          app.loadingScreenShown = false
 
