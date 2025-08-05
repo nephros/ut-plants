@@ -9,6 +9,7 @@ import PlantsModel 1.0
 
 Page {
    id: mainPage
+   objectName: "mainPage"
    //property bool loadingScreenShown: false
 
    Component.onCompleted: {
@@ -116,9 +117,7 @@ Page {
                       mainPage.openSettings()
                    })
                 } else {
-                   pageStack.push(Qt.resolvedUrl("RequestPage.qml"), {
-                                     "plantsModel": plantsModel
-                                  })
+                   mainPage.openIdentify()
                 }
              }
           }
@@ -216,6 +215,11 @@ Page {
    }
    */
 
+   function openIdentify() {
+      pageStack.push(Qt.resolvedUrl("RequestPage.qml"), {
+                        "plantsModel": plantsModel
+                     })
+   }
    function openSettings() {
       var p = pageStack.push(Qt.resolvedUrl("./SettingsPage.qml"),
           { languages: plantsModel.availableLanguages, language: plantsModel.language }

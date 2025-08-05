@@ -75,6 +75,20 @@ ApplicationWindow {
                 textColor: Theme.highlightColor
                 //icon.source: "image://theme/harbour-plants"
             }
+            ProgressBar {
+                width: parent.width
+                y: parent.height *1/5
+                horizontalCenter: parent.horizontalCenter
+                visible: app.loadingScreenShown
+                indeterminate : true
+            }
+            CoverActionList {
+                enabled: PageStack.currentPage.objectName == "mainPage"
+                CoverAction {
+                    iconSource:  "image://theme/icon-cover-new"
+                    onTriggered: { mainPage.openIdentify(); appWindow.activate()}
+                }
+            }
         }
     }
     //apparently, a DockedPanel can be in an ApplicationWindow, but we must bind bottomMargin: panel.visibleSize
