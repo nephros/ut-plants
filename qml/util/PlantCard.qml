@@ -33,35 +33,14 @@ Rectangle { id: plantCard
 
       spacing: plantCard.elementSpacing
 
-      Item {
-         id: header
-         anchors.left: parent.left
-         anchors.right: parent.right
-         height: units.gu(4)
-
-         Column {
-            id: nameColumn
-            anchors.top: parent.top
-            anchors.left: parent.left
-
-            Label {
-               text: i18n.tr("Name")
-               font.bold: true
-               color: brand.foreground
-            }
-            Label {
-               text: plant.species
-               color: brand.foreground
-            }
-         }
-
+      Label {
+         text: i18n.tr("Name")
+         font.bold: true
+         color: brand.foreground
          Row {
-            anchors.top: parent.top
             anchors.right: parent.right
-            height: nameColumn.height
-
+            height: parent.height
             spacing: units.gu(1)
-
             Icon {
                anchors.verticalCenter: scoreLabel.verticalCenter
                source: "image://theme/icon-m-diagnostic"
@@ -81,13 +60,18 @@ Rectangle { id: plantCard
                         : (scoreValue > 50 ? brand.warn : brand.danger)
             }
          }
-         Rectangle {
-            width: parent.width
-            anchors.top: parent.botton
-            height: 1
-            color: brand.foreground
-         }
       }
+      Label {
+         text: plant.species
+         color: brand.foreground
+      }
+
+      Rectangle {
+         width: parent.width
+         height: 1
+         color: brand.foreground
+      }
+
       ListView {
          id: resultImagesList
          anchors.left: parent.left
