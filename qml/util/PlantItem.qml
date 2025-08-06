@@ -22,9 +22,10 @@ Rectangle {
 
    Image {
       id: thumbImage
-      width: units.gu(8)
-      height: units.gu(8)
+      width:  parent.height - anchors.leftMargin
+      height: width
       anchors.left: parent.left
+      anchors.leftMargin: units.gu(1)
       anchors.verticalCenter: parent.verticalCenter
 
       source: item.imageUrl
