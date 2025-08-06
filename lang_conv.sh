@@ -11,14 +11,14 @@ for f in po/*po; do
   lang=$(basename $f .po)
   # Second, pull translated strings from intltool files:
   printf '%s: Converting po files\n' $lang
-  lconvert -target-language $lang -locations relative -if po -i $f -of ts -o translations/${lang}.ts
+  lconvert -target-language $lang -if po -i $f -of ts -o translations/${lang}.ts
 
   # Third, update the files with the QML strings
   printf '%s: Updating strings from QML\n' $lang
-  lupdate -silent -recursive qml src -target-language $lang  -locations relative -ts translations/${lang}.ts
+  lupdate -silent -recursive qml src -target-language $lang -ts translations/${lang}.ts
   # Everything will be marked unfinishad, lets change that:
   printf '%s: Marking all translations as finished\n' $lang
-  sed -i 's/type="unfinished"//' translations/${lang}.ts
+  sed -i 's/type="unfinished">\([^<]\)/>\1/' translations/${lang}.ts
   # Fourth, compile the qm files
   printf '%s: Releasing translations\n' $lang
   lrelease translations/${lang}.ts -qm translations/harbour-plants_${lang}.qm
