@@ -163,6 +163,10 @@ PlantResult Plants::_openPlant(QByteArray jsonData)
    plant->commonNames = parsed["commonNames"].toString();
    plant->score = parsed["score"].toDouble();
 
+   // these were not saved in the original Plants, so only add them if present:
+   plant->genus = (parsed.contains("genus") ? parsed["genus"].toString() : "";
+   plant->family = (parsed.contains("family") ? parsed["family"].toString() : "";
+
    foreach (auto image, parsed["images"].toArray())
    {
       QVariantMap currentImage;

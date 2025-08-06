@@ -41,6 +41,8 @@ struct Plant
 {
    QString id;
    QString species;
+   QString genus;
+   QString family;
    QString commonNames;
    double score;
    QVariantList images;
@@ -52,6 +54,8 @@ struct Plant
       QVariantMap m;
       m.insert("id", id);
       m.insert("species", species);
+      m.insert("genus", genus);
+      m.insert("family", family);
       m.insert("commonNames", commonNames);
       m.insert("score", score);
       m.insert("images", images);

@@ -249,7 +249,19 @@ void Identification::identifyPlant(QVariantList& request)
               continue;
            }
 
-           currentResult["species"] = species["scientificName"].toString();
+           currentResult["species"] = species.contains("scientificNameWithoutAuthor")
+              ? species["scientificNameWithoutAuthor"].toString()
+              : species["scientificName"].toString();
+
+           auto genus = dict["genus"].toObject();
+           currentResult["genus"] = genus.contains("scientificNameWithoutAuthor")
+              ? genus["scientificNameWithoutAuthor"].toString()
+              : genus["scientificName"].toString();
+
+           auto family = dict["family"].toObject();
+           currentResult["family"] = family.contains("scientificNameWithoutAuthor")
+              ? family["scientificNameWithoutAuthor"].toString()
+              : family["scientificName"].toString();
 
            QStringList commonNames;
 
