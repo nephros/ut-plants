@@ -58,12 +58,17 @@ Dialog {
 
       delegate: Column {
           width: resultList.width
+          spacing: units.gu(2)
           Label {
                 width: card.width
-                height: units.gu(2)
                 text: i18n.tr("%1/%2 results").arg(index+1).arg(resultsModel.count)
                 color: Theme.highlightColor
                 horizontalAlignment: Qt.AlignHCenter
+                Rectangle { anchors.fill: parent
+                    color: "transparent"
+                    border.width: 1
+                    border.color: Theme.secondaryHighlightColor
+                }
           }
           PlantCard { id: card
              width: parent.width - units.gu(2)*2
