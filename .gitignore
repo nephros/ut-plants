@@ -4,3 +4,5 @@ build
 *.pro
 *.pro.user
 *.autosave
+translations/*.qm
+translations/*.qrc
