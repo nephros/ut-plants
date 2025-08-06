@@ -74,6 +74,7 @@ ApplicationWindow {
                 textColor: Theme.highlightColor
                 //icon.source: "image://theme/harbour-plants"
             }
+            /* TODO:
             ProgressBar {
                 width: parent.width
                 y: parent.height *1/5
@@ -88,6 +89,7 @@ ApplicationWindow {
                     onTriggered: { mainPage.openIdentify(); appWindow.activate() }
                 }
             }
+            */
         }
     }
 }
