@@ -61,6 +61,7 @@ Dialog {
           spacing: units.gu(2)
           Label {
                 width: card.width
+                anchors.horizontalCenter: card.horizontalCenter
                 text: i18n.tr("%1/%2 results").arg(index+1).arg(resultsModel.count)
                 color: Theme.highlightColor
                 horizontalAlignment: Qt.AlignHCenter
