@@ -11,7 +11,11 @@ for f in po/*po; do
   lang=$(basename $f .po)
   # Second, pull translated strings from intltool files:
   printf '%s: Converting po files\n' $lang
-  lconvert -target-language $lang -if po -i $f -of ts -o translations/${lang}.ts
+  EXTRATS=""
+  if [ -e translations/${lang}.ts ]; then
+  EXTRATS="-i translations/${lang}.ts"
+  fi
+  lconvert -target-language $lang -i $f ${EXTRATS} -of ts -o translations/${lang}.ts
 
   # Third, update the files with the QML strings
   printf '%s: Updating strings from QML\n' $lang
