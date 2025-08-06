@@ -74,8 +74,8 @@ Rectangle { id: plantCard
 
       ListView {
          id: resultImagesList
-         anchors.left: parent.left
-         width: parent.width
+         anchors.horizontalCenter: parent.horizontalCenter
+         width: parent.width - units.gu(2)
          height: width
          model: resultImageModel
 
