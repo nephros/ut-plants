@@ -72,6 +72,7 @@ Rectangle { id: plantCard
       }
 
       Row {
+          visible: plant.genus
           Label {
              text: i18n.tr("Genus")
              color: brand.foreground
@@ -90,6 +91,7 @@ Rectangle { id: plantCard
       }
 
       Label {
+         visible: plant.family
          text: plant.family
          font.italic: true
          color: brand.foreground
