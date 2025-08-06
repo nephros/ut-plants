@@ -86,6 +86,7 @@ Page { id: requestPage
       }
       PullDownMenu {
          quickSelect: true
+         busy: imageModel.count == 0
          MenuItem { text: enabled ? i18n.tr("Add Images") : i18n.tr("Can not add more than 5 images"); enabled: imageModel.count < 5; onClicked: addNewImage() }
          MenuItem {
             enabled: imageModel.count > 0
@@ -107,9 +108,8 @@ Page { id: requestPage
       }
       PushUpMenu {
          visible: imageModel.count > 0
-         busy: visible
          quickSelect: true
-         MenuItem { text: i18n.tr("Clear")
+         MenuItem { text: i18n.tr("Remove All")
              onClicked: Remorse.popupAction(requestPage, i18n.tr("Cleared"), function() { imageModel.clear() }, 2800 )
          }
       }
