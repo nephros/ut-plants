@@ -35,13 +35,11 @@ Page {
 
       onLanguageChanged: console.debug("language now:", plantsModel.language)
       onAvailableLanguagesChanged: function(languages) {
-          /*
-          console.debug("languages now:",
-            languages,
-            availableLanguages.count,
-            typeof plantsModel.availableLanguages,
-            JSON.stringify(plantsModel.availableLanguages,null,2))
-          */
+          //console.debug("languages now:",
+          //  languages,
+          //  availableLanguages.count,
+          //  typeof plantsModel.availableLanguages,
+          //  JSON.stringify(plantsModel.availableLanguages,null,2))
           languagesModel.clear()
           languages.forEach(function(l) {
             const lc = Qt.locale(l)
