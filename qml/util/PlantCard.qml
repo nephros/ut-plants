@@ -33,13 +33,18 @@ Rectangle { id: plantCard
 
       spacing: plantCard.elementSpacing
 
-      Label {
-         text: i18n.tr("Name")
-         font.bold: true
-         color: brand.foreground
+      Row {
+         width: parent.width - parent.padding*2
+         anchors.horizontalCenter: parent.horizontalCenter
+         spacing: units.gu(1)
+         Label { id: nameLabel
+            text: i18n.tr("Name")
+            font.bold: true
+            color: brand.foreground
+         }
          Row {
-            anchors.right: parent.right
-            height: parent.height
+            height: nameLabel.height
+            width: parent.width - (nameLabel.width + parent.spacing)
             spacing: units.gu(1)
             Icon {
                anchors.verticalCenter: scoreLabel.verticalCenter
@@ -66,9 +71,27 @@ Rectangle { id: plantCard
          color: brand.foreground
       }
 
+      Row {
+          Label {
+             text: i18n.tr("Genus")
+             color: brand.foreground
+          }
+
+          Label {
+             text: plant.genus
+             color: brand.foreground
+          }
+      }
+
       Rectangle {
          width: parent.width
          height: 1
+         color: brand.foreground
+      }
+
+      Label {
+         text: plant.family
+         font.italic: true
          color: brand.foreground
       }
 
