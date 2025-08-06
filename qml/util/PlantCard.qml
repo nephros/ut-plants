@@ -38,13 +38,13 @@ Rectangle { id: plantCard
          anchors.horizontalCenter: parent.horizontalCenter
          spacing: units.gu(1)
          Label { id: nameLabel
+            width: parent.width - (scoreRow.width + parent.spacing)
             text: i18n.tr("Name")
             font.bold: true
             color: brand.foreground
          }
-         Row {
+         Row { id: scoreRow
             height: nameLabel.height
-            width: parent.width - (nameLabel.width + parent.spacing)
             spacing: units.gu(1)
             Icon {
                anchors.verticalCenter: scoreLabel.verticalCenter
