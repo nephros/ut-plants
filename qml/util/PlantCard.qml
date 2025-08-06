@@ -33,7 +33,7 @@ Rectangle { id: plantCard
 
       spacing: plantCard.elementSpacing
 
-      Row {
+      Row { id: nameRow
          width: parent.width - parent.padding*2
          anchors.horizontalCenter: parent.horizontalCenter
          spacing: units.gu(1)
@@ -85,7 +85,8 @@ Rectangle { id: plantCard
       }
 
       Rectangle {
-         width: parent.width
+         width: nameRow.width
+         anchors.horizontalCenter: nameRow.horizontalCenter
          height: 1
          color: brand.foreground
       }
