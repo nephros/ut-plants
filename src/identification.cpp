@@ -263,16 +263,6 @@ void Identification::identifyPlant(QVariantList& request)
               ? family["scientificNameWithoutAuthor"].toString()
               : family["scientificName"].toString();
 
-           qDebug() << "Extra attributes response: "
-               << "species"  << species.contains("scientificNameWithoutAuthor")
-               << "genus"    << genus.contains("scientificNameWithoutAuthor")
-               << "family"   << family.contains("scientificNameWithoutAuthor");
-
-           qDebug() << "Extra attributes in result: "
-               << currentResult["species"].toString()
-               << currentResult["genus"].toString()
-               << currentResult["family"].toString();
-
            QStringList commonNames;
 
            foreach (auto commonName, species["commonNames"].toArray())
