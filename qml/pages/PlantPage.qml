@@ -13,8 +13,9 @@ Page {
       contentHeight: header.height + plantCard.height
 
       PageHeader { id: header
-         title: i18n.tr('Plant details')
-         description: plant.commonNames.split(", ")[0]
+         //title: i18n.tr('Plant details')
+         title: plant.commonNames.split(", ")[0]
+         description: plant.family
       }
 
       PlantCard { id: plantCard
@@ -31,6 +32,10 @@ Page {
           MenuItem {
               text: i18n.tr("Copy species to Clipboard")
               onDelayedClick: Clipboard.text = plant.species
+          }
+          MenuItem {
+              text: i18n.tr("Copy family to Clipboard")
+              onDelayedClick: Clipboard.text = plant.family
           }
           MenuItem {
               text: i18n.tr("Search on Wikipedia")
