@@ -25,6 +25,7 @@
 #include <QDir>
 #include <QImage>
 #include <QObject>
+#include <QLocale>
 
 #include "identification.hpp"
 #include "network.hpp"
@@ -64,7 +65,6 @@ class PlantsModel : public QAbstractListModel
 
    Q_OBJECT
    Q_PROPERTY(int count READ rowCount NOTIFY countChanged)
-   Q_PROPERTY(QStringList availableLanguages READ availableLanguages NOTIFY availableLanguagesChanged)
    Q_PROPERTY(QString language MEMBER language NOTIFY languageChanged)
 
 public:
@@ -104,10 +104,7 @@ public:
       return mItemMap.count(id) ? mItemMap[id] : nullptr;
    }
 
-   QStringList availableLanguages()
-   {
-       return languages;
-   }
+   Q_INVOKABLE QVariantMap availableLanguages() const;
 
 signals:
    void countChanged();

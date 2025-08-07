@@ -9,20 +9,8 @@ Page {
    signal apiKeyChanged(string key)
    signal langChanged(string lang)
 
-   property ListModel languages
+   property var languages
    property string language
-   property string languageName
-   onLanguageChanged: {
-       if(!!languages) {
-          for (var i=0; i<settingsPage.languages.count; ++i) {
-             const l = settingsPage.languages.get(i)
-             if (l==settingsPage.language) {
-                languageName = l.name
-                break
-             }
-          }
-       }
-   }
 
    SilicaFlickable {
       id: flickable
@@ -86,60 +74,35 @@ Page {
             }
          }
          ValueButton { id: langButton
-            enabled: (!!languages && (languages.count > 1))
             label: i18n.tr("Result Language")
             description: i18n.tr("The language to use for Identification results. Default is to use the current Locale, or English if not available.")
-            value: settingsPage.languageName
+            value: languages[language]
             onClicked: {
                var dlg = pageStack.push(langSelector)
                dlg.accepted.connect(function() {
                   settingsPage.langChanged(dlg.selectedLanguage)
+                  settingsPage.language = dlg.selectedLanguage
                })
             }
          }
          Component { id: langSelector
             Dialog { id: langDialog
-              property ListModel languages: settingsPage.languages
               property string selectedLanguage
               DialogHeader{ id: head }
               SilicaListView {
                 width: parent.width
                 anchors.top: head.bottom
                 anchors.bottom: parent.bottom
-                model: languages
+                model: Object.keys(settingsPage.languages)
                 delegate: ListItem {
                   anchors.margins: units.gu(2)
                   Label { text: modelData + ": " + settingsPage.languages[modelData]; anchors.left: parent.left; anchors.right: parent.right; anchors.margins: units.gu(2)}
-                  onClicked: { langDialog.selectedLanguage = language; langDialog.accept() }
+                  onClicked: { langDialog.selectedLanguage = modelData; langDialog.accept() }
                 }
               }
             }
          }
-         /*
-         ComboBox {
-            enabled: settings.apiKey && (settingsPage.languages.count > 1)
-            label: i18n.tr("Result Language")
-            description: enabled ? i18n.tr("Determined from Locale, or default (English)") : i18n.tr("After setting the API key, and restarting the app, a language can be chosen here.")
-            currentIndex: settingsPage.languageIdx
-            menu: ContextMenu {
-                Repeater { model: settingsPage.languages
-                    delegate: MenuItem { text: model.language + ": " + name }
-                }
-            }
-            onValueChanged: settingsPage.langChanged(settingsPage.languages.get(currentIndex).language)
-         }
-         */
 
-         /*
-         TextSwitch {
-            anchors.left: parent.left
-            anchors.right: parent.right
-
-            text: i18n.tr("Keep display on while using the app")
-            checked: settings.keepDisplayOn
-            onCheckedChanged: settings.keepDisplayOn = checked
-         }
-         */
          TextSwitch {
             anchors.left: parent.left
             anchors.right: parent.right

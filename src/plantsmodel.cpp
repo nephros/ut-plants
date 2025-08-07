@@ -49,7 +49,7 @@ PlantsModel::PlantsModel(QObject* parent)
            &PlantsModel::identificationResult);
    connect(&identificator, &Identification::languagesChanged, this,
                 [=](QStringList languages) {
-                      this->setProperty("languages", languages);
+                      this->languages = languages;
                       // emit signal:
                       this->availableLanguagesChanged(languages);
                    }
@@ -270,6 +270,21 @@ QString PlantsModel::deletePlant(QString id)
 void PlantsModel::identifyPlant(QVariantList request)
 {
    identificator.identifyPlant(request);
+}
+
+QVariantMap PlantsModel::availableLanguages() const
+{
+    QVariantMap map;
+    if (languages.isEmpty()) {
+       qDebug() << "Mapping: no languages in list, returning empty map";
+    } else {
+       for (const auto &l : languages) {
+          QLocale loc(l);
+          QVariant v(loc.nativeLanguageName());
+          map.insert(l,v);
+       }
+    }
+    return map;
 }
 
 } // namespace plants
