@@ -393,7 +393,7 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
     <message>
         <location filename="../qml/pages/MainPage.qml" line="107"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Retirer</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="115"/>
@@ -413,7 +413,7 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
     <message>
         <location filename="../qml/pages/MainPage.qml" line="126"/>
         <source>Pull down to start a new identification</source>
-        <translation type="unfinished"></translation>
+        <translation>Retirez pour commencer une nouvelle identification</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="131"/>
@@ -457,7 +457,7 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
     <message>
         <location filename="../qml/util/PlantCard.qml" line="77"/>
         <source>Genus</source>
-        <translation type="unfinished"></translation>
+        <translation>Genre</translation>
     </message>
     <message>
         <location filename="../qml/util/PlantCard.qml" line="148"/>
@@ -483,22 +483,22 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
     <message>
         <location filename="../qml/pages/PlantPage.qml" line="28"/>
         <source>Copy names to Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier les noms dans le Presse-papiers</translation>
     </message>
     <message>
         <location filename="../qml/pages/PlantPage.qml" line="32"/>
         <source>Copy species to Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier espèces dans le Presse-papiers</translation>
     </message>
     <message>
         <location filename="../qml/pages/PlantPage.qml" line="37"/>
         <source>Copy family to Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Copier famille dans le Presse-papiers</translation>
     </message>
     <message>
         <location filename="../qml/pages/PlantPage.qml" line="41"/>
         <source>Search on Wikipedia</source>
-        <translation type="unfinished"></translation>
+        <translation>Recherche wikipédia</translation>
     </message>
 </context>
 <context>
@@ -554,17 +554,17 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
     <message>
         <location filename="../qml/pages/RequestPage.qml" line="81"/>
         <source>Remove image</source>
-        <translation type="unfinished"></translation>
+        <translation>Enlever foto</translation>
     </message>
     <message>
         <location filename="../qml/pages/RequestPage.qml" line="90"/>
         <source>Add Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter des photos</translation>
     </message>
     <message>
         <location filename="../qml/pages/RequestPage.qml" line="90"/>
         <source>Can not add more than 5 images</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne pas ajouter plus de 5 photos</translation>
     </message>
     <message>
         <location filename="../qml/pages/RequestPage.qml" line="93"/>
@@ -574,22 +574,22 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
     <message>
         <location filename="../qml/pages/RequestPage.qml" line="112"/>
         <source>Remove All</source>
-        <translation type="unfinished"></translation>
+        <translation>Supprimer tout</translation>
     </message>
     <message>
         <location filename="../qml/pages/RequestPage.qml" line="113"/>
         <source>Cleared</source>
-        <translation type="unfinished"></translation>
+        <translation>Éliminé</translation>
     </message>
     <message>
         <location filename="../qml/pages/RequestPage.qml" line="117"/>
         <source>No images</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas de fotos</translation>
     </message>
     <message>
         <location filename="../qml/pages/RequestPage.qml" line="118"/>
         <source>Pull down to add new images</source>
-        <translation type="unfinished"></translation>
+        <translation>Tirez vers pour ajouter de nouvelles fotos</translation>
     </message>
 </context>
 <context>
@@ -597,7 +597,7 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
     <message>
         <location filename="../qml/pages/ResultsPage.qml" line="25"/>
         <source>Identification results: </source>
-        <translation type="unfinished"></translation>
+        <translation>Résultat de identification: </translation>
     </message>
     <message>
         <location filename="../qml/pages/ResultsPage.qml" line="26"/>
@@ -607,7 +607,7 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
     <message>
         <location filename="../qml/pages/ResultsPage.qml" line="27"/>
         <source>Back</source>
-        <translation type="unfinished"></translation>
+        <translation>Retour</translation>
     </message>
     <message>
         <location filename="../qml/pages/ResultsPage.qml" line="38"/>
@@ -620,9 +620,9 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
         <translation>Le résultat n&apos;a pas pu être enregistré (%1).</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ResultsPage.qml" line="64"/>
+        <location filename="../qml/pages/ResultsPage.qml" line="65"/>
         <source>%1/%2 results</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 de %2 resultats</translation>
     </message>
 </context>
 <context>
@@ -633,12 +633,12 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
         <translation>Paramètres</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="50"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="51"/>
         <source>Pl@ntNet API key</source>
         <translation>Clé d&apos;API de Pl@ntNet</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="59"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="60"/>
         <source>In order to use the Pl@ntNet plant identification service, it is necessary to register at their website as developer and obtain an API-Key. This key needs to be configured within this app.
 
 Please visit &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantnet.org/signup&lt;/a&gt; and create a developer account. Afterwards visit &lt;a href=&quot;https://my.plantnet.org/account&quot;&gt;https://my.plantnet.org/account&lt;/a&gt; and click the eye-symbol at the very top (&quot;my API key&quot;) to show the API-Key. Copy this key and paste it into the below text input field.</source>
@@ -647,49 +647,49 @@ Please visit &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my
 Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantnet.org/signup&lt;/a&gt; et créer un compte. Ensuite, visitez &lt;a href=&quot;https://my.plantnet.org/account&quot;&gt;https://my.plantnet.org/account&lt;/a&gt; et cliquez sur le symbole en forme d&apos;œil tout en haut (« ma clé d&apos;API ») pour afficher la clé d&apos;API. Copiez cette clé et collez-la dans le champ de saisie de texte ci-dessous.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="70"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="71"/>
         <source>API-Key:</source>
         <translation>Clé d&apos;API :</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="74"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="75"/>
         <source>New API Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Clé d&apos;API nouvelle</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="75"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="76"/>
         <source>Enter API-Key</source>
         <translation>Saisissez la clé d&apos;API</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="76"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="77"/>
         <source>The value will be saved on Enter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Valeur sera sauvegardée sur clé Entrée.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="78"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="79"/>
         <source>API Key already stored. Edit to update</source>
-        <translation type="unfinished"></translation>
+        <translation>Clé stockée. Modifier pour mettre à jour</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="78"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="79"/>
         <source>No API Key stored</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="89"/>
-        <source>Result Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas de clé d&apos;API stockée</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="90"/>
+        <source>Result Language</source>
+        <translation>Langue des résultats</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="91"/>
         <source>The language to use for Identification results. Default is to use the current Locale, or English if not available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="146"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="147"/>
         <source>Prevent device sleep on outstanding request</source>
-        <translation type="unfinished"></translation>
+        <translation>Empêcher le sommeil du dispositif sur demande en attente</translation>
     </message>
 </context>
 </TS>

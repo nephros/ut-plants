@@ -624,7 +624,7 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
         <translation>Ergebnis konnte nicht gespeichert werden (%1).</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ResultsPage.qml" line="64"/>
+        <location filename="../qml/pages/ResultsPage.qml" line="65"/>
         <source>%1/%2 results</source>
         <translation>%1 von %2 Ergebnissen</translation>
     </message>
@@ -637,12 +637,12 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="50"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="51"/>
         <source>Pl@ntNet API key</source>
         <translation>Pl@ntNet API-Schlüssel</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="59"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="60"/>
         <source>In order to use the Pl@ntNet plant identification service, it is necessary to register at their website as developer and obtain an API-Key. This key needs to be configured within this app.
 
 Please visit &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantnet.org/signup&lt;/a&gt; and create a developer account. Afterwards visit &lt;a href=&quot;https://my.plantnet.org/account&quot;&gt;https://my.plantnet.org/account&lt;/a&gt; and click the eye-symbol at the very top (&quot;my API key&quot;) to show the API-Key. Copy this key and paste it into the below text input field.</source>
@@ -651,47 +651,47 @@ Please visit &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my
 Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantnet.org/signup&lt;/a&gt; erstellen und anschließend unter &lt;a href=&quot;https://my.plantnet.org/account&quot;&gt;https://my.plantnet.org/account&lt;/a&gt; ganz oben mit dem &quot;Augen-Symbol&quot; den API-Schlüssel anzeigen lassen. Dieser kann dann in das unten stehende Eingabefeld kopiert werden.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="70"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="71"/>
         <source>API-Key:</source>
         <translation>API-Schlüssel:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="74"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="75"/>
         <source>New API Key</source>
         <translation>Neuer API-Schlüssel</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="75"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="76"/>
         <source>Enter API-Key</source>
         <translation>API-Schlüssel eingeben</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="76"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="77"/>
         <source>The value will be saved on Enter.</source>
         <translation>Der Wert wird mit Enter gespeichert.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="78"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="79"/>
         <source>API Key already stored. Edit to update</source>
         <translation>API-Schlüssel bereits gespeichert. Zum Ändern editieren</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="78"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="79"/>
         <source>No API Key stored</source>
         <translation>Kein API-Schlüssel gespeichert</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="89"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="90"/>
         <source>Result Language</source>
         <translation>Sprache der Ergebnisse</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="90"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="91"/>
         <source>The language to use for Identification results. Default is to use the current Locale, or English if not available.</source>
         <translation>Die Sprache der Itentifikationsergebnisse. Standard ist die aktuelle Lokalisierung oder Englisch wenn nicht verfügbar.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="146"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="147"/>
         <source>Prevent device sleep on outstanding request</source>
         <translation>Standby verhindern, während Anfrage läuft</translation>
     </message>

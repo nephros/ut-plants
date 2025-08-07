@@ -620,7 +620,7 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
         <translation>De resultaten kunnen niet worden bewaard (%1).</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ResultsPage.qml" line="64"/>
+        <location filename="../qml/pages/ResultsPage.qml" line="65"/>
         <source>%1/%2 results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -633,12 +633,12 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
         <translation>Instellingen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="50"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="51"/>
         <source>Pl@ntNet API key</source>
         <translation>Pl@ntNet-api-sleutel</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="59"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="60"/>
         <source>In order to use the Pl@ntNet plant identification service, it is necessary to register at their website as developer and obtain an API-Key. This key needs to be configured within this app.
 
 Please visit &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantnet.org/signup&lt;/a&gt; and create a developer account. Afterwards visit &lt;a href=&quot;https://my.plantnet.org/account&quot;&gt;https://my.plantnet.org/account&lt;/a&gt; and click the eye-symbol at the very top (&quot;my API key&quot;) to show the API-Key. Copy this key and paste it into the below text input field.</source>
@@ -647,47 +647,47 @@ Please visit &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my
 Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantnet.org/signup&lt;/a&gt; in de browser en maak een account aan. Ga vervolgens naar &lt;a href=&quot;https://my.plantnet.org/account&quot;&gt;https://my.plantnet.org/account&lt;/a&gt; en druk op het oogje bovenaan de pagina (“Mijn api-sleutel”) om de api-sleutel te tonen. Kopieer de sleutel en plak hem in onderstaand veld.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="70"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="71"/>
         <source>API-Key:</source>
         <translation>Api-sleutel:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="74"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="75"/>
         <source>New API Key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="75"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="76"/>
         <source>Enter API-Key</source>
         <translation>Voer de api-sleutel in</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="76"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="77"/>
         <source>The value will be saved on Enter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="78"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="79"/>
         <source>API Key already stored. Edit to update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="78"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="79"/>
         <source>No API Key stored</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="89"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="90"/>
         <source>Result Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="90"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="91"/>
         <source>The language to use for Identification results. Default is to use the current Locale, or English if not available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="146"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="147"/>
         <source>Prevent device sleep on outstanding request</source>
         <translation type="unfinished"></translation>
     </message>
