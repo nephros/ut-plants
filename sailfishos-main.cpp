@@ -21,6 +21,7 @@
 
    app->setOrganizationName("s710");
    app->setApplicationName("plants");
+   app->setApplicationVersion("0.0.0");
 
    // https://qthub.com/static/doc/qt5/qtcore/qtranslator.html
    QTranslator translator;

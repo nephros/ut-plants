@@ -91,6 +91,7 @@ BuildRequires: sdk-harbour-rpmvalidator
 # >> build pre
 sed -i 's/"Plants"/"%{name}"/' CMakeLists.txt
 sed -i 's/"plants.s710"/"%{orgname}.%{appname}"/' CMakeLists.txt
+sed -i 's/"0\.0\.0"/"%{version}"/' sailfishos-main.cpp
 mv Plants.desktop.in %{name}.desktop.in
 # failed to persuade cmake to do this. this is simple, and just works:
 sh ./lang_conv.sh

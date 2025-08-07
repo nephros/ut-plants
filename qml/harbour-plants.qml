@@ -13,6 +13,9 @@ ApplicationWindow {
     id: app
 
     allowedOrientations: defaultAllowedOrientations
+    Component.onCompleted: {
+        console.info("%1.%2 v%3 is starting.".arg(Qt.organization.name).arg(Qt.application.name).arg(Qt.application.version))
+    }
 
     cover: coverPage
     initialPage: mainPage
