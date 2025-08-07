@@ -178,7 +178,7 @@ Page { id: requestPage
             imageModel.append({
                                  "type": 'image',
                                  "url": fileUrl + '',
-                                 "organ": PlantUtils.organs[1].name
+                                 "organ": PlantUtils.organs[0].name
                               })
          }
       })
