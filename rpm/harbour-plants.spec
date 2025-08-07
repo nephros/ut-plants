@@ -32,10 +32,13 @@ License:    MIT
 URL:        https://github.com/nephros/ut-plants
 Source0:    %{name}-%{version}.tar.gz
 Source100:  harbour-plants.yaml
+Requires(post): sailfishshare-components
+Requires(postun): sailfishshare-components
 BuildRequires:  pkgconfig(sailfishapp)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(Qt5DBus)
 BuildRequires:  cmake
 BuildRequires:  intltool
 BuildRequires:  sailfish-svg2png
@@ -139,9 +142,14 @@ desktop-file-edit  \
 --set-icon=%{name} \
 --set-key=X-Nemo-Application-Type \
 --set-value=silica-qt5 \
+--set-key=X-Share-Methods \
+--set-value=images \
 --remove-key=X-Lomiri-Touch \
 %{buildroot}%{_datadir}/applications/%{name}.desktop
-printf '\n\n[X-Sailjail]\nOrganizationName=%{orgname}\nApplicationName=%{appname}\nPermissions=UserDirs;Camera;MediaIndexing;Internet\n' \
+printf '\n\n[X-Sailjail]\nOrganizationName=%{orgname}\nApplicationName=%{appname}\nPermissions=UserDirs;Camera;MediaIndexing;Internet;Sharing\n' \
+>> %{buildroot}%{_datadir}/applications/%{name}.desktop
+# Sailfish Share:
+printf '\n\n[X-Share Method images]\nDescription=Identify Plant\nDescription[de]=Pflanze Identifizieren\nDescription[fr]=Identifier la plante\nDescription[nl]=Herkenning plante\nCapabilities=image/png;image/jpeg\nSupportsMultipleFiles=yes\n' \
 >> %{buildroot}%{_datadir}/applications/%{name}.desktop
 # MyBackup
 printf '\n\n[X-HarbourBackup]\nBackupConfigList=/apps/%{orgname}/%{appname}/\nBackupPathList=.local/share/%{orgname}/%{appname}/;.config/%{orgname}/%{appname}/\n' \
@@ -165,6 +173,20 @@ echo '=========== DONE checking for Harbour compatability.'
 echo '=========== NOT checking for Harbour compatability.'
 %endif
 # << check
+
+%post
+# >> post
+if [ $1 = 1 ]; then # install
+/usr/bin/sailfish-share-update-cache ||:
+fi
+# << post
+
+%postun
+# >> postun
+if [ $1 = 0 ]; then # uninstall
+/usr/bin/sailfish-share-update-cache ||:
+fi
+# << postun
 
 %files
 %{_bindir}/*

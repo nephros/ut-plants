@@ -8,21 +8,28 @@
 #include <QString>
 #include <QUrl>
 #include <QDebug>
+#include <QDBusConnection>
+#include <QDBusError>
 
 #include <sailfishapp.h>
 
 #include "src/plantsimageprovider.hpp"
 #include "src/plantsmodel.hpp"
 
- int main(int argc, char *argv[])
- {
-   QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
-   QScopedPointer<QQuickView> view(SailfishApp::createView());
+void registerBus() {
+   QDBusConnection bus = QDBusConnection::sessionBus();
+   if (bus.registerService(QStringLiteral("s710.plants"))) {
+       qDebug() << "Successfully registered DBus service.";
+   } else {
+       QDBusError e = bus.lastError();
+       qWarning() << "Failed to register DBus service:"
+                                << QDBusError::errorString(e.type())
+                                << e.name()
+                                << e.message();
+   }
+}
 
-   app->setOrganizationName("s710");
-   app->setApplicationName("plants");
-   app->setApplicationVersion("0.0.0");
-
+void loadTranslator() {
    // https://qthub.com/static/doc/qt5/qtcore/qtranslator.html
    QTranslator translator;
    if(translator.load(QLocale(), QStringLiteral("harbour-plants"), QStringLiteral("_"), QLatin1String(":/i18n"))) {
@@ -30,13 +37,28 @@
    } else {
        qWarning() << "Failed to load translation for" << QLocale::system().name().split('_').at(0);
    }
+}
+
+int main(int argc, char *argv[])
+{
+   QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
+   QScopedPointer<QQuickView> view(SailfishApp::createView());
+
+   app->setOrganizationName("s710");
+   app->setApplicationName("plants");
+   app->setApplicationVersion("0.0.0");
 
    qmlRegisterType<plants::PlantsModel>("PlantsModel", 1, 0, "PlantsModel");
 
    view->engine()->addImageProvider(QLatin1String("plants"), new plants::PlantsImageProvider());
 
+   loadTranslator();
+
    view->setSource(QUrl("qrc:/harbour-plants.qml"));
    view->show();
+
+   // Sailfish Share:Registering the service after QML is loaded
+   registerBus();
 
    return app->exec();
 }

@@ -180,6 +180,13 @@ Page { id: requestPage
       })
    }
 
+   // populated when coming from Sailfish.Share
+   property var sharedImages: ([])
+   onSharedImagesChanged: {
+       console.info("Request: received", typeof sharedImages, sharedImages.length, "images")
+       if (sharedImages.length >0) requestPage.importImages(sharedImages)
+   }
+
    /*
    function addNewImage() {
       var importPage = pageStack.push(Qt.resolvedUrl("ImportPage.qml"), {})

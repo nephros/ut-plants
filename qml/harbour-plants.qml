@@ -58,6 +58,13 @@ ApplicationWindow {
        enabled: settings.preventSleep && app.loadingScreenShown
     }
 
+    // Load Share Provider if supported by SFOS version:
+    property QtObject shareProvider: shareLoader.item
+    Loader { id: shareLoader
+        source: Qt.resolvedUrl("util/SFOSShare.qml")
+        onLoaded: console.debug("Loaded Sharing support")
+    }
+
     Component { id: coverPage
         CoverBackground {
             Image {
