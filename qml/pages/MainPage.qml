@@ -129,6 +129,7 @@ Page {
       PushUpMenu {
           MenuItem {
              text: i18n.tr("New identification")
+             enabled: !app.loadingScreenShown
              onClicked: {
                 if (!settings.apiKey) {
                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
@@ -148,6 +149,7 @@ Page {
       PullDownMenu {
           MenuItem {
              text: i18n.tr("New identification")
+             enabled: !app.loadingScreenShown
              onClicked: {
                 if (!settings.apiKey) {
                    var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
