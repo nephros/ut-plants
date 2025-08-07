@@ -11,6 +11,7 @@ for f in po/*po; do
   lang=$(basename $f .po)
   # Second, pull translated strings from intltool files:
   printf '%s: Converting po files\n' $lang
+  # make it possible to have pre-existing .ts files also, so we can amend what's available in the .po files.
   EXTRATS=""
   if [ -e translations/${lang}.ts ]; then
   EXTRATS="-i translations/${lang}.ts"
