@@ -139,6 +139,7 @@ desktop-file-edit  \
 --set-icon=%{name} \
 --set-key=X-Nemo-Application-Type \
 --set-value=silica-qt5 \
+--remove-key=X-Lomiri-Touch \
 %{buildroot}%{_datadir}/applications/%{name}.desktop
 printf '\n\n[X-Sailjail]\nOrganizationName=%{orgname}\nApplicationName=%{appname}\nPermissions=UserDirs;Camera;MediaIndexing;Internet\n' \
 >> %{buildroot}%{_datadir}/applications/%{name}.desktop
