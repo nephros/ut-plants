@@ -36,6 +36,7 @@ Page {
       PageHeader {
          id: header
          title: i18n.tr("Settings")
+         description: "%1 v%2".arg(Qt.application.name).arg(Qt.application.version)
       }
 
       Column {
