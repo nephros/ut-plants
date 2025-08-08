@@ -361,14 +361,6 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
         <translation>Le répertoire de stockage n&apos;a pas pu être initialisé (%1).</translation>
     </message>
     <message>
-        <source>Identification failed</source>
-        <translation type="vanished">L&apos;identification a échoué</translation>
-    </message>
-    <message>
-        <source>Failed to send identification request to Pl@ntNet (%1).</source>
-        <translation type="vanished">Échec de l&apos;envoi de la demande d&apos;identification à Pl@ntNet (%1).</translation>
-    </message>
-    <message>
         <location filename="../qml/pages/MainPage.qml" line="31"/>
         <source>Plants</source>
         <translation>Plantes</translation>
@@ -435,6 +427,14 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
         <location filename="../qml/pages/MainPage.qml" line="127"/>
         <source>Settings</source>
         <translation>Paramètres</translation>
+    </message>
+    <message>
+        <source>Identification failed</source>
+        <translation type="vanished">L&apos;identification a échoué</translation>
+    </message>
+    <message>
+        <source>Failed to send identification request to Pl@ntNet (%1).</source>
+        <translation type="vanished">Échec de l&apos;envoi de la demande d&apos;identification à Pl@ntNet (%1).</translation>
     </message>
 </context>
 <context>
@@ -686,8 +686,12 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="110"/>
-        <source>Prevent device sleep on outstanding request</source>
+        <source>Prevent device sleep on pending request</source>
         <translation>Empêcher le sommeil du dispositif sur demande en attente</translation>
+    </message>
+    <message>
+        <source>Prevent device sleep on outstanding request</source>
+        <translation type="vanished">Empêcher le sommeil du dispositif sur demande en attente</translation>
     </message>
 </context>
 <context>
@@ -695,12 +699,12 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
     <message>
         <location filename="../qml/harbour-plants.qml" line="58"/>
         <source>Identification failed</source>
-        <translation >L&apos;identification a échoué</translation>
+        <translation>L&apos;identification a échoué</translation>
     </message>
     <message>
         <location filename="../qml/harbour-plants.qml" line="59"/>
         <source>Failed to send identification request to Pl@ntNet (%1).</source>
-        <translation >Échec de l&apos;envoi de la demande d&apos;identification à Pl@ntNet (%1).</translation>
+        <translation>Échec de l&apos;envoi de la demande d&apos;identification à Pl@ntNet (%1).</translation>
     </message>
 </context>
 </TS>

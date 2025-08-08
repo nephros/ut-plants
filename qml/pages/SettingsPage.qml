@@ -107,7 +107,7 @@ Page {
             anchors.left: parent.left
             anchors.right: parent.right
 
-            text: i18n.tr("Prevent device sleep on outstanding request")
+            text: i18n.tr("Prevent device sleep on pending request")
             checked: settings.preventSleep
             onCheckedChanged: settings.preventSleep = checked
          }

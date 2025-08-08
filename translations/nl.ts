@@ -361,14 +361,6 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
         <translation>De opslagmap kan niet worden aangemaakt (%1).</translation>
     </message>
     <message>
-        <source>Identification failed</source>
-        <translation type="vanished">De plant is niet herkend</translation>
-    </message>
-    <message>
-        <source>Failed to send identification request to Pl@ntNet (%1).</source>
-        <translation type="vanished">Het identificatieverzoek aan Pl@ntNet (%1) kan niet worden verstuurd.</translation>
-    </message>
-    <message>
         <location filename="../qml/pages/MainPage.qml" line="31"/>
         <source>Plants</source>
         <translation>Planten</translation>
@@ -435,6 +427,14 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
         <location filename="../qml/pages/MainPage.qml" line="127"/>
         <source>Settings</source>
         <translation>Instellingen</translation>
+    </message>
+    <message>
+        <source>Identification failed</source>
+        <translation type="vanished">De plant is niet herkend</translation>
+    </message>
+    <message>
+        <source>Failed to send identification request to Pl@ntNet (%1).</source>
+        <translation type="vanished">Het identificatieverzoek aan Pl@ntNet (%1) kan niet worden verstuurd.</translation>
     </message>
 </context>
 <context>
@@ -686,7 +686,7 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="110"/>
-        <source>Prevent device sleep on outstanding request</source>
+        <source>Prevent device sleep on pending request</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -695,12 +695,12 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
     <message>
         <location filename="../qml/harbour-plants.qml" line="58"/>
         <source>Identification failed</source>
-        <translation >De plant is niet herkend</translation>
+        <translation>De plant is niet herkend</translation>
     </message>
     <message>
         <location filename="../qml/harbour-plants.qml" line="59"/>
         <source>Failed to send identification request to Pl@ntNet (%1).</source>
-        <translation >Het identificatieverzoek aan Pl@ntNet (%1) kan niet worden verstuurd.</translation>
+        <translation>Het identificatieverzoek aan Pl@ntNet (%1) kan niet worden verstuurd.</translation>
     </message>
 </context>
 </TS>

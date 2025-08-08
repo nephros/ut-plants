@@ -365,14 +365,6 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
         <translation>Das Speicherverzeichnis konnte nicht initialisiert werden (%1).</translation>
     </message>
     <message>
-        <source>Identification failed</source>
-        <translation type="vanished">Identifizierung fehlgeschlagen</translation>
-    </message>
-    <message>
-        <source>Failed to send identification request to Pl@ntNet (%1).</source>
-        <translation type="vanished">Identifikationsanfrage an Pl@ntNet (%1) konnte nicht gesendet werden.</translation>
-    </message>
-    <message>
         <location filename="../qml/pages/MainPage.qml" line="31"/>
         <source>Plants</source>
         <translation>Pflanzen</translation>
@@ -439,6 +431,14 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
         <location filename="../qml/pages/MainPage.qml" line="127"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
+    </message>
+    <message>
+        <source>Identification failed</source>
+        <translation type="vanished">Identifizierung fehlgeschlagen</translation>
+    </message>
+    <message>
+        <source>Failed to send identification request to Pl@ntNet (%1).</source>
+        <translation type="vanished">Identifikationsanfrage an Pl@ntNet (%1) konnte nicht gesendet werden.</translation>
     </message>
 </context>
 <context>
@@ -690,8 +690,12 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="110"/>
-        <source>Prevent device sleep on outstanding request</source>
+        <source>Prevent device sleep on pending request</source>
         <translation>Standby verhindern, während Anfrage läuft</translation>
+    </message>
+    <message>
+        <source>Prevent device sleep on outstanding request</source>
+        <translation type="vanished">Standby verhindern, während Anfrage läuft</translation>
     </message>
 </context>
 <context>
@@ -699,12 +703,12 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
     <message>
         <location filename="../qml/harbour-plants.qml" line="58"/>
         <source>Identification failed</source>
-        <translation >Identifizierung fehlgeschlagen</translation>
+        <translation>Identifizierung fehlgeschlagen</translation>
     </message>
     <message>
         <location filename="../qml/harbour-plants.qml" line="59"/>
         <source>Failed to send identification request to Pl@ntNet (%1).</source>
-        <translation >Identifikationsanfrage an Pl@ntNet (%1) konnte nicht gesendet werden.</translation>
+        <translation>Identifikationsanfrage an Pl@ntNet (%1) konnte nicht gesendet werden.</translation>
     </message>
 </context>
 </TS>
