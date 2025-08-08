@@ -93,7 +93,6 @@ public:
    Q_INVOKABLE void setLanguage(QString language)
    {
       identificator.setLanguage(language);
-      this->language = language;
    }
 
    Q_INVOKABLE QString savePlant(QVariantMap identificationResult);
