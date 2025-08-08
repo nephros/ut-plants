@@ -85,7 +85,7 @@ Page {
                }
             }
          }
-         ValueButton {
+         ValueButton { id: langButton
             enabled: (!!languages && (languages.count > 1))
             label: i18n.tr("Result Language")
             description: i18n.tr("The language to use for Identification results. Default is to use the current Locale, or English if not available.")
@@ -109,7 +109,7 @@ Page {
                 model: languages
                 delegate: ListItem {
                   anchors.margins: units.gu(2)
-                  Label { text: model.language + ": " + name }
+                  Label { text: modelData + ": " + settingsPage.languages[modelData]; anchors.left: parent.left; anchors.right: parent.right; anchors.margins: units.gu(2)}
                   onClicked: { langDialog.selectedLanguage = language; langDialog.accept() }
                 }
               }
