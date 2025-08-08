@@ -10,14 +10,10 @@ import PlantsModel 1.0
 Page { id: requestPage
    property var plantsModel: null
 
-
    ListModel { id: imageModel }
-
 
    SilicaListView { id: imageView
       anchors.fill: parent
-      anchors.topMargin: units.gu(2)
-      anchors.bottomMargin: units.gu(2)
 
       clip: true
       spacing: units.gu(1)
