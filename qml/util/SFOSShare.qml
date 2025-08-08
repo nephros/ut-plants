@@ -13,7 +13,6 @@ ShareProvider {
 
     onTriggered: {
         console.info("Share: received", resources.length, "images")
-        console.debug("Share: received", JSON.stringify(resources, null, 2))
         app.activate() // Show window
         var urls = []
         const max = Math.min(resources.length, 5)
@@ -23,7 +22,12 @@ ShareProvider {
                 urls.push("file://" + res.filePath)
             }
         }
-        pageStack.push("../pages/RequestPage.qml", { "sharedImages": urls })
+        const current = pageStack.currentPage
+        if ( current.objectName == "requestPage" ) { // if it's already on top, just add images:
+            current.sharedImages = urls
+        } else { // push a new page
+            pageStack.push("../pages/RequestPage.qml", { "sharedImages": urls })
+        }
     }
 }
 

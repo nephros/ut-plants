@@ -8,6 +8,8 @@ import "../util"
 import PlantsModel 1.0
 
 Page { id: requestPage
+   objectName: "requestPage"
+
    property var plantsModel: null
 
    ListModel { id: imageModel }
@@ -183,7 +185,7 @@ Page { id: requestPage
    // populated when coming from Sailfish.Share
    property var sharedImages: ([])
    onSharedImagesChanged: {
-       console.info("Request: received", typeof sharedImages, sharedImages.length, "images")
+       console.debug("Request: received", sharedImages.length, "images")
        if (sharedImages.length >0) requestPage.importImages(sharedImages)
    }
 
