@@ -56,11 +56,25 @@ PlantsModel::PlantsModel(QObject* parent)
    );
    connect(&identificator, &Identification::languageChanged,
                    [=](QString language) {
-                      this->setProperty("language", language);
+                      this->language = language;
                       // emit signal:
                       this->languageChanged(language);
                    }
    );
+   connect(&identificator, &Identification::projectsChanged, this,
+                [=](QStringList regions) {
+                      this->regions = regions;
+                      // emit signal:
+                      this->availableRegionsChanged(regions);
+                   }
+   );
+   connect(&identificator, &Identification::projectChanged,
+                   [=](QString region) {
+                      this->region = region;
+                      // emit signal:
+                      this->regionChanged(region);
+                   }
+    );
 }
 
 // **************************************************************************
@@ -94,6 +108,7 @@ QString PlantsModel::init()
    qDebug() << "DATA DIR: " << dir;
 
    identificator.initLanguages();
+   identificator.initProjects();
    return "";
 }
 
@@ -282,6 +297,22 @@ QVariantMap PlantsModel::availableLanguages() const
           QLocale loc(l);
           QVariant v(loc.nativeLanguageName());
           map.insert(l,v);
+       }
+    }
+    return map;
+}
+
+
+QVariantMap PlantsModel::availableRegions() const
+{
+    QVariantMap map;
+    if (regions.isEmpty()) {
+       qDebug() << "Mapping: no regions in list, returning empty map";
+    } else {
+       for (const auto &r : regions) {
+          QLocale loc(r);
+          QVariant v(loc.nativeCountryName());
+          map.insert(r,v);
        }
     }
     return map;

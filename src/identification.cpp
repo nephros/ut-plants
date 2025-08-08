@@ -37,8 +37,9 @@
 #include <variant>
 
 #define API_MAX_RESULTS 5
-#define API_URL "https://my-api.plantnet.org/v2/identify/all"
+#define API_URL "https://my-api.plantnet.org/v2/identify"
 #define LANGUAGES_URL "https://my-api.plantnet.org/v2/languages"
+#define PROJECTS_URL "https://my-api.plantnet.org/v2/projects"
 #define ORG_NAME "s710"
 #define APP_NAME "plants"
 // #define API_URL "http://10.0.60.43:3000/identify"
@@ -71,10 +72,15 @@ Identification::Identification(network::Network* network, QObject* parent)
       qWarning() << "API key empty or not set!";
    }
 
+   if (settings.contains("project") && !settings.value("project").toString().isEmpty()) {
+      url.setPath(QStringLiteral("/v2/identify/") + settings.value("project").toString());
+   } else {
+      url.setPath(QStringLiteral("/v2/identify/all"));
+   }
+
    query.addQueryItem("include-related-images", "true");
    url.setQuery(query);
 }
-
 // **************************************************************************
 // identifyPlant
 // **************************************************************************
@@ -147,6 +153,76 @@ void Identification::initLanguages()
      });
 }
 
+
+// **************************************************************************
+// identifyPlant
+// **************************************************************************
+
+void Identification::initProjects()
+{
+   QUrlQuery q;
+
+   if (!settings.contains("apiKey"))
+   {
+      qDebug() << "No API key available, skip projects load";
+      return;
+   }
+
+   q.addQueryItem("api-key", settings.value("apiKey").toString());
+
+   QUrl projectsUrl(PROJECTS_URL);
+   projectsUrl.setQuery(q);
+
+   net->get<network::ReqCallback>(
+     projectsUrl, headers,
+     [this](int err, int code, QByteArray body)
+     {
+        if (err != QNetworkReply::NoError || code != 200 || body.isEmpty())
+        {
+           qDebug() << "FAIL Projects response: " << QString::number(code) << " (" << body << ")";
+
+           QString prj("all");
+
+           emit projectsChanged(QStringList({"all"}));
+
+           //query.addQueryItem("lang", lang);
+           //url.setQuery(query);
+           //
+           emit projectChanged(prj);
+           return;
+        }
+
+        QString systemLang = QLocale::system().name().split('_').at(0);
+
+        auto doc = QJsonDocument::fromJson(body);
+        auto parsed = (!doc.isNull() && doc.isArray()) ? doc.array() : QJsonArray();
+
+        QStringList projects;
+
+        foreach (auto proj, parsed)
+           projects << proj.toString();
+
+        emit projectsChanged(projects);
+
+        if (projects.contains(systemLang))
+        {
+           if (!settings.contains("project"))
+           {
+              settings.setValue("project", systemLang);
+           }
+           else
+           {
+              systemLang = settings.value("project").toString();
+           }
+           emit projectChanged(systemLang);
+        }
+        else
+        {
+           emit projectChanged("all");
+        }
+     });
+}
+
 // **************************************************************************
 // setApiKey
 // **************************************************************************
@@ -172,6 +248,26 @@ void Identification::setLanguage(QString lang)
    {
      settings.setValue("language", lang);
      emit languageChanged(lang);
+   }
+}
+
+
+// **************************************************************************
+// setProject
+// **************************************************************************
+
+void Identification::setProject(QString proj)
+{
+   if (0 != proj.compare(settings.value("project").toString()))
+   {
+     if (proj.isEmpty()) {
+        url.setPath(QStringLiteral("/v2/identify/all"));
+     } else {
+        url.setPath(QStringLiteral("/v2/identify/") + proj);
+     }
+     url.setQuery(query);
+     settings.setValue("project", proj);
+     emit projectChanged(proj);
    }
 }
 

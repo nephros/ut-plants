@@ -105,12 +105,15 @@ public:
    }
 
    Q_INVOKABLE QVariantMap availableLanguages() const;
+   Q_INVOKABLE QVariantMap availableRegions() const;
 
 signals:
    void countChanged();
    void identificationResult(QString error, QVariantList result);
    void availableLanguagesChanged(QStringList languages);
    void languageChanged(QString language);
+   void availableRegionsChanged(QStringList regions);
+   void regionChanged(QString region);
 
 private:
    QString getDataPath() const;
@@ -130,6 +133,9 @@ private:
 
    QStringList languages;
    QString language;
+
+   QStringList regions;
+   QString region;
 };
 
 } // namespace plants

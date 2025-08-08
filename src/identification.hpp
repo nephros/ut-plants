@@ -47,8 +47,10 @@ public:
    Identification(network::Network* net, QObject* parent = nullptr);
 
    void initLanguages();
+   void initProjects();
    void setApiKey(QString key);
    void setLanguage(QString lang);
+   void setProject(QString proj);
 
    void identifyPlant(QVariantList& request);
 
@@ -56,6 +58,8 @@ signals:
    void identificationResult(QString error, QVariantList result);
    void languagesChanged(QStringList languages);
    void languageChanged(QString language);
+   void projectsChanged(QStringList projects);
+   void projectChanged(QString project);
 
 protected:
    QHttpMultiPart* createMultipart(QVariantList& request, QVariantList& sourceImages, QString& err);
