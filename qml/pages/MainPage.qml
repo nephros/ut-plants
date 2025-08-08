@@ -25,49 +25,49 @@ Page {
       }
    }
 
-   SilicaListView { id: plantList
-     anchors.fill: parent
+    SilicaListView { id: plantList
+       anchors.fill: parent
        header: PageHeader {
-title: i18n.tr('Plants')
-         description: app.loadingScreenShown
-         ? i18n.tr("Plant is being identified, please wait.")
-         : (plantList.count > 0 )
-         ? (plantList.count == 1)
-         ? i18n.tr("1 identified plant")
-         : i18n.tr( "%1 identified plants").arg(plantList.count)
-         : ""
-         BusyIndicator {
-           anchors.verticalCenter: parent.verticalCenter
-             anchors.left: extraContent.left
-             anchors.leftMargin: units.gu(1)
-             size: BusyIndicatorSize.Medium
-             running: app.loadingScreenShown
-         }
+           title: i18n.tr('Plants')
+           description: app.loadingScreenShown
+           ? i18n.tr("Plant is being identified, please wait.")
+           : (plantList.count > 0 )
+           ? (plantList.count == 1)
+           ? i18n.tr("1 identified plant")
+           : i18n.tr( "%1 identified plants").arg(plantList.count)
+           : ""
+           BusyIndicator {
+             anchors.verticalCenter: parent.verticalCenter
+               anchors.left: extraContent.left
+               anchors.leftMargin: units.gu(1)
+               size: BusyIndicatorSize.Medium
+               running: app.loadingScreenShown
+           }
        }
-clip: true
-        spacing: units.gu(1)
+       clip: true
+       spacing: units.gu(1)
 
-        model: plantsModel
+       model: plantsModel
 
-        delegate: Component {
-          ListItem {
+       delegate: Component {
+         ListItem {
             anchors.margins: units.gu(2)
-              contentHeight: plantItem.height
-              PlantItem { id: plantItem
-                imageUrl: "image://plants/" + plant.id
-                  mainText: plant.species
-                  subText: plant.commonNames
-                  plantObject: plant
-                  listMode: true
-              }
-onClicked: pageStack.push(Qt.resolvedUrl("PlantPage.qml"), { "plant": plant })
-             menu: ContextMenu {
+            contentHeight: plantItem.height
+            PlantItem { id: plantItem
+              imageUrl: "image://plants/" + plant.id
+                mainText: plant.species
+                subText: plant.commonNames
+                plantObject: plant
+                listMode: true
+            }
+            onClicked: pageStack.push(Qt.resolvedUrl("PlantPage.qml"), { "plant": plant })
+            menu: ContextMenu {
                MenuItem { text: i18n.tr("Remove")
                  onClicked: remorseDelete(function() { deletePlant(plant.id) })
                }
-             }
-           function deletePlant(plantID) {
-             var err = plantsModel.deletePlant(plantID)
+            }
+            function deletePlant(plantID) {
+               var err = plantsModel.deletePlant(plantID)
                if (err) {
                  pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
                      { "title": i18n.tr("Deleting plant failed"),
@@ -75,75 +75,74 @@ onClicked: pageStack.push(Qt.resolvedUrl("PlantPage.qml"), { "plant": plant })
                      }
                      )
                }
-           }
-          }
-        }
+            }
+         }
+      }
       ViewPlaceholder {
-id: placeholder
-      text: i18n.tr("No plants identified yet")
-      hintText: i18n.tr("Pull down to start a new identification")
-      enabled: !plantsModel.count
+         id: placeholder
+         text: i18n.tr("No plants identified yet")
+         hintText: i18n.tr("Pull down to start a new identification")
+         enabled: !plantsModel.count
       }
       PushUpMenu {
-        MenuItem {
-text: i18n.tr("New identification")
-        enabled: !app.loadingScreenShown
-        onClicked: {
-          if (!settings.apiKey) {
-            var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
-                { "title": i18n.tr("API Key missing"),
-                "text":  i18n.tr("The Pl@ntNet API-Key has not been configured yet. Without this, the app will not work.")
-                })
+         MenuItem {
+            text: i18n.tr("New identification")
+            enabled: !app.loadingScreenShown
+            onClicked: {
+               if (!settings.apiKey) {
+                  var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
+                      { "title": i18n.tr("API Key missing"),
+                      "text":  i18n.tr("The Pl@ntNet API-Key has not been configured yet. Without this, the app will not work.")
+                      })
 
-            dialog.accepted.connect(function () {
-                mainPage.openSettings()
-                })
-          } else {
-            mainPage.openIdentify()
-          }
-        }
-        }
+                  dialog.accepted.connect(function () {
+                      mainPage.openSettings()
+                      })
+               } else {
+                  mainPage.openIdentify()
+               }
+            }
+         }
       }
       PullDownMenu {
-        MenuItem {
-text: i18n.tr("New identification")
-        enabled: !app.loadingScreenShown
-        onClicked: {
-          if (!settings.apiKey) {
-            var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
-                { "title": i18n.tr("API Key missing"),
-                "text":  i18n.tr("The Pl@ntNet API-Key has not been configured yet. Without this, the app will not work.")
-                })
+         MenuItem {
+            text: i18n.tr("New identification")
+            enabled: !app.loadingScreenShown
+            onClicked: {
+               if (!settings.apiKey) {
+                  var dialog = pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
+                      { "title": i18n.tr("API Key missing"),
+                      "text":  i18n.tr("The Pl@ntNet API-Key has not been configured yet. Without this, the app will not work.")
+                      })
 
-            dialog.accepted.connect(function () {
-                mainPage.openSettings()
-                })
-          } else {
-            mainPage.openIdentify()
-          }
-        }
-        }
-        MenuItem {
-text: i18n.tr('Settings')
-        onClicked: {
-          mainPage.openSettings()
-        }
-        }
+                  dialog.accepted.connect(function () {
+                      mainPage.openSettings()
+                      })
+               } else {
+                  mainPage.openIdentify()
+               }
+            }
+         }
+         MenuItem {
+            text: i18n.tr('Settings')
+            onClicked: {
+               mainPage.openSettings()
+            }
+         }
       }
-
       Disclaimer {
-id: disclaimer
-      visible: !settings.disclaimerAccepted
+         id: disclaimer
+         visible: !settings.disclaimerAccepted
       }
 
       Rectangle {
-color: "#67676799"
+         color: "#67676799"
          anchors.fill: parent
          visible: disclaimer.visible
          z: 100
          MouseArea {
-           anchors.fill: parent
-             onClicked: {}
+            anchors.fill: parent
+            onClicked: {}
          }
       }
    }
@@ -217,12 +216,12 @@ plantList.count)
 }
 */
 
-function openIdentify() {
-  pageStack.push(Qt.resolvedUrl("RequestPage.qml"), {
-      "plantsModel": plantsModel
-      })
-}
-function openSettings() {
+   function openIdentify() {
+     pageStack.push(Qt.resolvedUrl("RequestPage.qml"), {
+         "plantsModel": plantsModel
+         })
+   }
+   function openSettings() {
       var p = pageStack.push(Qt.resolvedUrl("./SettingsPage.qml"),
           { languages: plantsModel.availableLanguages(), language: plantsModel.language }
       )
