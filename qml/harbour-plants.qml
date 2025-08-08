@@ -100,10 +100,12 @@ ApplicationWindow {
                 fillMode: Image.PreserveAspectFit
                 opacity: 0.2
             }
-            CoverPlaceholder {
+            SectionHeader {
                 text: "Plants"
-                textColor: Theme.highlightColor
-                //icon.source: "image://theme/harbour-plants"
+                y: parent.height *1/5
+                anchors.horizontalCenter: parent.horizontalCenter
+                horizontalAlignment: Text.AlignHCenter
+                font.pixelSize: Theme.fontSizeLarge
             }
             /* TODO:
             ProgressBar {
