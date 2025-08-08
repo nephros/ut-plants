@@ -351,90 +351,88 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="21"/>
+        <location filename="../qml/pages/MainPage.qml" line="19"/>
         <source>Failed to init storage directory</source>
         <translation>De opslagmap kan niet worden aangemaakt</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="22"/>
+        <location filename="../qml/pages/MainPage.qml" line="20"/>
         <source>Storage directory could not be initialized (%1).</source>
         <translation>De opslagmap kan niet worden aangemaakt (%1).</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="56"/>
         <source>Identification failed</source>
-        <translation>De plant is niet herkend</translation>
+        <translation type="vanished">De plant is niet herkend</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="57"/>
         <source>Failed to send identification request to Pl@ntNet (%1).</source>
-        <translation>Het identificatieverzoek aan Pl@ntNet (%1) kan niet worden verstuurd.</translation>
+        <translation type="vanished">Het identificatieverzoek aan Pl@ntNet (%1) kan niet worden verstuurd.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="73"/>
+        <location filename="../qml/pages/MainPage.qml" line="31"/>
         <source>Plants</source>
         <translation>Planten</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="75"/>
+        <location filename="../qml/pages/MainPage.qml" line="33"/>
         <source>Plant is being identified, please wait.</source>
         <translation>Bezig met herkennen van plant…</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="78"/>
+        <location filename="../qml/pages/MainPage.qml" line="36"/>
         <source>1 identified plant</source>
         <translation>1 plant herkend</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="79"/>
+        <location filename="../qml/pages/MainPage.qml" line="37"/>
         <source>%1 identified plants</source>
         <translation>%1 planten herkend</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="107"/>
+        <location filename="../qml/pages/MainPage.qml" line="65"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="115"/>
+        <location filename="../qml/pages/MainPage.qml" line="73"/>
         <source>Deleting plant failed</source>
         <translation>Het verwijderen is mislukt</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="116"/>
+        <location filename="../qml/pages/MainPage.qml" line="74"/>
         <source>Plant could not be deleted (%1).</source>
         <translation>De plant kan niet worden verwijderd (%1).</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="125"/>
+        <location filename="../qml/pages/MainPage.qml" line="83"/>
         <source>No plants identified yet</source>
         <translation>Er zijn nog geen planten herkend</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="126"/>
+        <location filename="../qml/pages/MainPage.qml" line="84"/>
         <source>Pull down to start a new identification</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="131"/>
-        <location filename="../qml/pages/MainPage.qml" line="150"/>
+        <location filename="../qml/pages/MainPage.qml" line="89"/>
+        <location filename="../qml/pages/MainPage.qml" line="109"/>
         <source>New identification</source>
         <translation>Herkenning starten</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="135"/>
-        <location filename="../qml/pages/MainPage.qml" line="154"/>
+        <location filename="../qml/pages/MainPage.qml" line="94"/>
+        <location filename="../qml/pages/MainPage.qml" line="114"/>
         <source>API Key missing</source>
         <translation>De api-sleutel ontbreekt</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="136"/>
-        <location filename="../qml/pages/MainPage.qml" line="155"/>
+        <location filename="../qml/pages/MainPage.qml" line="95"/>
+        <location filename="../qml/pages/MainPage.qml" line="115"/>
         <source>The Pl@ntNet API-Key has not been configured yet. Without this, the app will not work.</source>
         <translation>De Pl@ntNet-api-sleutel ontbreekt. Zonder deze sleutel werkt de app niet.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="167"/>
+        <location filename="../qml/pages/MainPage.qml" line="127"/>
         <source>Settings</source>
         <translation>Instellingen</translation>
     </message>
@@ -532,62 +530,62 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
 <context>
     <name>RequestPage</name>
     <message>
-        <location filename="../qml/pages/RequestPage.qml" line="33"/>
+        <location filename="../qml/pages/RequestPage.qml" line="27"/>
         <source>New identification</source>
         <translation>Herkenning starten</translation>
     </message>
     <message>
-        <location filename="../qml/pages/RequestPage.qml" line="38"/>
+        <location filename="../qml/pages/RequestPage.qml" line="32"/>
         <source>Add up to 5 images for identification. The images must be of the same plant. The more images are provided, the better the identification result will be.</source>
         <translation>Voeg maximaal 5 afbeeldingen toe om te helpen bij de herkenning. De afbeelding(en) moet(en) van dezelfde plant zijn. Hoe meer afbeeldingen je toevoegt, hoe groter de kans dat de app de plant herkent.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/RequestPage.qml" line="45"/>
+        <location filename="../qml/pages/RequestPage.qml" line="39"/>
         <source>Pl@ntNet recommends images with the smaller side larger than 600px and smaller than 2000px. Ideally a square image zoomed on the organ around 1280x1280px.</source>
         <translation>Pl@ntNet raadt aan afbeeldingen van minimaal 600px en maximaal 2000px te gebruiken. De ideale foto is vierkant en 1280x1280px.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/RequestPage.qml" line="72"/>
+        <location filename="../qml/pages/RequestPage.qml" line="66"/>
         <source>Select plant part</source>
         <translation>Deel van plant selecteren</translation>
     </message>
     <message>
-        <location filename="../qml/pages/RequestPage.qml" line="81"/>
+        <location filename="../qml/pages/RequestPage.qml" line="75"/>
         <source>Remove image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/RequestPage.qml" line="90"/>
+        <location filename="../qml/pages/RequestPage.qml" line="84"/>
         <source>Add Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/RequestPage.qml" line="90"/>
+        <location filename="../qml/pages/RequestPage.qml" line="84"/>
         <source>Can not add more than 5 images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/RequestPage.qml" line="93"/>
+        <location filename="../qml/pages/RequestPage.qml" line="87"/>
         <source>Identify</source>
         <translation>Herkennen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/RequestPage.qml" line="112"/>
+        <location filename="../qml/pages/RequestPage.qml" line="106"/>
         <source>Remove All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/RequestPage.qml" line="113"/>
+        <location filename="../qml/pages/RequestPage.qml" line="107"/>
         <source>Cleared</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/RequestPage.qml" line="117"/>
+        <location filename="../qml/pages/RequestPage.qml" line="111"/>
         <source>No images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/RequestPage.qml" line="118"/>
+        <location filename="../qml/pages/RequestPage.qml" line="112"/>
         <source>Pull down to add new images</source>
         <translation type="unfinished"></translation>
     </message>
@@ -595,32 +593,32 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
 <context>
     <name>ResultsPage</name>
     <message>
-        <location filename="../qml/pages/ResultsPage.qml" line="25"/>
+        <location filename="../qml/pages/ResultsPage.qml" line="24"/>
         <source>Identification results: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ResultsPage.qml" line="26"/>
+        <location filename="../qml/pages/ResultsPage.qml" line="25"/>
         <source>Save</source>
         <translation>Opslaan</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ResultsPage.qml" line="27"/>
+        <location filename="../qml/pages/ResultsPage.qml" line="26"/>
         <source>Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ResultsPage.qml" line="38"/>
+        <location filename="../qml/pages/ResultsPage.qml" line="37"/>
         <source>Saving result failed</source>
         <translation>Bewaren mislukt</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ResultsPage.qml" line="39"/>
+        <location filename="../qml/pages/ResultsPage.qml" line="38"/>
         <source>Result could not be saved (%1).</source>
         <translation>De resultaten kunnen niet worden bewaard (%1).</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ResultsPage.qml" line="65"/>
+        <location filename="../qml/pages/ResultsPage.qml" line="64"/>
         <source>%1/%2 results</source>
         <translation type="unfinished"></translation>
     </message>
@@ -628,17 +626,17 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="38"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="26"/>
         <source>Settings</source>
         <translation>Instellingen</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="51"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="39"/>
         <source>Pl@ntNet API key</source>
         <translation>Pl@ntNet-api-sleutel</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="60"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="48"/>
         <source>In order to use the Pl@ntNet plant identification service, it is necessary to register at their website as developer and obtain an API-Key. This key needs to be configured within this app.
 
 Please visit &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantnet.org/signup&lt;/a&gt; and create a developer account. Afterwards visit &lt;a href=&quot;https://my.plantnet.org/account&quot;&gt;https://my.plantnet.org/account&lt;/a&gt; and click the eye-symbol at the very top (&quot;my API key&quot;) to show the API-Key. Copy this key and paste it into the below text input field.</source>
@@ -647,49 +645,62 @@ Please visit &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my
 Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantnet.org/signup&lt;/a&gt; in de browser en maak een account aan. Ga vervolgens naar &lt;a href=&quot;https://my.plantnet.org/account&quot;&gt;https://my.plantnet.org/account&lt;/a&gt; en druk op het oogje bovenaan de pagina (“Mijn api-sleutel”) om de api-sleutel te tonen. Kopieer de sleutel en plak hem in onderstaand veld.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="71"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="59"/>
         <source>API-Key:</source>
         <translation>Api-sleutel:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="75"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="63"/>
         <source>New API Key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="76"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="64"/>
         <source>Enter API-Key</source>
         <translation>Voer de api-sleutel in</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="77"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="65"/>
         <source>The value will be saved on Enter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="79"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="67"/>
         <source>API Key already stored. Edit to update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="79"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="67"/>
         <source>No API Key stored</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="90"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="77"/>
         <source>Result Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="91"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="78"/>
         <source>The language to use for Identification results. Default is to use the current Locale, or English if not available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="147"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="110"/>
         <source>Prevent device sleep on outstanding request</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>harbour-plants</name>
+    <message>
+        <location filename="../qml/harbour-plants.qml" line="58"/>
+        <source>Identification failed</source>
+        <translation >De plant is niet herkend</translation>
+    </message>
+    <message>
+        <location filename="../qml/harbour-plants.qml" line="59"/>
+        <source>Failed to send identification request to Pl@ntNet (%1).</source>
+        <translation >Het identificatieverzoek aan Pl@ntNet (%1) kan niet worden verstuurd.</translation>
     </message>
 </context>
 </TS>
