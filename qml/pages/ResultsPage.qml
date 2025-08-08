@@ -8,7 +8,6 @@ import PlantsModel 1.0
 Dialog {
    id: resultsPage
 
-   property var plantsModel: nil
    property var resultsData: []
 
    Component.onCompleted: {

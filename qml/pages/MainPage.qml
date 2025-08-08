@@ -5,8 +5,6 @@ import Sailfish.Silica 1.0
 import "../util"
 import "../compat"
 
-import PlantsModel 1.0
-
 Page {
    id: mainPage
    objectName: "mainPage"
@@ -24,29 +22,6 @@ Page {
          )
       } else {
          plantsModel.reload()
-      }
-   }
-
-   PlantsModel {
-      id: plantsModel
-
-      onIdentificationResult: {
-        app.loadingScreenShown = false
-
-          if (error) {
-            pageStack.push(Qt.resolvedUrl("../dialogs/ErrorDialog.qml"),
-                {
-                "title": i18n.tr("Identification failed"),
-                "text":  i18n.tr("Failed to send identification request to Pl@ntNet (%1).").arg(error)
-                }
-                )
-              return
-          }
-
-        pageStack.push(Qt.resolvedUrl("ResultsPage.qml"), {
-            "resultsData": result,
-            "plantsModel": plantsModel
-            })
       }
    }
 

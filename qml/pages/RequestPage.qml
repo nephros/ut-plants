@@ -5,12 +5,8 @@ import QtGraphicalEffects 1.0
 
 import "../util"
 
-import PlantsModel 1.0
-
 Page { id: requestPage
    objectName: "requestPage"
-
-   property var plantsModel: null
 
    ListModel { id: imageModel }
 

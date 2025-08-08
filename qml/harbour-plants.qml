@@ -9,6 +9,8 @@ import Nemo.KeepAlive 1.2
 import "pages"
 import "compat"
 
+import PlantsModel 1.0
+
 ApplicationWindow {
     id: app
 
@@ -45,6 +47,25 @@ ApplicationWindow {
        //readonly property color danger:     Theme.highlightFromColor("#d13415", Theme.colorScheme)
        readonly property color warn:       Theme.colorScheme === Theme.LightOnDark ? "#ffe629" : Theme.highlightFromColor("#ffe629", Theme.colorScheme)
        readonly property color danger:     Theme.colorScheme === Theme.LightOnDark ? "#d13415" : Theme.highlightFromColor("#d13415", Theme.colorScheme)
+    }
+
+    PlantsModel { id: plantsModel
+       onIdentificationResult: {
+         app.loadingScreenShown = false
+         if (error) {
+           pageStack.push(Qt.resolvedUrl("dialogs/ErrorDialog.qml"),
+               {
+               "title": i18n.tr("Identification failed"),
+               "text":  i18n.tr("Failed to send identification request to Pl@ntNet (%1).").arg(error)
+               }
+               )
+             return
+         }
+         pageStack.push(Qt.resolvedUrl("pages/ResultsPage.qml"), {
+             "resultsData": result,
+             "plantsModel": plantsModel
+             })
+       }
     }
 
     Settings {
