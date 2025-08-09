@@ -50,7 +50,8 @@ int main(int argc, char *argv[])
        qWarning() << "Failed to load translation for" << QLocale::system().name().split('_').at(0);
    }
 
-   view->setSource(QUrl("qrc:/harbour-plants.qml"));
+   //view->setSource(QUrl("qrc:/harbour-plants.qml"));
+   view->setSource(SailfishApp::pathToMainQml());
    view->show();
 
    // Sailfish Share:Registering the service after QML is loaded
