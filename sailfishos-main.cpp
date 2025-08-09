@@ -42,14 +42,6 @@ int main(int argc, char *argv[])
 
    view->engine()->addImageProvider(QLatin1String("plants"), new plants::PlantsImageProvider());
 
-   QTranslator translator;
-   if(translator.load(QLocale(), QStringLiteral("harbour-plants"), QStringLiteral("_"), QLatin1String(":/i18n"))) {
-       QCoreApplication::installTranslator(&translator);
-       qDebug() << "Successfully loaded translations for" << QLocale::system().name().split('_').at(0);
-   } else {
-       qWarning() << "Failed to load translation for" << QLocale::system().name().split('_').at(0);
-   }
-
    //view->setSource(QUrl("qrc:/harbour-plants.qml"));
    view->setSource(SailfishApp::pathToMainQml());
    view->show();
