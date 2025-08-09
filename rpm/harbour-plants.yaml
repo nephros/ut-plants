@@ -93,8 +93,8 @@ Configure: cmake
 Builder: cmake
 ConfigOptions:
   - '-Wno-dev'
-  - '-DCMAKE_INSTALL_PREFIX=%{_datadir}'
-  # '-DCMAKE_INSTALL_PREFIX=%{_prefix}'
+  - '-DCMAKE_INSTALL_DATADIR=%{_datadir}'
+  - '-DCMAKE_INSTALL_BINDIR=%{_bindir}'
   # '-DQT_IMPORTS_DIR=%{plugindir}'
 NoAutoLocale: true
 #LocaleName: '%{orgname}.%{appname}'

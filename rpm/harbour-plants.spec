@@ -100,7 +100,8 @@ sh ./lang_conv.sh
 
 %cmake .  \
     -Wno-dev \
-    -DCMAKE_INSTALL_PREFIX=%{_datadir}
+    -DCMAKE_INSTALL_DATADIR=%{_datadir} \
+    -DCMAKE_INSTALL_BINDIR=%{_bindir}
 
 %cmake_build
 
@@ -126,11 +127,6 @@ rm -r %{buildroot}/share
 for size in 86 108 128 172 256 512; do
 sailfish_svg2png -z 1.0 -f rgba -s 1 1 1 1 1 1 ${size} icons/svgs %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps
 done
-
-
-install -d %{buildroot}%{_bindir}/
-install -m755 %{buildroot}/%{_datadir}/%{name} %{buildroot}%{_bindir}/%{name}
-rm %{buildroot}/%{_datadir}/%{name}
 
 # Edit the main .desktop file for Sailjail
 desktop-file-edit  \
