@@ -154,9 +154,15 @@ Page {
    }
    function openSettings() {
       var p = pageStack.push(Qt.resolvedUrl("./SettingsPage.qml"),
-          { languages: plantsModel.availableLanguages(), language: plantsModel.language }
+          { languages: plantsModel.availableLanguages(), language: plantsModel.language,
+            regions: plantsModel.availableRegions(), region: plantsModel.region }
       )
 
+      p.regChanged.connect(function (reg) {
+        console.info("Storing region from Settings:", reg)
+        //plantsModel.setLanguage(lang)
+        p.region = reg
+      })
       p.langChanged.connect(function (lang) {
         console.info("Storing language from Settings:", lang)
         plantsModel.setLanguage(lang)

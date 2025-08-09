@@ -7,10 +7,15 @@ Page {
    anchors.fill: parent
    //signal updateIntervalChanged(var interval, var enabled)
    signal apiKeyChanged(string key)
+   // careful to not use C++-defined signal names!
    signal langChanged(string lang)
+   signal regChanged(string region)
 
    property var languages
    property string language
+
+   property var regions
+   property string region
 
    SilicaFlickable {
       id: flickable
@@ -100,6 +105,36 @@ Page {
                   anchors.margins: units.gu(2)
                   Label { text: modelData + ": " + settingsPage.languages[modelData]; anchors.left: parent.left; anchors.right: parent.right; anchors.margins: units.gu(2)}
                   onClicked: { langDialog.selectedLanguage = modelData; langDialog.accept() }
+                }
+              }
+            }
+         }
+
+         ValueButton { id: regionButton
+            label: i18n.tr("Result Region")
+            description: i18n.tr("The Region to use for Identification results. Default is to use all available.")
+            value: regions[region]
+            onClicked: {
+               var dlg = pageStack.push(regionSelector)
+               dlg.accepted.connect(function() {
+                  settingsPage.regionChanged(dlg.selectedRegion)
+                  settingsPage.region = dlg.selectedRegion
+               })
+            }
+         }
+         Component { id: regionSelector
+            Dialog { id: regionDialog
+              property string selectedRegion
+              DialogHeader{ id: head }
+              SilicaListView {
+                width: parent.width
+                anchors.top: head.bottom
+                anchors.bottom: parent.bottom
+                model: Object.keys(settingsPage.regions)
+                delegate: ListItem {
+                  anchors.margins: units.gu(2)
+                  Label { text: modelData + ": " + settingsPage.regions[modelData]; anchors.left: parent.left; anchors.right: parent.right; anchors.margins: units.gu(2)}
+                  onClicked: { regionDialog.selectedRegion = modelData; regionDialog.accept() }
                 }
               }
             }
