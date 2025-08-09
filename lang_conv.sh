@@ -1,7 +1,8 @@
 #!/bin/sh
 
 mkdir -p translations
-printf '<RCC><qresource prefix="/i18n">\n' >> translations/translations.qrc
+#printf '<RCC><qresource prefix="/i18n">\n' >> translations/translations.qrc
+printf '<RCC>\n' > translations/translations.qrc
 
 # First, convert UT i18n calls to qsTr ones:
 printf 'Replacing i18n calls with ones to qsTr()\n'
@@ -28,7 +29,9 @@ for f in po/*po; do
   printf '%s: Releasing translations\n' $lang
   lrelease translations/${lang}.ts -qm translations/harbour-plants_${lang}.qm
   # Fifth, register qm files with the qt resource system
+  printf '<qresource prefix="/i18n" lang="%s">\n' $lang >> translations/translations.qrc
   printf '<file>%s</file>\n' harbour-plants_${lang}.qm >> translations/translations.qrc
+  printf '</qresource>\n' >> translations/translations.qrc
 done
-printf '</qresource></RCC>\n' >> translations/translations.qrc
+printf '</RCC>\n' >> translations/translations.qrc
 
