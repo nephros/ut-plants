@@ -44,6 +44,8 @@ Page {
          Label {
             anchors.left: parent.left
             anchors.right: parent.right
+            anchors.leftMargin: Theme.horizontalPageMargin
+            anchors.rightMargin: Theme.horizontalPageMargin
             textFormat: Text.StyledText
             text:  i18n.tr("In order to use the Pl@ntNet plant identification service, it is necessary to register at their website as developer and obtain an API-Key. This key needs to be configured within this app.\n\nPlease visit <a href=\"https://my.plantnet.org/signup\">https://my.plantnet.org/signup</a> and create a developer account. Afterwards visit <a href=\"https://my.plantnet.org/account\">https://my.plantnet.org/account</a> and click the eye-symbol at the very top (\"my API key\") to show the API-Key. Copy this key and paste it into the below text input field.")
             color: Theme.highlightColor
@@ -106,9 +108,29 @@ Page {
          TextSwitch {
             anchors.left: parent.left
             anchors.right: parent.right
-
             text: i18n.tr("Prevent device sleep on pending request")
             checked: settings.preventSleep
+            onCheckedChanged: settings.preventSleep = checked
+         }
+
+         Slider {
+             anchors.left: parent.left
+             anchors.right: parent.right
+             value: settings.numResults
+             minimumValue: 1
+             maximumValue: 10
+             stepSize: 1
+             label: i18n.tr("Maximum number of species in identification results − a higher number increases response time")
+             onValueChanged: settings.numResults = sliderValue
+         }
+ 
+         TextSwitch {
+            enabled: false
+            anchors.left: parent.left
+            anchors.right: parent.right
+            text: i18n.tr("Narrow search by current Location")
+            description: i18n.tr("Use the devices Location capabilities to return results for local plants only.")
+            checked: settings.useLocation
             onCheckedChanged: settings.preventSleep = checked
          }
       }
