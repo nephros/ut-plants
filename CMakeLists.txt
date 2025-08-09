@@ -25,6 +25,7 @@ set(QT_IMPORTS_DIR "lib/${ARCH_TRIPLET}")
 
 set(PROJECT_NAME "Plants")
 set(FULL_PROJECT_NAME "plants.s710")
+set(PACKAGE_NAME "harbour-plants")
 set(DATA_DIR /)
 set(DESKTOP_FILE_NAME ${PROJECT_NAME}.desktop)
 
@@ -51,6 +52,16 @@ endif()
 #install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifest.json DESTINATION ${CMAKE_INSTALL_PREFIX})
 #install(FILES ${PROJECT_NAME}.apparmor DESTINATION ${DATA_DIR})
 #install(FILES assets/logo.png DESTINATION assets)
+
+#add_custom_target(${PROJECT_NAME}_SPLIT_QML ALL SOURCES ${QML_FILES} ${QM_FILES})
+#file(GLOB_RECURSE QML_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} qml/*.qml qml/*.js)
+file(GLOB_RECURSE QM_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} translations/*.qm)
+install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATADIR}/${PACKAGE_NAME}/translations/)
+install(DIRECTORY qml DESTINATION ${CMAKE_INSTALL_DATADIR}/${PACKAGE_NAME}
+    PATTERN "*.qrc" EXCLUDE
+    PATTERN "Main.qml" EXCLUDE
+    PATTERN "Dialogs.qml" EXCLUDE
+)
 
 #qt5_add_resources(QT_RESOURCES qml/qml.qrc)
 #qt5_add_resources(QT_RESOURCES assets/assets.qrc)

@@ -103,4 +103,5 @@ Files:
   - '%{_bindir}/*'
   - '%{_datadir}/applications/%{name}.desktop'
   - '%{_datadir}/icons/*/*/apps/%{name}.png'
+  - '%{_datadir}/%{name}/'
 
