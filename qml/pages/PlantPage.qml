@@ -25,6 +25,7 @@ Page {
       Row { id: toolsRow
          width: plantCard.width
          anchors.top: plantCard.bottom
+         anchors.horizontalCenter: plantCard.horizontalCenter
          spacing: units.gu(1)
          IconButton { id: wikiButt
             icon.source: Theme.colorScheme === Theme.LightOnDark
@@ -55,8 +56,8 @@ Page {
       }
       Loader { id: moreLoader
          width: plantCard.width
-		 anchors.horizontalCenter: plantCard.horizontalCenter
-		 property bool loaded: moreLoader.status === Loader.Ready
+         anchors.horizontalCenter: plantCard.horizontalCenter
+         property bool loaded: moreLoader.status === Loader.Ready
          anchors.top: toolsRow.bottom
       }
       /*
