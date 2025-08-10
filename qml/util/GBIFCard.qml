@@ -1,5 +1,6 @@
 import QtQuick 2.6
 import Sailfish.Silica 1.0
+import Sailfish.WebView 1.0
 
 import "../util"
 
@@ -106,6 +107,17 @@ Rectangle { id: gbifCard
          color: brand.foreground
       }
 
+      WebView { id: mapView
+         width: nameRow.width
+         height: width *3/4
+         active: _resultData.speciesKey
+         url: "https://api.gbif.org/v1/map/?"
+             + "type=TAXON"
+             + "&key=" + _resultData.speciesKey
+             + "&layer=SP_2020_2030"
+             + "&style=light"
+             //+ "&resolution=4"
+      }
       /*
       ListView {
          id: resultImagesList
