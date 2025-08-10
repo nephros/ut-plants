@@ -45,9 +45,9 @@ Rectangle { id: gbifCard
          anchors.horizontalCenter: parent.horizontalCenter
          spacing: units.gu(1)
          Image { id: logo
-            source: "https://rs.gbif.org/style/logo.svg"
-            //"https://www.gbif.org/img/gbc.svg"
-            height: Theme.iconSizeSmall
+            source: "https://www.gbif.org/img/full_logo_white.svg"
+            //"https://rs.gbif.org/style/logo.svg"
+            height: Theme.iconSizeMedium
             width: parent.width - (scoreRow.width + parent.spacing)
             sourceSize.height: Theme.iconSizeSmall
             fillMode: Image.PreserveAspectFit
