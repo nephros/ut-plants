@@ -10,7 +10,10 @@ Page {
 
    SilicaFlickable {
       anchors.fill: parent
-      contentHeight: header.height + plantCard.height + toolsRow.height + (moreLoader.loaded ? moreLoader.item.height : 0)
+      contentHeight: header.height 
+                   + plantCard.height 
+                   + toolsRow.height 
+                   + (moreLoader.loaded ? moreLoader.item.height : 0)
 
       PageHeader { id: header
          title: plant.family ? plant.commonNames.split(", ")[0] : i18n.tr('Plant details')
@@ -100,13 +103,6 @@ Page {
          property bool loaded: moreLoader.status === Loader.Ready
          anchors.top: toolsRow.bottom
       }
-      /*
-      GBIFCard { id: gbifCard
-         width: parent.width - units.gu(2)*2
-         anchors.top: plantCard.bottom
-         species: plantPage.plant.species
-      }
-      */
 
       PullDownMenu {
           MenuItem {

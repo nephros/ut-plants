@@ -14,8 +14,12 @@ Rectangle { id: gbifCard
    property string species: nil
    property var _resultData: ({})
    property var _speciesData: ({})
+   property var _speciesMedia: ([])
+   property var _speciesNames: ([])
 
-   onSpeciesChanged: if(species) lookup(species)
+   readonly property string agent: "harbour-plants/1.0 (Sailfish OS; Qt) contact:sailfish/AT/nephros.org"
+
+   onSpeciesChanged: if(species) lookupSpecies(species)
 
    property double elementSpacing: units.gu(2)
 
@@ -107,24 +111,13 @@ Rectangle { id: gbifCard
          color: brand.foreground
       }
 
-      WebView { id: mapView
-         width: nameRow.width
-         height: width *3/4
-         active: _resultData.speciesKey
-         url: "https://api.gbif.org/v1/map/?"
-             + "type=TAXON"
-             + "&key=" + _resultData.speciesKey
-             + "&layer=SP_2020_2030"
-             + "&style=light"
-             //+ "&resolution=4"
-      }
-      /*
       ListView {
          id: resultImagesList
+         visible: _speciesMedia.length >0
          anchors.horizontalCenter: parent.horizontalCenter
          width: parent.width - units.gu(2)
          height: width
-         model: resultImageModel
+         model: _speciesMedia
 
          clip: true
          orientation: ListView.Horizontal
@@ -137,17 +130,29 @@ Rectangle { id: gbifCard
                height: resultImagesList.height
 
                Image {
-                  source: prepareImageUrl(url)
+                  source: _speciesMedia[index].identifier
                   width: parent.width
                   height: parent.height
                   asynchronous: true
 
                   fillMode: Image.PreserveAspectCrop
+                  BusyIndicator {
+                     anchors.centerIn: parent
+                     running: parent.status === Image.Loading
+                  }
                }
 
                Label {
                   color: brand.foreground
-                  text: copyright
+                  text: _speciesMedia[index].rightsHolder + " " + _speciesMedia[index].license
+                  style: Text.Raised
+                  styleColor: Theme.darkPrimaryColor
+                  font.pixelSize: units.gu(1)
+               }
+               Label {
+                  anchors.bottom: parent.bottom
+                  color: brand.foreground
+                  text: i18n.tr("Source:") + " " + _speciesMedia[index].source
                   style: Text.Raised
                   styleColor: Theme.darkPrimaryColor
                   font.pixelSize: units.gu(1)
@@ -155,7 +160,20 @@ Rectangle { id: gbifCard
             }
          }
       }
-      */
+
+      WebView { id: mapView
+         width: nameRow.width
+         height: width *3/4
+         active: _resultData.speciesKey
+         httpUserAgent: gbifCard.agent
+         url: "https://api.gbif.org/v1/map/?"
+             + "type=TAXON"
+             + "&key=" + _resultData.speciesKey
+             + "&layer=SP_2020_2030"
+             + "&style=light"
+             //+ "&resolution=4"
+      }
+
 
       /*
       QC.PageIndicator {
@@ -177,46 +195,61 @@ Rectangle { id: gbifCard
          text: _speciesData.vernacularName
          wrapMode: Text.WordWrap
       }
+      Repeater {
+        model: Object.keys(_speciesNames)
+        delegate: Label {
+           color: brand.foreground
+           width: parent.width
+           wrapMode: Text.WordWrap
+           text:  modelData + ": " + _speciesNames[modelData].join(", ")
+        }
+      }
    }
-  function lookup(species) {
+  function lookupSpecies(species) {
      const url="https://api.gbif.org/v1/species/match?"
         + "name=" + encodeURI(species)
-        + "&rank=species&limit=2&verbose=true"
-     var query = Qt.resolvedUrl(url);
-     var r = new XMLHttpRequest();
-     r.open("GET", query);
-     r.setRequestHeader('User-Agent', "harbour-plants/1.0 (Sailfish OS; Qt)");
-     r.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-     //r.setRequestHeader('X-Auth-Token', token);
-     //r.setRequestHeader('X-App-Client', Qt.application.name);
-     //r.setRequestHeader('X-App-Version', Qt.application.version);
-     r.setRequestHeader('Accept', 'application/json');
-     r.setRequestHeader('Origin', '');
-
-     r.send();
-     r.onreadystatechange = function(event) {
-         if (r.readyState == XMLHttpRequest.DONE) {
-             if (r.status === 200 || r.status == 0) {
-                 var rdata = JSON.parse(r.response);
-                 gbifCard._resultData = rdata
-                 gbifCard.lookupDetails(rdata.speciesKey)
-             } else {
-                 console.debug("error in processing request.", query, r.status, r.statusText);
-             }
-         }
+        + "&rank=species&limit=1&verbose=false"
+     function cb(rdata) {
+        gbifCard._resultData = rdata
+        gbifCard.lookupDetails(rdata.speciesKey)
+        gbifCard.lookupNames(rdata.speciesKey)
+        gbifCard.lookupMedia(rdata.speciesKey)
      }
+     lookup(url,cb)
   }
-
   function lookupDetails(speciesKey) {
      const url="https://api.gbif.org/v1/species/" + speciesKey
+     function cb(rdata) { gbifCard._speciesData = rdata }
+     lookup(url,cb)
+  }
+  function lookupNames(speciesKey) {
+     const url="https://api.gbif.org/v1/species/" + speciesKey + "/vernacularNames?limit=10"
+     function cb(rdata) {
+         var names = {}
+         rdata.results.forEach(function(e) {
+             var n = names[e.language] 
+             if (!n) n = []
+             n.push(e.vernacularName)
+             names[e.language] = n
+
+         })
+         gbifCard._speciesNames = names
+     }
+     lookup(url,cb)
+  }
+  function lookupMedia(speciesKey) {
+     const url="https://api.gbif.org/v1/species/" + speciesKey + "/media/"
+     function cb(rdata) {
+        gbifCard._speciesMedia = rdata.results.filter(function(e) { return e.type == "StillImage" } )
+     }
+     lookup(url,cb)
+  }
+  function lookup(url, callback) {
      var query = Qt.resolvedUrl(url);
      var r = new XMLHttpRequest();
      r.open("GET", query);
-     r.setRequestHeader('User-Agent', "harbour-plants/1.0 (Sailfish OS; Qt)");
+     r.setRequestHeader('User-Agent', gbifCard.agent);
      r.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-     //r.setRequestHeader('X-Auth-Token', token);
-     //r.setRequestHeader('X-App-Client', Qt.application.name);
-     //r.setRequestHeader('X-App-Version', Qt.application.version);
      r.setRequestHeader('Accept', 'application/json');
      r.setRequestHeader('Origin', '');
 
@@ -225,8 +258,7 @@ Rectangle { id: gbifCard
          if (r.readyState == XMLHttpRequest.DONE) {
              if (r.status === 200 || r.status == 0) {
                  var rdata = JSON.parse(r.response);
-                 gbifCard._speciesData = rdata
-
+                 callback(rdata)
              } else {
                  console.debug("error in processing request.", query, r.status, r.statusText);
              }
