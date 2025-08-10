@@ -117,7 +117,6 @@ sh ./lang_conv.sh
 # fix some UBPort install peculiarities:
 install -d %{buildroot}%{_datadir}/applications
 mv %{buildroot}/%{name}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
-rm -f %{buildroot}/%{_datadir}/assets/logo.png
 # locale files:
 #for fname in $(find %%{buildroot}/share -type f); do
 #install -Dpm644 $fname %%{buildroot}/$fname
