@@ -45,6 +45,7 @@ Rectangle { id: gbifCard
          spacing: units.gu(1)
          Image { id: logo
             source: "https://rs.gbif.org/style/logo.svg"
+            //"https://www.gbif.org/img/gbc.svg"
             height: Theme.iconSizeSmall
             width: parent.width - (scoreRow.width + parent.spacing)
             sourceSize.height: Theme.iconSizeSmall
@@ -97,7 +98,6 @@ Rectangle { id: gbifCard
          font.bold: true
          color: brand.foreground
       }
-
 
       Label {
          visible: _resultData.family
