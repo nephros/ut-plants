@@ -8,7 +8,7 @@ Rectangle { id: gbifCard
    QtObject { id: brand
       //readonly property color background: Theme.colorScheme === Theme.LightOnDark ? "#8eb533" : "#f6f8ed"
       //readonly property color foreground: Theme.colorScheme === Theme.LightOnDark ? "#f6f8ed" : "#394611"
-      readonly property color background: "#458"
+      readonly property color background: "#41af46"
       readonly property color foreground: "#fff"
       readonly property color warn:       Theme.colorScheme === Theme.LightOnDark ? "#ffe629" : Theme.highlightFromColor("#ffe629", Theme.colorScheme)
       readonly property color danger:     Theme.colorScheme === Theme.LightOnDark ? "#d13415" : Theme.highlightFromColor("#d13415", Theme.colorScheme)
@@ -24,7 +24,7 @@ Rectangle { id: gbifCard
    property var _resultData
    property double elementSpacing: units.gu(2)
 
-   onSpeciesChamged: if(species) lookup(species)
+   onSpeciesChanged: if(species) lookup(species)
 
    Column {
       id: contents
@@ -40,9 +40,9 @@ Rectangle { id: gbifCard
          Image { id: logo
             source: "https://rs.gbif.org/style/logo.svg"
             height: Theme.iconSizeSmall
-            width: height
+			width: parent.width
             sourceSize.height: Theme.iconSizeSmall
-            sourceSize.width: sourceSize.height
+            fillMode: Image.PreserveAspectFit
          }
       }
       Row { id: nameRow
@@ -83,8 +83,8 @@ Rectangle { id: gbifCard
          readonly property var taxaNames: [ i18n.tr("Kingdom"), i18n.tr("Phylum"), i18n.tr("Order"), i18n.tr("Family"), i18n.tr("Genus"), ]
          rows: 2
          columns: taxa.length
-         Repeater { model: taxa; delegate: Label { text: taxaNames[index]; color: brand.foreground } }
-         Repeater { model: taxa; delegate: Label { text: _resultData[modelData]; color: brand.foreground } }
+         Repeater { model: taxonomy.taxa; delegate: Label { text: taxonomy.taxaNames[index]; color: brand.foreground } }
+         Repeater { model: taxonomy.taxa; delegate: Label { text: _resultData[modelData]; color: brand.foreground } }
       }
 
       Rectangle {
@@ -101,6 +101,7 @@ Rectangle { id: gbifCard
          color: brand.foreground
       }
 
+	  /*
       ListView {
          id: resultImagesList
          anchors.horizontalCenter: parent.horizontalCenter
@@ -137,6 +138,7 @@ Rectangle { id: gbifCard
             }
          }
       }
+	  */
 
       /*
       QC.PageIndicator {
@@ -146,6 +148,7 @@ Rectangle { id: gbifCard
       }
       */
 
+	  /*
       Label {
          color: brand.foreground
          text: i18n.tr("Common names")
@@ -158,11 +161,12 @@ Rectangle { id: gbifCard
          text: _resultData.commonNames
          wrapMode: Text.WordWrap
       }
+	  */
    }
 
   function lookup(species) {
      const url="https://api.gbif.org/v1/species/match?"
-        + "name=" + encodeURI5(species)
+        + "name=" + encodeURI(species)
         + "&rank=species&limit=2&verbose=true"
      var query = Qt.resolvedUrl(url);
      var r = new XMLHttpRequest();
