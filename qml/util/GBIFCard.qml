@@ -233,6 +233,7 @@ Rectangle { id: gbifCard
                                   + "&point=" + lat + ","  + lon
                                   + "&lat=" + lat + "&lng=" + lon // !! lng not lon !!
                                   )
+                   console.debug("Loaded", posmapView.url)
                  }
              }
       }
