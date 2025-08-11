@@ -4,6 +4,7 @@ import Sailfish.WebView 1.0
 import QtPositioning 5.4
 
 import "../util"
+import "../util/languages-iso-639-1-2-3.js" as Lang
 
 Rectangle { id: gbifCard
    radius: 10
@@ -22,6 +23,17 @@ Rectangle { id: gbifCard
    property var _speciesData: ({})
    property var _speciesMedia: ([])
    property var _speciesNames: ([])
+
+   property var _langData: Lang.data
+   property var _countryData: ([])
+   function iso3ToLang(code) {
+     for (var i=0; i<_langData.length; ++i) {
+       if (_langData[i]["2"] == code) {
+         return _langData[i]
+       }
+     }
+     return { "name": "unknown", "local": "unknown" }
+   }
 
    readonly property string agent: "harbour-plants/1.0 (Sailfish OS; Qt) contact:sailfish/AT/nephros.org"
 
@@ -251,7 +263,8 @@ Rectangle { id: gbifCard
            color: brand.foreground
            width: parent.width
            wrapMode: Text.WordWrap
-           text:  modelData + ": " + _speciesNames[modelData].join(", ")
+           property var lang: iso3ToLang(modelData)
+           text: lang.local + ": " + _speciesNames[modelData].join(", ")
         }
       }
   }
