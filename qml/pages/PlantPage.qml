@@ -69,6 +69,7 @@ Page {
          Column {
              width: powoButt.width
              IconButton { id: powoButt
+                enabled: false
                 icon.source: "image://theme/icon-s-cloud-download"
                 icon.width:Theme.iconSizeSmall
                 icon.height:Theme.iconSizeSmall
@@ -84,6 +85,7 @@ Page {
          Column {
              width: ipniButt.width
              IconButton { id: ipniButt
+                enabled: false
                 icon.source: "image://theme/icon-s-cloud-download"
                 icon.width:Theme.iconSizeSmall
                 icon.height:Theme.iconSizeSmall

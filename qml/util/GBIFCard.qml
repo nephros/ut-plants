@@ -79,6 +79,36 @@ Rectangle { id: gbifCard
             }
          }
       }
+
+      Label {
+         color: brand.foreground
+         text: i18n.tr("Taxonomy")
+         font.bold: true
+      }
+
+      Label {
+         text: i18n.tr("Class") + " " + _resultData.class
+         font.italic: true
+         font.bold: true
+         color: brand.foreground
+      }
+
+      Column { id: taxonomy
+         readonly property var taxa: [  "phylum", "order", "family", "genus", ]
+         readonly property var taxaNames: [  i18n.tr("Phylum"), i18n.tr("Order"), i18n.tr("Family"), i18n.tr("Genus"), ]
+         width: nameRow.width
+         spacing: units.gu(1)
+         Repeater {
+            model: taxonomy.taxa;
+            delegate: Row {
+              spacing: units.gu(1)
+              Item { height: 1; width: units.gu(2)*index }
+              Label { font.pixelSize: Theme.fontSizeSmall; text: taxonomy.taxaNames[index]; color: brand.foreground }
+              Label { font.pixelSize: Theme.fontSizeSmall; text: _resultData[modelData];    color: brand.foreground; font.italic: true }
+            }
+         }
+      }
+/*
       Grid { id: taxonomy
          readonly property var taxa: [  "phylum", "order", "family", "genus", ]
          readonly property var taxaNames: [  i18n.tr("Phylum"), i18n.tr("Order"), i18n.tr("Family"), i18n.tr("Genus"), ]
@@ -88,26 +118,11 @@ Rectangle { id: gbifCard
          Repeater { model: taxonomy.taxa; delegate: Label { font.pixelSize: Theme.fontSizeSmall; text: taxonomy.taxaNames[index]; color: brand.foreground } }
          Repeater { model: taxonomy.taxa; delegate: Label { font.pixelSize: Theme.fontSizeSmall; text: _resultData[modelData];    color: brand.foreground; font.italic: true } }
       }
-
+*/
       Rectangle {
          width: nameRow.width
          anchors.horizontalCenter: nameRow.horizontalCenter
          height: 1
-         color: brand.foreground
-      }
-
-      Label {
-         visible: _resultData.class
-         text: _resultData.class
-         font.italic: true
-         font.bold: true
-         color: brand.foreground
-      }
-
-      Label {
-         visible: _resultData.family
-         text: _resultData.family
-         font.italic: true
          color: brand.foreground
       }
 
@@ -162,7 +177,7 @@ Rectangle { id: gbifCard
       }
 
       WebView { id: mapView
-         width: nameRow.width
+         width: resultImagesList.width
          height: width *3/4
          active: _resultData.speciesKey
          httpUserAgent: gbifCard.agent
