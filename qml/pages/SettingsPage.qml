@@ -80,6 +80,7 @@ Page {
                }
             }
          }
+         SectionHeader { text: i18n.tr("Identification:") }
          ValueButton { id: langButton
             label: i18n.tr("Result Language")
             description: i18n.tr("The language to use for Identification results. Default is to use the current Locale, or English if not available.")
@@ -111,9 +112,18 @@ Page {
          }
 
          ValueButton { id: regionButton
-            label: i18n.tr("Result Region")
+            label: i18n.tr("Region")
             description: i18n.tr("The Region to use for Identification results. Default is to use all available.")
-            value: region
+            value: {
+              var name = "all"
+              for (var i=0; i<settingsPage.regions.length; ++i) {
+                  if (settingsPage.regions[i]["id"] == settingsPage.region) {
+                     name = settingsPage.regions[i]["description"]
+                     break
+                  }
+              }
+              return name
+            }
             onClicked: {
                var dlg = pageStack.push(regionSelector)
                dlg.accepted.connect(function() {
@@ -133,21 +143,24 @@ Page {
                 model: settingsPage.regions
                 delegate: ListItem {
                   anchors.margins: units.gu(2)
-                  Label { text: model.id + ": " + model.description; anchors.left: parent.left; anchors.right: parent.right; anchors.margins: units.gu(2)}
-                  onClicked: { regionDialog.selectedRegion = model.id; regionDialog.accept() }
+                  highlighted: down || (modelData.id == settingsPage.region)
+                  Column { width: parent.width
+                     Label { id: regionDesc
+                       text: modelData.description
+                       anchors.left: parent.left; anchors.right: parent.right; anchors.margins: units.gu(2)
+                       wrapMode: Text.WordWrap
+                     }
+                     Label { text: Number(modelData.speciesCount) + " " + i18n.tr("known species")
+                       font.pixelSize: Theme.fontSizeSmall
+                       color: Theme.secondaryColor
+                       anchors.left: parent.left; anchors.right: parent.right; anchors.margins: units.gu(2)
+                     }
+                  }
+                  onClicked: { regionDialog.selectedRegion = modelData.id; regionDialog.accept() }
                 }
               }
             }
          }
-
-         TextSwitch {
-            anchors.left: parent.left
-            anchors.right: parent.right
-            text: i18n.tr("Prevent device sleep on pending request")
-            checked: settings.preventSleep
-            onCheckedChanged: settings.preventSleep = checked
-         }
-
          Slider {
              anchors.left: parent.left
              anchors.right: parent.right
@@ -155,19 +168,20 @@ Page {
              minimumValue: 1
              maximumValue: 10
              stepSize: 1
-             label: i18n.tr("Maximum number of species in identification results − a higher number increases response time")
+             label: i18n.tr("Number of results.")
              onValueChanged: settings.numResults = sliderValue
          }
- 
+
+         SectionHeader { text: i18n.tr("App:") }
          TextSwitch {
-            enabled: false
             anchors.left: parent.left
             anchors.right: parent.right
-            text: i18n.tr("Narrow search by current Location")
-            description: i18n.tr("Use the devices Location capabilities to return results for local plants only.")
-            checked: settings.useLocation
+            text: i18n.tr("Prevent device sleep on pending request")
+            description: i18n.tr("If enabled, device will not go into sleep mode while waiting on an identification result.")
+            checked: settings.preventSleep
             onCheckedChanged: settings.preventSleep = checked
          }
+
       }
    }
 
