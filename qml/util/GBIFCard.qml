@@ -298,9 +298,10 @@ Rectangle { id: gbifCard
          rdata.results.forEach(function(e) {
              var n = names[e.language] 
              if (!n) n = []
-             n.push(e.vernacularName)
-             names[e.language] = n
-
+             if (n.indexOf(e.vernacularName) == -1) {
+                 n.push(e.vernacularName)
+                 names[e.language] = n
+             }
          })
          gbifCard._speciesNames = names
      }
