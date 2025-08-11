@@ -15,6 +15,7 @@
         <file>util/LoadingScreen.qml</file>
         <file>util/SFOSShare.qml</file>
         <file>util/GBIFCard.qml</file>
+        <file>util/WikiCard.qml</file>
         <file>compat/Settings.qml</file>
         <file>compat/UbuUnits.qml</file>
         <file>dialogs/QuestionDialog.qml</file>
