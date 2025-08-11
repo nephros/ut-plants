@@ -72,7 +72,7 @@ Rectangle { id: gbifCard
                height: scoreLabel.height
             }
             Label { id: scoreLabel
-               property int scoreValue: _resultData.confidence
+               property int scoreValue: _resultData.confidence ? _resultData.confidence : "??"
 
                anchors.top: parent.top
                text: scoreValue + "%"
@@ -102,6 +102,7 @@ Rectangle { id: gbifCard
       Column { id: taxonomy
          readonly property var taxa: [  "phylum", "order", "family", "genus", ]
          readonly property var taxaNames: [  i18n.tr("Phylum"), i18n.tr("Order"), i18n.tr("Family"), i18n.tr("Genus"), ]
+         visible: _resultData
          width: nameRow.width
          spacing: units.gu(1)
          Repeater {
