@@ -165,10 +165,11 @@ Page {
              anchors.left: parent.left
              anchors.right: parent.right
              value: settings.numResults
+             valueText: sliderValue
              minimumValue: 1
              maximumValue: 10
              stepSize: 1
-             label: i18n.tr("Number of results.")
+             label: i18n.tr("Number of results")
              onValueChanged: settings.numResults = sliderValue
          }
 
