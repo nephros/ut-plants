@@ -229,10 +229,11 @@ Rectangle { id: gbifCard
                    const lat = coord.latitude.toFixed(5)
                    const lon = coord.longitude.toFixed(5)
                    console.debug("New position:", coord.latitude, coord.longitude)
-                   posmapView.load( posmapView.templateUrl
+                   //posmapView.load( posmapView.templateUrl
+                   posmapView.url = posmapView.templateUrl
                                   + "&point=" + lat + ","  + lon
                                   + "&lat=" + lat + "&lng=" + lon // !! lng not lon !!
-                                  )
+                   //               )
                    console.debug("Loaded", posmapView.url)
                  }
              }
