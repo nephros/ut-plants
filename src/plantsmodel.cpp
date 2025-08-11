@@ -62,7 +62,7 @@ PlantsModel::PlantsModel(QObject* parent)
                    }
    );
    connect(&identificator, &Identification::projectsChanged, this,
-                [=](QStringList regions) {
+                [=](QVariantList regions) {
                       this->regions = regions;
                       // emit signal:
                       this->availableRegionsChanged(regions);
@@ -297,22 +297,6 @@ QVariantMap PlantsModel::availableLanguages() const
           QLocale loc(l);
           QVariant v(loc.nativeLanguageName());
           map.insert(l,v);
-       }
-    }
-    return map;
-}
-
-
-QVariantMap PlantsModel::availableRegions() const
-{
-    QVariantMap map;
-    if (regions.isEmpty()) {
-       qDebug() << "Mapping: no regions in list, returning empty map";
-    } else {
-       for (const auto &r : regions) {
-          QLocale loc(r);
-          QVariant v(loc.nativeCountryName());
-          map.insert(r,v);
        }
     }
     return map;

@@ -58,7 +58,7 @@ signals:
    void identificationResult(QString error, QVariantList result);
    void languagesChanged(QStringList languages);
    void languageChanged(QString language);
-   void projectsChanged(QStringList projects);
+   void projectsChanged(QVariantList projects);
    void projectChanged(QString project);
 
 protected:

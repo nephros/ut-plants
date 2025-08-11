@@ -74,8 +74,10 @@ Identification::Identification(network::Network* network, QObject* parent)
 
    if (settings.contains("project") && !settings.value("project").toString().isEmpty()) {
       url.setPath(QStringLiteral("/v2/identify/") + settings.value("project").toString());
+      emit projectChanged(settings.value("project").toString());
    } else {
       url.setPath(QStringLiteral("/v2/identify/all"));
+      emit projectChanged(QStringLiteral("all"));
    }
 
    query.addQueryItem("include-related-images", "true");
@@ -181,45 +183,20 @@ void Identification::initProjects()
         {
            qDebug() << "FAIL Projects response: " << QString::number(code) << " (" << body << ")";
 
-           QString prj("all");
+           emit projectsChanged(QVariantList());
 
-           emit projectsChanged(QStringList({"all"}));
-
-           //query.addQueryItem("lang", lang);
-           //url.setQuery(query);
-           //
-           emit projectChanged(prj);
            return;
         }
-
-        QString systemLang = QLocale::system().name().split('_').at(0);
 
         auto doc = QJsonDocument::fromJson(body);
         auto parsed = (!doc.isNull() && doc.isArray()) ? doc.array() : QJsonArray();
 
-        QStringList projects;
+        QVariantList projects;
 
         foreach (auto proj, parsed)
-           projects << proj.toString();
+           projects << proj.toVariant();
 
         emit projectsChanged(projects);
-
-        if (projects.contains(systemLang))
-        {
-           if (!settings.contains("project"))
-           {
-              settings.setValue("project", systemLang);
-           }
-           else
-           {
-              systemLang = settings.value("project").toString();
-           }
-           emit projectChanged(systemLang);
-        }
-        else
-        {
-           emit projectChanged("all");
-        }
      });
 }
 
@@ -258,7 +235,7 @@ void Identification::setLanguage(QString lang)
 
 void Identification::setProject(QString proj)
 {
-   if (0 != proj.compare(settings.value("project").toString()))
+   if (0 != lang.compare(settings.value("project").toString()))
    {
      if (proj.isEmpty()) {
         url.setPath(QStringLiteral("/v2/identify/all"));

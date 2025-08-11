@@ -113,7 +113,7 @@ Page {
          ValueButton { id: regionButton
             label: i18n.tr("Result Region")
             description: i18n.tr("The Region to use for Identification results. Default is to use all available.")
-            value: regions[region]
+            value: region
             onClicked: {
                var dlg = pageStack.push(regionSelector)
                dlg.accepted.connect(function() {
@@ -130,11 +130,11 @@ Page {
                 width: parent.width
                 anchors.top: head.bottom
                 anchors.bottom: parent.bottom
-                model: Object.keys(settingsPage.regions)
+                model: settingsPage.regions
                 delegate: ListItem {
                   anchors.margins: units.gu(2)
-                  Label { text: modelData + ": " + settingsPage.regions[modelData]; anchors.left: parent.left; anchors.right: parent.right; anchors.margins: units.gu(2)}
-                  onClicked: { regionDialog.selectedRegion = modelData; regionDialog.accept() }
+                  Label { text: model.id + ": " + model.description; anchors.left: parent.left; anchors.right: parent.right; anchors.margins: units.gu(2)}
+                  onClicked: { regionDialog.selectedRegion = model.id; regionDialog.accept() }
                 }
               }
             }

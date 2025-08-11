@@ -105,14 +105,17 @@ public:
    }
 
    Q_INVOKABLE QVariantMap availableLanguages() const;
-   Q_INVOKABLE QVariantMap availableRegions() const;
+   Q_INVOKABLE QVariantList availableRegions() const
+   {
+      return regions;
+   }
 
 signals:
    void countChanged();
    void identificationResult(QString error, QVariantList result);
    void availableLanguagesChanged(QStringList languages);
    void languageChanged(QString language);
-   void availableRegionsChanged(QStringList regions);
+   void availableRegionsChanged(QVariantList regions);
    void regionChanged(QString region);
 
 private:
@@ -134,7 +137,7 @@ private:
    QStringList languages;
    QString language;
 
-   QStringList regions;
+   QVariantList regions;
    QString region;
 };
 
