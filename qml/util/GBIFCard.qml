@@ -1,6 +1,7 @@
 import QtQuick 2.6
 import Sailfish.Silica 1.0
 import Sailfish.WebView 1.0
+import QtPositioning 5.4
 
 import "../util"
 
@@ -176,19 +177,47 @@ Rectangle { id: gbifCard
          }
       }
 
-      WebView { id: mapView
+      WebView { id: occmapView
          width: resultImagesList.width
          height: width *3/4
+         anchors.horizontalCenter: parent.horizontalCenter
          active: _resultData.speciesKey
          httpUserAgent: gbifCard.agent
          url: "https://api.gbif.org/v1/map/?"
              + "type=TAXON"
              + "&key=" + _resultData.speciesKey
              + "&layer=SP_2020_2030"
-             + "&style=light"
+             + (Theme.colorScheme === Theme.LightOnDark ? "&style=light" : + "&style=classic")
              //+ "&resolution=4"
       }
 
+      WebView { id: posmapView
+         width: resultImagesList.width
+         height: width *3/4
+         anchors.horizontalCenter: parent.horizontalCenter
+         active: _resultData.speciesKey && pos.valid
+         httpUserAgent: gbifCard.agent
+         property string templateUrl: "https://api.gbif.org/v1/map/point.html?"
+             + "type=TAXON"
+             + "&key=" + _resultData.speciesKey
+             + "&zoom=8"
+             + (Theme.colorScheme === Theme.LightOnDark ? "&style=light" : "&style=classic")
+             PositionSource { id: pos
+                 updateInterval: 5000
+                 active: parent.visible
+                 onPositionChanged: {
+                   if (!valid) return
+                   const coord = pos.position.coordinate
+                   const lat = coord.latitude.toFixed(5)
+                   const lon = coord.longitude.toFixed(5)
+                   console.debug("New position:", coord.latitude, coord.longitude)
+                   posmapView.load( posmapView.templateUrl
+                                  + "&point=" + lat + ","  + lon
+                                  + "&lat=" + lat + "&lng=" + lon // !! lng not lon !!
+                                  )
+                 }
+             }
+      }
 
       /*
       QC.PageIndicator {
