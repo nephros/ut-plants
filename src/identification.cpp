@@ -235,7 +235,7 @@ void Identification::setLanguage(QString lang)
 
 void Identification::setProject(QString proj)
 {
-   if (0 != lang.compare(settings.value("project").toString()))
+   if (0 != proj.compare(settings.value("project").toString()))
    {
      if (proj.isEmpty()) {
         url.setPath(QStringLiteral("/v2/identify/all"));
