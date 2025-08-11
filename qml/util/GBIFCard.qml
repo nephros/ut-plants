@@ -286,6 +286,12 @@ Rectangle { id: gbifCard
      }
      lookup(url,cb)
   }
+
+  function lookupCountries() {
+     const url="https://api.gbif.org/v1/enumeration/country"
+     function cb(rdata) { gbifCard._countryData = rdata }
+     lookup(url,cb)
+  }
   function lookupDetails(speciesKey) {
      const url="https://api.gbif.org/v1/species/" + speciesKey
      function cb(rdata) { gbifCard._speciesData = rdata }
