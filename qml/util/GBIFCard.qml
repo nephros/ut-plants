@@ -12,6 +12,11 @@ Rectangle { id: gbifCard
    anchors.margins: units.gu(2)
    anchors.horizontalCenter: parent.horizontalCenter
 
+   property int xhrs: 0
+   property bool loading: xhrs>0
+   opacity: loading ? 0.5 : 1.0
+   Behavior on opacity { FadeAnimator{} }
+
    property string species: nil
    property var _resultData: ({})
    property var _speciesData: ({})
@@ -248,7 +253,13 @@ Rectangle { id: gbifCard
            text:  modelData + ": " + _speciesNames[modelData].join(", ")
         }
       }
-   }
+  }
+  BusyIndicator {
+    anchors.centerIn: parent
+    running: gbifCard.loading
+    size: BusyIndicatorSize.Large
+  }
+
   function lookupSpecies(species) {
      const url="https://api.gbif.org/v1/species/match?"
         + "name=" + encodeURI(species)
@@ -298,6 +309,7 @@ Rectangle { id: gbifCard
      r.setRequestHeader('Origin', '');
 
      r.send();
+     gbifCard.xhrs += 1
      r.onreadystatechange = function(event) {
          if (r.readyState == XMLHttpRequest.DONE) {
              if (r.status === 200 || r.status == 0) {
@@ -306,6 +318,7 @@ Rectangle { id: gbifCard
              } else {
                  console.debug("error in processing request.", query, r.status, r.statusText);
              }
+             gbifCard.xhrs -= 1
          }
      }
   }
