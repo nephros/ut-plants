@@ -94,6 +94,11 @@ public:
    {
       identificator.setLanguage(language);
    }
+   Q_INVOKABLE void setRegion(QString region)
+   {
+      identificator.setProject(region);
+   }
+
 
    Q_INVOKABLE QString savePlant(QVariantMap identificationResult);
    Q_INVOKABLE QString deletePlant(QString id);

@@ -160,7 +160,7 @@ Page {
 
       p.regChanged.connect(function (reg) {
         console.info("Storing region from Settings:", reg)
-        //plantsModel.setLanguage(lang)
+        plantsModel.setRegion(reg)
         p.region = reg
       })
       p.langChanged.connect(function (lang) {
