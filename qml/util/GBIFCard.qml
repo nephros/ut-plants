@@ -228,7 +228,9 @@ Rectangle { id: gbifCard
                    const coord = pos.position.coordinate
                    const lat = coord.latitude.toFixed(5)
                    const lon = coord.longitude.toFixed(5)
+                   // only sane way to test for NaN:
                    console.debug("New position:", coord.latitude, coord.longitude)
+                   if ( (lat != lat) || (lon != lon) ) return
                    //posmapView.load( posmapView.templateUrl
                    posmapView.url = posmapView.templateUrl
                                   + "&point=" + lat + ","  + lon
