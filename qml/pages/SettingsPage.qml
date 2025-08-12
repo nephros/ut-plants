@@ -118,7 +118,7 @@ Page {
               var name = "All available"
               for (var i=0; i<settingsPage.regions.length; ++i) {
                   if (settingsPage.regions[i]["id"] == settingsPage.region) {
-                     name = settingsPage.regions[i]["description"]
+                     name = settingsPage.regions[i]["title"]
                      break
                   }
               }
@@ -146,12 +146,19 @@ Page {
                   contentHeight: regCol.height
                   Column { id: regCol
                      width: parent.width
-                     Label { id: regionDesc
-                       text: modelData.description
+                     Label { id: regionTitle
+                       text: modelData.title
                        anchors.left: parent.left; anchors.right: parent.right; anchors.margins: units.gu(2)
                        wrapMode: Text.WordWrap
                      }
-                     Label { text: Number(modelData.speciesCount) + " " + i18n.tr("known species")
+                     Label { id: regionDesc
+                       text: modelData.description
+                       font.pixelSize: Theme.fontSizeSmall
+                       color: Theme.secondaryHighlightColor
+                       anchors.left: parent.left; anchors.right: parent.right; anchors.margins: units.gu(2)
+                       wrapMode: Text.WordWrap
+                     }
+                     Label { text: Number(modelData.speciesCount) + " " + i18n.tr("species")
                        font.pixelSize: Theme.fontSizeSmall
                        color: Theme.secondaryColor
                        anchors.left: parent.left; anchors.right: parent.right; anchors.margins: units.gu(2)
