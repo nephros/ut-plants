@@ -215,13 +215,14 @@ Rectangle { id: gbifCard
          anchors.horizontalCenter: parent.horizontalCenter
          active: _resultData.speciesKey && pos.valid
          httpUserAgent: gbifCard.agent
+         property bool positionSet: false
          property string templateUrl: "https://api.gbif.org/v1/map/point.html?"
              + "type=TAXON"
              + "&key=" + _resultData.speciesKey
              + "&zoom=8"
              + (Theme.colorScheme === Theme.LightOnDark ? "&style=light" : "&style=classic")
              PositionSource { id: pos
-                 updateInterval: 5000
+                 updateInterval: posmapView.positionSet ? 1000*60*5 : 5000 // 5s or 5min
                  active: parent.visible
                  onPositionChanged: {
                    if (!valid) return
@@ -237,6 +238,7 @@ Rectangle { id: gbifCard
                                   + "&lat=" + lat + "&lng=" + lon // !! lng not lon !!
                    //               )
                    console.debug("Loaded", posmapView.url)
+                   posmapView.positionSet = true
                  }
              }
       }
