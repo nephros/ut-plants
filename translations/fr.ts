@@ -626,17 +626,17 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="26"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="31"/>
         <source>Settings</source>
         <translation>Paramètres</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="39"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="44"/>
         <source>Pl@ntNet API key</source>
         <translation>Clé d&apos;API de Pl@ntNet</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="48"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="55"/>
         <source>In order to use the Pl@ntNet plant identification service, it is necessary to register at their website as developer and obtain an API-Key. This key needs to be configured within this app.
 
 Please visit &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantnet.org/signup&lt;/a&gt; and create a developer account. Afterwards visit &lt;a href=&quot;https://my.plantnet.org/account&quot;&gt;https://my.plantnet.org/account&lt;/a&gt; and click the eye-symbol at the very top (&quot;my API key&quot;) to show the API-Key. Copy this key and paste it into the below text input field.</source>
@@ -645,49 +645,84 @@ Please visit &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my
 Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantnet.org/signup&lt;/a&gt; et créer un compte. Ensuite, visitez &lt;a href=&quot;https://my.plantnet.org/account&quot;&gt;https://my.plantnet.org/account&lt;/a&gt; et cliquez sur le symbole en forme d&apos;œil tout en haut (« ma clé d&apos;API ») pour afficher la clé d&apos;API. Copiez cette clé et collez-la dans le champ de saisie de texte ci-dessous.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="59"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="66"/>
         <source>API-Key:</source>
         <translation>Clé d&apos;API :</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="63"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="70"/>
         <source>New API Key</source>
         <translation>Clé d&apos;API nouvelle</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="64"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="71"/>
         <source>Enter API-Key</source>
         <translation>Saisissez la clé d&apos;API</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="65"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="72"/>
         <source>The value will be saved on Enter.</source>
         <translation>Valeur sera sauvegardée sur clé Entrée.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="67"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="74"/>
         <source>API Key already stored. Edit to update</source>
         <translation>Clé stockée. Modifier pour mettre à jour</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="67"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="74"/>
         <source>No API Key stored</source>
         <translation>Pas de clé d&apos;API stockée</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="77"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="83"/>
+        <source>Identification:</source>
+        <translation>Identification:</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="85"/>
         <source>Result Language</source>
         <translation>Langue des résultats</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="78"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="86"/>
         <source>The language to use for Identification results. Default is to use the current Locale, or English if not available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Langue à utiliser pour les résultats d&apos;identification. Par défaut, les paramètres régionaux actuels sont utilisés ou l&apos;anglais s&apos;ils ne sont pas disponibles.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="110"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="115"/>
+        <source>Region</source>
+        <translation>Region</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="116"/>
+        <source>The Region to use for Identification results. Default is to use all available.</source>
+        <translation>Région à utiliser pour les résultats d&apos;identification. Par défaut, tous les appareils disponibles sont utilisés.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="153"/>
+        <source>known species</source>
+        <translation>espèces connues</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="172"/>
+        <source>Number of results</source>
+        <translation>Nombre de résultats</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="176"/>
+        <source>App:</source>
+        <translation>Application:</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="180"/>
         <source>Prevent device sleep on pending request</source>
         <translation>Empêcher le sommeil du dispositif sur demande en attente</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="181"/>
+        <source>If enabled, device will not go into sleep mode while waiting on an identification result.</source>
+        <translation>Si est activée, l&apos;appareil ne passe pas en mode veille dans l&apos;apos;apos;attente d&apos;apos;apos;un résultat d&apos;apos;apos;identification.</translation>
     </message>
     <message>
         <source>Prevent device sleep on outstanding request</source>
