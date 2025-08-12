@@ -197,6 +197,11 @@ void Identification::initProjects()
            projects << proj.toVariant();
 
         emit projectsChanged(projects);
+
+        if (settings.contains("project")) {
+           QString prj = settings.value("project").toString();
+           setProject(prj);
+        }
      });
 }
 
