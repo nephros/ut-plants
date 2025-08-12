@@ -112,8 +112,8 @@ Page {
          }
 
          ValueButton { id: regionButton
-            label: i18n.tr("Region")
-            description: i18n.tr("The Region to use for Identification results. Default is to use all available.")
+            label: i18n.tr("Region or Project")
+            description: i18n.tr("The Region or Project to use for Identification results. Default is to use all available.")
             value: {
               var name = "all"
               for (var i=0; i<settingsPage.regions.length; ++i) {
