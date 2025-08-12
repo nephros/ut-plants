@@ -144,7 +144,9 @@ Page {
                 delegate: ListItem {
                   anchors.margins: units.gu(2)
                   highlighted: down || (modelData.id == settingsPage.region)
-                  Column { width: parent.width
+                  contentHeight: regCol.height
+                  Column { id: regCol
+                     width: parent.width
                      Label { id: regionDesc
                        text: modelData.description
                        anchors.left: parent.left; anchors.right: parent.right; anchors.margins: units.gu(2)
