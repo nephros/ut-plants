@@ -118,7 +118,7 @@ Rectangle { id: gbifCard
          width: nameRow.width
          spacing: units.gu(1)
          Repeater {
-            model: taxonomy.taxa;
+            model: _resultData ? taxonomy.taxa : undefined
             delegate: Row {
               spacing: units.gu(1)
               Item { height: 1; width: units.gu(2)*index }
