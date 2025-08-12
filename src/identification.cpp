@@ -172,6 +172,9 @@ void Identification::initProjects()
 
    q.addQueryItem("api-key", settings.value("apiKey").toString());
 
+   QString systemLang = QLocale::system().name().split('_').at(0);
+   q.addQueryItem("lang", systemLang);
+
    QUrl projectsUrl(PROJECTS_URL);
    projectsUrl.setQuery(q);
 
