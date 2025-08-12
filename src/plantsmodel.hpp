@@ -66,6 +66,7 @@ class PlantsModel : public QAbstractListModel
    Q_OBJECT
    Q_PROPERTY(int count READ rowCount NOTIFY countChanged)
    Q_PROPERTY(QString language MEMBER language NOTIFY languageChanged)
+   Q_PROPERTY(QString region MEMBER region NOTIFY regionChanged)
 
 public:
    static PlantsModel* getInstace()
@@ -98,7 +99,6 @@ public:
    {
       identificator.setProject(region);
    }
-
 
    Q_INVOKABLE QString savePlant(QVariantMap identificationResult);
    Q_INVOKABLE QString deletePlant(QString id);

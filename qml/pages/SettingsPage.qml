@@ -12,10 +12,10 @@ Page {
    signal regChanged(string region)
 
    property var languages
-   property string language
+   property string language: plantsModel.language
 
    property var regions
-   property string region
+   property string region: plantsModel.region
 
    SilicaFlickable {
       id: flickable
@@ -115,7 +115,7 @@ Page {
             label: i18n.tr("Region or Project")
             description: i18n.tr("The Region or Project to use for Identification results. Default is to use all available.")
             value: {
-              var name = "all"
+              var name = "All available"
               for (var i=0; i<settingsPage.regions.length; ++i) {
                   if (settingsPage.regions[i]["id"] == settingsPage.region) {
                      name = settingsPage.regions[i]["description"]
@@ -127,8 +127,7 @@ Page {
             onClicked: {
                var dlg = pageStack.push(regionSelector)
                dlg.accepted.connect(function() {
-                  settingsPage.regionChanged(dlg.selectedRegion)
-                  settingsPage.region = dlg.selectedRegion
+                  settingsPage.regChanged(dlg.selectedRegion)
                })
             }
          }

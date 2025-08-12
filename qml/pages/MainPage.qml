@@ -154,19 +154,18 @@ Page {
    }
    function openSettings() {
       var p = pageStack.push(Qt.resolvedUrl("./SettingsPage.qml"),
-          { languages: plantsModel.availableLanguages(), language: plantsModel.language,
-            regions: plantsModel.availableRegions(), region: plantsModel.region }
+          { languages: plantsModel.availableLanguages(),
+            regions: plantsModel.availableRegions()
+          }
       )
 
       p.regChanged.connect(function (reg) {
         console.info("Storing region from Settings:", reg)
         plantsModel.setRegion(reg)
-        p.region = reg
       })
       p.langChanged.connect(function (lang) {
         console.info("Storing language from Settings:", lang)
         plantsModel.setLanguage(lang)
-        p.language = lang
       })
       p.apiKeyChanged.connect(function (key) {
          console.info("Storing API key from Settings")
