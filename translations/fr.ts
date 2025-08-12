@@ -691,36 +691,44 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="115"/>
-        <source>Region</source>
-        <translation>Region</translation>
+        <source>Region or Project</source>
+        <translation>Région ou Projet</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="116"/>
-        <source>The Region to use for Identification results. Default is to use all available.</source>
-        <translation>Région à utiliser pour les résultats d&apos;identification. Par défaut, tous les appareils disponibles sont utilisés.</translation>
+        <source>The Region or Project to use for Identification results. Default is to use all available.</source>
+        <translation>Région ou projet à utiliser pour les résultats d&apos;identification. Par défaut, tous les projets disponibles sont utilisés.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="153"/>
+        <source>Region</source>
+        <translation type="vanished">Region</translation>
+    </message>
+    <message>
+        <source>The Region to use for Identification results. Default is to use all available.</source>
+        <translation type="vanished">Région à utiliser pour les résultats d&apos;identification. Par défaut, tous les appareils disponibles sont utilisés.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="154"/>
         <source>known species</source>
         <translation>espèces connues</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="172"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="173"/>
         <source>Number of results</source>
         <translation>Nombre de résultats</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="176"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="177"/>
         <source>App:</source>
         <translation>Application:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="180"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="181"/>
         <source>Prevent device sleep on pending request</source>
         <translation>Empêcher le sommeil du dispositif sur demande en attente</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="181"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="182"/>
         <source>If enabled, device will not go into sleep mode while waiting on an identification result.</source>
         <translation>Si est activée, l&apos;appareil ne passe pas en mode veille dans l&apos;apos;apos;attente d&apos;apos;apos;un résultat d&apos;apos;apos;identification.</translation>
     </message>
@@ -732,12 +740,12 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
 <context>
     <name>harbour-plants</name>
     <message>
-        <location filename="../qml/harbour-plants.qml" line="58"/>
+        <location filename="../qml/harbour-plants.qml" line="63"/>
         <source>Identification failed</source>
         <translation>L&apos;identification a échoué</translation>
     </message>
     <message>
-        <location filename="../qml/harbour-plants.qml" line="59"/>
+        <location filename="../qml/harbour-plants.qml" line="64"/>
         <source>Failed to send identification request to Pl@ntNet (%1).</source>
         <translation>Échec de l&apos;envoi de la demande d&apos;identification à Pl@ntNet (%1).</translation>
     </message>

@@ -619,11 +619,11 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
     </message>
     <message>
         <source>Region</source>
-        <translation>Region</translation>
+        <translation type="vanished">Region</translation>
     </message>
     <message>
         <source>The Region to use for Identification results. Default is to use all available.</source>
-        <translation>Die Region die für die Identifikation genutzt wird. Standard ist, alle verfügbaren zu verwenden.</translation>
+        <translation type="vanished">Die Region die für die Identifikation genutzt wird. Standard ist, alle verfügbaren zu verwenden.</translation>
     </message>
     <message>
         <source>known species</source>
@@ -643,11 +643,19 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
     </message>
     <message>
         <source>If enabled, device will not go into sleep mode while waiting on an identification result.</source>
-        <translation>Wenn aktiviert geht das GerÄt nicht in den Standby-Modus, während eine Anfrage läuft.</translation>
+        <translation>Wenn aktiviert geht das Gerät nicht in den Standby-Modus, während eine Anfrage läuft.</translation>
     </message>
     <message>
         <source>Prevent device sleep on outstanding request</source>
         <translation type="vanished">Standby verhindern, während Anfrage läuft</translation>
+    </message>
+    <message>
+        <source>Region or Project</source>
+        <translation>Region oder Projekt</translation>
+    </message>
+    <message>
+        <source>The Region or Project to use for Identification results. Default is to use all available.</source>
+        <translation>Die Region oder Projekt, die für die Identifikation genutzt wird. Standard ist, alle verfügbaren zu verwenden.</translation>
     </message>
 </context>
 <context>

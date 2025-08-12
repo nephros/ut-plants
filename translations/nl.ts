@@ -691,36 +691,36 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="115"/>
-        <source>Region</source>
+        <source>Region or Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="116"/>
-        <source>The Region to use for Identification results. Default is to use all available.</source>
+        <source>The Region or Project to use for Identification results. Default is to use all available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="153"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="154"/>
         <source>known species</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="172"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="173"/>
         <source>Number of results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="176"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="177"/>
         <source>App:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="180"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="181"/>
         <source>Prevent device sleep on pending request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="181"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="182"/>
         <source>If enabled, device will not go into sleep mode while waiting on an identification result.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -728,12 +728,12 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
 <context>
     <name>harbour-plants</name>
     <message>
-        <location filename="../qml/harbour-plants.qml" line="58"/>
+        <location filename="../qml/harbour-plants.qml" line="63"/>
         <source>Identification failed</source>
         <translation>De plant is niet herkend</translation>
     </message>
     <message>
-        <location filename="../qml/harbour-plants.qml" line="59"/>
+        <location filename="../qml/harbour-plants.qml" line="64"/>
         <source>Failed to send identification request to Pl@ntNet (%1).</source>
         <translation>Het identificatieverzoek aan Pl@ntNet (%1) kan niet worden verstuurd.</translation>
     </message>
