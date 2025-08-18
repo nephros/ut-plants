@@ -9,7 +9,7 @@ WebViewFlickable { id: wikiCard
    anchors.margins: units.gu(2)
    anchors.horizontalCenter: parent.horizontalCenter
 
-   property string species: nil
+   property string species
    readonly property string agent: "harbour-plants/1.0 (Sailfish OS; Qt) contact:sailfish/AT/nephros.org"
 
    Column {

@@ -6,7 +6,7 @@ import "../util"
 Page {
    id: plantPage
 
-   property var plant: nil
+   property var plant
 
    SilicaFlickable {
       anchors.fill: parent

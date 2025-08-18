@@ -18,7 +18,7 @@ Rectangle { id: gbifCard
    opacity: loading ? 0.5 : 1.0
    Behavior on opacity { FadeAnimator{} }
 
-   property string species: nil
+   property string species
    property string gbifId: "-1"
    property var _resultData: ({})
    property var _speciesData: ({})
