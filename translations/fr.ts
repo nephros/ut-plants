@@ -700,37 +700,41 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
         <translation>Région ou projet à utiliser pour les résultats d&apos;identification. Par défaut, tous les projets disponibles sont utilisés.</translation>
     </message>
     <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="161"/>
+        <source>species</source>
+        <translation>espèces </translation>
+    </message>
+    <message>
+        <source>known species</source>
+        <translation type="vanished">espèces connues</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="180"/>
+        <source>Number of results</source>
+        <translation>Nombre de résultats</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="184"/>
+        <source>App:</source>
+        <translation>Application:</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="188"/>
+        <source>Prevent device sleep on pending request</source>
+        <translation>Empêcher le sommeil du dispositif sur demande en attente</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="189"/>
+        <source>If enabled, device will not go into sleep mode while waiting on an identification result.</source>
+        <translation>Si est activée, l&apos;appareil ne passe pas en mode veille dans l&apos;apos;apos;attente d&apos;apos;apos;un résultat d&apos;apos;apos;identification.</translation>
+    </message>
+    <message>
         <source>Region</source>
         <translation type="vanished">Region</translation>
     </message>
     <message>
         <source>The Region to use for Identification results. Default is to use all available.</source>
         <translation type="vanished">Région à utiliser pour les résultats d&apos;identification. Par défaut, tous les appareils disponibles sont utilisés.</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="154"/>
-        <source>known species</source>
-        <translation>espèces connues</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="173"/>
-        <source>Number of results</source>
-        <translation>Nombre de résultats</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="177"/>
-        <source>App:</source>
-        <translation>Application:</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="181"/>
-        <source>Prevent device sleep on pending request</source>
-        <translation>Empêcher le sommeil du dispositif sur demande en attente</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="182"/>
-        <source>If enabled, device will not go into sleep mode while waiting on an identification result.</source>
-        <translation>Si est activée, l&apos;appareil ne passe pas en mode veille dans l&apos;apos;apos;attente d&apos;apos;apos;un résultat d&apos;apos;apos;identification.</translation>
     </message>
     <message>
         <source>Prevent device sleep on outstanding request</source>

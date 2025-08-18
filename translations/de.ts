@@ -627,7 +627,7 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
     </message>
     <message>
         <source>known species</source>
-        <translation>bekannte Spezies</translation>
+        <translation type="vanished">bekannte Spezies</translation>
     </message>
     <message>
         <source>Number of results</source>
@@ -656,6 +656,10 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
     <message>
         <source>The Region or Project to use for Identification results. Default is to use all available.</source>
         <translation>Die Region oder Projekt, die für die Identifikation genutzt wird. Standard ist, alle verfügbaren zu verwenden.</translation>
+    </message>
+    <message>
+        <source>species</source>
+        <translation>Spezies</translation>
     </message>
 </context>
 <context>

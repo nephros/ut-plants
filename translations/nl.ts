@@ -700,27 +700,27 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="154"/>
-        <source>known species</source>
+        <location filename="../qml/pages/SettingsPage.qml" line="161"/>
+        <source>species</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="173"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="180"/>
         <source>Number of results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="177"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="184"/>
         <source>App:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="181"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="188"/>
         <source>Prevent device sleep on pending request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="182"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="189"/>
         <source>If enabled, device will not go into sleep mode while waiting on an identification result.</source>
         <translation type="unfinished"></translation>
     </message>
