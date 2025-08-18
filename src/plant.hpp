@@ -48,6 +48,7 @@ struct Plant
    QVariantList images;
    QDateTime added;
    QImage thumbnail;
+   QString gbifId;
 
    explicit operator QVariant() const
    {
@@ -60,6 +61,7 @@ struct Plant
       m.insert("score", score);
       m.insert("images", images);
       m.insert("added", added);
+      m.insert("gbifId", gbifId);
       return m;
    }
 };

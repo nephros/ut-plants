@@ -168,6 +168,7 @@ PlantResult Plants::_openPlant(QByteArray jsonData)
    // these were not saved in the original Plants, so only add them if present:
    plant->genus  = parsed.contains("genus")  ? parsed["genus"].toString()  : "";
    plant->family = parsed.contains("family") ? parsed["family"].toString() : "";
+   plant->gbifId = parsed.contains("gbifId") ? parsed["gbifId"].toString() : "-1";
 
    foreach (auto image, parsed["images"].toArray())
    {
