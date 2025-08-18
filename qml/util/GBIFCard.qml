@@ -77,6 +77,7 @@ Rectangle { id: gbifCard
             fillMode: Image.PreserveAspectFit
          }
          Row { id: scoreRow
+            visible: _resultData.confidence && (_resultData.confidence > 0)
             height: logo.height
             spacing: units.gu(1)
             Icon {
