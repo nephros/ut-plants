@@ -50,9 +50,6 @@ ApplicationWindow {
     }
 
     PlantsModel { id: plantsModel
-       Component.onCompleted: {
-           console.info("PlantsModel loaded with", count, "entries, result language", language, "search project", region)
-       }
        onLanguageChanged: console.debug("PlantsModel language:", language)
        onRegionChanged: console.debug("PlantsModel region:", region)
        onIdentificationResult: {
@@ -68,7 +65,6 @@ ApplicationWindow {
          }
          pageStack.push(Qt.resolvedUrl("pages/ResultsPage.qml"), {
              "resultsData": result,
-             "plantsModel": plantsModel
              })
        }
     }
