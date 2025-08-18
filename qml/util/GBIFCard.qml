@@ -87,7 +87,7 @@ Rectangle { id: gbifCard
                height: scoreLabel.height
             }
             Label { id: scoreLabel
-               property int scoreValue: _resultData.confidence ? _resultData.confidence : "??"
+               property int scoreValue: _resultData.confidence
 
                anchors.top: parent.top
                text: scoreValue + "%"
@@ -202,11 +202,11 @@ Rectangle { id: gbifCard
          width: resultImagesList.width
          height: width *3/4
          anchors.horizontalCenter: parent.horizontalCenter
-         active: _resultData.speciesKey
+         active: gbifId != "-1"
          httpUserAgent: gbifCard.agent
          url: "https://api.gbif.org/v1/map/?"
              + "type=TAXON"
-             + "&key=" + _resultData.speciesKey
+             + "&key=" + gbifId
              + "&layer=SP_2020_2030"
              + (Theme.colorScheme === Theme.LightOnDark ? "&style=light" : + "&style=classic")
              //+ "&resolution=4"
@@ -216,12 +216,12 @@ Rectangle { id: gbifCard
          width: resultImagesList.width
          height: width *3/4
          anchors.horizontalCenter: parent.horizontalCenter
-         active: _resultData.speciesKey && pos.valid
+         active: (gbifId!="-1") && pos.valid
          httpUserAgent: gbifCard.agent
          property bool positionSet: false
          property string templateUrl: "https://api.gbif.org/v1/map/point.html?"
              + "type=TAXON"
-             + "&key=" + _resultData.speciesKey
+             + "&key=" + gbifId
              + "&zoom=8"
              + (Theme.colorScheme === Theme.LightOnDark ? "&style=light" : "&style=classic")
              PositionSource { id: pos
@@ -230,11 +230,10 @@ Rectangle { id: gbifCard
                  onPositionChanged: {
                    if (!valid) return
                    const coord = pos.position.coordinate
+                   console.debug("New position:", coord.latitude, coord.longitude)
+                   if ( (coord.latitude != coord.latitude) || (coord.longitude != coord.longitude) ) return // only sane way to test for NaN:
                    const lat = coord.latitude.toFixed(5)
                    const lon = coord.longitude.toFixed(5)
-                   // only sane way to test for NaN:
-                   console.debug("New position:", coord.latitude, coord.longitude)
-                   if ( (lat != lat) || (lon != lon) ) return
                    //posmapView.load( posmapView.templateUrl
                    posmapView.url = posmapView.templateUrl
                                   + "&point=" + lat + ","  + lon
@@ -285,12 +284,12 @@ Rectangle { id: gbifCard
 
   function lookupSpeciesById(key) {
      const url="https://api.gbif.org/v1/species/" + key
-        + "&rank=species&limit=1&verbose=false"
+        + "?rank=species&limit=1&verbose=false"
      function cb(rdata) {
         gbifCard._resultData = rdata
-        gbifCard.lookupDetails(key)
-        gbifCard.lookupNames(key)
-        gbifCard.lookupMedia(key)
+        gbifCard.lookupDetails(rdata.speciesKey)
+        gbifCard.lookupNames(rdata.speciesKey)
+        gbifCard.lookupMedia(rdata.speciesKey)
      }
      lookup(url,cb)
   }
@@ -301,9 +300,13 @@ Rectangle { id: gbifCard
         + "&rank=species&limit=1&verbose=false"
      function cb(rdata) {
         gbifCard._resultData = rdata
-        gbifCard.lookupDetails(rdata.speciesKey)
-        gbifCard.lookupNames(rdata.speciesKey)
-        gbifCard.lookupMedia(rdata.speciesKey)
+        if (rdata.confidence > 95) {
+            gbifCard.gbifId = rdata.speciesKey
+        } else {
+            gbifCard.lookupDetails(rdata.speciesKey)
+            gbifCard.lookupNames(rdata.speciesKey)
+            gbifCard.lookupMedia(rdata.speciesKey)
+        }
      }
      lookup(url,cb)
   }
@@ -313,13 +316,13 @@ Rectangle { id: gbifCard
      function cb(rdata) { gbifCard._countryData = rdata }
      lookup(url,cb)
   }
-  function lookupDetails(speciesKey) {
-     const url="https://api.gbif.org/v1/species/" + speciesKey
+  function lookupDetails(key) {
+     const url="https://api.gbif.org/v1/species/" + key
      function cb(rdata) { gbifCard._speciesData = rdata }
      lookup(url,cb)
   }
-  function lookupNames(speciesKey) {
-     const url="https://api.gbif.org/v1/species/" + speciesKey + "/vernacularNames?limit=10"
+  function lookupNames(key) {
+     const url="https://api.gbif.org/v1/species/" + key + "/vernacularNames?limit=10"
      function cb(rdata) {
          var names = {}
          rdata.results.forEach(function(e) {
@@ -334,8 +337,8 @@ Rectangle { id: gbifCard
      }
      lookup(url,cb)
   }
-  function lookupMedia(speciesKey) {
-     const url="https://api.gbif.org/v1/species/" + speciesKey + "/media/"
+  function lookupMedia(key) {
+     const url="https://api.gbif.org/v1/species/" + key + "/media/"
      function cb(rdata) {
         gbifCard._speciesMedia = rdata.results.filter(function(e) { return e.type == "StillImage" } )
      }
