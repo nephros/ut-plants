@@ -66,38 +66,12 @@ Rectangle { id: gbifCard
 
       Row { id: nameRow
          width: parent.width - parent.padding*2
-         anchors.horizontalCenter: parent.horizontalCenter
-         spacing: units.gu(1)
          Image { id: logo
             source: "https://www.gbif.org/img/full_logo_white.svg"
             //"https://rs.gbif.org/style/logo.svg"
             height: Theme.iconSizeMedium
-            width: parent.width - (scoreRow.width + parent.spacing)
-            sourceSize.height: Theme.iconSizeSmall
+            sourceSize.height: Theme.iconSizeMedium
             fillMode: Image.PreserveAspectFit
-         }
-         Row { id: scoreRow
-            visible: _resultData.confidence && (_resultData.confidence > 0)
-            height: logo.height
-            spacing: units.gu(1)
-            Icon {
-               anchors.verticalCenter: scoreLabel.verticalCenter
-               source: "image://theme/icon-m-diagnostic"
-               width: height
-               height: scoreLabel.height
-            }
-            Label { id: scoreLabel
-               property int scoreValue: _resultData.confidence
-
-               anchors.top: parent.top
-               text: scoreValue + "%"
-               font.pixelSize: units.gu(2)
-               font.bold: true
-
-               color: scoreValue > 80
-                        ? brand.foreground
-                        : (scoreValue > 50 ? brand.warn : brand.danger)
-            }
          }
       }
 
