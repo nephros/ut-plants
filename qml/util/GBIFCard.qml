@@ -19,6 +19,7 @@ Rectangle { id: gbifCard
    Behavior on opacity { FadeAnimator{} }
 
    property string species: nil
+   property string gbifId: "-1"
    property var _resultData: ({})
    property var _speciesData: ({})
    property var _speciesMedia: ([])
@@ -37,7 +38,8 @@ Rectangle { id: gbifCard
 
    readonly property string agent: "harbour-plants/1.0 (Sailfish OS; Qt) contact:sailfish/AT/nephros.org"
 
-   onSpeciesChanged: if(species) lookupSpecies(species)
+   onSpeciesChanged: if(species) lookupSpeciesByName(species)
+   onGbifIdChanged:  if(gbifId != "-1") lookupSpeciesById(gbifId)
 
    property double elementSpacing: units.gu(2)
 
@@ -280,7 +282,19 @@ Rectangle { id: gbifCard
     size: BusyIndicatorSize.Large
   }
 
-  function lookupSpecies(species) {
+  function lookupSpeciesById(key) {
+     const url="https://api.gbif.org/v1/species/" + key
+        + "&rank=species&limit=1&verbose=false"
+     function cb(rdata) {
+        gbifCard._resultData = rdata
+        gbifCard.lookupDetails(key)
+        gbifCard.lookupNames(key)
+        gbifCard.lookupMedia(key)
+     }
+     lookup(url,cb)
+  }
+
+  function lookupSpeciesByName(species) {
      const url="https://api.gbif.org/v1/species/match?"
         + "name=" + encodeURI(species)
         + "&rank=species&limit=1&verbose=false"

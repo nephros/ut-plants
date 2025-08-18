@@ -56,7 +56,11 @@ Page {
                 icon.source: _svg
                 icon.width:Theme.iconSizeSmall
                 icon.height:Theme.iconSizeSmall
-                onClicked: moreLoader.setSource("../util/GBIFCard.qml", { "species": plant.species } )
+                onClicked: if (plant.gbifId != "-1") {
+                        moreLoader.setSource("../util/GBIFCard.qml", { "gbifId": plant.gbifId } )
+                    } else {
+                        moreLoader.setSource("../util/GBIFCard.qml", { "species": plant.species } )
+                    }
              }
              Label {
                anchors.horizontalCenter: parent.horizontalCenter
