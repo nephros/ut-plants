@@ -170,6 +170,7 @@ Page {
             }
          }
          Slider {
+             enabled: false
              anchors.left: parent.left
              anchors.right: parent.right
              value: settings.numResults
