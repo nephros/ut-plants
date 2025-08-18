@@ -31,7 +31,7 @@ Dialog {
    backNavigation: mayLeafDialog
 
    onDone: if (result === DialogResult.Accepted) {
-      var err = app.plantsModel.savePlant(resultsData[resultList.currentIndex])
+      var err = plantsModel.savePlant(resultsData[resultList.currentIndex])
       if (err) {
          acceptDestinationProperties = {
                   "title":i18n.tr("Saving result failed"),
