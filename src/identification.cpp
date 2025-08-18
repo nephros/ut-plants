@@ -353,6 +353,15 @@ void Identification::identifyPlant(QVariantList& request)
 
            currentResult["commonNames"] = commonNames.join(", ");
 
+           auto gbif = dict["gbif"].toObject();
+           if (gbif.contains("id")) {
+              QString gbifid = gbif["id"].toString();
+              qDebug() << "Result has a GBIF id:" << gbifid;
+              currentResult["gbifId"] = gbifid;
+           } else {
+              currentResult["gbifId"] = "-1";
+           }
+
            foreach (auto image, dict["images"].toArray())
            {
               QVariantMap currentImage;
