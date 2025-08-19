@@ -20,7 +20,6 @@ Rectangle { id: gbifCard
 
    property string species
    property string gbifId: "-1"
-   property var _resultData: ({})
    property var _speciesData: ({})
    property var _speciesMedia: ([])
    property var _speciesNames: ([])
@@ -39,7 +38,11 @@ Rectangle { id: gbifCard
    readonly property string agent: "harbour-plants/1.0 (Sailfish OS; Qt) contact:sailfish/AT/nephros.org"
 
    onSpeciesChanged: if(species) lookupSpeciesByName(species)
-   onGbifIdChanged:  if(gbifId != "-1") lookupSpeciesById(gbifId)
+   onGbifIdChanged:  if(gbifId != "-1") {
+      gbifCard.lookupDetails(gbifId)
+      gbifCard.lookupNames(gbifId)
+      gbifCard.lookupMedia(gbifId)
+   }
 
    property double elementSpacing: units.gu(2)
 
@@ -82,7 +85,7 @@ Rectangle { id: gbifCard
       }
 
       Label {
-         text: i18n.tr("Class") + " " + _resultData.class
+         text: i18n.tr("Class") + " " + _speciesData.class
          font.italic: true
          font.bold: true
          color: brand.foreground
@@ -91,16 +94,16 @@ Rectangle { id: gbifCard
       Column { id: taxonomy
          readonly property var taxa: [  "phylum", "order", "family", "genus", ]
          readonly property var taxaNames: [  i18n.tr("Phylum"), i18n.tr("Order"), i18n.tr("Family"), i18n.tr("Genus"), ]
-         visible: _resultData
+         visible: _speciesData
          width: nameRow.width
          spacing: units.gu(1)
          Repeater {
-            model: _resultData ? taxonomy.taxa : undefined
+            model: _speciesData ? taxonomy.taxa : undefined
             delegate: Row {
               spacing: units.gu(1)
               Item { height: 1; width: units.gu(2)*index }
               Label { font.pixelSize: Theme.fontSizeSmall; text: taxonomy.taxaNames[index]; color: brand.foreground }
-              Label { font.pixelSize: Theme.fontSizeSmall; text: _resultData[modelData];    color: brand.foreground; font.italic: true }
+              Label { font.pixelSize: Theme.fontSizeSmall; text: _speciesData[modelData];    color: brand.foreground; font.italic: true }
             }
          }
       }
@@ -169,6 +172,10 @@ Rectangle { id: gbifCard
                   font.pixelSize: units.gu(1)
                }
             }
+         }
+         ViewPlaceholder {
+            text: i18n.tr("No images found")
+            enabled: !_speciesMedia.count
          }
       }
 
@@ -256,31 +263,12 @@ Rectangle { id: gbifCard
     size: BusyIndicatorSize.Large
   }
 
-  function lookupSpeciesById(key) {
-     const url="https://api.gbif.org/v1/species/" + key
-        + "?rank=species&limit=1&verbose=false"
-     function cb(rdata) {
-        gbifCard._resultData = rdata
-        gbifCard.lookupDetails(rdata.speciesKey)
-        gbifCard.lookupNames(rdata.speciesKey)
-        gbifCard.lookupMedia(rdata.speciesKey)
-     }
-     lookup(url,cb)
-  }
-
   function lookupSpeciesByName(species) {
      const url="https://api.gbif.org/v1/species/match?"
         + "name=" + encodeURI(species)
         + "&rank=species&limit=1&verbose=false"
      function cb(rdata) {
-        gbifCard._resultData = rdata
-        if (rdata.confidence > 95) {
-            gbifCard.gbifId = rdata.speciesKey
-        } else {
-            gbifCard.lookupDetails(rdata.speciesKey)
-            gbifCard.lookupNames(rdata.speciesKey)
-            gbifCard.lookupMedia(rdata.speciesKey)
-        }
+        gbifCard.gbifId = rdata.speciesKey
      }
      lookup(url,cb)
   }
