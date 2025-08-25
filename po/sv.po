@@ -1,0 +1,331 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the plants.s710 package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: plants.s710\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-29 20:42+0000\n"
+"PO-Revision-Date: 2025-08-25 10:36+0200\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Language-Team: \n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#: ../qml/pages/ImportPage.qml:13
+msgid "Load image"
+msgstr "Läs in bild"
+
+#: ../qml/pages/MainPage.qml:20 Plants.desktop.in.h:1
+msgid "Plants"
+msgstr "Plantor"
+
+#: ../qml/pages/MainPage.qml:66
+msgid "Identification failed"
+msgstr "Identifieringen misslyckades"
+
+#: ../qml/pages/MainPage.qml:67
+msgid "Failed to send identification request to Pl@ntNet (%1)."
+msgstr "Kunde inte inte skicka identifieringsförfrågan till Pl@ntNet (%1)."
+
+#: ../qml/pages/MainPage.qml:84 ../qml/util/Dialogs.qml:98
+msgid "Failed to init storage directory"
+msgstr "Kunde inte initiera lagringsplats"
+
+#: ../qml/pages/MainPage.qml:85 ../qml/util/Dialogs.qml:99
+msgid "Storage directory could not be initialized (%1)."
+msgstr "Lagringsplats kunde inte initieras (%1)."
+
+#: ../qml/pages/MainPage.qml:109
+msgid "No plants identified yet"
+msgstr "Inga plantor identifierade ännu"
+
+#: ../qml/pages/MainPage.qml:119 ../qml/pages/RequestPage.qml:18
+msgid "New identification"
+msgstr "Ny identifiering"
+
+#: ../qml/pages/MainPage.qml:123
+msgid "API Key missing"
+msgstr "API-nyckel saknas"
+
+#: ../qml/pages/MainPage.qml:124
+msgid ""
+"The Pl@ntNet API-Key has not been configured yet. Without this, the app will "
+"not work."
+msgstr ""
+"Pl@ntNets API-nyckel har ännu inte konfigurerats. Utan denna kommer appen "
+"inte att fungera."
+
+#: ../qml/pages/MainPage.qml:167
+msgid "Delete plant?"
+msgstr "Vill du ta bort plantan?"
+
+#: ../qml/pages/MainPage.qml:168
+msgid "Shall the plant '%1' be deleted? This operation can not be undone."
+msgstr "Skall plantan \"%1\" tas bort? Denna åtgärd kan inte ångras."
+
+#: ../qml/pages/MainPage.qml:169
+msgid "Delete"
+msgstr "Ta bort"
+
+#: ../qml/pages/MainPage.qml:170 ../qml/util/Dialogs.qml:18
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: ../qml/pages/MainPage.qml:177
+msgid "Deleting plant failed"
+msgstr "Kunde inte ta bort plantan"
+
+#: ../qml/pages/MainPage.qml:178
+msgid "Plant could not be deleted (%1)."
+msgstr "Plantan kunde inte tas bort (%1)."
+
+#: ../qml/pages/MainPage.qml:192
+msgid "1 identified plant"
+msgstr "1 identifierad planta"
+
+#: ../qml/pages/MainPage.qml:193
+msgid "%1 identified plants"
+msgstr "%1 identifierade plantor"
+
+#: ../qml/pages/PlantPage.qml:17
+msgid "Plant details"
+msgstr "Plantdetaljer"
+
+#: ../qml/pages/RequestPage.qml:40
+msgid ""
+"Add up to 5 images for identification. The images must be of the same plant. "
+"The more images are provided, the better the identification result will be."
+msgstr ""
+"Lägg in upp till 5 bilder för identifiering. Bilderna måste vara av samma "
+"planta. Ju fler bilder, desto bättre identifieringsresultat."
+
+#: ../qml/pages/RequestPage.qml:41
+msgid ""
+"Pl@ntNet recommends images with the smaller side larger than 600px and "
+"smaller than 2000px. Ideally a square image zoomed on the organ around "
+"1280x1280px."
+msgstr ""
+"Pl@ntNet rekommenderar bilder med den mindre sidan större än 600px och "
+"mindre än 2000px. Helst en fyrkantig bild zoomad på organet runt 1280x1280px."
+
+#: ../qml/pages/RequestPage.qml:69
+msgid "Identify"
+msgstr "Identifiera"
+
+#: ../qml/pages/ResultsPage.qml:20
+msgid "Identification results"
+msgstr "Identifieringsresultat"
+
+#: ../qml/pages/ResultsPage.qml:76
+msgid "Saving result failed"
+msgstr "Kunde inte spara resultatet"
+
+#: ../qml/pages/ResultsPage.qml:77
+msgid "Result could not be saved (%1)."
+msgstr "Resultatet kunde inte sparas (%1)."
+
+#: ../qml/pages/SettingsPage.qml:22
+msgid "Settings"
+msgstr "Inställningar"
+
+#: ../qml/pages/SettingsPage.qml:49
+msgid "Pl@ntNet API key"
+msgstr "Pl@ntNet API-nyckel"
+
+#: ../qml/pages/SettingsPage.qml:66
+msgid ""
+"In order to use the Pl@ntNet plant identification service, it is necessary "
+"to register at their website as developer and obtain an API-Key. This key "
+"needs to be configured within this app.\n"
+"\n"
+"Please visit <a href=\"https://my.plantnet.org/signup\">https://"
+"my.plantnet.org/signup</a> and create a developer account. Afterwards visit "
+"<a href=\"https://my.plantnet.org/account\">https://my.plantnet.org/account</"
+"a> and click the eye-symbol at the very top (\"my API key\") to show the API-"
+"Key. Copy this key and paste it into the below text input field."
+msgstr ""
+"För att använda Pl@ntNet:s växtidentifieringstjänst är det nödvändigt att "
+"registrera sig på deras webbplats som utvecklare och få en API-nyckel. Denna "
+"nyckel måste konfigureras i den här appen.\n"
+"\n"
+"Besök <a href=\"https://my.plantnet.org/signup\">https://my.plantnet.org/"
+"signup</a> och skapa ett utvecklarkonto. Efteråt, besök <a href=\"https://"
+"my.plantnet.org/account\">https://my.plantnet.org/account</a> och klicka på "
+"ögonsymbolen längst upp (\"My API key\") för att visa API-nyckeln. Kopiera "
+"denna nyckel och klistra in den i fältet nedan."
+
+#: ../qml/pages/SettingsPage.qml:84
+msgid "API-Key:"
+msgstr "API-nyckel:"
+
+#: ../qml/pages/SettingsPage.qml:96
+msgid "Enter API-Key"
+msgstr "Ange API-nyckel"
+
+#: ../qml/pages/SettingsPage.qml:113
+msgid "Save"
+msgstr "Spara"
+
+#: ../qml/pages/SettingsPage.qml:134
+msgid "Keep display on while using the app"
+msgstr "Släck inte skärmen när appen används"
+
+#: ../qml/util/Dialogs.qml:17
+msgid "Okay"
+msgstr "Okay"
+
+#: ../qml/util/Dialogs.qml:50 ../qml/util/Dialogs.qml:105
+msgid "Close"
+msgstr "Stäng"
+
+#: ../qml/util/Dialogs.qml:70
+msgid "Select plant part"
+msgstr "Välj plantdel"
+
+#: ../qml/util/Dialogs.qml:83
+msgid "Select"
+msgstr "Välj"
+
+#: ../qml/util/Disclaimer.qml:50
+msgid ""
+"This app uses the online service of Pl@ntNet (plantnet.org) to identify "
+"plants. Photos will be uploaded to Pl@ntNet for recognition, and the result "
+"will show a probability of correctness. This means, results provided by the "
+"service could be wrong, or some plants can maybe not be identified at all."
+msgstr ""
+"Denna app använder den online-tjänst som Pl@ntNet (plantnet.org) erbjuder "
+"för att identifiera växter. Bilder kommer att laddas upp till Pl@ntNet för "
+"igenkänning, och resultatet kommer att visa ett sannolikt korrekt resultat. "
+"Detta betyder att resultaten som tillhandahålls av tjänsten kan vara "
+"felaktiga, eller att vissa växter kanske inte kan identifieras alls."
+
+#: ../qml/util/Disclaimer.qml:56
+msgid "Accept"
+msgstr "Godkänn"
+
+#: ../qml/util/LoadingScreen.qml:37
+msgid "Plant is being identified, please wait."
+msgstr "Plantan identifieras, vänta."
+
+#: ../qml/util/PlantCard.qml:57
+msgid "Name"
+msgstr "Namn"
+
+#: ../qml/util/PlantCard.qml:144
+msgid "Common names"
+msgstr "Vanliga namn"
+
+#: ../qml/util/PlantCard.qml:163
+msgid "Save this result"
+msgstr "Spara resultatet"
+
+#: ../qml/util/PlantItem.qml:54
+msgid "Tap to add new image"
+msgstr "Tryck för att lägga till ny bild"
+
+#: ../qml/util/PlantItem.qml:121
+msgid "Organ"
+msgstr "Organ"
+
+#: ../qml/util/PlantUtils.qml:11
+msgid "Auto"
+msgstr "Auto"
+
+#: ../qml/util/PlantUtils.qml:14
+msgid "Leaf"
+msgstr "Löv"
+
+#: ../qml/util/PlantUtils.qml:17
+msgid "Flower"
+msgstr "Blomma"
+
+#: ../qml/util/PlantUtils.qml:20
+msgid "Fruit"
+msgstr "Frukt"
+
+#: ../qml/util/PlantUtils.qml:23
+msgid "Bark"
+msgstr "Bark"
+
+#: /home/blaubaer/Forks/ut-plants/src/plant.cpp:57
+msgid "No source images in identification result"
+msgstr "Inga källbilder i identifieringsresultatet"
+
+#: /home/blaubaer/Forks/ut-plants/src/plant.cpp:71
+msgid "Own photo"
+msgstr "Eget foto"
+
+#: /home/blaubaer/Forks/ut-plants/src/plant.cpp:77
+msgid "Failed to save source images for plant: "
+msgstr "Kunde inte spara källbilder för planta: "
+
+#: /home/blaubaer/Forks/ut-plants/src/plant.cpp:98
+#: /home/blaubaer/Forks/ut-plants/src/plant.cpp:102
+msgid "Failed to save plant JSON: "
+msgstr "Kunde inte spara plant-JSON:"
+
+#: /home/blaubaer/Forks/ut-plants/src/plant.cpp:120
+msgid "Failed to open plant JSON: "
+msgstr "Kunde inte öppna plant-JSON: "
+
+#: /home/blaubaer/Forks/ut-plants/src/plant.cpp:126
+msgid "Failed to open plant JSON #2: "
+msgstr "Kunde inte öppna plant-JSON #2:"
+
+#: /home/blaubaer/Forks/ut-plants/src/plant.cpp:143
+msgid "Failed to read plant JSON: "
+msgstr "Kunde inte läsa plant-JSON: "
+
+#: /home/blaubaer/Forks/ut-plants/src/plant.cpp:148
+msgid "Unexpected/malformed plant JSON #1"
+msgstr "Oväntad/felformaterad plant-JSON #1"
+
+#: /home/blaubaer/Forks/ut-plants/src/plant.cpp:154
+msgid "Unexpected/malformed plant JSON #2"
+msgstr "Oväntad/felformaterad plant-JSON #2"
+
+#: /home/blaubaer/Forks/ut-plants/src/plant.cpp:173
+msgid "Unexpected/malformed plant JSON #3"
+msgstr "Oväntad/felformaterad plant-JSON #1"
+
+#: /home/blaubaer/Forks/ut-plants/src/plant.cpp:192
+#: /home/blaubaer/Forks/ut-plants/src/plant.cpp:198
+msgid "Failed to open plant image: "
+msgstr "Kunde inte öppna plantbild: "
+
+#: /home/blaubaer/Forks/ut-plants/src/plantsmodel.cpp:61
+msgid "Failed to determine writable app data storage location"
+msgstr "Kunde inte bestämma skrivbar appdatas lagringsplats"
+
+#: /home/blaubaer/Forks/ut-plants/src/plantsmodel.cpp:70
+msgid "App data storage location inaccessible"
+msgstr "Appdatans lagringsplats är inte tillgänglig"
+
+#: /home/blaubaer/Forks/ut-plants/src/plantsmodel.cpp:71
+msgid "can't create subfolder:"
+msgstr "Kan inte skapa undermapp:"
+
+#: /home/blaubaer/Forks/ut-plants/src/plantsmodel.cpp:184
+msgid "Failed to save plant"
+msgstr "Kunde inte spara plantan"
+
+#: /home/blaubaer/Forks/ut-plants/src/plantsmodel.cpp:208
+#: /home/blaubaer/Forks/ut-plants/src/plantsmodel.cpp:214
+#: /home/blaubaer/Forks/ut-plants/src/plantsmodel.cpp:231
+msgid "Failed to delete plant (plant unknown)"
+msgstr "Kunde inte ta bort plantan (okänd planta)"
+
+#: /home/blaubaer/Forks/ut-plants/src/plantsmodel.cpp:219
+msgid "Failed to delete plant from storage directory (%1)"
+msgstr "Kunde inte ta bort plantan från lagringsplatsen (%1)"
+
+#: /home/blaubaer/Forks/ut-plants/src/plantsmodel.cpp:236
+msgid "Failed to delete plant image from storage directory (%1)"
+msgstr "Kunde inte ta bort växtbilden från lagringsplatsen (%1)"
