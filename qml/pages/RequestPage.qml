@@ -2,6 +2,7 @@ import QtQuick 2.6
 import Sailfish.Silica 1.0
 import Sailfish.Pickers 1.0
 import QtGraphicalEffects 1.0
+import Nemo.DBus 2.0
 
 import "../util"
 
@@ -82,6 +83,7 @@ Page { id: requestPage
          quickSelect: true
          busy: imageModel.count == 0
          MenuItem { text: enabled ? i18n.tr("Add Images") : i18n.tr("Can not add more than 5 images"); enabled: imageModel.count < 5; onClicked: addNewImage() }
+         MenuItem { text: i18n.tr("Take Pictures"); onClicked: openCameraExternally() }
          MenuItem {
             enabled: imageModel.count > 0
             text: i18n.tr("Identify")
@@ -183,6 +185,15 @@ Page { id: requestPage
    onSharedImagesChanged: {
        console.debug("Request: received", sharedImages.length, "images")
        if (sharedImages.length >0) requestPage.importImages(sharedImages)
+   }
+
+   function openCameraExternally() {
+       cameraInterface.call("showViewfinder", "")
+   }
+   DBusInterface { id: cameraInterface
+     service: "com.jolla.camera"
+     path: "/"
+     iface: "com.jolla.camera.ui";
    }
 
    /*
