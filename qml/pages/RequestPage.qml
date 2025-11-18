@@ -2,6 +2,7 @@ import QtQuick 2.6
 import Sailfish.Silica 1.0
 import Sailfish.Pickers 1.0
 import QtGraphicalEffects 1.0
+import QtMultimedia 5.6
 import Nemo.DBus 2.0
 
 import "../util"
@@ -83,7 +84,8 @@ Page { id: requestPage
          quickSelect: true
          busy: imageModel.count == 0
          MenuItem { text: enabled ? i18n.tr("Add Images") : i18n.tr("Can not add more than 5 images"); enabled: imageModel.count < 5; onClicked: addNewImage() }
-         MenuItem { text: i18n.tr("Take Pictures"); onClicked: openCameraExternally() }
+         //MenuItem { text: i18n.tr("Take Pictures"); onClicked: openCameraExternally() }
+         MenuItem { text: i18n.tr("Take Pictures"); onClicked: openCameraPage() }
          MenuItem {
             enabled: imageModel.count > 0
             text: i18n.tr("Identify")
@@ -194,6 +196,115 @@ Page { id: requestPage
      service: "com.jolla.camera"
      path: "/"
      iface: "com.jolla.camera.ui";
+   }
+   function openCameraPage() {
+      var camPage = pageStack.push(cameraPage)
+      camPage.accepted.connect(function() { requestPage.importImages(camPage.capturedImages) })
+   }
+   Component { id: cameraPage
+        Dialog { id: camPageRoot
+            property var capturedImages: ([]) // to gather the dialog results
+            onAccepted: {
+                if (result === DialogResult.Accepted) {
+                    for (var i = 0; i<imagesModel.count; ++i) {
+                        const im = imagesModel.get(i)
+                        if (im.use) capturedImages.push(im.url)
+                    }
+                }
+            }
+            ListModel { id: imagesModel } // for the preview
+            DialogHeader { id: header
+                acceptText: i18n.tr("Use Photos")
+                cancelText: i18n.tr("Back")
+            }
+            Camera { id: camera
+                captureMode: Camera.CaptureStillImage
+                imageCapture {
+                    onImageCaptured: {
+                        //photoPreview.source = preview  // Show the preview in an Image
+                        console.debug("preview image:", preview)
+                    }
+                    onImageSaved: {
+                        imagesModel.append( { "use": true, "path": path, "url": Qt.resolvedUrl(path) })
+                        console.debug("saved image:", path)
+                    }
+                }
+                exposure {
+                    //exposureCompensation: -1.0
+                    exposureMode: Camera.ExposureLargeAperture
+                    meteringMode: Camera.MeteringSpot
+                }
+                focus {
+                    focusMode: Camera.FocusMacro
+                }
+                flash.mode: Camera.FlashOff
+            }
+            VideoOutput { id: video
+                z: -1
+                source: camera
+                anchors.fill: parent
+                focus : visible // to receive focus and capture key events when visible
+            }
+
+            SlideshowView { id: photoPreview
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: video.top
+                anchors.bottomMargin: Theme.paddingMedium
+                width: parent.width - Theme.itemSizeMedium
+                height: Theme.iconSizeLarge
+                z: video.z + 1
+                clip: true
+                orientation: Qt.Horizontal
+                model: imagesModel
+                itemHeight: Theme.iconSizeLarge
+                itemWidth: Theme.iconSizeLarge
+                delegate: Image {
+                    source: path
+                    height: Theme.iconSizeLarge
+                    width: height
+                    opacity: use ? 1.0 : Theme.opacityLow
+                    BackgroundItem {
+                        anchors.fill: parent
+                        onClicked: imagesModel.setProperty(index, "use", false)
+                    }
+                }
+            }
+            TextSwitch { id: focusWait
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: shooter.top
+                text: i18n.tr("Wait for focus")
+                checked: true
+            }
+            IconButton { id: shooter
+                icon.source: "image://theme/icon-m-tabs"
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: video.bottom
+                anchors.bottomMargin: Theme.itemSizeLarge
+                icon.width: Theme.iconSizeExtraLarge
+                icon.height: Theme.iconSizeExtraLarge
+                onClicked: focusWait.checked ? searchAndShoot() : shoot()
+            }
+            function searchAndShoot() {
+                camera.lockStatusChanged.connect(function() {
+                    if (camera.lockStatus === Camera.Locked) {
+                        console.debug("focus locked")
+                        camera.imageCapture.captureToLocation(
+                            StandardPaths.temporary
+                            + "/" + Qt.application.name + "_"
+                            + Date.now() + ".jpg"
+                        )
+                    }
+                })
+                camera.searchAndLock()
+            }
+            function shoot() {
+                camera.imageCapture.captureToLocation(
+                    StandardPaths.temporary
+                    + "/" + Qt.application.name + "_"
+                    + Date.now() + ".jpg"
+                )
+            }
+        }
    }
 
    /*
