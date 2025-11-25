@@ -371,7 +371,7 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
     </message>
     <message>
         <source>Deleting plant failed</source>
-        <translation>Löschung fehlgeschlagen</translation>
+        <translation>Löschen fehlgeschlagen</translation>
     </message>
     <message>
         <source>Plant could not be deleted (%1).</source>
@@ -383,11 +383,11 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
     </message>
     <message>
         <source>Pull down to start a new identification</source>
-        <translation>Ziehe herunter, um eine neue Identifizierung zu starten.</translation>
+        <translation>Ziehe herunter, um eine neue Identifikation zu starten.</translation>
     </message>
     <message>
         <source>New identification</source>
-        <translation>Neue Identifizierung</translation>
+        <translation>Neue Identifikation</translation>
     </message>
     <message>
         <source>API Key missing</source>
@@ -489,15 +489,15 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
     <name>RequestPage</name>
     <message>
         <source>New identification</source>
-        <translation>Neue Identifizierung</translation>
+        <translation>Neue Identifikation</translation>
     </message>
     <message>
         <source>Add up to 5 images for identification. The images must be of the same plant. The more images are provided, the better the identification result will be.</source>
-        <translation>Bis zu 5 Fotos können zur Identifizierung verwendet werden. Die Fotos müssen von der gleichen Pflanze sein. Je mehr Fotos verwendet werden, desto genauer wird das Analyseergebnis sein.</translation>
+        <translation>Bis zu 5 Fotos können zur Identifikation verwendet werden. Die Fotos müssen die gleiche Pflanze zeigen. Je mehr Fotos verwendet werden, desto genauer wird das Analyseergebnis sein.</translation>
     </message>
     <message>
         <source>Pl@ntNet recommends images with the smaller side larger than 600px and smaller than 2000px. Ideally a square image zoomed on the organ around 1280x1280px.</source>
-        <translation>Pl@ntNet empfiehlt Fotos mit der kürzeren Seite mehr als 600px und weniger als 2000px. Idealerweise ein Quadrat mit Fokus auf die Pflanze von etwa 1280x1280px.</translation>
+        <translation>Pl@ntNet empfiehlt Fotos mit einer kurzen Seite von mehr als 600px und weniger als 2000px. Idealerweise ein Quadrat von etwa 1280x1280px mit Fokus auf die Pflanze.</translation>
     </message>
     <message>
         <source>Select plant part</source>
@@ -533,7 +533,11 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
     </message>
     <message>
         <source>Pull down to add new images</source>
-        <translation>Ziehe herunter, um neue Fotos hunzuzufügen.</translation>
+        <translation>Ziehe herunter, um neue Fotos hinzuzufügen</translation>
+    </message>
+    <message>
+        <source>Problem with the connection. Try again later.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -577,7 +581,7 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
         <source>In order to use the Pl@ntNet plant identification service, it is necessary to register at their website as developer and obtain an API-Key. This key needs to be configured within this app.
 
 Please visit &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantnet.org/signup&lt;/a&gt; and create a developer account. Afterwards visit &lt;a href=&quot;https://my.plantnet.org/account&quot;&gt;https://my.plantnet.org/account&lt;/a&gt; and click the eye-symbol at the very top (&quot;my API key&quot;) to show the API-Key. Copy this key and paste it into the below text input field.</source>
-        <translation>Um den Pflanzen-Identifizierungsdienst von Pl@ntNet zu nutzen, ist es notwendig, auf der Webseite von Pl@ntNet ein Entwicklerkonto zu erstellen um einen API-Schlüssel zu erhalten. Dieser API-Schlüssel muss in der App hinterlegt werden.
+        <translation>Um den Pflanzen-Identifikationdient von Pl@ntNet zu nutzen, ist es notwendig, auf der Webseite von Pl@ntNet ein Entwicklerkonto zu erstellen um einen API-Schlüssel zu erhalten. Dieser API-Schlüssel muss in der App hinterlegt werden.
 
 Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantnet.org/signup&lt;/a&gt; erstellen und anschließend unter &lt;a href=&quot;https://my.plantnet.org/account&quot;&gt;https://my.plantnet.org/account&lt;/a&gt; ganz oben mit dem &quot;Augen-Symbol&quot; den API-Schlüssel anzeigen lassen. Dieser kann dann in das unten stehende Eingabefeld kopiert werden.</translation>
     </message>
@@ -666,7 +670,7 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
     <name>harbour-plants</name>
     <message>
         <source>Identification failed</source>
-        <translation>Identifizierung fehlgeschlagen</translation>
+        <translation>Identifikation fehlgeschlagen</translation>
     </message>
     <message>
         <source>Failed to send identification request to Pl@ntNet (%1).</source>
