@@ -76,6 +76,7 @@ ApplicationWindow {
        property bool disclaimerAccepted: false
        property int numResults: 5
        property bool allowAdditional: true
+       property bool allowLocation: false
     }
 
     KeepAlive { id: keepAlive

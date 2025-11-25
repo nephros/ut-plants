@@ -35,6 +35,8 @@ Rectangle { id: gbifCard
      return { "name": "unknown", "local": "unknown" }
    }
 
+   property bool allowLocation: settings.allowLocation
+
    readonly property string agent: "harbour-plants/1.0 (Sailfish OS; Qt) contact:sailfish/AT/nephros.org"
 
    onSpeciesChanged: if(species) lookupSpeciesByName(species)
@@ -205,25 +207,26 @@ Rectangle { id: gbifCard
              + "&key=" + gbifId
              + "&zoom=8"
              + (Theme.colorScheme === Theme.LightOnDark ? "&style=light" : "&style=classic")
-             PositionSource { id: pos
-                 updateInterval: posmapView.positionSet ? 1000*60*5 : 5000 // 5s or 5min
-                 active: parent.visible
-                 onPositionChanged: {
-                   if (!valid) return
-                   const coord = pos.position.coordinate
-                   console.debug("New position:", coord.latitude, coord.longitude)
-                   if ( (coord.latitude != coord.latitude) || (coord.longitude != coord.longitude) ) return // only sane way to test for NaN:
-                   const lat = coord.latitude.toFixed(5)
-                   const lon = coord.longitude.toFixed(5)
-                   //posmapView.load( posmapView.templateUrl
-                   posmapView.url = posmapView.templateUrl
-                                  + "&point=" + lat + ","  + lon
-                                  + "&lat=" + lat + "&lng=" + lon // !! lng not lon !!
-                   //               )
-                   console.debug("Loaded", posmapView.url)
-                   posmapView.positionSet = true
-                 }
+         Component.onCompleted: if (!allowLocation) url = templateUrl
+         PositionSource { id: pos
+             updateInterval: posmapView.positionSet ? 1000*60*5 : 5000 // 5s or 5min
+             active: allowLocation && parent.visible
+             onPositionChanged: {
+               if (!valid) return
+               const coord = pos.position.coordinate
+               console.debug("New position:", coord.latitude, coord.longitude)
+               if ( (coord.latitude != coord.latitude) || (coord.longitude != coord.longitude) ) return // only sane way to test for NaN:
+               const lat = coord.latitude.toFixed(5)
+               const lon = coord.longitude.toFixed(5)
+               //posmapView.load( posmapView.templateUrl
+               posmapView.url = posmapView.templateUrl
+                              + "&point=" + lat + ","  + lon
+                              + "&lat=" + lat + "&lng=" + lon // !! lng not lon !!
+               //               )
+               console.debug("Loaded", posmapView.url)
+               posmapView.positionSet = true
              }
+         }
       }
 
       /*
