@@ -72,8 +72,11 @@ Page {
                label: i18n.tr("The value will be saved on Enter.")
                labelVisible: focus
                description: focus ? "" : (settings.apiKey ? i18n.tr("API Key already stored. Edit to update") : i18n.tr("No API Key stored"))
-               passwordEchoMode: focus ? TextInput.Normal : TextInput.Password
+               passwordEchoMode: TextInput.PasswordEchoOnEdit
                inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
+               onFocusChanged: if (focus) { selectAll() }
+               EnterKey.enabled: text.length > 0
+               EnterKey.iconSource: "image://theme/icon-m-enter-accept"
                EnterKey.onClicked: {
                   settingsPage.apiKeyChanged(apiKeyInput.text)
                   apiKeyInput.focus = false
