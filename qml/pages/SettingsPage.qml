@@ -216,6 +216,15 @@ Page {
             onCheckedChanged: settings.allowAdditional = checked
          }
 
+         TextSwitch {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            text: i18n.tr("Allow location data")
+            description: i18n.tr("If enabled, we try to use the device's location for displaying maps etc. Location must still be enabled on the device for this to work.")
+            checked: settings.allowLocation
+            onCheckedChanged: settings.allowLocation = checked
+         }
+
          SectionHeader { text: i18n.tr("App:") }
          TextSwitch {
             anchors.left: parent.left
