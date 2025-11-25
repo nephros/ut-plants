@@ -83,7 +83,7 @@ Page { id: requestPage
          busy: imageModel.count == 0
          MenuItem { text: enabled ? i18n.tr("Add Images") : i18n.tr("Can not add more than 5 images"); enabled: imageModel.count < 5; onClicked: addNewImage() }
          MenuItem {
-            enabled: imageModel.count > 0
+            enabled: (imageModel.count > 0) && weAreOnline
             text: i18n.tr("Identify")
             onClicked: {
                var request = []
@@ -99,6 +99,7 @@ Page { id: requestPage
                pageStack.pop()
             }
          }
+         MenuLabel { text: i18n.tr("Problem with the connection. Try again later."); visible: weAreOffline }
       }
       PushUpMenu {
          visible: imageModel.count > 0
@@ -166,6 +167,7 @@ Page { id: requestPage
    */
 
    }
+
    function importImages(urls) {
       urls.forEach(function (fileUrl) {
          if (imageModel.count < 6) {

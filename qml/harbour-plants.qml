@@ -81,6 +81,26 @@ ApplicationWindow {
        enabled: settings.preventSleep && app.loadingScreenShown
     }
 
+    property bool weAreOnline: false
+    property bool weAreOffline: !weAreOnline
+    function checkOnline() {
+      var r = new XMLHttpRequest();
+      r.open("HEAD", "https://my-api.plantnet.org/v2/_status")
+      r.onreadystatechange = function(event) {
+         if (r.readyState == XMLHttpRequest.DONE) {
+            weAreOnline == (r.status === 200)
+         }
+      }
+      r.send();
+   }
+   Timer {
+      running: weAreOffline && (Qt.application.state == Qt.ApplicationActive)
+      triggeredOnStart: true
+      interval: 30000
+      repeat: true
+      onTriggered: checkOnline()
+   }
+
     // Load Share Provider if supported by SFOS version:
     property QtObject shareProvider: shareLoader.item
     Loader { id: shareLoader
