@@ -75,6 +75,7 @@ ApplicationWindow {
        property bool apiKey: false
        property bool disclaimerAccepted: false
        property int numResults: 5
+       property bool allowAdditional: true
     }
 
     KeepAlive { id: keepAlive
