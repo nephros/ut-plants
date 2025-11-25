@@ -705,22 +705,22 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="180"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="181"/>
         <source>Number of results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="184"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="185"/>
         <source>App:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="188"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="189"/>
         <source>Prevent device sleep on pending request</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="189"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="190"/>
         <source>If enabled, device will not go into sleep mode while waiting on an identification result.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -728,12 +728,12 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
 <context>
     <name>harbour-plants</name>
     <message>
-        <location filename="../qml/harbour-plants.qml" line="63"/>
+        <location filename="../qml/harbour-plants.qml" line="60"/>
         <source>Identification failed</source>
         <translation>De plant is niet herkend</translation>
     </message>
     <message>
-        <location filename="../qml/harbour-plants.qml" line="64"/>
+        <location filename="../qml/harbour-plants.qml" line="61"/>
         <source>Failed to send identification request to Pl@ntNet (%1).</source>
         <translation>Het identificatieverzoek aan Pl@ntNet (%1) kan niet worden verstuurd.</translation>
     </message>

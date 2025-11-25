@@ -705,28 +705,28 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
         <translation>espèces </translation>
     </message>
     <message>
-        <source>known species</source>
-        <translation type="vanished">espèces connues</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="180"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="181"/>
         <source>Number of results</source>
         <translation>Nombre de résultats</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="184"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="185"/>
         <source>App:</source>
         <translation>Application:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="188"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="189"/>
         <source>Prevent device sleep on pending request</source>
         <translation>Empêcher le sommeil du dispositif sur demande en attente</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="189"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="190"/>
         <source>If enabled, device will not go into sleep mode while waiting on an identification result.</source>
         <translation>Si est activée, l&apos;appareil ne passe pas en mode veille dans l&apos;apos;apos;attente d&apos;apos;apos;un résultat d&apos;apos;apos;identification.</translation>
+    </message>
+    <message>
+        <source>known species</source>
+        <translation type="vanished">espèces connues</translation>
     </message>
     <message>
         <source>Region</source>
@@ -744,12 +744,12 @@ Veuillez visiter &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https:
 <context>
     <name>harbour-plants</name>
     <message>
-        <location filename="../qml/harbour-plants.qml" line="63"/>
+        <location filename="../qml/harbour-plants.qml" line="60"/>
         <source>Identification failed</source>
         <translation>L&apos;identification a échoué</translation>
     </message>
     <message>
-        <location filename="../qml/harbour-plants.qml" line="64"/>
+        <location filename="../qml/harbour-plants.qml" line="61"/>
         <source>Failed to send identification request to Pl@ntNet (%1).</source>
         <translation>Échec de l&apos;envoi de la demande d&apos;identification à Pl@ntNet (%1).</translation>
     </message>
