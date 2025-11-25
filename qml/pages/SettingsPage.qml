@@ -17,6 +17,23 @@ Page {
    property var regions
    property string region: plantsModel.region
 
+   function checkApiKey(key) {
+      var ok = false
+      var r = new XMLHttpRequest();
+      r.open("HEAD", "https://my-api.plantnet.org/v2/quota?api-key=" + key, true) // sync request
+      r.onreadystatechange = function(event) {
+         if (r.readyState == XMLHttpRequest.DONE) {
+            if (r.status === 401) { ok = false; console.warn("API key check: failed.") }
+            else if (r.status === 200) {
+              ok = true
+              console.debug("API key check: key OK.")
+              settingsPage.apiKeyChanged(key)
+            }
+         }
+      }
+      r.send();
+      return ok
+   }
    SilicaFlickable {
       id: flickable
       anchors.fill: parent
@@ -78,7 +95,9 @@ Page {
                EnterKey.enabled: text.length > 0
                EnterKey.iconSource: "image://theme/icon-m-enter-accept"
                EnterKey.onClicked: {
-                  settingsPage.apiKeyChanged(apiKeyInput.text)
+                  //settingsPage.apiKeyChanged(apiKeyInput.text)
+                  var ok  = settingsPage.checkApiKey(apiKeyInput.text)
+                  if (!ok) console.warn("Check result:", ok)
                   apiKeyInput.focus = false
                }
             }
