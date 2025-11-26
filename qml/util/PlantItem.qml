@@ -12,6 +12,7 @@ Rectangle {
    property string mainText
    property string subText
    property bool listMode: true
+   property bool moving: false
 
    width: parent.width
    height: units.gu(8)
@@ -28,9 +29,11 @@ Rectangle {
       anchors.leftMargin: units.gu(1)
       anchors.verticalCenter: parent.verticalCenter
 
+      asynchronous: true; smooth: !moving; mipmap: !moving; cache: true
+
       source: item.imageUrl
       fillMode: Image.PreserveAspectCrop
-      layer.enabled: true
+      layer.enabled: !moving
       layer.effect: OpacityMask {
          maskSource: Item {
             width: thumbImage.width

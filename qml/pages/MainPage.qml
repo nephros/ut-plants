@@ -54,11 +54,12 @@ Page {
             anchors.margins: units.gu(2)
             contentHeight: plantItem.height
             PlantItem { id: plantItem
-              imageUrl: "image://plants/" + plant.id
-                mainText: plant.species
-                subText: plant.commonNames
-                plantObject: plant
-                listMode: true
+               imageUrl: "image://plants/" + plant.id
+               mainText: plant.species
+               subText: plant.commonNames
+               plantObject: plant
+               listMode: true
+               moving: plantList.moving
             }
             onClicked: pageStack.push(Qt.resolvedUrl("PlantPage.qml"), { "plant": plant })
             menu: ContextMenu {
