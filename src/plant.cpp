@@ -27,6 +27,8 @@
 #include <QJsonObject>
 #include <QUuid>
 
+#include <nemothumbnailcache.h>
+
 namespace C
 {
 #include <libintl.h>
@@ -188,22 +190,34 @@ PlantResult Plants::_openPlant(QByteArray jsonData)
 
    if (!firstImage.isEmpty())
    {
-      QFile thumbFile(firstImage);
-      QByteArray imageData;
+      /* Try Nemo Thumbnailer first */
+      NemoThumbnailCache::ThumbnailData thumbnail = NemoThumbnailCache::instance()->requestThumbnail(
+                                                       firstImage,
+                                                       QSize(NemoThumbnailCache::Large, NemoThumbnailCache::Large),
+                                                       true);
+      if (thumbnail.validImage()) {
+          plant->thumbnail = thumbnail.image();
+      } else if (thumbnail.validPath()) {
+          plant->thumbnail = QImage(thumbnail.path());
+      } else {
+          qDebug() << Q_FUNC_INFO << "Failed to produce a thumbnail, using original image";
+          QFile thumbFile(firstImage);
+          QByteArray imageData;
 
-      if (!thumbFile.open(QIODevice::ReadOnly))
-         return PlantResult{nullptr,
-                            C::gettext("Failed to open plant image: ") + thumbFile.errorString()};
+          if (!thumbFile.open(QIODevice::ReadOnly))
+             return PlantResult{nullptr,
+                                C::gettext("Failed to open plant image: ") + thumbFile.errorString()};
 
-      imageData = thumbFile.readAll();
+          imageData = thumbFile.readAll();
 
-      if (imageData.isEmpty() || thumbFile.errorString() != "Unknown error")
-         return PlantResult{nullptr,
-                            C::gettext("Failed to open plant image: ") + thumbFile.errorString()};
+          if (imageData.isEmpty() || thumbFile.errorString() != "Unknown error")
+             return PlantResult{nullptr,
+                                C::gettext("Failed to open plant image: ") + thumbFile.errorString()};
 
-      thumbFile.close();
+          thumbFile.close();
 
-      plant->thumbnail = QImage::fromData(imageData);
+          plant->thumbnail = QImage::fromData(imageData);
+      }
    }
 
    plant->images = images;
