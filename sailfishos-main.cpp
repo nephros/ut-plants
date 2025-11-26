@@ -42,8 +42,21 @@ int main(int argc, char *argv[])
 
    view->engine()->addImageProvider(QLatin1String("plants"), new plants::PlantsImageProvider());
 
+   QUrl qmlPath;
+   const QString envPath = QString::fromUtf8(qgetenv("PLANTS_QML_ROOT_DIR"));
+   if (!envPath.isEmpty()) {
+       const QString wantDir = QDir::cleanPath(envPath);
+       // in case we have imports there:
+       view->engine()->addImportPath(wantDir);
+       qmlPath = QUrl::fromLocalFile(wantDir + "/harbour-plants.qml");
+       qInfo() << "QML Path set from Environment:" << wantDir;
+   } else {
+       qmlPath = SailfishApp::pathToMainQml();
+   }
+
    //view->setSource(QUrl("qrc:/harbour-plants.qml"));
-   view->setSource(SailfishApp::pathToMainQml());
+   //view->setSource(SailfishApp::pathToMainQml());
+   view->setSource(qmlPath);
    view->show();
 
    // Sailfish Share:Registering the service after QML is loaded
