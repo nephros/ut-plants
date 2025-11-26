@@ -30,14 +30,20 @@
 
 namespace plants
 {
-QImage PlantsImageProvider::requestImage(const QString& id, QSize* /*size*/,
-                                         const QSize& /*requestedSize*/)
+QImage PlantsImageProvider::requestImage(const QString& id, QSize* size,
+                                         const QSize& requestedSize)
 {
    PlantsModel* model = PlantsModel::getInstace();
    Plant* plant = model ? model->getPlant(id) : nullptr;
 
    if (!plant)
       return QImage();
+
+   if (requestedSize.isValid()) {
+      QImage thumb = plant->thumbnail.scaled(requestedSize, Qt::KeepAspectRatio);
+      if (size) *size = thumb.size();
+      return thumb;
+   }
 
    return plant->thumbnail;
 }
