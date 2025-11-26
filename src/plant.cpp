@@ -216,7 +216,14 @@ PlantResult Plants::_openPlant(QByteArray jsonData)
 
           thumbFile.close();
 
-          plant->thumbnail = QImage::fromData(imageData);
+          QImage img = QImage::fromData(imageData);
+          int maxHeight = NemoThumbnailCache::ExtraLarge * 2; // 1536, about 3 MPixels
+          if (img.height() > maxHeight) {
+              qWarning() << Q_FUNC_INFO << "Read image is rather large, scaling down.";
+              plant->thumbnail = img.scaledToHeight(maxHeight);
+          } else {
+              plant->thumbnail = img;
+          }
       }
    }
 
