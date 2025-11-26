@@ -105,7 +105,9 @@ Page {
          SectionHeader { text: i18n.tr("Identification:") }
          ValueButton { id: langButton
             label: i18n.tr("Result Language")
-            description: i18n.tr("The language to use for Identification results. Default is to use the current Locale, or English if not available.")
+            description: i18n.tr("The language to use for Identification results.")
+                       + i18n.tr("Default is to use the current Locale, or English if not available.")
+                       + i18n.tr("Note that saving a result will use this language and it will not be updated later.")
             value: languages[language]
             onClicked: {
                var dlg = pageStack.push(langSelector)
