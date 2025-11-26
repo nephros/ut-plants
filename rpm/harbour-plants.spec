@@ -24,7 +24,7 @@ Name:       harbour-plants
 %endif
 %endif
 
-Summary:    App for identifying plants through image analyzation
+Summary:    Identifying plants through image analysis
 Version:    1.3.1
 Release:    1.sfos
 Group:      Applications
