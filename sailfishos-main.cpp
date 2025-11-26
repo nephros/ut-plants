@@ -42,15 +42,32 @@ int main(int argc, char *argv[])
 
    view->engine()->addImageProvider(QLatin1String("plants"), new plants::PlantsImageProvider());
 
-   QTranslator translator;
-   if(translator.load(QLocale(), QStringLiteral("harbour-plants"), QStringLiteral("_"), QLatin1String(":/i18n"))) {
-       QCoreApplication::installTranslator(&translator);
-       qDebug() << "Successfully loaded translations for" << QLocale::system().name().split('_').at(0);
+   QUrl qmlPath;
+   const QString envPath = QString::fromUtf8(qgetenv("PLANTS_QML_ROOT_DIR"));
+   if (!envPath.isEmpty()) {
+       const QString wantDir = QDir::cleanPath(envPath);
+       // in case we have imports there:
+       view->engine()->addImportPath(wantDir);
+       qmlPath = QUrl::fromLocalFile(wantDir + "/harbour-plants.qml");
+       qInfo() << "QML Path set from Environment:" << wantDir;
    } else {
-       qWarning() << "Failed to load translation for" << QLocale::system().name().split('_').at(0);
+       qmlPath = SailfishApp::pathToMainQml();
    }
 
-   view->setSource(QUrl("qrc:/harbour-plants.qml"));
+   // only load custom translators if running with Resources:
+   if (qmlPath.startsWith("qrc:") || qmlPath.startsWith(":")) {
+       QTranslator translator;
+       if(translator.load(QLocale(), QStringLiteral("harbour-plants"), QStringLiteral("_"), QLatin1String(":/i18n"))) {
+           QCoreApplication::installTranslator(&translator);
+           qDebug() << "Successfully loaded translations for" << QLocale::system().name().split('_').at(0);
+       } else {
+           qWarning() << "Failed to load translation for" << QLocale::system().name().split('_').at(0);
+       }
+   }
+
+   //view->setSource(QUrl("qrc:/harbour-plants.qml"));
+   //view->setSource(SailfishApp::pathToMainQml());
+   view->setSource(qmlPath);
    view->show();
 
    // Sailfish Share:Registering the service after QML is loaded
