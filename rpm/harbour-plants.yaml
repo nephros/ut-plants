@@ -89,6 +89,7 @@ PkgConfigBR:
   - Qt5Qml
   - Qt5Quick
   - Qt5DBus
+  - nemothumbnailer-qt5
 Configure: cmake
 Builder: cmake
 ConfigOptions:

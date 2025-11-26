@@ -13,7 +13,10 @@ find_package(Qt5DBus REQUIRED)
 #find_package(Qt5QuickControls2 REQUIRED)
 
 include(FindPkgConfig)
-pkg_search_module(SAILFISH sailfishapp REQUIRED)
+pkg_search_module(SAILFISHAPP sailfishapp REQUIRED)
+pkg_search_module(NEMOTHUMBNAIL nemothumbnailer-qt5 REQUIRED)
+set(SAILFISH_LDFLAGS ${SAILFISHAPP_LDFLAGS} ${NEMOTHUMBNAIL_LDFLAGS})
+set(SAILFISH_INCLUDE_DIRS ${SAILFISHAPP_INCLUDE_DIRS} ${NEMOTHUMBNAIL_INCLUDE_DIRS})
 #find_package(Qt5QuickControls2 REQUIRED)
 
 execute_process(

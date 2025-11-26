@@ -37,6 +37,7 @@ BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(Qt5DBus)
+BuildRequires:  pkgconfig(nemothumbnailer-qt5)
 BuildRequires:  cmake
 BuildRequires:  intltool
 BuildRequires:  sailfish-svg2png
