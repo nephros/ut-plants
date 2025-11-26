@@ -385,50 +385,50 @@ Besök &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plant
         <translation>%1 identifierade växter</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="65"/>
+        <location filename="../qml/pages/MainPage.qml" line="66"/>
         <source>Remove</source>
         <translation>Ta borrt</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="73"/>
+        <location filename="../qml/pages/MainPage.qml" line="74"/>
         <source>Deleting plant failed</source>
         <translation>Kunde inte ta bort växten</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="74"/>
+        <location filename="../qml/pages/MainPage.qml" line="75"/>
         <source>Plant could not be deleted (%1).</source>
         <translation>Växten kunde inte tas bort (%1).</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="83"/>
+        <location filename="../qml/pages/MainPage.qml" line="84"/>
         <source>No plants identified yet</source>
         <translation>Inga växter identifierade ännu</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="84"/>
+        <location filename="../qml/pages/MainPage.qml" line="85"/>
         <source>Pull down to start a new identification</source>
         <translation>Dra neråt för att starta en ny identifiering</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="89"/>
-        <location filename="../qml/pages/MainPage.qml" line="109"/>
+        <location filename="../qml/pages/MainPage.qml" line="90"/>
+        <location filename="../qml/pages/MainPage.qml" line="110"/>
         <source>New identification</source>
         <translation>Ny identifiering</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="94"/>
-        <location filename="../qml/pages/MainPage.qml" line="114"/>
+        <location filename="../qml/pages/MainPage.qml" line="95"/>
+        <location filename="../qml/pages/MainPage.qml" line="115"/>
         <source>API Key missing</source>
         <translation>API-nyckel saknas</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="95"/>
-        <location filename="../qml/pages/MainPage.qml" line="115"/>
+        <location filename="../qml/pages/MainPage.qml" line="96"/>
+        <location filename="../qml/pages/MainPage.qml" line="116"/>
         <source>The Pl@ntNet API-Key has not been configured yet. Without this, the app will not work.</source>
         <translation>Pl@ntNets API-nyckel har ännu inte konfigurerats. Utan denna kommer appen inte att fungera.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="127"/>
+        <location filename="../qml/pages/MainPage.qml" line="128"/>
         <source>Settings</source>
         <translation>Inställningar</translation>
     </message>
@@ -462,7 +462,7 @@ Besök &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plant
 <context>
     <name>PlantItem</name>
     <message>
-        <location filename="../qml/util/PlantItem.qml" line="59"/>
+        <location filename="../qml/util/PlantItem.qml" line="62"/>
         <source>Organ</source>
         <translation>Organ</translation>
     </message>
@@ -622,17 +622,17 @@ Besök &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plant
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="31"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="48"/>
         <source>Settings</source>
         <translation>Inställningar</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="44"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="61"/>
         <source>Pl@ntNet API key</source>
         <translation>Pl@ntNet API-nyckel</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="55"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="72"/>
         <source>In order to use the Pl@ntNet plant identification service, it is necessary to register at their website as developer and obtain an API-Key. This key needs to be configured within this app.
 
 Please visit &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantnet.org/signup&lt;/a&gt; and create a developer account. Afterwards visit &lt;a href=&quot;https://my.plantnet.org/account&quot;&gt;https://my.plantnet.org/account&lt;/a&gt; and click the eye-symbol at the very top (&quot;my API key&quot;) to show the API-Key. Copy this key and paste it into the below text input field.</source>
@@ -641,84 +641,98 @@ Please visit &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my
 Besök &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantnet.org/signup&lt;/a&gt; och skapa ett utvecklarkonto. Efteråt, besök &lt;a href=&quot;https://my.plantnet.org/account&quot;&gt;https://my.plantnet.org/account&lt;/a&gt; och klicka på ögonsymbolen längst upp (&quot;My API key&quot;) för att visa API-nyckeln. Kopiera denna nyckel och klistra in den i fältet nedan.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="66"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="83"/>
         <source>API-Key:</source>
         <translation>API-nyckel:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="70"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="87"/>
         <source>New API Key</source>
         <translation>Ny API-nyckel</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="71"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="88"/>
         <source>Enter API-Key</source>
         <translation>Ange API-nyckel</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="72"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="89"/>
         <source>The value will be saved on Enter.</source>
         <translation>Värdet kommer att sparas med Retur.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="74"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="91"/>
         <source>API Key already stored. Edit to update</source>
         <translation>API-nyckel redan lagrad. Redigera för att uppdatera.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="74"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="91"/>
         <source>No API Key stored</source>
         <translation>Ingen API-nyckel lagrad</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="83"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="105"/>
         <source>Identification:</source>
         <translation>Indentifiering:</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="85"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="107"/>
         <source>Result Language</source>
         <translation>Resultatspråk</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="86"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="108"/>
+        <source>The language to use for Identification results.</source>
+        <translation>Språket som ska användas för identifieringsresultat.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="109"/>
+        <source>Default is to use the current Locale, or English if not available.</source>
+        <translation>Standard är att använda det aktuella systemspråket, eller engelska om det inte finns tillgängligt.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="110"/>
+        <source>Note that saving a result will use this language and it will not be updated later.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>The language to use for Identification results. Default is to use the current Locale, or English if not available.</source>
-        <translation>Språket som ska användas för identifieringsresultat. Standard är att använda det aktuella systemspråket, eller engelska om det inte finns tillgängligt.</translation>
+        <translation type="vanished">Språket som ska användas för identifieringsresultat. Standard är att använda det aktuella systemspråket, eller engelska om det inte finns tillgängligt.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="181"/>
-        <source>Number of results</source>
-        <translation>Antal resultat</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="185"/>
-        <source>App:</source>
-        <translation>App:</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="189"/>
-        <source>Prevent device sleep on pending request</source>
-        <translation>Förhindra att enheten släcks  vid pågående förfrågan.</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="190"/>
-        <source>If enabled, device will not go into sleep mode while waiting on an identification result.</source>
-        <translation>Om det är aktiverat kommer enheten inte att gå in i viloläge när den väntar på ett identifieringsresultat.</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="115"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="139"/>
         <source>Region or Project</source>
         <translation>Region eller projekt</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="116"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="140"/>
         <source>The Region or Project to use for Identification results. Default is to use all available.</source>
         <translation>Regionen eller projektet som ska användas för identifieringsresultat. Standard är att använda alla tillgängliga.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="161"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="185"/>
         <source>species</source>
         <translation>arter</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="205"/>
+        <source>Number of results</source>
+        <translation>Antal resultat</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="209"/>
+        <source>App:</source>
+        <translation>App:</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="213"/>
+        <source>Prevent device sleep on pending request</source>
+        <translation>Förhindra att enheten släcks  vid pågående förfrågan.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="214"/>
+        <source>If enabled, device will not go into sleep mode while waiting on an identification result.</source>
+        <translation>Om det är aktiverat kommer enheten inte att gå in i viloläge när den väntar på ett identifieringsresultat.</translation>
     </message>
 </context>
 <context>

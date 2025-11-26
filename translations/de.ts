@@ -535,10 +535,6 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
         <source>Pull down to add new images</source>
         <translation>Ziehe herunter, um neue Fotos hinzuzufügen</translation>
     </message>
-    <message>
-        <source>Problem with the connection. Try again later.</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ResultsPage</name>
@@ -619,7 +615,7 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
     </message>
     <message>
         <source>The language to use for Identification results. Default is to use the current Locale, or English if not available.</source>
-        <translation>Die Sprache der Identifikationsergebnisse. Standard ist die aktuelle Lokalisierung oder Englisch wenn nicht verfügbar.</translation>
+        <translation type="vanished">Die Sprache der Identifikationsergebnisse. Standard ist die aktuelle Lokalisierung oder Englisch wenn nicht verfügbar.</translation>
     </message>
     <message>
         <source>Region</source>
@@ -664,6 +660,18 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
     <message>
         <source>species</source>
         <translation>Spezies</translation>
+    </message>
+    <message>
+        <source>The language to use for Identification results.</source>
+        <translation>Die Sprache der Identifikationsergebnisse.</translation>
+    </message>
+    <message>
+        <source>Default is to use the current Locale, or English if not available.</source>
+        <translation>Standard ist die aktuelle Lokalisierung oder Englisch wenn nicht verfügbar.</translation>
+    </message>
+    <message>
+        <source>Note that saving a result will use this language and it will not be updated later.</source>
+        <translation>NB: Beim Speichern eines Ergebnisses wird diese Sprache verwendet, und sie wird später nicht iaktualisiert.</translation>
     </message>
 </context>
 <context>
