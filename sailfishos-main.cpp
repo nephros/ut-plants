@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
    }
 
    // only load custom translators if running with Resources:
-   if (qmlPath.startsWith("qrc:") || qmlPath.startsWith(":")) {
+   if (qmlPath.toString().startsWith("qrc:") || qmlPath.toString().startsWith(":")) {
        QTranslator translator;
        if(translator.load(QLocale(), QStringLiteral("harbour-plants"), QStringLiteral("_"), QLatin1String(":/i18n"))) {
            QCoreApplication::installTranslator(&translator);
