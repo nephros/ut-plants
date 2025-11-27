@@ -149,8 +149,7 @@ Page {
               text: i18n.tr("Search on Wikipedia")
               // FIXME: support language:
               onClicked: Qt.openUrlExternally("https://wikipedia.org/w/index.php?"
-                   + '&profile=advanced'
-                   + '&search=%1'.arg(encodeURI(plant.species)) + "+deepcat%3APlants"
+                   + '&title=%1'.arg(encodeURI(plant.species))
                    )
           }
       }
