@@ -1,4 +1,14 @@
 .pragma library
+
+function iso3ToLang(code) {
+  for (var i=0; i<data.length; ++i) {
+    if (data[i]["2"] == code) {
+      return data[i]
+    }
+  }
+  return { "name": "unknown", "local": "unknown" }
+}
+
 var data = [
     {"name":"Abkhaz", "local":"Аҧсуа", "1":"ab", "2":"abk", "2T":"abk", "2B":"abk", "3":"abk"},
     {"name":"Afar", "local":"Afaraf", "1":"aa", "2":"aar", "2T":"aar", "2B":"aar", "3":"aar"},
