@@ -77,6 +77,7 @@ ApplicationWindow {
        property int numResults: 5
        property bool allowAdditional: true
        property bool allowLocation: false
+       property int locationPrecision: 1
     }
 
     KeepAlive { id: keepAlive

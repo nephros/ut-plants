@@ -39,7 +39,7 @@ Page {
       anchors.fill: parent
 
       contentWidth: parent.width
-      contentHeight: settingsColumn.height
+      contentHeight: settingsColumn.height + header.height
 
       //flickableDirection: Flickable.AutoFlickIfNeeded
 
@@ -223,6 +223,52 @@ Page {
             description: i18n.tr("If enabled, we try to use the device's location for displaying maps etc. Location must still be enabled on the device for this to work.")
             checked: settings.allowLocation
             onCheckedChanged: settings.allowLocation = checked
+         }
+
+         Slider {
+             anchors.left: parent.left
+             anchors.right: parent.right
+             value: settings.locationPrecision
+             valueText: {
+                switch (sliderValue) {
+                   case 0:
+                       return i18n.tr("0: Continent"); break
+                   case 1:
+                       return i18n.tr("1: City"); break
+                   case 2:
+                       return i18n.tr("2: Neighbourhood"); break
+                   case 3:
+                       return i18n.tr("3: Street"); break
+                   case 4:
+                       return i18n.tr("4: Corner of the House"); break
+                   case 5:
+                       return i18n.tr("5: That Person right there"); break
+                   case 6:
+                       return i18n.tr("6: Waldo on a Page"); break
+                   case 7:
+                       return i18n.tr("7: Grain of Sand"); break
+                   case 8:
+                       return i18n.tr("8: Being ridiculous"); break
+                }
+             }
+             minimumValue: 0
+             maximumValue: 8
+             stepSize: 1
+             label: i18n.tr("Location data precision")
+             onValueChanged: settings.locationPrecision = sliderValue
+         }
+         Label {
+             anchors.left: parent.left
+             anchors.right: parent.right
+             anchors.leftMargin: Theme.horizontalPageMargin
+             anchors.rightMargin: Theme.horizontalPageMargin
+             text: i18n.tr("<p/>The precision configures the decimal places reported for Latitude and Longitude. Refer to <a href='https://xkcd.com/2170/'>XKCD 2170</a> for details.</p>")
+             font.pixelSize: Theme.fontSizeExtraSmall
+             wrapMode: Text.WordWrap
+             textFormat: Text.StyledText
+             color: Theme.secondaryColor
+             linkColor: Theme.primaryColor
+             onLinkActivated: Qt.openUrlExternally(link)
          }
 
          SectionHeader { text: i18n.tr("App:") }
