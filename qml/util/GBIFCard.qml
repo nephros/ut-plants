@@ -1,30 +1,14 @@
 import QtQuick 2.6
 import Sailfish.Silica 1.0
-import Sailfish.WebView 1.0
-import QtPositioning 5.4
 
-import "../util"
-import "../util/languages-iso-639-1-2-3.js" as Lang
-import "../util/country-flags.js" as Flags
+import "languages-iso-639-1-2-3.js" as Lang
+import "country-flags.js" as Flags
 
-Rectangle { id: gbifCard
-   radius: 10
-   color: brand.background
-   height: contents.height
-   anchors.margins: units.gu(2)
-   anchors.horizontalCenter: parent.horizontalCenter
+GBIFCardBase { id: root
 
-   property int xhrs: 0
-   property bool loading: xhrs>0
-   opacity: loading ? 0.5 : 1.0
-   Behavior on opacity { FadeAnimator{} }
-
-   property string species
-   property string gbifId: "-1"
    property var _speciesData: ({})
    property var _speciesMedia: ([])
    property var _speciesNames: ([])
-
    property var _countryData: ([])
 
    property bool allowLocation: settings.allowLocation
