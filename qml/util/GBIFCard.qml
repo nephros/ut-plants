@@ -11,31 +11,33 @@ GBIFCardBase { id: root
    property var _speciesNames: ([])
    property var _countryData: ([])
 
-   property bool allowLocation: settings.allowLocation
+   cardTitle: species
 
-   readonly property string agent: "harbour-plants/1.0 (Sailfish OS; Qt) contact:sailfish/AT/nephros.org"
-
-   onSpeciesChanged: if(species) lookupSpeciesByName(species)
-   onGbifIdChanged:  if(gbifId != "-1") {
-      gbifCard.lookupDetails(gbifId)
-      gbifCard.lookupNames(gbifId)
-      gbifCard.lookupMedia(gbifId)
+   WorkerScript { id: gbif
+      Component.onCompleted: if(gbifId != "-1") {
+          sendMessage({ "type": "lookupAll", "key": gbifId })
+      }
+      source: "gbifutils.js"
+      onMessage: function(message) {
+         console.debug("WS: Got a message of type:", message.type)
+         switch (message.type) {
+            case "details":
+              _speciesData = new Object(message.data)
+            break
+            case "media":
+              _speciesMedia = new Object(message.data)
+            break
+            case "names":
+              _speciesNames = new Object(message.data)
+            break
+            case "countries":
+              _countryData = new Object(message.data)
+            break
+            default:
+                console.warn("WS: Unknown message type:", message.type)
+         }
+      }
    }
-
-   property double elementSpacing: units.gu(2)
-
-   QtObject { id: brand
-      //readonly property color background: Theme.colorScheme === Theme.LightOnDark ? "#8eb533" : "#f6f8ed"
-      //readonly property color foreground: Theme.colorScheme === Theme.LightOnDark ? "#f6f8ed" : "#394611"
-      readonly property color background: "#41af46"
-      readonly property color foreground: "#fff"
-      //readonly property color warn:       Theme.colorScheme === Theme.LightOnDark ? "#ffe629" : Theme.highlightFromColor("#ffe629", Theme.colorScheme)
-      //readonly property color danger:     Theme.colorScheme === Theme.LightOnDark ? "#d13415" : Theme.highlightFromColor("#d13415", Theme.colorScheme)
-      readonly property color warn:       "#e18114"
-      readonly property color danger:     "#d32f2f"
-
-   }
-
 
    Column {
       id: contents
@@ -81,7 +83,7 @@ GBIFCardBase { id: root
               spacing: units.gu(1)
               Item { height: 1; width: units.gu(2)*index }
               Label { font.pixelSize: Theme.fontSizeSmall; text: taxonomy.taxaNames[index]; color: brand.foreground }
-              Label { font.pixelSize: Theme.fontSizeSmall; text: _speciesData[modelData];    color: brand.foreground; font.italic: true }
+              Label { font.pixelSize: Theme.fontSizeSmall; text: _speciesData[modelData];   color: brand.foreground; font.italic: true }
             }
          }
       }
@@ -226,87 +228,21 @@ GBIFCardBase { id: root
          wrapMode: Text.WordWrap
       }
       Repeater {
+        width: parent.width
         model: Object.keys(_speciesNames)
         delegate: Label {
            color: brand.foreground
-           width: parent.width
            wrapMode: Text.WordWrap
-           property var lang: Lang.iso3ToLang(modelData)
-           property var flag: Flags.flag(lang["1"]).flag
+           property var lang: ({})
+           property var flag: ({})
            text: flag + " " + lang.local + ": " + _speciesNames[modelData].join(", ")
+           Component.onCompleted: {
+               var ldat = Lang.iso3ToLang(modelData)
+               var fdat = Flags.flag(ldat["1"])
+               lang = ldat
+               flag = fdat.flag ? fdat.flag : ""
+           }
         }
       }
-  }
-  BusyIndicator {
-    anchors.centerIn: parent
-    running: gbifCard.loading
-    size: BusyIndicatorSize.Large
-  }
-
-  function lookupSpeciesByName(species) {
-     const url="https://api.gbif.org/v1/species/match?"
-        + "name=" + encodeURI(species)
-        + "&rank=species&limit=1&verbose=false"
-     function cb(rdata) {
-        gbifCard.gbifId = rdata.speciesKey
-     }
-     lookup(url,cb)
-  }
-
-  function lookupCountries() {
-     const url="https://api.gbif.org/v1/enumeration/country"
-     function cb(rdata) { gbifCard._countryData = rdata }
-     lookup(url,cb)
-  }
-  function lookupDetails(key) {
-     const url="https://api.gbif.org/v1/species/" + key
-     function cb(rdata) { gbifCard._speciesData = rdata }
-     lookup(url,cb)
-  }
-  function lookupNames(key) {
-     const url="https://api.gbif.org/v1/species/" + key + "/vernacularNames?limit=10"
-     function cb(rdata) {
-         var names = {}
-         rdata.results.forEach(function(e) {
-             var n = names[e.language] 
-             if (!n) n = []
-             if (n.indexOf(e.vernacularName) == -1) {
-                 n.push(e.vernacularName)
-                 names[e.language] = n
-             }
-         })
-         gbifCard._speciesNames = names
-     }
-     lookup(url,cb)
-  }
-  function lookupMedia(key) {
-     const url="https://api.gbif.org/v1/species/" + key + "/media/"
-     function cb(rdata) {
-        gbifCard._speciesMedia = rdata.results.filter(function(e) { return e.type == "StillImage" } )
-     }
-     lookup(url,cb)
-  }
-  function lookup(url, callback) {
-     var query = Qt.resolvedUrl(url);
-     var r = new XMLHttpRequest();
-     r.open("GET", query);
-     r.setRequestHeader('User-Agent', gbifCard.agent);
-     r.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-     r.setRequestHeader('Accept', 'application/json');
-     r.setRequestHeader('Origin', '');
-
-     r.send();
-     gbifCard.xhrs += 1
-     r.onreadystatechange = function(event) {
-         if (r.readyState == XMLHttpRequest.DONE) {
-             if (r.status === 200 || r.status == 0) {
-                 var rdata = JSON.parse(r.response);
-                 callback(rdata)
-             } else {
-                 console.debug("error in processing request.", query, r.status, r.statusText);
-             }
-             gbifCard.xhrs -= 1
-         }
-     }
   }
 }
