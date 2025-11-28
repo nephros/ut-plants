@@ -12,6 +12,13 @@
         <file>util/PlantUtils.qml</file>
         <file>util/PlantCard.qml</file>
         <file>util/PlantItem.qml</file>
+        <file>util/GBIFCard.qml</file>
+        <file>util/GBIFCardBase.qml</file>
+        <file>util/GBIFMap.qml</file>
+        <file>util/WikiCard.qml</file>
+        <file>util/country-flags.js</file>
+        <file>util/gbifutils.js</file>
+        <file>util/languages-iso-639-1-2-3.js</file>
         <file>util/LoadingScreen.qml</file>
         <file>util/SFOSShare.qml</file>
         <file>compat/Settings.qml</file>
