@@ -10,6 +10,10 @@ GBIFCardBase { id: root
 
    cardTitle: i18n.tr("Occurrence Map")
 
+   signal konamiCode
+   onKonamiCode: {
+      console.info("KONAMI!!!")
+   }
    Column {
       id: contents
       width: parent.width
@@ -46,15 +50,39 @@ GBIFCardBase { id: root
       Rectangle { id: mapContainer
           width: nameRow.width
           height: width 
-          property int tile_z: 1
-          property int tile_x: 1
-          property int tile_y: 0
+          property int tile_z: 3
+          property int tile_x: 4
+          property int tile_y: 2
           property string position: "%1/%2/%3".arg(Math.max(0,tile_z)).arg(Math.max(0,tile_x)).arg(Math.max(0,tile_y))
           property string srs: "3857" // Web Mercator
           //property string srs: "4326"   // Plate Caree/WGS84
-          function reset() {
-             tile_z = 0; tile_x = 0; tile_y = 0
+
+          //property int max_tiles: tile_z == 0 ? 1 : Math.pow(Math.pow(2,tile_z),2)
+          property int max_tiles: Math.pow(Math.pow(2, tile_z), 2)
+          // 0: 1
+          // 1: 2x2 = 4    = (2^zoom)^2
+          // 2: 4x4 = 16
+          // 3: 8x8 = 64
+          property int max_x: tile_z == 0 ? 1 : Math.sqrt(max_tiles)
+          property int max_y: tile_z == 0 ? 1 : Math.sqrt(max_tiles)
+
+          property color contrastColor:       (Theme.colorScheme === Theme.LightOnDark) ? Theme.lightPrimaryColor : Theme.darkPrimaryColor
+          property color uiColor: (Theme.colorScheme === Theme.LightOnDark) ? Theme.darkPrimaryColor : Theme.lightPrimaryColor
+
+          readonly property string konami: "nnssweweio"
+          property string tapped: ""
+
+          property bool failed: (occMapImage.status === Image.Error)
+
+          onFailedChanged: if (failed) reset()
+          onTappedChanged: {
+              if (tapped.length > 128) tapped = tapped.slice(konami.length*-1)
+              if (tapped.indexOf(konami) != -1) { root.konamiCode(); effect.start(); tapped = "" }
+              //console.debug("Konamicheck:", konami, tapped)
           }
+
+          function reset() { tile_z = 0; tile_x = 0; tile_y = 0 }
+
           Image { id: occMapImage
              visible: false
              //anchors.fill: parent
@@ -80,84 +108,198 @@ GBIFCardBase { id: root
                  + "&style=" + (Theme.colorScheme === Theme.LightOnDark ? "green.poly" : + "classic.poly")
                  + "&bin=hex&hexPerTile=85" // number of hexagons across a tile -> larger gives smaller hexes, default 51
           }
+          Image { id: fallbackMap
+             visible: false
+             //anchors.fill: parent
+             width: 512; height: width
+             sourceSize.width: 74; sourceSize.height: 24
+             source: Qt.resolvedUrl("./white.png")
+          }
+          Image { id: fallbackOverlay
+             visible: false
+             //anchors.fill: parent
+             width: 512; height: width
+             sourceSize.width: 16; sourceSize.height: 16
+             source: Qt.resolvedUrl("./trans.png")
+          }
           Blend { id: blendedImage1
              anchors.fill: parent
-             source: occMapImage
-             foregroundSource: occImage
+             source:           (occMapImage.status == Image.Error) ? fallbackMap : occMapImage
+             foregroundSource: (occImage.status == Image.Error)    ? fallbackOverlay : occImage
              mode: "normal"
+             opacity: source.status === Image.Ready ? 1.0 : 0.0
+             Behavior on opacity { FadeAnimator{} }
           }
           Label {
-             anchors.bottom: parent.bottom
-             text: parent.position
+             anchors.top: parent.bottom
+             text: mapContainer.position + " (" + mapContainer.max_tiles + ") " + mapContainer.max_x + "/" + mapContainer.max_y
              style: Text.Raised
-             //color: brand.foreground
-             color: Theme.darkPrimaryColor
-             //styleColor: Theme.darkPrimaryColor
-             styleColor: (Theme.colorScheme === Theme.LightOnDark) ? Theme.lightPrimaryColor : Theme.darkPrimaryColor
+             color: mapContainer.uiColor
+             styleColor: mapContainer.contrastColor
              font.pixelSize: units.gu(1)
           }
           IconButton {
              anchors.right: parent.right
              anchors.top: parent.top
              anchors.margins: units.gu(1)
-             icon.source: "image://theme/icon-splus-clear?" + ((Theme.colorScheme === Theme.LightOnDark) ? "#000" : brand.foreground)
-             onClicked: parent.reset()
+             icon.source: "image://theme/icon-m-website?" + mapContainer.uiColor
+             onClicked: { mapContainer.tile_z = 0; mapContainer.tile_x = 0; mapContainer.tile_y = 0 }
           }
-      }
-      Item {
-         width: mapContainer.width
-         height: Theme.iconSizeMedium
-         anchors.left: mapContainer.left
-         IconButton { id: rembutt; anchors.left: parent.left;   anchors.margins: units.gu(1); icon.source: "image://theme/icon-m-remove"  ; onClicked: mapContainer.tile_z -= 1; enabled: mapContainer.tile_z>0 }
-         IconButton { id: addbutt; anchors.left: rembutt.right; anchors.margins: units.gu(1); icon.source: "image://theme/icon-m-add"     ; onClicked: mapContainer.tile_z += 1 }
-
-         IconButton { id: gpsbutt; anchors.horizontalCenter: parent.horizontalCenter; anchors.margins: units.gu(1);
-            icon.source: "image://theme/icon-m-location?"
-                       + ((pos.position.horizontalAccuracy < 5000)
-                       ? Theme.presenceColor(Theme.PresenceAvailable) : brand.warn)
+          IconButton { id: gpsbutt
+            enabled: pos.active
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.margins: units.gu(1);
+            icon.source: "image://theme/icon-m-location?" + mapContainer.uiColor
             onClicked: {
-              //function lat2tile(lat,zoom) { Math.floor((1-Math.log(Math.tan(lat*Math.PI/180) + 1/Math.cos(lat*Math.PI/180))/Math.PI)/2 *Math.pow(2,zoom)) }
-              //function lon2tile(lon,zoom) { Math.floor((lon+180)/360*Math.pow(2,zoom)) }
               const coord = pos.position.coordinate
-              //const zoom = mapContainer.tile_z
-              //const y = lat2tile(coord.latitude, zoom)
-              //const x = lon2tile(coord.longitude, zoom)
-              const zoom = 4
-              function project(lat, lng, zoom) {
+              const lon = coord.longitude.toFixed(settings.locationPrecision)
+              const lat = coord.latitude.toFixed(settings.locationPrecision)
+              const zoom = (settings.locationPrecision > 5) ? settings.locationPrecision+2 : 6
+              // from the google docs:
+              function project(la, lo, zoom) {
                  const TILE_SIZE=512
-                 const siny = Math.sin((lat * Math.PI) / 180);
+                 const siny = Math.sin((la * Math.PI) / 180);
                  // Truncating to 0.9999 effectively limits latitude to 89.189. This is
                  // about a third of a tile past the edge of the world tile.
                  siny = Math.min(Math.max(siny, -0.9999), 0.9999);
                  return {
-                   "x": TILE_SIZE * (0.5 + lng / 360),
+                   "x": TILE_SIZE * (0.5 + lo / 360),
                    "y": TILE_SIZE * (0.5 - Math.log((1 + siny) / (1 - siny)) / (4 * Math.PI)),
                  };
               }
 
-              var res = project(coord.latitude, coord.longitude, zoom)
+              var res = project(lat, lon, zoom)
               mapContainer.tile_z = zoom
               const scale = 1 << zoom
               mapContainer.tile_x = Math.floor(res.x*scale/512)
               mapContainer.tile_y = Math.floor(res.y*scale/512)
-              console.debug("New tile:", mapContainer.tile_z, mapContainer.tile_x, mapContainer.tile_y)
+              //console.debug("New tile:", mapContainer.tile_z, mapContainer.tile_x, mapContainer.tile_y)
             }
-         }
-         IconButton { id: dwnbutt; anchors.right: gpsbutt.left;  anchors.margins: units.gu(1); rotation: -90; icon.source: "image://theme/icon-m-left"  ; onClicked: mapContainer.tile_y -= 1; enabled: mapContainer.tile_y>0 }
-         IconButton { id: upbutt;  anchors.left:  gpsbutt.right; anchors.margins: units.gu(1); rotation: 90; icon.source: "image://theme/icon-m-left" ; onClicked: mapContainer.tile_y += 1; enabled: mapContainer.tile_y<(Math.pow(2,mapContainer.tile_z)) }
+          }
+          Label {
+             visible: gpsbutt.enabled
+             anchors.verticalCenter: gpsbutt.bottom
+             anchors.horizontalCenter: gpsbutt.horizontalCenter
+             text: pos.position.coordinate.latitude.toFixed(settings.locationPrecision)
+                 + " "
+                 + pos.position.coordinate.longitude.toFixed(settings.locationPrecision)
+             style: Text.Raised
+             color: mapContainer.uiColor
+             styleColor: mapContainer.contrastColor
+             font.pixelSize: units.gu(1)
+          }
+          Image { id: tiles
+             anchors.top: parent.top
+             anchors.left: parent.left
+             width: height; height: Theme.iconSizeLarge
+             visible: mapContainer.max_tiles > 4
+             cache: true
+             sourceSize.width: 256; sourceSize.height: width
+             source: "https://tile.gbif.org/" + mapContainer.srs + "/omt/0/0/0@Hx.png??style=gbif-light"
+             Grid { id: grid
+               anchors.fill: parent
+               visible: parent.visible && mapContainer.max_tiles <= 4096
+               rows: columns
+               columns: visible ? mapContainer.max_x : 0
+               Repeater {
+                 model: parent.visible ? mapContainer.max_tiles : undefined
+                 delegate: Rectangle {
+                    width: height
+                    height: grid.width / grid.columns
+                    color: "transparent"
+                    Rectangle { // show a dot even if squares are too small:
+                       anchors.centerIn: parent
+                       width: height
+                       height: Math.max(parent.height,2)
+                       visible: parent.isCurrent
+                       color: brand.danger //"#b0ff0000"
+                    }
+                    property bool isCurrent: {
+                      const x = ( index % mapContainer.max_x )
+                      const y = Math.floor( index / mapContainer.max_x)
+                      return ((x == mapContainer.tile_x) && (y == mapContainer.tile_y))
+                    }
+                 }
+                 }
+             }
+          }
 
-         IconButton { id: lftbutt; anchors.right: rgtbutt.left; anchors.margins: units.gu(1); icon.source: "image://theme/icon-m-left"    ; onClicked: mapContainer.tile_x -= 1; enabled: mapContainer.tile_x>0 }
-         IconButton { id: rgtbutt; anchors.right: parent.right; anchors.margins: units.gu(1); icon.source: "image://theme/icon-m-right"   ; onClicked: mapContainer.tile_x += 1; enabled: mapContainer.tile_x<(Math.pow(2,mapContainer.tile_z))  }
+          function zoomIn()  {
+             tile_x = tile_x*2; tile_y = tile_y*2
+             tile_z += 1
+             tapped += 'i'
+          }
+          function zoomOut() {
+             tile_x = Math.ceil(tile_x/2); tile_y = Math.ceil(tile_y/2)
+             if (tile_y > max_y) tile_y -= 1
+             if (tile_x > max_y) tile_x -= 1
+             tile_z = Math.abs(tile_z - 1)
+             tapped += 'o'
+          }
+          function north()   { tile_y = Math.abs(tile_y - 1); tapped += 'n' }
+          function south()   { tile_y += 1; tapped += 's' }
+          function west()    { tile_x = Math.abs(tile_x - 1); tapped += 'w' }
+          function east()    { tile_x += 1; tapped += 'e' }
+          SequentialAnimation { id: effect
+             running: false
+             ParallelAnimation {
+             RotationAnimator {
+               target: blendedImage1
+               from: 0
+               to: 360*3
+               //loops: 3
+               //easing.type: Easing.InOutElastic;
+               //easing.type: Easing.InCubic;
+               easing.type: Easing.OutBounce;
+               duration: 6000
+               onStopped: blendedImage.rotation = 0
+             }
+             ScaleAnimator {
+               target: blendedImage1
+               from: 1.0
+               to: 1.6
+               easing.type: Easing.InOutElastic;
+               duration: 2000
+               onStopped: blendedImage.scale = 1.0
+             }
+             }
+             ScaleAnimator {
+               target: blendedImage1
+               to: 1.0
+               from: 1.6
+               easing.type: Easing.InOutElastic;
+               duration: 2000
+               onStopped: target.scale = blendedImage.scale = 1.0
+             }
+          }
       }
+      Row {
+         //width: mapContainer.width
+         height: Theme.iconSizeMedium
+         anchors.horizontalCenter: mapContainer.horizontalCenter
+         spacing: units.gu(1)
+         IconButton { id: rembutt;  icon.source: "image://theme/icon-m-remove"
+            onClicked: mapContainer.zoomOut(); enabled: mapContainer.tile_z>0 }
+         IconButton { id: addbutt;  icon.source: "image://theme/icon-m-add"
+           onClicked: mapContainer.zoomIn() }
+         Item { width: units.gu(2) }
+         IconButton { id: lftbutt;  icon.source: "image://theme/icon-m-left"
+            onClicked: mapContainer.west(); enabled: mapContainer.tile_x>0 }
+         IconButton { id: dwnbutt;  rotation: -90; icon.source: "image://theme/icon-m-left"
+            onClicked: mapContainer.south(); enabled: mapContainer.tile_y<mapContainer.max_y-1 }
+         IconButton { id: upbutt;   rotation: 90; icon.source: "image://theme/icon-m-left"
+            onClicked: mapContainer.north(); enabled: mapContainer.tile_y>0 }
+         Item { width: units.gu(2) }
+         IconButton { id: rgtbutt;  icon.source: "image://theme/icon-m-right"
+            onClicked: mapContainer.east(); enabled: mapContainer.tile_x<mapContainer.max_x-1  }
+      }
+      //Button { text: "konami"; onClicked: mapContainer.tapped = mapContainer.konami }
 
       PositionSource { id: pos
-          //updateInterval: posmapView.positionSet ? 1000*60*5 : 5000 // 5s or 5min
           active: allowLocation && parent.visible
-          onPositionChanged: {
-            if (!valid) return
-            const coord = pos.position.coordinate
-            console.debug("New position:", coord.latitude, coord.longitude)
-          }
+          //updateInterval: posmapView.positionSet ? 1000*60*5 : 5000 // 5s or 5min
+          updateInterval: (position.horizontalAccuracy < 5000) ? 1000*60*5 : 10000 // 10s or 5min
       }
    }
 }
