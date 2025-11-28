@@ -153,67 +153,7 @@ GBIFCardBase { id: root
                }
             }
          }
-         ViewPlaceholder {
-            text: i18n.tr("No images found")
-            enabled: !_speciesMedia.count
-         }
       }
-
-      WebView { id: occmapView
-         width: resultImagesList.width
-         height: width *3/4
-         anchors.horizontalCenter: parent.horizontalCenter
-         active: gbifId != "-1"
-         httpUserAgent: gbifCard.agent
-         url: "https://api.gbif.org/v1/map/?"
-             + "type=TAXON"
-             + "&key=" + gbifId
-             + "&layer=SP_2020_2030"
-             + (Theme.colorScheme === Theme.LightOnDark ? "&style=light" : + "&style=classic")
-             //+ "&resolution=4"
-      }
-
-      WebView { id: posmapView
-         width: resultImagesList.width
-         height: width *3/4
-         anchors.horizontalCenter: parent.horizontalCenter
-         active: (gbifId!="-1") && pos.valid
-         httpUserAgent: gbifCard.agent
-         property bool positionSet: false
-         property string templateUrl: "https://api.gbif.org/v1/map/point.html?"
-             + "type=TAXON"
-             + "&key=" + gbifId
-             + "&zoom=8"
-             + (Theme.colorScheme === Theme.LightOnDark ? "&style=light" : "&style=classic")
-         Component.onCompleted: if (!allowLocation) url = templateUrl
-         PositionSource { id: pos
-             updateInterval: posmapView.positionSet ? 1000*60*5 : 5000 // 5s or 5min
-             active: allowLocation && parent.visible
-             onPositionChanged: {
-               if (!valid) return
-               const coord = pos.position.coordinate
-               console.debug("New position:", coord.latitude, coord.longitude)
-               if ( (coord.latitude != coord.latitude) || (coord.longitude != coord.longitude) ) return // only sane way to test for NaN:
-               const lat = coord.latitude.toFixed(5)
-               const lon = coord.longitude.toFixed(5)
-               //posmapView.load( posmapView.templateUrl
-               posmapView.url = posmapView.templateUrl
-                              + "&point=" + lat + ","  + lon
-                              + "&lat=" + lat + "&lng=" + lon // !! lng not lon !!
-               //               )
-               console.debug("Loaded", posmapView.url)
-               posmapView.positionSet = true
-             }
-         }
-      }
-
-      /*
-      QC.PageIndicator {
-         anchors.horizontalCenter: parent.horizontalCenter
-         currentIndex: resultImagesList.currentIndex
-         count: resultImagesList.count
-      }
-      */
 
       Label {
          color: brand.foreground
