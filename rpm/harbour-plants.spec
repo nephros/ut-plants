@@ -140,7 +140,7 @@ desktop-file-edit  \
 --set-value=images \
 --remove-key=X-Lomiri-Touch \
 %{buildroot}%{_datadir}/applications/%{name}.desktop
-printf '\n\n[X-Sailjail]\nOrganizationName=%{orgname}\nApplicationName=%{appname}\nPermissions=UserDirs;Camera;MediaIndexing;RemovableMedia;Internet;\n' \
+printf '\n\n[X-Sailjail]\nOrganizationName=%{orgname}\nApplicationName=%{appname}\nPermissions=UserDirs;Camera;MediaIndexing;RemovableMedia;Internet;Location\n' \
 >> %{buildroot}%{_datadir}/applications/%{name}.desktop
 # Sailfish Share:
 printf '\n\n[X-Share Method images]\nDescription=Identify Plant\nDescription[de]=Pflanze Identifizieren\nDescription[fr]=Identifier la plante\nDescription[nl]=Herkenning plante\nCapabilities=image/png;image/jpeg\nSupportsMultipleFiles=yes\n' \
