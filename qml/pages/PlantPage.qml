@@ -73,16 +73,37 @@ Page {
             }
          }
          ExpandingSection {
-            title: "GBIF"
+            title: (expanded && content.status === Loader.Ready) ? content.item.cardTitle : "GBIF"
             expanded: false
-            enabled: false
-            opacity: enabled ? 1.0 :  Theme.opacityFaint
+            onExpandedChanged: if ((expanded) && content.status === Loader.Null) {
+                if (plant.gbifId != "-1") {
+                    content.setSource("../util/GBIFCard.qml", { "gbifId": plant.gbifId } )
+                } else {
+                    content.setSource("../util/GBIFCard.qml", { "species": plant.species } )
+                }
+            }
+            Rectangle {
+               anchors.fill: parent
+               z: parent.content.z - 1
+               color:  "#41af46"
+               radius: 10
+            }
          }
          ExpandingSection {
-            title: "GBIF Maps"
+            //visible: settings.allowLocation
+            title: (expanded && content.status === Loader.Ready) ? content.item.cardTitle : "GBIF Map"
             expanded: false
-            enabled: false
+            enabled: plant.gbifId != "-1"
             opacity: enabled ? 1.0 :  Theme.opacityFaint
+            onExpandedChanged: if ((expanded) && content.status === Loader.Null) {
+                content.setSource("../util/GBIFMap.qml", { "gbifId": plant.gbifId } )
+            }
+            Rectangle {
+               anchors.fill: parent
+               z: parent.content.z - 1
+               color:  "#41af46"
+               radius: 10
+            }
          }
          ExpandingSection {
             title: "POWO"
