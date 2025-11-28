@@ -42,10 +42,13 @@ Page {
          width: plantCard.width
          spacing: units.gu(1)
          ExpandingSection {
-            title: (expanded && content.status === Loader.Ready) ? content.item.cardTitle : "Wikispecies"
+            title: (expanded && content.status === Loader.Ready) ? content.item.cardTitle : "Wikipedia"
             expanded: false
             onExpandedChanged: if ((expanded) && content.status === Loader.Null) {
-                content.setSource("../util/WikiCard.qml", { "species": plant.species } )
+                content.setSource("../util/WikiCard.qml",
+                                  { "species": plant.species,
+                                    "language": plantsModel.language ? Qt.locale().name.substr(0,2) : "en"
+                                  })
             }
             //icon.source: Theme.colorScheme === Theme.LightOnDark
             //   ? "https://upload.wikimedia.org/wikipedia/commons/4/4c/W-white.png"
@@ -60,22 +63,18 @@ Page {
                anchors.centerIn: parent
                z: parent.content.z - 1
                gradient: Gradient {
+                  /* Wikipedia, see https://foundation.wikimedia.org/wiki/Legal:Visual_identity_guidelines#toc-colorvalues */
+                  GradientStop { position: 0.0; color: "#000" }
+                  GradientStop { position: 1.0;  color: "#fff" }
+                  /* Wikimedia/Wikispecies:
                   GradientStop { position: -0.3; color: "#006699" } // blueish
                   GradientStop { position: 0.0;  color: "#185e3c" } // rather dark green
                   GradientStop { position: 0.5;  color: "green" }
                   GradientStop { position: 1.0;  color: "#9fdcbf" } // v. light green
                   GradientStop { position: 1.3;  color: "#2e7eb0" }
+                  */
                }
                radius: 10
-               /*
-                * WikiSpecies colors:
-                  color: "#006699" //blueish
-                  color: "green;"
-                * WikiMedia colors:
-                  logo red: "#9a0000#
-                  logo green: "#2f9a66"
-                  logo blue: "#00669a"
-               */
             }
          }
          ExpandingSection {
