@@ -10,14 +10,14 @@ Page {
 
    SilicaFlickable {
       anchors.fill: parent
-      contentHeight: header.height 
-                   + plantCard.height 
+      contentHeight: header.height
+                   + plantCard.height
                    //+ moreInfoHeader.height
                    + moreInfo.height
 
       PageHeader { id: header
          title: plant.family ? plant.commonNames.split(", ")[0] : i18n.tr('Plant details')
-         description: plant.family ? plant.family : plant.commonNames.split(", ")[0] 
+         description: plant.family ? plant.family : plant.commonNames.split(", ")[0]
       }
 
       PlantCard { id: plantCard
@@ -87,7 +87,7 @@ Page {
                     content.setSource("../util/GBIFCard.qml", { "gbifId": plant.gbifId } )
                 } else {
                     content.setSource("../util/GBIFCard.qml", { "species": plant.species } )
-                } 
+                }
             }
             Rectangle {
                anchors.fill: parent
