@@ -1,5 +1,6 @@
 import QtQuick 2.6
 import Sailfish.Silica 1.0
+import "gbifutils.js" as GBIFUtil
 
 Rectangle { id: root
    radius: 10
@@ -17,7 +18,7 @@ Rectangle { id: root
 
    onSpeciesChanged: if(species) {
       console.debug("WARN: should migrate this call to Worker Script!")
-      root.gbifId = "-1"
+      //root.gbifId = "-1"
       GBIFUtil.lookupSpeciesByName(species, function(res) { root.gbifId = res } )
    }
 

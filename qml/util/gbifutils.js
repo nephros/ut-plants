@@ -34,11 +34,11 @@ function lookup(url, callback) {
    r.send();
 }
 
-function lookupSpeciesByName(species, out) {
+function lookupSpeciesByName(species, cb) {
    var url="https://api.gbif.org/v1/species/match?"
       + "name=" + encodeURI(species)
       + "&rank=species&limit=1&verbose=false"
-   lookup(url, function(res) { out = res.speciesKey; console.debug("lookupSpeciesByName found:", out) } )
+   lookup(url, function(res) { cb(res.speciesKey); console.debug("lookupSpeciesByName found:", res.speciesKey) } )
 }
 
 function lookupCountries() {
