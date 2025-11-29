@@ -19,7 +19,7 @@ GBIFCardBase { id: root
       }
       source: "gbifutils.js"
       onMessage: function(message) {
-         console.debug("WS: Got a message of type:", message.type)
+         //console.debug("WS: Got a message of type:", message.type)
          switch (message.type) {
             case "details":
               _speciesData = new Object(message.data)
@@ -34,7 +34,7 @@ GBIFCardBase { id: root
               _countryData = new Object(message.data)
             break
             default:
-                console.warn("WS: Unknown message type:", message.type)
+               console.warn("WS: Unknown message type:", message.type)
          }
       }
    }
@@ -76,7 +76,7 @@ GBIFCardBase { id: root
          readonly property var taxaNames: [  i18n.tr("Phylum"), i18n.tr("Order"), i18n.tr("Family"), i18n.tr("Genus"), ]
          visible: _speciesData
          width: nameRow.width
-         spacing: units.gu(1)
+         //spacing: units.gu(1)
          Repeater {
             model: _speciesData ? taxonomy.taxa : undefined
             delegate: Row {
@@ -171,16 +171,18 @@ GBIFCardBase { id: root
         width: parent.width
         model: Object.keys(_speciesNames)
         delegate: Label {
+           width: parent.width
            color: brand.foreground
            wrapMode: Text.WordWrap
+           textFormat: Text.StyledText
            property var lang: ({})
-           property var flag: ({})
-           text: flag + " " + lang.local + ": " + _speciesNames[modelData].join(", ")
+           property string flag
+           text: (flag ? flag + " " : "") + "<i>%1</i>: %2".arg(lang.local).arg(_speciesNames[modelData].join(", "))
            Component.onCompleted: {
                var ldat = Lang.iso3ToLang(modelData)
                var fdat = Flags.flag(ldat["1"])
                lang = ldat
-               flag = fdat.flag ? fdat.flag : ""
+               flag = (fdat.flag) ? fdat.flag : "  "
            }
         }
       }
