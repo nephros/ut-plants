@@ -83,6 +83,7 @@ public:
 
    PlantResult openPlant(QString filePath);
    PlantResult createPlant(QVariantMap& identificationResult);
+   bool updatePlant(QString &id, QString &property, QVariant& value);
 
 protected:
    PlantResult _openPlant(QByteArray jsonData);

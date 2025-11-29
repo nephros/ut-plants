@@ -102,6 +102,7 @@ public:
 
    Q_INVOKABLE QString savePlant(QVariantMap identificationResult);
    Q_INVOKABLE QString deletePlant(QString id);
+   Q_INVOKABLE void updatePlantProperty(QString id, QString property, QVariant value);
    Q_INVOKABLE void identifyPlant(QVariantList request);
 
    Plant* getPlant(QString id)

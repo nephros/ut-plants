@@ -183,7 +183,7 @@ void PlantsModel::reload()
 
       if (!plantResult.err.isEmpty())
       {
-         qDebug() << "Plant open failed: " << plantResult.err;
+         qDebug() << "Plant open failed: " << info.fileName() << ":" << plantResult.err;
       }
       else
       {
@@ -196,6 +196,15 @@ void PlantsModel::reload()
 
    endResetModel();
    emit countChanged();
+}
+
+void PlantsModel::updatePlantProperty(QString id, QString property, QVariant value)
+{
+   if (!plants.updatePlant(id, property, value)) {
+      qWarning() << "Failed: could not update plant property for id" << id;
+   }
+   // FIXME: we could do it in memory only here...
+   reload();
 }
 
 // **************************************************************************

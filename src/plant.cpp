@@ -46,7 +46,7 @@ void Plants::setStorageDir(QDir dir)
 }
 
 // **************************************************************************
-// openPlant
+// createPlant
 // **************************************************************************
 
 PlantResult Plants::createPlant(QVariantMap& identificationResult)
@@ -106,6 +106,62 @@ PlantResult Plants::createPlant(QVariantMap& identificationResult)
    jsonFile.close();
 
    return _openPlant(jsonData);
+}
+
+// **************************************************************************
+// updatePlant
+// **************************************************************************
+
+bool Plants::updatePlant(QString &id, QString &property, QVariant& value)
+{
+   QString filePath = storageDir.filePath(QString("%1.json").arg(id));
+   QFile jsonFile(filePath);
+   QByteArray jsonData;
+
+   if (!jsonFile.open(QIODevice::ReadOnly)) {
+      qWarning() << C::gettext("Failed to open plant JSON: ") + jsonFile.errorString();
+      return false;
+   }
+
+   jsonData = jsonFile.readAll();
+
+   jsonFile.close();
+
+   QJsonParseError err;
+   QJsonDocument doc = QJsonDocument::fromJson(jsonData, &err);
+
+   if (err.error != QJsonParseError::NoError) {
+      qWarning() << C::gettext("Failed to read plant JSON: ") + err.errorString();
+      return false;
+   }
+
+   qDebug() << Q_FUNC_INFO << "Want to update property " << property;
+   QJsonObject newData = doc.object();
+   auto result = newData.insert(property, QJsonValue::fromVariant(value));
+   if (result == newData.end()) {
+      qWarning() << "Failed to set/update property";
+   }
+
+   doc.setObject(newData);
+
+   /*
+   qDebug() << "Old data: " << jsonData.toStdString().c_str();
+   jsonData = doc.toJson();
+   qDebug() << "New data: " << jsonData.toStdString().c_str();
+   */
+
+   if (!jsonFile.open(QIODevice::WriteOnly)) {
+      qWarning() << C::gettext("Failed to open plant JSON: ") + jsonFile.errorString();
+      return false;
+   }
+
+   if (!jsonFile.write(doc.toJson(QJsonDocument::Compact))) {
+      qWarning() << C::gettext("Failed to save plant JSON: ") + jsonFile.errorString();
+      return false;
+   }
+
+   jsonFile.close();
+   return true;
 }
 
 // **************************************************************************
