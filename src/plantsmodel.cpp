@@ -200,11 +200,22 @@ void PlantsModel::reload()
 
 void PlantsModel::updatePlantProperty(QString id, QString property, QVariant value)
 {
+   auto it = std::find_if(mItems.begin(), mItems.end(),
+                          [&id](Plant* plant) { return plant->id == id; });
+
+   if (it == mItems.end() || !mItemMap.count((*it)->id)) {
+      qWarning() << C::gettext("Failed to update plant (plant unknown)");
+      return;
+   }
+
+   int idx = it - mItems.begin();
+
    if (!plants.updatePlant(id, property, value)) {
       qWarning() << "Failed: could not update plant property for id" << id;
    }
-   // FIXME: we could do it in memory only here...
-   reload();
+
+   emit dataChanged(index(idx), index(idx), { } );
+   //reload();
 }
 
 // **************************************************************************
