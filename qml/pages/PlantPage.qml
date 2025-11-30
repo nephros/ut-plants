@@ -76,11 +76,7 @@ Page {
             title: (expanded && content.status === Loader.Ready) ? content.item.cardTitle : "GBIF"
             expanded: false
             onExpandedChanged: if ((expanded) && content.status === Loader.Null) {
-                if (plant.gbifId != "-1") {
-                    content.setSource("../util/GBIFCard.qml", { "gbifId": plant.gbifId } )
-                } else {
-                    content.setSource("../util/GBIFCard.qml", { "species": plant.species } )
-                }
+                content.setSource("../util/GBIFCard.qml")
             }
             Rectangle {
                anchors.fill: parent
@@ -93,10 +89,10 @@ Page {
             //visible: settings.allowLocation
             title: (expanded && content.status === Loader.Ready) ? content.item.cardTitle : "GBIF Map"
             expanded: false
-            enabled: plant.gbifId != "-1"
+            //enabled: plant.gbifId != "-1"
             opacity: enabled ? 1.0 :  Theme.opacityFaint
             onExpandedChanged: if ((expanded) && content.status === Loader.Null) {
-                content.setSource("../util/GBIFMap.qml", { "gbifId": plant.gbifId } )
+                content.setSource("../util/GBIFMap.qml")
             }
             Rectangle {
                anchors.fill: parent

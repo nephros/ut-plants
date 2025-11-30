@@ -11,15 +11,19 @@ Rectangle { id: root
 
    Behavior on opacity { FadeAnimator{} }
 
-   property string species
-   property string gbifId: "-1"
+   property string species: plant.species
+   property string gbifId: plant.gbifId
    property string cardTitle
    property string cardDesc: ""
 
-   onSpeciesChanged: if(species) {
+   onSpeciesChanged: if ((species) && (gbifId == "-1")) {
       console.debug("WARN: should migrate this call to Worker Script!")
       //root.gbifId = "-1"
-      GBIFUtil.lookupSpeciesByName(species, function(res) { root.gbifId = res } )
+      GBIFUtil.lookupSpeciesByName(species, function(res) {
+            root.gbifId = res
+            plantsModel.updatePlantProperty(plant.id, "gbifId", res)
+         }
+      )
    }
 
    property double elementSpacing: units.gu(2)
