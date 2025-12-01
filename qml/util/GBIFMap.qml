@@ -57,7 +57,6 @@ GBIFCardBase { id: root
           property string srs: "3857" // Web Mercator
           //property string srs: "4326"   // Plate Caree/WGS84
 
-          //property int max_tiles: tile_z == 0 ? 1 : Math.pow(Math.pow(2,tile_z),2)
           property int max_tiles: Math.pow(Math.pow(2, tile_z), 2)
           // 0: 1
           // 1: 2x2 = 4    = (2^zoom)^2
@@ -65,6 +64,7 @@ GBIFCardBase { id: root
           // 3: 8x8 = 64
           property int max_x: tile_z == 0 ? 1 : Math.sqrt(max_tiles)
           property int max_y: tile_z == 0 ? 1 : Math.sqrt(max_tiles)
+          property int max_z: 16 // https://labs.gbif.org/~mblissett/2025/09/wmts/GBIF-Occurrence.xml
 
           property color contrastColor:       (Theme.colorScheme === Theme.LightOnDark) ? Theme.lightPrimaryColor : Theme.darkPrimaryColor
           property color uiColor: (Theme.colorScheme === Theme.LightOnDark) ? Theme.darkPrimaryColor : Theme.lightPrimaryColor
@@ -181,9 +181,9 @@ GBIFCardBase { id: root
              visible: gpsbutt.enabled
              anchors.verticalCenter: gpsbutt.bottom
              anchors.horizontalCenter: gpsbutt.horizontalCenter
-             text: pos.position.coordinate.latitude.toFixed(settings.locationPrecision)
+             text: pos.position.coordinate.latitude.toFixed(Math.min(3, settings.locationPrecision))
                  + " "
-                 + pos.position.coordinate.longitude.toFixed(settings.locationPrecision)
+                 + pos.position.coordinate.longitude.toFixed(Math.min(3, settings.locationPrecision))
              style: Text.Raised
              color: mapContainer.uiColor
              styleColor: mapContainer.contrastColor
@@ -193,17 +193,17 @@ GBIFCardBase { id: root
              anchors.top: parent.top
              anchors.left: parent.left
              width: height; height: Theme.iconSizeLarge
-             visible: mapContainer.max_tiles > 4
+             visible: (mapContainer.tile_z > 1) && (mapContainer.tile_z < 12)
              cache: true
              sourceSize.width: 256; sourceSize.height: width
              source: "https://tile.gbif.org/" + mapContainer.srs + "/omt/0/0/0@Hx.png??style=gbif-light"
              Grid { id: grid
                anchors.fill: parent
-               visible: parent.visible && mapContainer.max_tiles <= 4096
+               visible: parent.visible
                rows: columns
                columns: visible ? mapContainer.max_x : 0
                Repeater {
-                 model: parent.visible ? mapContainer.max_tiles : undefined
+                 model: Math.pow(grid.columns,2)
                  delegate: Rectangle {
                     width: height
                     height: grid.width / grid.columns
@@ -226,6 +226,7 @@ GBIFCardBase { id: root
           }
 
           function zoomIn()  {
+             if (tile_z == max_z) return
              tile_x = tile_x*2; tile_y = tile_y*2
              tile_z += 1
              tapped += 'i'
@@ -282,7 +283,7 @@ GBIFCardBase { id: root
          IconButton { id: rembutt;  icon.source: "image://theme/icon-m-remove"
             onClicked: mapContainer.zoomOut(); enabled: mapContainer.tile_z>0 }
          IconButton { id: addbutt;  icon.source: "image://theme/icon-m-add"
-           onClicked: mapContainer.zoomIn() }
+           onClicked: mapContainer.zoomIn(); enabled: mapContainer.tile_z<mapContainer.max_z }
          Item { width: units.gu(2) }
          IconButton { id: lftbutt;  icon.source: "image://theme/icon-m-left"
             onClicked: mapContainer.west(); enabled: mapContainer.tile_x>0 }
