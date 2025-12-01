@@ -89,7 +89,7 @@ GBIFCardBase { id: root
              sourceSize.width: 512; sourceSize.height: width
              source: "https://tile.gbif.org/" + parent.srs + "/omt/" + parent.position + "@1x.png"
                    //+ "?style=gbif-" + (Theme.colorScheme === Theme.LightOnDark ? "light" : + "classic")
-                   + "?style=gbif-" + (Theme.colorScheme === Theme.LightOnDark ? "geyser" : + "tuatara")
+                   + "?style=gbif-" + (Theme.colorScheme === Theme.LightOnDark ? "geyser" : "tuatara")
           }
 
           Image { id: occImage
@@ -100,12 +100,8 @@ GBIFCardBase { id: root
              source: "https://api.gbif.org/v2/map/occurrence/density/" + parent.position + "@1x.png"
                  + "?taxonKey=" + gbifId
                  + "&srs=EPSG:" + parent.srs
-                 //+ "&style=green-noborder.poly"
-                 // size of the squares in pixels on a 4096px tile. Choose a factor of 4096 so they tessalete correctly.
-                 // available: 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096
-                 //+ "&bin=square&squareSize=64"
-                 //+ "&style=green.poly"
-                 + "&style=" + (Theme.colorScheme === Theme.LightOnDark ? "green.poly" : + "classic.poly")
+                 + "&style=green.poly"
+                 //+ "&style=" + (Theme.colorScheme === Theme.LightOnDark ? "green.poly" : + "classic.poly")
                  + "&bin=hex&hexPerTile=85" // number of hexagons across a tile -> larger gives smaller hexes, default 51
           }
           Image { id: fallbackMap
