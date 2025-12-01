@@ -16,10 +16,17 @@ GBIFCardBase { id: root
 
    ListModel { id: vernaculars }
 
+   onGbifIdChanged: if ((gbifId != "-1") && gbif.ready) {
+      gbif.sendMessage({ "type": "lookupAll", "key": gbifId })
+   }
    WorkerScript { id: gbif
-      Component.onCompleted: if(gbifId != "-1") {
-          sendMessage({ "type": "lookupAll", "key": gbifId })
+      Component.onCompleted: {
+         ready = true
+         if (gbifId != "-1") {
+           sendMessage({ "type": "lookupAll", "key": gbifId })
+         }
       }
+      property bool ready: false
       source: "gbifutils.js"
       onMessage: function(message) {
          //console.debug("WS: Got a message of type:", message.type)
