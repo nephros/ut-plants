@@ -195,6 +195,7 @@ Page {
          }
          Slider {
              enabled: false
+             opacity: enabled ? 1.0 : Theme.opacityFaint
              anchors.left: parent.left
              anchors.right: parent.right
              value: settings.numResults
@@ -228,6 +229,8 @@ Page {
          Slider {
              anchors.left: parent.left
              anchors.right: parent.right
+             enabled: settings.allowLocation
+             opacity: enabled ? 1.0 : Theme.opacityFaint
              value: settings.locationPrecision
              valueText: {
                 switch (sliderValue) {
@@ -260,6 +263,8 @@ Page {
          Label {
              anchors.left: parent.left
              anchors.right: parent.right
+             enabled: settings.allowLocation
+             opacity: enabled ? 1.0 : Theme.opacityFaint
              anchors.leftMargin: Theme.horizontalPageMargin
              anchors.rightMargin: Theme.horizontalPageMargin
              text: i18n.tr("<p/>The precision configures the decimal places reported for Latitude and Longitude. Refer to <a href='https://xkcd.com/2170/'>XKCD 2170</a> for details.</p>")
