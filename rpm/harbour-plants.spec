@@ -49,28 +49,20 @@ BuildRequires:  cmake
 %description
 %{summary}.
 
-%if 0%{?_chum}
-Title: Plants
-Type: desktop-application
-DeveloperLogin: patrickjane
-PackagedBy: nephros
-Categories:
- - Science
- - Utility
-Custom:
-  Repo: %{url}
-# GitHub:
-PackageIcon: %{url}/raw/branch/sfos/icons/%{name}-512.png
-Screenshots:
- - %{url}/raw/metadata/screenshots/screenshot1.png
- - %{url}/raw/metadata/screenshots/screenshot2.png
- - %{url}/raw/metadata/screenshots/screenshot3.png
-Links:
-  Homepage: %{url}
-  Help: %{url}/discussions
-  Bugtracker: %{url}/issues
-  Donation: https://openrepos.net/donate
-%endif
+This is a port of the Ubuntu Touch app "UT Plants" by Patrick Fial.
+
+The App enables the user to identify the species of a plant by submitting
+photos for identification. The identification result will contain the name
+of the species, common names (if known), and a score (percentage) of how
+accurate the identification was.  Identification results can be saved
+locally along with the photos which were used to identify the plant.
+
+For identification, the Pl@ntNet plant identification online service is
+used.
+
+In order to use the Pl@ntNet plant identification service, it is necessary
+to register at their website as developer and obtain an API-Key.  This key
+needs to be configured in the App settings.
 
 
 %define please_also ignore this macro
