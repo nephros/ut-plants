@@ -142,13 +142,16 @@ GBIFCardBase { id: root
              onClicked: { mapContainer.tile_z = 0; mapContainer.tile_x = 0; mapContainer.tile_y = 0 }
           }
           IconButton { id: gpsbutt
-            enabled: pos.active
+            enabled: allowLocation && pos.active
             anchors.right: parent.right
             anchors.bottom: parent.bottom
             anchors.margins: units.gu(1);
             icon.source: "image://theme/icon-m-location?" + mapContainer.uiColor
             onClicked: {
               const coord = pos.position.coordinate
+              // check for NaN, which is unequal to itself
+              if (coord.longitude !== coord.longitude) return
+              if (coord.latitude !== coord.latitude) return
               const lon = coord.longitude.toFixed(settings.locationPrecision)
               const lat = coord.latitude.toFixed(settings.locationPrecision)
               const zoom = (settings.locationPrecision > 5) ? settings.locationPrecision+2 : 6
