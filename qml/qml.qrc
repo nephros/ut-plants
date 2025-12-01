@@ -18,6 +18,8 @@
         <file>util/WikiCard.qml</file>
         <file>util/country-flags.js</file>
         <file>util/gbifutils.js</file>
+        <file>util/white.png</file>
+        <file>util/trans.png</file>
         <file>util/languages-iso-639-1-2-3.js</file>
         <file>util/LoadingScreen.qml</file>
         <file>util/SFOSShare.qml</file>
