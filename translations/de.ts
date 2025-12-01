@@ -326,6 +326,48 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
     </message>
 </context>
 <context>
+    <name>GBIFCard</name>
+    <message>
+        <source>Taxonomy</source>
+        <translation>Taxonomie</translation>
+    </message>
+    <message>
+        <source>Class</source>
+        <translation>Klasse</translation>
+    </message>
+    <message>
+        <source>Phylum</source>
+        <translation>Stamm</translation>
+    </message>
+    <message>
+        <source>Order</source>
+        <translation>Ordnung</translation>
+    </message>
+    <message>
+        <source>Family</source>
+        <translation>Familie</translation>
+    </message>
+    <message>
+        <source>Genus</source>
+        <translation>Gattung</translation>
+    </message>
+    <message>
+        <source>Source:</source>
+        <translation>Quelle:</translation>
+    </message>
+    <message>
+        <source>Vernacular name</source>
+        <translation>Trivialname</translation>
+    </message>
+</context>
+<context>
+    <name>GBIFMap</name>
+    <message>
+        <source>Occurrence Map</source>
+        <translation>Vorkommen</translation>
+    </message>
+</context>
+<context>
     <name>ImportPage</name>
     <message>
         <source>Load image</source>
@@ -672,6 +714,70 @@ Bitte ein Entwickler-Konto auf &lt;a href=&quot;https://my.plantnet.org/signup&q
     <message>
         <source>Note that saving a result will use this language and it will not be updated later.</source>
         <translation>NB: Beim Speichern eines Ergebnisses wird diese Sprache verwendet, und sie wird später nicht iaktualisiert.</translation>
+    </message>
+    <message>
+        <source>Additional Sources:</source>
+        <translation>Weitere Datenquellen:</translation>
+    </message>
+    <message>
+        <source>Allow additional data sources</source>
+        <translation>Weitere Datenquellen erlauben</translation>
+    </message>
+    <message>
+        <source>Allow location data</source>
+        <translation>Positionsdaten erlauben</translation>
+    </message>
+    <message>
+        <source>If enabled, we try to use the device&apos;s location for displaying maps etc. Location must still be enabled on the device for this to work.</source>
+        <translation>Wenn aktiviert werden die Positionsinformationen des Gerätes verwendet, um z.B. Karten anzuzeigen. Die Positionsbestimmmung muss vorher am Gerät aktiviert worden sein.</translation>
+    </message>
+    <message>
+        <source>0: Continent</source>
+        <translation>0: Kontinent</translation>
+    </message>
+    <message>
+        <source>1: City</source>
+        <translation>1: Stadt</translation>
+    </message>
+    <message>
+        <source>2: Neighbourhood</source>
+        <translation>2: Stadtteil</translation>
+    </message>
+    <message>
+        <source>3: Street</source>
+        <translation>3: Straße</translation>
+    </message>
+    <message>
+        <source>4: Corner of the House</source>
+        <translation>4: Hausecke</translation>
+    </message>
+    <message>
+        <source>5: That Person right there</source>
+        <translation>5: Die Person da drüben</translation>
+    </message>
+    <message>
+        <source>6: Waldo on a Page</source>
+        <translation>6: Walter auf einer Buchseite</translation>
+    </message>
+    <message>
+        <source>7: Grain of Sand</source>
+        <translation>7: Ein Sandkorn</translation>
+    </message>
+    <message>
+        <source>8: Being ridiculous</source>
+        <translation>8: Einfach lächerlich</translation>
+    </message>
+    <message>
+        <source>Location data precision</source>
+        <translation>Genauigkeit der Position</translation>
+    </message>
+    <message>
+        <source>&lt;p/&gt;The precision configures the decimal places reported for Latitude and Longitude. Refer to &lt;a href=&apos;https://xkcd.com/2170/&apos;&gt;XKCD 2170&lt;/a&gt; for details.&lt;/p&gt;</source>
+        <translation>&lt;p/&gt;Konfigueriert die Anzahl der Nachkommastellen in Längen- und Breitengraden. Siehe &lt;a href=&apos;https://xkcd.com/2170/&apos;&gt;XKCD 2170&lt;/a&gt; um mehr zu erfahren.&lt;/p&gt; </translation>
+    </message>
+    <message>
+        <source>If enabled, additional services may be queried to enhance result data.</source>
+        <translation>Wenn aktiviert können zusätzliche Dienste abgefragt werden, um die Ergebnisdaten zu verbessern.</translation>
     </message>
 </context>
 <context>

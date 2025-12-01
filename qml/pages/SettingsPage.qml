@@ -211,7 +211,7 @@ Page {
             anchors.left: parent.left
             anchors.right: parent.right
             text: i18n.tr("Allow additional data sources")
-            description: i18n.tr("If enabled, additional services may be queried to enhance result data..")
+            description: i18n.tr("If enabled, additional services may be queried to enhance result data.")
             checked: settings.allowAdditional
             onCheckedChanged: settings.allowAdditional = checked
          }

@@ -333,6 +333,57 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
     </message>
 </context>
 <context>
+    <name>GBIFCard</name>
+    <message>
+        <location filename="../qml/util/GBIFCard.qml" line="85"/>
+        <source>Taxonomy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/util/GBIFCard.qml" line="90"/>
+        <source>Class</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/util/GBIFCard.qml" line="98"/>
+        <source>Phylum</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/util/GBIFCard.qml" line="98"/>
+        <source>Order</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/util/GBIFCard.qml" line="98"/>
+        <source>Family</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/util/GBIFCard.qml" line="98"/>
+        <source>Genus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/util/GBIFCard.qml" line="171"/>
+        <source>Source:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/util/GBIFCard.qml" line="182"/>
+        <source>Vernacular name</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>GBIFMap</name>
+    <message>
+        <location filename="../qml/util/GBIFMap.qml" line="11"/>
+        <source>Occurrence Map</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ImportPage</name>
     <message>
         <location filename="../qml/pages/ImportPage.qml" line="13"/>
@@ -474,27 +525,27 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
 <context>
     <name>PlantPage</name>
     <message>
-        <location filename="../qml/pages/PlantPage.qml" line="16"/>
+        <location filename="../qml/pages/PlantPage.qml" line="19"/>
         <source>Plant details</source>
         <translation>Plantgegevens</translation>
     </message>
     <message>
-        <location filename="../qml/pages/PlantPage.qml" line="28"/>
+        <location filename="../qml/pages/PlantPage.qml" line="120"/>
         <source>Copy names to Clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/PlantPage.qml" line="32"/>
+        <location filename="../qml/pages/PlantPage.qml" line="124"/>
         <source>Copy species to Clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/PlantPage.qml" line="37"/>
+        <location filename="../qml/pages/PlantPage.qml" line="129"/>
         <source>Copy family to Clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/PlantPage.qml" line="41"/>
+        <location filename="../qml/pages/PlantPage.qml" line="133"/>
         <source>Search on Wikipedia</source>
         <translation type="unfinished"></translation>
     </message>
@@ -721,16 +772,96 @@ Open &lt;a href=&quot;https://my.plantnet.org/signup&quot;&gt;https://my.plantne
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="209"/>
-        <source>App:</source>
+        <source>Additional Sources:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="213"/>
-        <source>Prevent device sleep on pending request</source>
+        <source>Allow additional data sources</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="214"/>
+        <source>If enabled, additional services may be queried to enhance result data.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="222"/>
+        <source>Allow location data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="223"/>
+        <source>If enabled, we try to use the device&apos;s location for displaying maps etc. Location must still be enabled on the device for this to work.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="235"/>
+        <source>0: Continent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="237"/>
+        <source>1: City</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="239"/>
+        <source>2: Neighbourhood</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="241"/>
+        <source>3: Street</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="243"/>
+        <source>4: Corner of the House</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="245"/>
+        <source>5: That Person right there</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="247"/>
+        <source>6: Waldo on a Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="249"/>
+        <source>7: Grain of Sand</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="251"/>
+        <source>8: Being ridiculous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="257"/>
+        <source>Location data precision</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="265"/>
+        <source>&lt;p/&gt;The precision configures the decimal places reported for Latitude and Longitude. Refer to &lt;a href=&apos;https://xkcd.com/2170/&apos;&gt;XKCD 2170&lt;/a&gt; for details.&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="274"/>
+        <source>App:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="278"/>
+        <source>Prevent device sleep on pending request</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="279"/>
         <source>If enabled, device will not go into sleep mode while waiting on an identification result.</source>
         <translation type="unfinished"></translation>
     </message>
