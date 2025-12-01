@@ -8,10 +8,13 @@ GBIFCardBase { id: root
 
    property var _speciesData: ({})
    property var _speciesMedia: ([])
-   property var _speciesNames: ([])
-   property var _countryData: ([])
+   //property var _speciesNames: ([])
+   //property var _countryData: ([])
+   //property var _languageData
 
    cardTitle: species
+
+   ListModel { id: vernaculars }
 
    WorkerScript { id: gbif
       Component.onCompleted: if(gbifId != "-1") {
@@ -28,10 +31,22 @@ GBIFCardBase { id: root
               _speciesMedia = new Object(message.data)
             break
             case "names":
-              _speciesNames = new Object(message.data)
+              message.data.forEach(function(e) {
+                //const lng = _languageData.find(function(l) { return l.iso3 == e.language })
+                const lng = Lang.iso3ToLang(e.language)
+                const flg = Flags.flag(lng["1"])
+                vernaculars.append ({
+                  "flag": flg.flag,
+                  "languageName": lng.local,
+                  //"languageName": lng.titleNative,
+                  "names":  e.names
+                })
+              })
             break
-            case "countries":
-              _countryData = new Object(message.data)
+            //case "languages":
+            //  _languageData = message.data
+            //case "countries":
+            //  _countryData = new Object(message.data)
             break
             default:
                console.warn("WS: Unknown message type:", message.type)
@@ -83,7 +98,7 @@ GBIFCardBase { id: root
               spacing: units.gu(1)
               Item { height: 1; width: units.gu(2)*index }
               Label { font.pixelSize: Theme.fontSizeSmall; text: taxonomy.taxaNames[index]; color: brand.foreground }
-              Label { font.pixelSize: Theme.fontSizeSmall; text: _speciesData[modelData];   color: brand.foreground; font.italic: true }
+              Label { font.pixelSize: Theme.fontSizeSmall; text: _speciesData[modelData] ?_speciesData[modelData] : "";   color: brand.foreground; font.italic: true }
             }
          }
       }
@@ -164,9 +179,21 @@ GBIFCardBase { id: root
       Label {
          color: brand.foreground
          width: parent.width
-         text: _speciesData.vernacularName
+         text: _speciesData.vernacularName ? _speciesData.vernacularName : ""
          wrapMode: Text.WordWrap
       }
+      Repeater {
+         width: parent.width
+         model: vernaculars
+         delegate: Label {
+            width: parent.width
+            color: brand.foreground
+            wrapMode: Text.WordWrap
+            textFormat: Text.StyledText
+            text: (flag ? flag + " " : "") + "<i>%1</i>: %2".arg(languageName).arg(names)
+         }
+      }
+      /*
       Repeater {
         width: parent.width
         model: Object.keys(_speciesNames)
@@ -186,5 +213,6 @@ GBIFCardBase { id: root
            }
         }
       }
+      */
   }
 }
