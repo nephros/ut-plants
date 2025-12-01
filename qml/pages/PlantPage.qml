@@ -12,7 +12,6 @@ Page {
       anchors.fill: parent
       contentHeight: header.height
                    + plantCard.height
-                   //+ moreInfoHeader.height
                    + moreInfo.height
 
       PageHeader { id: header
@@ -25,14 +24,6 @@ Page {
          anchors.top: header.bottom
          plant: plantPage.plant
       }
-      /*
-      SectionHeader { id: moreInfoHeader
-         anchors.top: plantCard.bottom
-         text: i18n.tr("Other Sources")
-         font.pixelSize: Theme.fontSizeNormal
-         horizontalAlignment: Text.AlignLeft
-      }
-      */
       ExpandingSectionGroup { id: moreInfo
          //anchors.top: moreInfoHeader.bottom
          anchors.top: plantCard.bottom
@@ -45,6 +36,7 @@ Page {
             title: (expanded && content.status === Loader.Ready) ? content.item.cardTitle : "Wikipedia"
             expanded: false
             enabled: settings.allowAdditional
+            opacity: enabled ? 1.0 :  Theme.opacityFaint
             onExpandedChanged: if ((expanded) && content.status === Loader.Null) {
                 content.setSource("../util/WikiCard.qml",
                                   { "species": plant.species,
@@ -77,6 +69,7 @@ Page {
             title: (expanded && content.status === Loader.Ready) ? content.item.cardTitle : "GBIF"
             expanded: false
             enabled: settings.allowAdditional
+            opacity: enabled ? 1.0 :  Theme.opacityFaint
             onExpandedChanged: if ((expanded) && content.status === Loader.Null) {
                 content.setSource("../util/GBIFCard.qml")
             }
