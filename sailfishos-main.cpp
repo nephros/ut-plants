@@ -51,7 +51,8 @@ int main(int argc, char *argv[])
        qmlPath = QUrl::fromLocalFile(wantDir + "/harbour-plants.qml");
        qInfo() << "QML Path set from Environment:" << wantDir;
    } else {
-       qmlPath = SailfishApp::pathToMainQml();
+       //qmlPath = SailfishApp::pathToMainQml();
+       qmlPath = QUrl("qrc:/harbour-plants.qml");
    }
 
    // only load custom translators if running with Resources:
@@ -65,8 +66,6 @@ int main(int argc, char *argv[])
        }
    }
 
-   //view->setSource(QUrl("qrc:/harbour-plants.qml"));
-   //view->setSource(SailfishApp::pathToMainQml());
    view->setSource(qmlPath);
    view->show();
 
