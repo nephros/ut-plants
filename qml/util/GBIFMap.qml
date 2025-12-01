@@ -245,33 +245,24 @@ GBIFCardBase { id: root
           SequentialAnimation { id: effect
              running: false
              ParallelAnimation {
-             RotationAnimator {
-               target: blendedImage1
-               from: 0
-               to: 360*3
-               //loops: 3
-               //easing.type: Easing.InOutElastic;
-               //easing.type: Easing.InCubic;
-               easing.type: Easing.OutBounce;
-               duration: 6000
-               onStopped: blendedImage.rotation = 0
+                RotationAnimator { target: blendedImage1
+                  from: 0; to: 360*3
+                  easing.type: Easing.OutBounce;
+                  duration: 6000
+                  onStopped: blendedImage.rotation = 0
+                }
+                ScaleAnimator { target: blendedImage1
+                  from: 1.0; to: 1.6
+                  easing.type: Easing.InOutElastic;
+                  duration: 2000
+                  onStopped: blendedImage.scale = 1.0
+                }
              }
-             ScaleAnimator {
-               target: blendedImage1
-               from: 1.0
-               to: 1.6
-               easing.type: Easing.InOutElastic;
+             ScaleAnimator { target: blendedImage1
+               to: 1.0; from: 1.6
+               easing.type: Easing.InElastic;
                duration: 2000
                onStopped: blendedImage.scale = 1.0
-             }
-             }
-             ScaleAnimator {
-               target: blendedImage1
-               to: 1.0
-               from: 1.6
-               easing.type: Easing.InOutElastic;
-               duration: 2000
-               onStopped: target.scale = blendedImage.scale = 1.0
              }
           }
       }
