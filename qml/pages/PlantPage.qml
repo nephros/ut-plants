@@ -44,6 +44,7 @@ Page {
          ExpandingSection {
             title: (expanded && content.status === Loader.Ready) ? content.item.cardTitle : "Wikipedia"
             expanded: false
+            enabled: settings.allowAdditional
             onExpandedChanged: if ((expanded) && content.status === Loader.Null) {
                 content.setSource("../util/WikiCard.qml",
                                   { "species": plant.species,
@@ -75,6 +76,7 @@ Page {
          ExpandingSection {
             title: (expanded && content.status === Loader.Ready) ? content.item.cardTitle : "GBIF"
             expanded: false
+            enabled: settings.allowAdditional
             onExpandedChanged: if ((expanded) && content.status === Loader.Null) {
                 content.setSource("../util/GBIFCard.qml")
             }
@@ -89,7 +91,7 @@ Page {
             //visible: settings.allowLocation
             title: (expanded && content.status === Loader.Ready) ? content.item.cardTitle : "GBIF Map"
             expanded: false
-            //enabled: plant.gbifId != "-1"
+            enabled: settings.allowAdditional
             opacity: enabled ? 1.0 :  Theme.opacityFaint
             onExpandedChanged: if ((expanded) && content.status === Loader.Null) {
                 content.setSource("../util/GBIFMap.qml")
