@@ -10,11 +10,30 @@
 #include <QDebug>
 #include <QDBusConnection>
 #include <QDBusError>
+#include <QDBusAbstractAdaptor>
 
 #include <sailfishapp.h>
 
 #include "src/plantsimageprovider.hpp"
 #include "src/plantsmodel.hpp"
+
+class BusAdaptor : public  QDBusAbstractAdaptor
+{
+   Q_OBJECT
+   Q_CLASSINFO("D-Bus Interface", "org.freedesktop.Application")
+public:
+   BusAdaptor(QGuiApplication *application, QQuickView *view)
+        : QDBusAbstractAdaptor(application), app(application), view(view)
+    {
+    }
+public slots:
+   void Activate( QVariantMap map ) { Q_UNUSED(map); view->show(); }
+private:
+   QGuiApplication *app;
+   QQuickView *view;
+};
+
+#include "sailfishos-main.moc"
 
 void registerBus() {
    QDBusConnection bus = QDBusConnection::sessionBus();
@@ -28,7 +47,6 @@ void registerBus() {
                                 << e.message();
    }
 }
-
 int main(int argc, char *argv[])
 {
    QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
@@ -67,10 +85,16 @@ int main(int argc, char *argv[])
    }
 
    view->setSource(qmlPath);
-   view->show();
+   if (!app->arguments().contains(QStringLiteral("-prestart"))) {
+       view->show();
+   }
 
+   // create the FDO activation adapter
+   new BusAdaptor(app.data(), view.data());
+   QDBusConnection::sessionBus().registerObject("/s710/plants", app.data());
    // Sailfish Share:Registering the service after QML is loaded
    registerBus();
 
    return app->exec();
 }
+
