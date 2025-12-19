@@ -17,6 +17,14 @@
 #include "src/plantsimageprovider.hpp"
 #include "src/plantsmodel.hpp"
 
+#ifndef APP_DBUS_SERVICE
+#define APP_DBUS_SERVICE "s710.plants"
+#endif
+#ifndef APP_DBUS_PATH
+#define APP_DBUS_PATH "/s710/plants"
+#endif
+
+/* Adaptor to provide the SFOS/FDO DBus-Activation interface */
 class BusAdaptor : public  QDBusAbstractAdaptor
 {
    Q_OBJECT
@@ -27,7 +35,16 @@ public:
     {
     }
 public slots:
-   void Activate( QVariantMap map ) { Q_UNUSED(map); view->show(); }
+   void Activate( QVariantMap platform_data )
+   {
+      Q_UNUSED(platform_data); view->show();
+   }
+   void Open( QStringList uris, QVariantMap platform_data )
+   {
+      Q_UNUSED(uris); // FIXME: We could support image urls here!
+      Q_UNUSED(platform_data);
+      view->show();
+   }
 private:
    QGuiApplication *app;
    QQuickView *view;
@@ -35,9 +52,10 @@ private:
 
 #include "sailfishos-main.moc"
 
+/* Register a service on the bus, for Sailfish::Share */
 void registerBus() {
    QDBusConnection bus = QDBusConnection::sessionBus();
-   if (bus.registerService(QStringLiteral("s710.plants"))) {
+   if (bus.registerService(APP_DBUS_SERVICE)) {
        qDebug() << "Successfully registered DBus service.";
    } else {
        QDBusError e = bus.lastError();
@@ -85,15 +103,16 @@ int main(int argc, char *argv[])
    }
 
    view->setSource(qmlPath);
-   if (!app->arguments().contains(QStringLiteral("-prestart"))) {
-       view->show();
-   }
 
    // create the FDO activation adapter
    new BusAdaptor(app.data(), view.data());
-   QDBusConnection::sessionBus().registerObject("/s710/plants", app.data());
+   QDBusConnection::sessionBus().registerObject(APP_DBUS_PATH, app.data());
    // Sailfish Share:Registering the service after QML is loaded
    registerBus();
+
+   if (!app->arguments().contains(QStringLiteral("-prestart"))) {
+       view->show();
+   }
 
    return app->exec();
 }
