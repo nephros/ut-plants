@@ -12,6 +12,8 @@ Page { id: requestPage
 
    SilicaListView { id: imageView
       anchors.fill: parent
+      anchors.leftMargin: Theme.horizontalPageMargin/2
+      anchors.rightMargin: Theme.horizontalPageMargin/2
 
       clip: true
       spacing: units.gu(1)

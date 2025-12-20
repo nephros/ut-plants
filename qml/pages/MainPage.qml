@@ -27,6 +27,8 @@ Page {
 
     SilicaListView { id: plantList
        anchors.fill: parent
+       anchors.leftMargin: Theme.horizontalPageMargin/2
+       anchors.rightMargin: Theme.horizontalPageMargin/2
        header: PageHeader {
            title: i18n.tr('Plants')
            description: app.loadingScreenShown
