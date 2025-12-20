@@ -221,6 +221,9 @@ Page { id: requestPage
             }
             Camera { id: camera
                 captureMode: Camera.CaptureStillImage
+                opticalZoom: maximumOpticalZoom
+                metaData.subject: "plant for identification"
+                metaData.event: "Taken by %1 v%2".arg(Qt.application.name).arg(Qt.application.version)
                 imageCapture {
                     onImageCaptured: {
                         //photoPreview.source = preview  // Show the preview in an Image
@@ -245,7 +248,10 @@ Page { id: requestPage
             VideoOutput { id: video
                 z: -1
                 source: camera
-                anchors.fill: parent
+                //anchors.fill: parent
+                anchors.centerIn: parent
+                width: parent.width
+                fillMode: VideoOutput.PreserveAspectFit
                 focus : visible // to receive focus and capture key events when visible
             }
 
@@ -277,7 +283,7 @@ Page { id: requestPage
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: header.bottom
                 anchors.topMargin: Theme.paddingMedium
-                width: parent.width - Theme.itemSizeMedium
+                width: Math.min((parent.width - Theme.itemSizeMedium), height*5)
                 height: Theme.iconSizeLarge
                 //z: video.z + 1
                 //clip: true
@@ -319,8 +325,9 @@ Page { id: requestPage
                 anchors.bottomMargin: Theme.itemSizeLarge
                 icon.width: Theme.iconSizeExtraLarge
                 icon.height: Theme.iconSizeExtraLarge
+                enabled: camera.imageCapture.ready
                 onClicked: shoot()
-                onPressed: searchAndShoot()
+                onPressAndHold: searchAndShoot()
             }
             Image { id: openCam
                 source: "image://theme/icon-launcher-camera"
