@@ -227,6 +227,7 @@ Page { id: requestPage
                         console.debug("preview image:", preview)
                     }
                     onImageSaved: {
+                        flashRect.run()
                         imagesModel.append( { "use": true, "path": path, "url": Qt.resolvedUrl("file://" + path) })
                         console.debug("saved image:", path)
                     }
@@ -246,6 +247,30 @@ Page { id: requestPage
                 source: camera
                 anchors.fill: parent
                 focus : visible // to receive focus and capture key events when visible
+            }
+
+            Rectangle { id: flashRect
+                anchors.centerIn: video
+                height: video.height
+                width: video.width
+                visible: anim.running
+                function run() { anim.start() }
+                ParallelAnimation { id: anim
+                   ColorAnimation {
+                      target: flashRect
+                      duration: 1500
+                      from: "white"; to: "transparent"
+                      easing.type: Easing.OutQuad
+                   }
+                   PropertyAnimation {
+                      target: flashRect
+                      duration: 1500
+                      property: "opacity"
+                      from: 0.8; to: 0.0
+                      easing.type: Easing.OutQuad
+                      onStopped: flashRect.opacity = from
+                   }
+                }
             }
 
             SlideshowView { id: photoPreview
