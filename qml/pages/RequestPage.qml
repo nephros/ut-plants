@@ -331,6 +331,7 @@ Page { id: requestPage
             }
             Image { id: openCam
                 source: "image://theme/icon-launcher-camera"
+                visible: cameraInterface.status === DBusInterface.Available
                 anchors.right: parent.right
                 anchors.rightMargin: Theme.itemSizeLarge
                 anchors.bottom: video.bottom
@@ -339,13 +340,14 @@ Page { id: requestPage
                 sourceSize.height: Theme.iconSizeLauncher
                 width: Theme.iconSizeLauncher
                 height: Theme.iconSizeLauncher
+                DBusInterface { id: cameraInterface
+                   watchServiceStatus: true
+                   service: "com.jolla.camera"
+                   path: "/"
+                   iface: "com.jolla.camera.ui";
+                }
                 BackgroundItem { anchors.fill: parent
-                    onClicked:  { cameraInterface.call("showViewfinder", ""); pageStack.pop() }
-                    DBusInterface { id: cameraInterface
-                      service: "com.jolla.camera"
-                      path: "/"
-                      iface: "com.jolla.camera.ui";
-                    }
+                   onClicked:  { cameraInterface.call("showViewfinder", ""); pageStack.pop() }
                 }
             }
             function searchAndShoot() {
