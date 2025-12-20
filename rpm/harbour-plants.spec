@@ -128,6 +128,8 @@ desktop-file-edit  \
 --set-icon=%{name} \
 --set-key=X-Nemo-Application-Type \
 --set-value=silica-qt5 \
+--add-mime-type=image/jpeg \
+--add-mime-type=image/png \
 --set-key=X-Share-Methods \
 --set-value=images \
 --set-key=X-DBusActivatable \
