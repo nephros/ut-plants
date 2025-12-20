@@ -83,9 +83,9 @@ Page { id: requestPage
       PullDownMenu {
          quickSelect: true
          busy: imageModel.count == 0
-         MenuItem { text: enabled ? i18n.tr("Add Images") : i18n.tr("Can not add more than 5 images"); enabled: imageModel.count < 5; onClicked: addNewImage() }
+         MenuItem { text: enabled ? i18n.tr("Add from Gallery") : i18n.tr("Can not add more than 5 images"); enabled: imageModel.count < 5; onClicked: addNewImage() }
          //MenuItem { text: i18n.tr("Take Pictures"); onClicked: openCameraExternally() }
-         MenuItem { text: i18n.tr("Take Pictures"); onClicked: openCameraPage() }
+         MenuItem { text: i18n.tr("Take Photos"); onClicked: openCameraPage() }
          MenuItem {
             enabled: imageModel.count > 0
             text: i18n.tr("Identify")
@@ -189,6 +189,7 @@ Page { id: requestPage
        if (sharedImages.length >0) requestPage.importImages(sharedImages)
    }
 
+   /*
    function openCameraExternally() {
        cameraInterface.call("showViewfinder", "")
    }
@@ -197,6 +198,7 @@ Page { id: requestPage
      path: "/"
      iface: "com.jolla.camera.ui";
    }
+   */
    function openCameraPage() {
       var camPage = pageStack.push(cameraPage)
       camPage.accepted.connect(function() { requestPage.importImages(camPage.capturedImages) })
@@ -225,7 +227,7 @@ Page { id: requestPage
                         console.debug("preview image:", preview)
                     }
                     onImageSaved: {
-                        imagesModel.append( { "use": true, "path": path, "url": Qt.resolvedUrl(path) })
+                        imagesModel.append( { "use": true, "path": path, "url": Qt.resolvedUrl("file://" + path) })
                         console.debug("saved image:", path)
                     }
                 }
@@ -248,18 +250,19 @@ Page { id: requestPage
 
             SlideshowView { id: photoPreview
                 anchors.horizontalCenter: parent.horizontalCenter
-                anchors.bottom: video.top
-                anchors.bottomMargin: Theme.paddingMedium
+                anchors.top: header.bottom
+                anchors.topMargin: Theme.paddingMedium
                 width: parent.width - Theme.itemSizeMedium
                 height: Theme.iconSizeLarge
-                z: video.z + 1
-                clip: true
+                //z: video.z + 1
+                //clip: true
                 orientation: Qt.Horizontal
                 model: imagesModel
                 itemHeight: Theme.iconSizeLarge
                 itemWidth: Theme.iconSizeLarge
                 delegate: Image {
-                    source: path
+                    onStatusChanged: console.debug("I:", status, url)
+                    source: url
                     height: Theme.iconSizeLarge
                     width: height
                     opacity: use ? 1.0 : Theme.opacityLow
@@ -267,22 +270,51 @@ Page { id: requestPage
                         anchors.fill: parent
                         onClicked: imagesModel.setProperty(index, "use", false)
                     }
+                    Icon {
+                        source: use ? "image://theme/icon-s-accept" :  "image://theme/icon-s-decline"
+                        anchors.bottom: parent.bottom
+                        anchors.right: parent.right
+                        height: Theme.iconSizeExtraSmall
+                        width: height
+                    }
                 }
             }
+            /*
             TextSwitch { id: focusWait
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: shooter.top
                 text: i18n.tr("Wait for focus")
                 checked: true
             }
+            */
             IconButton { id: shooter
-                icon.source: "image://theme/icon-m-tabs"
+                icon.source: "image://theme/icon-camera-shutter"
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: video.bottom
                 anchors.bottomMargin: Theme.itemSizeLarge
                 icon.width: Theme.iconSizeExtraLarge
                 icon.height: Theme.iconSizeExtraLarge
-                onClicked: focusWait.checked ? searchAndShoot() : shoot()
+                onClicked: shoot()
+                onPressed: searchAndShoot()
+            }
+            Image { id: openCam
+                source: "image://theme/icon-launcher-camera"
+                anchors.right: parent.right
+                anchors.rightMargin: Theme.itemSizeLarge
+                anchors.bottom: video.bottom
+                anchors.bottomMargin: Theme.itemSizeLarge
+                sourceSize.width: Theme.iconSizeLauncher
+                sourceSize.height: Theme.iconSizeLauncher
+                width: Theme.iconSizeLauncher
+                height: Theme.iconSizeLauncher
+                BackgroundItem { anchors.fill: parent
+                    onClicked:  { cameraInterface.call("showViewfinder", ""); pageStack.pop() }
+                    DBusInterface { id: cameraInterface
+                      service: "com.jolla.camera"
+                      path: "/"
+                      iface: "com.jolla.camera.ui";
+                    }
+                }
             }
             function searchAndShoot() {
                 camera.lockStatusChanged.connect(function() {
