@@ -35,14 +35,36 @@ public:
     {
     }
 public slots:
+   /* To test:
+      busctl --user call s710.plants  /s710/plants org.freedesktop.Application Activate a{sv} 0
+   */
    void Activate( QVariantMap platform_data )
    {
-      Q_UNUSED(platform_data); view->show();
+      Q_UNUSED(platform_data)
+      view->show();
+      QMetaObject::invokeMethod(view->rootObject(), "activate");
    }
+   /* To test:
+      busctl --user call s710.plants  /s710/plants org.freedesktop.Application Open asa{sv} 1 "file:///home/nemo/Pictures/IMG20250923.png" 0
+   */
    void Open( QStringList uris, QVariantMap platform_data )
    {
-      Q_UNUSED(uris); // FIXME: We could support image urls here!
       Q_UNUSED(platform_data);
+
+      QStringList images = uris.filter(QRegularExpression("^file:"));
+      //qDebug() << "Got image urls:" << images.count();
+      if (!images.isEmpty()) {
+         QObject *object = view->rootObject();
+         QObject *rqPage = object->findChild<QQuickItem*>(QStringLiteral("requestPage"));
+         if (rqPage) {
+            qDebug() << "Request page is open, handy!";
+            rqPage->setProperty("sharedImages", images);
+         } else {
+            qDebug() << "Request page not open!";
+            QMetaObject::invokeMethod(object, "openImageUrls", Q_ARG(QVariant, images));
+         }
+         QMetaObject::invokeMethod(object, "activate");
+      }
       view->show();
    }
 private:
