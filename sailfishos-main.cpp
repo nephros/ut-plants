@@ -38,7 +38,7 @@ public slots:
    /* To test:
       busctl --user call s710.plants  /s710/plants org.freedesktop.Application Activate a{sv} 0
    */
-   void Activate( QVariantMap platform_data )
+   void Activate( const QVariantMap &platform_data ) const
    {
       Q_UNUSED(platform_data)
       view->show();
@@ -47,7 +47,7 @@ public slots:
    /* To test:
       busctl --user call s710.plants  /s710/plants org.freedesktop.Application Open asa{sv} 1 "file:///home/nemo/Pictures/IMG20250923.png" 0
    */
-   void Open( QStringList uris, QVariantMap platform_data )
+   void Open( const QStringList &uris, const QVariantMap &platform_data ) const
    {
       Q_UNUSED(platform_data);
 
