@@ -20,7 +20,7 @@ Page {
       }
 
       PlantCard { id: plantCard
-         width: parent.width - units.gu(2)*2
+         width: parent.width - Theme.horizontalPageMargin
          anchors.top: header.bottom
          plant: plantPage.plant
       }

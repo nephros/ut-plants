@@ -47,6 +47,8 @@ Dialog {
       anchors.bottom: parent.bottom
       anchors.left: parent.left
       anchors.right: parent.right
+      anchors.leftMargin: Theme.horizontalPageMargin/2
+      anchors.rightMargin: Theme.horizontalPageMargin/2
 
       clip: true
       orientation: ListView.Horizontal
