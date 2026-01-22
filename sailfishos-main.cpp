@@ -10,15 +10,74 @@
 #include <QDebug>
 #include <QDBusConnection>
 #include <QDBusError>
+#include <QDBusAbstractAdaptor>
 
 #include <sailfishapp.h>
 
 #include "src/plantsimageprovider.hpp"
 #include "src/plantsmodel.hpp"
 
+#ifndef APP_DBUS_SERVICE
+#define APP_DBUS_SERVICE "s710.plants"
+#endif
+#ifndef APP_DBUS_PATH
+#define APP_DBUS_PATH "/s710/plants"
+#endif
+
+/* Adaptor to provide the SFOS/FDO DBus-Activation interface */
+class BusAdaptor : public  QDBusAbstractAdaptor
+{
+   Q_OBJECT
+   Q_CLASSINFO("D-Bus Interface", "org.freedesktop.Application")
+public:
+   BusAdaptor(QGuiApplication *application, QQuickView *view)
+        : QDBusAbstractAdaptor(application), app(application), view(view)
+    {
+    }
+public slots:
+   /* To test:
+      busctl --user call s710.plants  /s710/plants org.freedesktop.Application Activate a{sv} 0
+   */
+   void Activate( const QVariantMap &platform_data ) const
+   {
+      Q_UNUSED(platform_data)
+      view->show();
+      QMetaObject::invokeMethod(view->rootObject(), "activate");
+   }
+   /* To test:
+      busctl --user call s710.plants  /s710/plants org.freedesktop.Application Open asa{sv} 1 "file:///home/nemo/Pictures/IMG20250923.png" 0
+   */
+   void Open( const QStringList &uris, const QVariantMap &platform_data ) const
+   {
+      Q_UNUSED(platform_data);
+
+      QStringList images = uris.filter(QRegularExpression("^file:"));
+      //qDebug() << "Got image urls:" << images.count();
+      if (!images.isEmpty()) {
+         QObject *object = view->rootObject();
+         QObject *rqPage = object->findChild<QQuickItem*>(QStringLiteral("requestPage"));
+         if (rqPage) {
+            qDebug() << "Request page is open, handy!";
+            rqPage->setProperty("sharedImages", images);
+         } else {
+            qDebug() << "Request page not open!";
+            QMetaObject::invokeMethod(object, "openImageUrls", Q_ARG(QVariant, images));
+         }
+         QMetaObject::invokeMethod(object, "activate");
+      }
+      view->show();
+   }
+private:
+   QGuiApplication *app;
+   QQuickView *view;
+};
+
+#include "sailfishos-main.moc"
+
+/* Register a service on the bus, for Sailfish::Share */
 void registerBus() {
    QDBusConnection bus = QDBusConnection::sessionBus();
-   if (bus.registerService(QStringLiteral("s710.plants"))) {
+   if (bus.registerService(APP_DBUS_SERVICE)) {
        qDebug() << "Successfully registered DBus service.";
    } else {
        QDBusError e = bus.lastError();
@@ -28,7 +87,6 @@ void registerBus() {
                                 << e.message();
    }
 }
-
 int main(int argc, char *argv[])
 {
    QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
@@ -67,10 +125,17 @@ int main(int argc, char *argv[])
    }
 
    view->setSource(qmlPath);
-   view->show();
 
+   // create the FDO activation adapter
+   new BusAdaptor(app.data(), view.data());
+   QDBusConnection::sessionBus().registerObject(APP_DBUS_PATH, app.data());
    // Sailfish Share:Registering the service after QML is loaded
    registerBus();
 
+   if (!app->arguments().contains(QStringLiteral("-prestart"))) {
+       view->show();
+   }
+
    return app->exec();
 }
+

@@ -49,6 +49,16 @@ ApplicationWindow {
        readonly property color danger:     Theme.colorScheme === Theme.LightOnDark ? "#d13415" : Theme.highlightFromColor("#d13415", Theme.colorScheme)
     }
 
+    // helper function for DBus Open()
+    function openImageUrls(urls) {
+        const current = pageStack.currentPage
+        if ( current.objectName == "requestPage" ) { // if it's already on top, just add images:
+            current.sharedImages = urls
+        } else { // push a new page
+            pageStack.push("pages/RequestPage.qml", { "sharedImages": urls })
+        }
+     }
+
     PlantsModel { id: plantsModel
        onLanguageChanged: console.debug("PlantsModel language:", language)
        onRegionChanged: console.debug("PlantsModel region:", region)
