@@ -1,0 +1,532 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the plants.s710 package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: plants.s710\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-30 15:27+0100\n"
+"PO-Revision-Date: 2026-04-10 09:00+0100\n"
+"Last-Translator: Luca Rastelli <mad_fer_it@vivaldi.net>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../qml/dialogs/ErrorDialog.qml:9 ../qml/util/Dialogs.qml:50
+#: ../qml/util/Dialogs.qml:105
+msgid "Close"
+msgstr ""
+
+#: ../qml/dialogs/PickerDialog.qml:13 ../qml/pages/RequestPage.qml:71
+#: ../qml/util/Dialogs.qml:70
+msgid "Select plant part"
+msgstr ""
+
+#: ../qml/harbour-plants.qml:70
+msgid "Identification failed"
+msgstr ""
+
+#: ../qml/harbour-plants.qml:71
+msgid "Failed to send identification request to Pl@ntNet (%1)."
+msgstr ""
+
+#: ../qml/pages/ImportPage.qml:16
+msgid "Load image"
+msgstr ""
+
+#: ../qml/pages/MainPage.qml:22 ../qml/util/Dialogs.qml:98
+msgid "Failed to init storage directory"
+msgstr ""
+
+#: ../qml/pages/MainPage.qml:23 ../qml/util/Dialogs.qml:99
+msgid "Storage directory could not be initialized (%1)."
+msgstr ""
+
+#: ../qml/pages/MainPage.qml:36 Plants.desktop.in.h:1
+msgid "Plants"
+msgstr ""
+
+#: ../qml/pages/MainPage.qml:38 ../qml/util/LoadingScreen.qml:35
+msgid "Plant is being identified, please wait."
+msgstr ""
+
+#: ../qml/pages/MainPage.qml:41
+msgid "1 identified plant"
+msgstr ""
+
+#: ../qml/pages/MainPage.qml:42
+msgid "%1 identified plants"
+msgstr ""
+
+#: ../qml/pages/MainPage.qml:71
+msgid "Remove"
+msgstr ""
+
+#: ../qml/pages/MainPage.qml:79
+msgid "Deleting plant failed"
+msgstr ""
+
+#: ../qml/pages/MainPage.qml:80
+msgid "Plant could not be deleted (%1)."
+msgstr ""
+
+#: ../qml/pages/MainPage.qml:89
+msgid "No plants identified yet"
+msgstr ""
+
+#: ../qml/pages/MainPage.qml:90
+msgid "Pull down to start a new identification"
+msgstr ""
+
+#: ../qml/pages/MainPage.qml:95 ../qml/pages/MainPage.qml:115
+#: ../qml/pages/RequestPage.qml:32
+msgid "New identification"
+msgstr ""
+
+#: ../qml/pages/MainPage.qml:100 ../qml/pages/MainPage.qml:120
+msgid "API Key missing"
+msgstr ""
+
+#: ../qml/pages/MainPage.qml:101 ../qml/pages/MainPage.qml:121
+msgid ""
+"The Pl@ntNet API-Key has not been configured yet. Without this, the app will "
+"not work."
+msgstr ""
+
+#: ../qml/pages/MainPage.qml:133 ../qml/pages/SettingsPage.qml:52
+msgid "Settings"
+msgstr ""
+
+#: ../qml/pages/PlantPage.qml:21
+msgid "Plant details"
+msgstr ""
+
+#: ../qml/pages/PlantPage.qml:118
+msgid "Copy names to Clipboard"
+msgstr ""
+
+#: ../qml/pages/PlantPage.qml:122
+msgid "Copy species to Clipboard"
+msgstr ""
+
+#: ../qml/pages/PlantPage.qml:127
+msgid "Copy family to Clipboard"
+msgstr ""
+
+#: ../qml/pages/PlantPage.qml:131
+msgid "Search on Wikipedia"
+msgstr ""
+
+#: ../qml/pages/RequestPage.qml:37
+msgid ""
+"Add up to 5 images for identification. The images must be of the same plant. "
+"The more images are provided, the better the identification result will be."
+msgstr ""
+
+#: ../qml/pages/RequestPage.qml:44
+msgid ""
+"Pl@ntNet recommends images with the smaller side larger than 600px and "
+"smaller than 2000px. Ideally a square image zoomed on the organ around "
+"1280x1280px."
+msgstr ""
+
+#: ../qml/pages/RequestPage.qml:80
+msgid "Remove image"
+msgstr ""
+
+#: ../qml/pages/RequestPage.qml:89
+msgid "Add Images"
+msgstr ""
+
+#: ../qml/pages/RequestPage.qml:89
+msgid "Can not add more than 5 images"
+msgstr ""
+
+#: ../qml/pages/RequestPage.qml:92
+msgid "Identify"
+msgstr ""
+
+#: ../qml/pages/RequestPage.qml:111
+msgid "Remove All"
+msgstr ""
+
+#: ../qml/pages/RequestPage.qml:112
+msgid "Cleared"
+msgstr ""
+
+#: ../qml/pages/RequestPage.qml:116
+msgid "No images"
+msgstr ""
+
+#: ../qml/pages/RequestPage.qml:117
+msgid "Pull down to add new images"
+msgstr ""
+
+#: ../qml/pages/ResultsPage.qml:24
+msgid "Identification results: "
+msgstr ""
+
+#: ../qml/pages/ResultsPage.qml:25
+msgid "Save"
+msgstr ""
+
+#: ../qml/pages/ResultsPage.qml:26
+msgid "Back"
+msgstr ""
+
+#: ../qml/pages/ResultsPage.qml:37
+msgid "Saving result failed"
+msgstr ""
+
+#: ../qml/pages/ResultsPage.qml:38
+msgid "Result could not be saved (%1)."
+msgstr ""
+
+#: ../qml/pages/ResultsPage.qml:66
+msgid "%1/%2 results"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:65
+msgid "Pl@ntNet API key"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:76
+msgid ""
+"In order to use the Pl@ntNet plant identification service, it is necessary "
+"to register at their website as developer and obtain an API-Key. This key "
+"needs to be configured within this app.\n"
+"\n"
+"Please visit <a href=\"https://my.plantnet.org/signup\">https://my.plantnet."
+"org/signup</a> and create a developer account. Afterwards visit <a "
+"href=\"https://my.plantnet.org/account\">https://my.plantnet.org/account</a> "
+"and click the eye-symbol at the very top (\"my API key\") to show the API-"
+"Key. Copy this key and paste it into the below text input field."
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:87
+msgid "API-Key:"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:91
+msgid "New API Key"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:92
+msgid "Enter API-Key"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:93
+msgid "The value will be saved on Enter."
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:95
+msgid "API Key already stored. Edit to update"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:95
+msgid "No API Key stored"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:109
+msgid "Identification:"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:111
+msgid "Result Language"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:112
+msgid "The language to use for Identification results."
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:113
+msgid "Default is to use the current Locale, or English if not available."
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:114
+msgid ""
+"Note that saving a result will use this language and it will not be updated "
+"later."
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:143
+msgid "Region or Project"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:144
+msgid ""
+"The Region or Project to use for Identification results. Default is to use "
+"all available."
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:189
+msgid "species"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:210
+msgid "Number of results"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:214
+msgid "Additional Sources:"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:218
+msgid "Allow additional data sources"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:219
+msgid "If enabled, additional services may be queried to enhance result data."
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:227
+msgid "Allow location data"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:228
+msgid ""
+"If enabled, we try to use the device's location for displaying maps etc. "
+"Location must still be enabled on the device for this to work."
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:242
+msgid "0: Continent"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:244
+msgid "1: City"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:246
+msgid "2: Neighbourhood"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:248
+msgid "3: Street"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:250
+msgid "4: Corner of the House"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:252
+msgid "5: That Person right there"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:254
+msgid "6: Waldo on a Page"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:256
+msgid "7: Grain of Sand"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:258
+msgid "8: Being ridiculous"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:264
+msgid "Location data precision"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:274
+msgid ""
+"<p/>The precision configures the decimal places reported for Latitude and "
+"Longitude. Refer to <a href='https://xkcd.com/2170/'>XKCD 2170</a> for "
+"details.</p>"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:283
+msgid "App:"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:287
+msgid "Prevent device sleep on pending request"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:288
+msgid ""
+"If enabled, device will not go into sleep mode while waiting on an "
+"identification result."
+msgstr ""
+
+#: ../qml/util/Dialogs.qml:17
+msgid "Okay"
+msgstr ""
+
+#: ../qml/util/Dialogs.qml:18
+msgid "Cancel"
+msgstr ""
+
+#: ../qml/util/Dialogs.qml:83
+msgid "Select"
+msgstr ""
+
+#: ../qml/util/Disclaimer.qml:50
+msgid ""
+"This app uses the online service of Pl@ntNet (plantnet.org) to identify "
+"plants. Photos will be uploaded to Pl@ntNet for recognition, and the result "
+"will show a probability of correctness. This means, results provided by the "
+"service could be wrong, or some plants can maybe not be identified at all."
+msgstr ""
+
+#: ../qml/util/Disclaimer.qml:56
+msgid "Accept"
+msgstr ""
+
+#: ../qml/util/GBIFCard.qml:85
+msgid "Taxonomy"
+msgstr ""
+
+#: ../qml/util/GBIFCard.qml:90
+msgid "Class"
+msgstr ""
+
+#: ../qml/util/GBIFCard.qml:98
+msgid "Family"
+msgstr ""
+
+#: ../qml/util/GBIFCard.qml:98 ../qml/util/PlantCard.qml:77
+msgid "Genus"
+msgstr ""
+
+#: ../qml/util/GBIFCard.qml:98
+msgid "Order"
+msgstr ""
+
+#: ../qml/util/GBIFCard.qml:98
+msgid "Phylum"
+msgstr ""
+
+#: ../qml/util/GBIFCard.qml:171
+msgid "Source:"
+msgstr ""
+
+#: ../qml/util/GBIFCard.qml:182
+msgid "Vernacular name"
+msgstr ""
+
+#: ../qml/util/GBIFMap.qml:11
+msgid "Occurrence Map"
+msgstr ""
+
+#: ../qml/util/PlantCard.qml:42
+msgid "Name"
+msgstr ""
+
+#: ../qml/util/PlantCard.qml:148
+msgid "Common names"
+msgstr ""
+
+#: ../qml/util/PlantItem.qml:62
+msgid "Organ"
+msgstr ""
+
+#: ../qml/util/PlantUtils.qml:11
+msgid "Auto"
+msgstr ""
+
+#: ../qml/util/PlantUtils.qml:14
+msgid "Leaf"
+msgstr ""
+
+#: ../qml/util/PlantUtils.qml:17
+msgid "Flower"
+msgstr ""
+
+#: ../qml/util/PlantUtils.qml:20
+msgid "Fruit"
+msgstr ""
+
+#: ../qml/util/PlantUtils.qml:23
+msgid "Bark"
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:59
+msgid "No source images in identification result"
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:73
+msgid "Own photo"
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:79
+msgid "Failed to save source images for plant: "
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:100
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:104
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:159
+msgid "Failed to save plant JSON: "
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:122
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:154
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:178
+msgid "Failed to open plant JSON: "
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:134
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:201
+msgid "Failed to read plant JSON: "
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:184
+msgid "Failed to open plant JSON #2: "
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:206
+msgid "Unexpected/malformed plant JSON #1"
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:212
+msgid "Unexpected/malformed plant JSON #2"
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:236
+msgid "Unexpected/malformed plant JSON #3"
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:266
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plant.cpp:272
+msgid "Failed to open plant image: "
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plantsmodel.cpp:89
+msgid "Failed to determine writable app data storage location"
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plantsmodel.cpp:98
+msgid "App data storage location inaccessible"
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plantsmodel.cpp:99
+msgid "can't create subfolder:"
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plantsmodel.cpp:207
+msgid "Failed to update plant (plant unknown)"
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plantsmodel.cpp:233
+msgid "Failed to save plant"
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plantsmodel.cpp:257
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plantsmodel.cpp:263
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plantsmodel.cpp:280
+msgid "Failed to delete plant (plant unknown)"
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plantsmodel.cpp:268
+msgid "Failed to delete plant from storage directory (%1)"
+msgstr ""
+
+#: /home/nemo/devel/git/_harbour/ut-plants/src/plantsmodel.cpp:285
+msgid "Failed to delete plant image from storage directory (%1)"
+msgstr ""
